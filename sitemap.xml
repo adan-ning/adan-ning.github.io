@@ -1,18 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://adan-ning.github.io/posts/</loc>
-    <lastmod>2024-02-18T15:56:15+08:00</lastmod>
-  </url><url>
-    <loc>https://adan-ning.github.io/posts/myfirstarticles/</loc>
-    <lastmod>2024-02-18T15:56:15+08:00</lastmod>
-  </url><url>
-    <loc>https://adan-ning.github.io/</loc>
-    <lastmod>2024-02-18T15:56:15+08:00</lastmod>
-  </url><url>
-    <loc>https://adan-ning.github.io/categories/</loc>
-  </url><url>
-    <loc>https://adan-ning.github.io/tags/</loc>
-  </url>
-</urlset>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    ><url>
+            <loc>https://adan-ning.github.io/posts/first_post/</loc><lastmod>2024-02-18T18:04:09&#43;08:00</lastmod></url><url>
+            <loc>https://adan-ning.github.io/posts/</loc><lastmod>2024-02-18T18:04:09&#43;08:00</lastmod></url><url>
+            <loc>https://adan-ning.github.io/</loc><lastmod>2024-02-18T18:04:09&#43;08:00</lastmod></url><url>
+            <loc>https://adan-ning.github.io/posts/myfirstarticles/</loc><lastmod>2024-02-18T15:56:15&#43;08:00</lastmod></url><url>
+            <loc>https://adan-ning.github.io/categories/</loc></url><url>
+            <loc>https://adan-ning.github.io/tags/</loc></url></urlset>

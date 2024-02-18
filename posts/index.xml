@@ -1,19 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Posts on 蓝Q曦的博客</title>
-    <link>https://adan-ning.github.io/posts/</link>
-    <description>Recent content in Posts on 蓝Q曦的博客</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 18 Feb 2024 15:56:15 +0800</lastBuildDate>
-    <atom:link href="https://adan-ning.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>每次更新hugo博客的操作</title>
-      <link>https://adan-ning.github.io/posts/myfirstarticles/</link>
-      <pubDate>Sun, 18 Feb 2024 15:56:15 +0800</pubDate>
-      <guid>https://adan-ning.github.io/posts/myfirstarticles/</guid>
-      <description>每次更新hugo博客的操作 每次更新hugo博客所需的操作 打开 PowerShell / cmd 终端，打开最初用 hugo 搭建的博客所在的文件夹，以我为例： cd e:\myblog 第一步 新建一个 markdown(.md) 格式的文件(如果要修改原来的文件可不需要新建) hugo new post/FileName.md 其中 FileName 为自定义的文件名&#xA;第二步 输入命令： hugo &amp;ndash;theme=hugo-tranquilpeak-theme &amp;ndash;baseUrl=&amp;ldquo;https://tzq0301.github.io&amp;rdquo; &amp;ndash;buildDrafts 其中，hugo-tranquilpeak-theme 是我所应用的主题，https://tzq0301.github.io 是我的GitHub中为hugo博客配置的仓库&#xA;第三步 把博客部署到远程GitHub仓库 首先切换到 public 文件夹： cd public 此时，正处于 e:\myblog\public 中&#xA;接下来输入以下指令： git add .&#xA;git commit -m &amp;ldquo;yyyy/mm/dd-hh:mm&amp;rdquo;&#xA;git push -u origin master&#xA;其中 yyyy/mm/dd-hh:mm 为每次提交的名称，引号内可以随意更改，yyyy/mm/dd-hh:mm 是我个人采用的格式，以时间做标记可保证不会重复&#xA;最后现在刷新GitHub，登陆个人博客查看即可</description>
-    </item>
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>All Posts - 蓝Q曦的博客网站</title>
+        <link>https://adan-ning.github.io/posts/</link>
+        <description>All Posts | 蓝Q曦的博客网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 18 Feb 2024 18:04:09 &#43;0800</lastBuildDate><atom:link href="https://adan-ning.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>First_post</title>
+    <link>https://adan-ning.github.io/posts/first_post/</link>
+    <pubDate>Sun, 18 Feb 2024 18:04:09 &#43;0800</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/first_post/</guid>
+    <description><![CDATA[你好]]></description>
+</item>
+<item>
+    <title>每次更新hugo博客的操作</title>
+    <link>https://adan-ning.github.io/posts/myfirstarticles/</link>
+    <pubDate>Sun, 18 Feb 2024 15:56:15 &#43;0800</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/myfirstarticles/</guid>
+    <description><![CDATA[每次更新hugo博客的操作 每次更新hugo博客所需的操作 打开 PowerShell / cmd 终端，打开最初用 hugo 搭建的博客所在的文件夹，以我为例： cd e:\myblog 第一步 新建一个 markdown(.md) 格]]></description>
+</item>
+</channel>
 </rss>
