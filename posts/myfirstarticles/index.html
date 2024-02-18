@@ -22,7 +22,9 @@
 <meta name="twitter:description" content="每次更新hugo博客的操作 每次更新hugo博客所需的操作 打开 PowerShell / cmd 终端，打开最初用 hugo 搭建的博客所在的文件夹，以我为例： cd e:\myblog 第一步 新建一个 markdown(.md) 格式的文件(如果要修改原来的文件可不需要新建) hugo new post/FileName.md 其中 FileName 为自定义的文件名
 第二步 输入命令： hugo &ndash;theme=hugo-tranquilpeak-theme &ndash;baseUrl=&ldquo;https://tzq0301.github.io&rdquo; &ndash;buildDrafts 其中，hugo-tranquilpeak-theme 是我所应用的主题，https://tzq0301.github.io 是我的GitHub中为hugo博客配置的仓库
 第三步 把博客部署到远程GitHub仓库 首先切换到 public 文件夹： cd public 此时，正处于 e:\myblog\public 中
-接下来输入以下指令： git add . git commit -m &ldquo;yyyy/mm/dd-hh:mm&rdquo; git push -u origin master
+接下来输入以下指令： git add .
+git commit -m &ldquo;yyyy/mm/dd-hh:mm&rdquo;
+git push -u origin master
 其中 yyyy/mm/dd-hh:mm 为每次提交的名称，引号内可以随意更改，yyyy/mm/dd-hh:mm 是我个人采用的格式，以时间做标记可保证不会重复
 最后现在刷新GitHub，登陆个人博客查看即可"/>
 
@@ -30,7 +32,9 @@
 <meta property="og:description" content="每次更新hugo博客的操作 每次更新hugo博客所需的操作 打开 PowerShell / cmd 终端，打开最初用 hugo 搭建的博客所在的文件夹，以我为例： cd e:\myblog 第一步 新建一个 markdown(.md) 格式的文件(如果要修改原来的文件可不需要新建) hugo new post/FileName.md 其中 FileName 为自定义的文件名
 第二步 输入命令： hugo &ndash;theme=hugo-tranquilpeak-theme &ndash;baseUrl=&ldquo;https://tzq0301.github.io&rdquo; &ndash;buildDrafts 其中，hugo-tranquilpeak-theme 是我所应用的主题，https://tzq0301.github.io 是我的GitHub中为hugo博客配置的仓库
 第三步 把博客部署到远程GitHub仓库 首先切换到 public 文件夹： cd public 此时，正处于 e:\myblog\public 中
-接下来输入以下指令： git add . git commit -m &ldquo;yyyy/mm/dd-hh:mm&rdquo; git push -u origin master
+接下来输入以下指令： git add .
+git commit -m &ldquo;yyyy/mm/dd-hh:mm&rdquo;
+git push -u origin master
 其中 yyyy/mm/dd-hh:mm 为每次提交的名称，引号内可以随意更改，yyyy/mm/dd-hh:mm 是我个人采用的格式，以时间做标记可保证不会重复
 最后现在刷新GitHub，登陆个人博客查看即可" />
 <meta property="og:type" content="article" />
@@ -146,9 +150,13 @@
 <h4 id="接下来输入以下指令"><strong>接下来输入以下指令：</strong></h4>
 <ol start="5">
 <li>
-<p>git add .
-git commit -m &ldquo;yyyy/mm/dd-hh:mm&rdquo;
-git push -u origin master</p>
+<p>git add .</p>
+</li>
+<li>
+<p>git commit -m &ldquo;yyyy/mm/dd-hh:mm&rdquo;</p>
+</li>
+<li>
+<p>git push -u origin master</p>
 <p>其中 <em>yyyy/mm/dd-hh:mm</em> 为每次提交的名称，引号内可以随意更改，yyyy/mm/dd-hh:mm 是我个人采用的格式，以时间做标记可保证不会重复</p>
 <p><strong>最后现在刷新GitHub，登陆个人博客查看即可</strong></p>
 </li>
