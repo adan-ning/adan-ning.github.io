@@ -3,9 +3,17 @@
         <title>蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/</link>
         <description>这是我的全新 Hugo 网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 18 Feb 2024 18:04:09 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 19 Feb 2024 10:25:16 &#43;0800</lastBuildDate>
             <atom:link href="https://adan-ning.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>搭建自己的博客(blog)</title>
+    <link>https://adan-ning.github.io/posts/build_blog/</link>
+    <pubDate>Mon, 19 Feb 2024 10:25:16 &#43;0800</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/build_blog/</guid>
+    <description><![CDATA[使用Hugo+Github搭建自己的个人博客 一、前言介绍 Hugo是一个个人博客静态框架，相比于Hexo更加轻量生成更加快速。结合GitHub]]></description>
+</item>
+<item>
     <title>First_post</title>
     <link>https://adan-ning.github.io/posts/first_post/</link>
     <pubDate>Sun, 18 Feb 2024 18:04:09 &#43;0800</pubDate>
