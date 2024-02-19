@@ -14,14 +14,6 @@
     <description><![CDATA[使用Hugo+Github搭建自己的个人博客 一、前言介绍 Hugo是一个个人博客静态框架，相比于Hexo更加轻量生成更加快速。结合GitHub]]></description>
 </item>
 <item>
-    <title>First_post</title>
-    <link>https://adan-ning.github.io/posts/first_post/</link>
-    <pubDate>Sun, 18 Feb 2024 18:04:09 &#43;0800</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/first_post/</guid>
-    <description><![CDATA[你好]]></description>
-</item>
-<item>
     <title>每次更新hugo博客的操作</title>
     <link>https://adan-ning.github.io/posts/myfirstarticles/</link>
     <pubDate>Sun, 18 Feb 2024 15:56:15 &#43;0800</pubDate>
