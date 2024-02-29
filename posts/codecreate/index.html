@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>CodeCreate(代码生成器) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="CodeCreate(代码生成器)" />
+<meta property="og:description" content="代码生成器 前言 我们在编写一些由Springboot框架的系统时，会有很多类似的结构，而代码生成器则会帮我们自动生成这些结构，从而减少我们的代" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://github.com/adan-ning/adan-ning.github.io.git/posts/codecreate/" /><meta property="og:image" content="https://github.com/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-02-29T13:19:45+08:00" />
+<meta property="article:modified_time" content="2024-02-29T13:19:45+08:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://github.com/logo.png" /><meta name="twitter:title" content="CodeCreate(代码生成器)"/>
+<meta name="twitter:description" content="代码生成器 前言 我们在编写一些由Springboot框架的系统时，会有很多类似的结构，而代码生成器则会帮我们自动生成这些结构，从而减少我们的代"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://github.com/adan-ning/adan-ning.github.io.git/posts/codecreate/" /><link rel="prev" href="https://github.com/adan-ning/adan-ning.github.io.git/posts/build_blog/" /><link rel="stylesheet" href="/adan-ning/adan-ning.github.io.git/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "CodeCreate(代码生成器)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/github.com\/adan-ning\/adan-ning.github.io.git\/posts\/codecreate\/"
+        },"genre": "posts","wordcount":  1089 ,
+        "url": "https:\/\/github.com\/adan-ning\/adan-ning.github.io.git\/posts\/codecreate\/","datePublished": "2024-02-29T13:19:45+08:00","dateModified": "2024-02-29T13:19:45+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/adan-ning/adan-ning.github.io.git/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/adan-ning/adan-ning.github.io.git/posts/"> 文章 </a><a class="menu-item" href="/adan-ning/adan-ning.github.io.git/tags/"> 标签 </a><a class="menu-item" href="/adan-ning/adan-ning.github.io.git/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/adan-ning/adan-ning.github.io.git/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/adan-ning/adan-ning.github.io.git/posts/" title="">文章</a><a class="menu-item" href="/adan-ning/adan-ning.github.io.git/tags/" title="">标签</a><a class="menu-item" href="/adan-ning/adan-ning.github.io.git/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">CodeCreate(代码生成器)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/adan-ning/adan-ning.github.io.git/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-29">2024-02-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1089 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#代码展示">代码展示</a></li>
+    <li><a href="#运行效果">运行效果</a>
+      <ul>
+        <li><a href="#运行操作">运行操作</a></li>
+        <li><a href="#运行结果">运行结果</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="代码生成器">代码生成器</h1>
+<h2 id="前言">前言</h2>
+<p>我们在编写一些由Springboot框架的系统时，会有很多类似的结构，而代码生成器则会帮我们自动生成这些结构，从而减少我们的代码量，是我们的编程效率得到大幅提高</p>
+<h2 id="代码展示">代码展示</h2>
+<p>```\java</p>
+<pre tabindex="0"><code>import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
+import com.baomidou.mybatisplus.core.toolkit.StringPool;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.generator.AutoGenerator;
+import com.baomidou.mybatisplus.generator.InjectionConfig;
+import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+public class CodeGenerator {
+    /**
+     *
+     * @param tip
+     * @return
+     * 读取控制台内容
+     */
+    public static String scanner(String tip){
+        Scanner scanner = new Scanner(System.in);
+        StringBuilder help = new StringBuilder();
+        help.append(&#34;请输入&#34;+tip+&#34;:&#34;);
+        System.out.println(help.toString());
+        if (scanner.hasNext()){
+            String ipt = scanner.next();
+            if (StringUtils.isNotBlank(ipt)){
+                return ipt;
+            }
+        }
+        throw new MybatisPlusException(&#34;请输入正确的&#34;+tip+&#34;!&#34;);
+    }
+
+    /**
+     * 操作步骤
+     * 1.修改数据源包括地址密码信息，对应代码标记：-，下同
+     * 2.模块配置，可以修改包名
+     * 3.修改模板，（这步可忽略）
+     * @param args
+     */
+    public static void main(String[] args){
+        //代码生成器
+        AutoGenerator mpg = new AutoGenerator();
+
+        //全局配置
+        GlobalConfig gc = new GlobalConfig();
+        String projectPath = System.getProperty(&#34;user.dir&#34;);
+        gc.setOutputDir(projectPath+&#34;/src/main/java&#34;);
+        gc.setAuthor(&#34;lqx&#34;);
+        gc.setOpen(false);
+        gc.setSwagger2(true);//实体属性 Swagger2注解
+        gc.setBaseResultMap(true);//XML ResultMap
+        gc.setBaseColumnList(true);//XML ColumnList
+        //去掉service接口首字母的I，如D0为UserService
+        gc.setServiceName(&#34;%sService&#34;);
+        mpg.setGlobalConfig(gc);
+
+
+        //数据源配置
+        DataSourceConfig dsc = new DataSourceConfig();
+        //一，修改数据源
+        dsc.setUrl(&#34;jdbc:mysql://localhost:3306/db?serverTimezone=UTC&#34;);
+        dsc.setDriverName(&#34;com.mysql.cj.jdbc.Driver&#34;);
+        dsc.setUsername(&#34;root&#34;);
+        dsc.setPassword(&#34;1234&#34;);
+        mpg.setDataSource(dsc);
+
+        //包配置
+        PackageConfig pc = new PackageConfig();
+        //二，模块配置
+        pc.setParent(&#34;com.lqx&#34;)
+          .setEntity(&#34;entity&#34;)
+            .setMapper(&#34;mapper&#34;)
+                .setService(&#34;service&#34;)
+                .setServiceImpl(&#34;service.impl&#34;)
+                .setController(&#34;controller&#34;);
+        mpg.setPackageInfo(pc);
+
+        //自定义配置
+        InjectionConfig cfg = new InjectionConfig() {
+            @Override
+            public void initMap() {
+                // to do nothing
+            }
+        };
+        // 如果模板引擎是 freemarker
+        String templatePath = &#34;/templates/mapper.xml.ftl&#34;;
+        // 如果模板引擎是 velocity
+        // String templatePath = &#34;/templates/mapper.xml.vm&#34;;
+
+        // 自定义输出配置
+        List&lt;FileOutConfig&gt; focList = new ArrayList&lt;&gt;();
+        // 自定义配置会被优先输出
+        focList.add(new FileOutConfig(templatePath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                return projectPath + &#34;/src/main/resources/mapper/&#34; + pc.getModuleName()
+                        + &#34;/&#34; + tableInfo.getEntityName() + &#34;Mapper&#34; + StringPool.DOT_XML;
+            }
+        });
+                /*
+        cfg.setFileCreate(new IFileCreate() {
+            @Override
+            public boolean isCreate(ConfigBuilder configBuilder, FileType fileType, String filePath) {
+                // 判断自定义文件夹是否需要创建
+                checkDir(&#34;调用默认方法创建的目录，自定义目录用&#34;);
+                if (fileType == FileType.MAPPER) {
+                    // 已经生成 mapper 文件判断存在，不想重新生成返回 false
+                    return !new File(filePath).exists();
+                }
+                // 允许生成模板文件
+                return true;
+            }
+        });
+        */
+        cfg.setFileOutConfigList(focList);
+        mpg.setCfg(cfg);
+
+        // 配置模板
+        TemplateConfig templateConfig = new TemplateConfig();
+
+        // 配置自定义输出模板
+        //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
+        //三，修改模板
+        // templateConfig.setEntity(&#34;templates/entity2.java&#34;);
+        // templateConfig.setService();
+        // templateConfig.setController();
+
+        templateConfig.setXml(null);
+        mpg.setTemplate(templateConfig);
+
+        // 策略配置
+        StrategyConfig strategy = new StrategyConfig();
+        strategy.setNaming(NamingStrategy.underline_to_camel);
+        strategy.setColumnNaming(NamingStrategy.underline_to_camel);
+//        strategy.setSuperEntityClass(&#34;你自己的父类实体,没有就不用设置!&#34;);
+        strategy.setEntityLombokModel(true);
+        strategy.setRestControllerStyle(true);
+        // 公共父类
+//        strategy.setSuperControllerClass(&#34;你自己的父类控制器,没有就不用设置!&#34;);
+        // 写于父类中的公共字段
+//        strategy.setSuperEntityColumns(&#34;id&#34;);
+        strategy.setInclude(scanner(&#34;表名，多个英文逗号分割&#34;).split(&#34;,&#34;));
+        strategy.setControllerMappingHyphenStyle(true);
+//        strategy.setTablePrefix(pc.getModuleName() + &#34;_&#34;);
+        //四，注意是否要去掉表前缀
+        mpg.setStrategy(strategy);
+        mpg.setTemplateEngine(new FreemarkerTemplateEngine());
+        mpg.execute();
+    }
+
+}
+</code></pre><h2 id="运行效果">运行效果</h2>
+<h3 id="运行操作">运行操作</h3>
+<p><img
+        class="lazyload"
+        src="/adan-ning/adan-ning.github.io.git/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202402291330135.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202402291330135.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202402291330135.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202402291330135.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202402291330135.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202402291330135.png" /></p>
+<h3 id="运行结果">运行结果</h3>
+<p><img
+        class="lazyload"
+        src="/adan-ning/adan-ning.github.io.git/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202402291331083.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202402291331083.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202402291331083.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202402291331083.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202402291331083.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202402291331083.png" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-02-29</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://github.com/adan-ning/adan-ning.github.io.git/posts/codecreate/" data-title="CodeCreate(代码生成器)"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://github.com/adan-ning/adan-ning.github.io.git/posts/codecreate/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://github.com/adan-ning/adan-ning.github.io.git/posts/codecreate/" data-title="CodeCreate(代码生成器)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://github.com/adan-ning/adan-ning.github.io.git/posts/codecreate/" data-title="CodeCreate(代码生成器)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://github.com/adan-ning/adan-ning.github.io.git/posts/codecreate/" data-title="CodeCreate(代码生成器)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/adan-ning/adan-ning.github.io.git/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/adan-ning/adan-ning.github.io.git/posts/build_blog/" class="prev" rel="prev" title="搭建自己的博客(blog)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>搭建自己的博客(blog)</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/adan-ning/adan-ning.github.io.git/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/adan-ning/adan-ning.github.io.git/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"lunr"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/adan-ning/adan-ning.github.io.git/js/theme.min.js"></script></body>
+</html>
