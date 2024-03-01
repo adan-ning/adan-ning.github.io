@@ -3,14 +3,21 @@
         <title>hugo - Category - 蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/categories/hugo/</link>
         <description>hugo - Category - 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 03 May 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/hugo/" rel="self" type="application/rss+xml" /><item>
-    <title>First</title>
-    <link>https://adan-ning.github.io/posts/hello/</link>
-    <pubDate>Tue, 03 May 2022 00:00:00 &#43;0000</pubDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 01 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/hugo/" rel="self" type="application/rss+xml" /><item>
+    <title>搭建hugo博客(buildblog)</title>
+    <link>https://adan-ning.github.io/posts/%E6%90%AD%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2buildblog/</link>
+    <pubDate>Fri, 01 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/hello/</guid>
-    <description><![CDATA[-
-hello ]]></description>
+    <guid>https://adan-ning.github.io/posts/%E6%90%AD%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2buildblog/</guid>
+    <description><![CDATA[使用Hugo+Github搭建自己的个人博客 一、前言介绍 Hugo是一个个人博客静态框架，相比于Hexo更加轻量生成更加快速。结合GitHub]]></description>
+</item>
+<item>
+    <title>每次更新hugo博客的操作</title>
+    <link>https://adan-ning.github.io/posts/%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0hugo%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%93%8D%E4%BD%9C/</link>
+    <pubDate>Sun, 18 Feb 2024 15:56:15 &#43;0800</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0hugo%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%93%8D%E4%BD%9C/</guid>
+    <description><![CDATA[每次更新hugo博客的操作 每次更新hugo博客所需的操作 打开 PowerShell / cmd 终端，打开最初用 hugo 搭建的博客所在的文件夹，以我为例： cd e:\myblog 第一步 新建一个 markdown(.md) 格]]></description>
 </item>
 </channel>
 </rss>

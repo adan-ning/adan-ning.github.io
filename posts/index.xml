@@ -3,38 +3,29 @@
         <title>All Posts - 蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/posts/</link>
         <description>All Posts | 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 29 Feb 2024 13:19:45 &#43;0800</lastBuildDate><atom:link href="https://adan-ning.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>CodeCreate(代码生成器)</title>
-    <link>https://adan-ning.github.io/posts/codecreate/</link>
-    <pubDate>Thu, 29 Feb 2024 13:19:45 &#43;0800</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/codecreate/</guid>
-    <description><![CDATA[tags: Java categories: 编程技术 代码生成器 前言 我们在编写一些由Springboot框架的系统时，会有很多类似的结构，而代码生成器则会帮我们自动生成这些结构，从]]></description>
-</item>
-<item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 01 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/posts/" rel="self" type="application/rss+xml" /><item>
     <title>搭建hugo博客(buildblog)</title>
-    <link>https://adan-ning.github.io/posts/build_blog/</link>
-    <pubDate>Sun, 18 Feb 2024 15:56:15 &#43;0800</pubDate>
+    <link>https://adan-ning.github.io/posts/%E6%90%AD%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2buildblog/</link>
+    <pubDate>Fri, 01 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/build_blog/</guid>
+    <guid>https://adan-ning.github.io/posts/%E6%90%AD%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2buildblog/</guid>
     <description><![CDATA[使用Hugo+Github搭建自己的个人博客 一、前言介绍 Hugo是一个个人博客静态框架，相比于Hexo更加轻量生成更加快速。结合GitHub]]></description>
 </item>
 <item>
-    <title>每次更新hugo博客的操作</title>
-    <link>https://adan-ning.github.io/posts/myfirstarticles/</link>
-    <pubDate>Sun, 18 Feb 2024 15:56:15 &#43;0800</pubDate>
+    <title>CodeCreate(代码生成器)</title>
+    <link>https://adan-ning.github.io/posts/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8/</link>
+    <pubDate>Thu, 29 Feb 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/myfirstarticles/</guid>
-    <description><![CDATA[tags: Hugo categories: 编程技术 每次更新hugo博客的操作 每次更新hugo博客所需的操作 打开 PowerShell / cmd 终端，打开最初用 hugo 搭建的博客所在的文件夹，以我为例： cd e:\myblog 第一]]></description>
+    <guid>https://adan-ning.github.io/posts/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8/</guid>
+    <description><![CDATA[代码生成器 前言 我们在编写一些由Springboot框架的系统时，会有很多类似的结构，而代码生成器则会帮我们自动生成这些结构，从而减少我们的代]]></description>
 </item>
 <item>
-    <title>First</title>
-    <link>https://adan-ning.github.io/posts/hello/</link>
-    <pubDate>Tue, 03 May 2022 00:00:00 &#43;0000</pubDate>
+    <title>每次更新hugo博客的操作</title>
+    <link>https://adan-ning.github.io/posts/%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0hugo%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%93%8D%E4%BD%9C/</link>
+    <pubDate>Sun, 18 Feb 2024 15:56:15 &#43;0800</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/hello/</guid>
-    <description><![CDATA[-
-hello ]]></description>
+    <guid>https://adan-ning.github.io/posts/%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0hugo%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%93%8D%E4%BD%9C/</guid>
+    <description><![CDATA[每次更新hugo博客的操作 每次更新hugo博客所需的操作 打开 PowerShell / cmd 终端，打开最初用 hugo 搭建的博客所在的文件夹，以我为例： cd e:\myblog 第一步 新建一个 markdown(.md) 格]]></description>
 </item>
 </channel>
 </rss>
