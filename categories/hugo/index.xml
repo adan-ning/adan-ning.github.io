@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>hugo - Category - 蓝Q曦的博客网站</title>
+        <link>https://adan-ning.github.io/categories/hugo/</link>
+        <description>hugo - Category - 蓝Q曦的博客网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 03 May 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/hugo/" rel="self" type="application/rss+xml" /><item>
+    <title>First</title>
+    <link>https://adan-ning.github.io/posts/hello/</link>
+    <pubDate>Tue, 03 May 2022 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/hello/</guid>
+    <description><![CDATA[-
+hello ]]></description>
+</item>
+</channel>
+</rss>

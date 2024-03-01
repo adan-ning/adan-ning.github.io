@@ -3,5 +3,13 @@
         <title>Categories - Category - 蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/categories/</link>
         <description>Categories - Category - 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><atom:link href="https://adan-ning.github.io/categories/" rel="self" type="application/rss+xml" /></channel>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 03 May 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>hugo</title>
+    <link>https://adan-ning.github.io/categories/hugo/</link>
+    <pubDate>Tue, 03 May 2022 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/categories/hugo/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
 </rss>
