@@ -3,7 +3,15 @@
         <title>All Posts - 蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/posts/</link>
         <description>All Posts | 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 01 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 04 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>os的定义(os_define)</title>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+    <pubDate>Mon, 04 Mar 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+    <description><![CDATA[os的定义 管理资源 硬件 进程，存储器，外部设备 软件 文件 分配资源 以作业/进程为单位进行调度(cpu算法) 程序 进程 执行的程序(内存) 作业 暂时不执行]]></description>
+</item>
+<item>
     <title>搭建hugo博客(buildblog)</title>
     <link>https://adan-ning.github.io/posts/%E6%90%AD%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2buildblog/</link>
     <pubDate>Fri, 01 Mar 2024 00:00:00 &#43;0000</pubDate>
