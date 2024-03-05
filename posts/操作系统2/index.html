@@ -4,32 +4,32 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>os的定义(one_os_define) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="os的定义(one_os_define)" />
-<meta property="og:description" content="os的定义 管理资源 硬件 进程，存储器，外部设备 软件 文件 分配资源 以作业/进程为单位进行调度(cpu算法) 程序 进程 执行的程序(内存) 作业 暂时不执行" />
+        <title>进程管理(two_process) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="进程管理(two_process)" />
+<meta property="og:description" content="进程管理(引入) 前趋图(也称为：有向无循环图) 条件：有向，无循环 O(圆圈)：节点，代表指令，程序，进程… →：有向边，代表前趋/后继关系 程序的" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" /><meta property="og:image" content="https://adan-ning.github.io/logo.png" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-03-04T00:00:00+00:00" />
-<meta property="article:modified_time" content="2024-03-04T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+<meta property="og:url" content="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/" /><meta property="og:image" content="https://adan-ning.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-03-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-03-05T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://adan-ning.github.io/logo.png" /><meta name="twitter:title" content="os的定义(one_os_define)"/>
-<meta name="twitter:description" content="os的定义 管理资源 硬件 进程，存储器，外部设备 软件 文件 分配资源 以作业/进程为单位进行调度(cpu算法) 程序 进程 执行的程序(内存) 作业 暂时不执行"/>
+<meta name="twitter:image" content="https://adan-ning.github.io/logo.png" /><meta name="twitter:title" content="进程管理(two_process)"/>
+<meta name="twitter:description" content="进程管理(引入) 前趋图(也称为：有向无循环图) 条件：有向，无循环 O(圆圈)：节点，代表指令，程序，进程… →：有向边，代表前趋/后继关系 程序的"/>
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E6%90%AD%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2buildblog/" /><link rel="next" href="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" /><link rel="next" href="https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "os的定义(one_os_define)",
+        "headline": "进程管理(two_process)",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F\/"
-        },"genre": "posts","keywords": "操作系统","wordcount":  501 ,
-        "url": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F\/","datePublished": "2024-03-04T00:00:00+00:00","dateModified": "2024-03-04T00:00:00+00:00","publisher": {
+            "@id": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2\/"
+        },"genre": "posts","keywords": "操作系统","wordcount":  405 ,
+        "url": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2\/","datePublished": "2024-03-05T00:00:00+00:00","dateModified": "2024-03-05T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -100,9 +100,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">os的定义(one_os_define)</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">进程管理(two_process)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-04">2024-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;501 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-05">2024-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;405 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
@@ -111,160 +111,96 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#管理资源">管理资源</a>
+    <li><a href="#前趋图也称为有向无循环图">前趋图(也称为：有向无循环图)</a></li>
+    <li><a href="#程序的执行">程序的执行</a>
       <ul>
-        <li><a href="#硬件">硬件</a></li>
-        <li><a href="#软件">软件</a></li>
-      </ul>
-    </li>
-    <li><a href="#分配资源">分配资源</a></li>
-    <li><a href="#程序">程序</a>
-      <ul>
-        <li><a href="#进程">进程</a></li>
-        <li><a href="#作业">作业</a></li>
+        <li><a href="#顺序执行及特征">顺序执行及特征</a></li>
       </ul>
     </li>
   </ul>
 
   <ul>
-    <li><a href="#脱机spooling假脱机">脱机(spooLing(假脱机))</a>
+    <li><a href="#定义">定义</a></li>
+    <li><a href="#结构">结构</a></li>
+    <li><a href="#动态">动态</a></li>
+    <li><a href="#状态">状态</a>
       <ul>
-        <li><a href="#外围机">外围机</a></li>
-        <li><a href="#磁盘">磁盘</a></li>
+        <li><a href="#三态结构图">三态结构(图)</a></li>
       </ul>
     </li>
-    <li><a href="#批处理">批处理</a>
-      <ul>
-        <li><a href="#单道">单道</a></li>
-        <li><a href="#多道图">多道(图)</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li><a href="#并发性">并发性</a>
-      <ul>
-        <li><a href="#并发">并发</a></li>
-        <li><a href="#并行">并行</a></li>
-        <li><a href="#进程和线程">进程和线程</a></li>
-      </ul>
-    </li>
-    <li><a href="#共享">共享</a>
-      <ul>
-        <li><a href="#互斥共享">互斥共享</a></li>
-        <li><a href="#同时访问">同时访问</a></li>
-      </ul>
-    </li>
-    <li><a href="#虚拟逻辑物理">虚拟(逻辑&lt;–&gt;物理)</a>
-      <ul>
-        <li><a href="#存储器">存储器</a></li>
-        <li><a href="#io设备">I/O设备</a></li>
-      </ul>
-    </li>
-    <li><a href="#异步">异步</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#优点">优点</a></li>
-    <li><a href="#缺点">缺点</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="os的定义">os的定义</h1>
-<h2 id="管理资源">管理资源</h2>
-<h3 id="硬件">硬件</h3>
-<p>进程，存储器，外部设备</p>
-<h3 id="软件">软件</h3>
-<p>文件</p>
-<h2 id="分配资源">分配资源</h2>
-<p>以作业/进程为单位进行调度(cpu算法)</p>
-<h2 id="程序">程序</h2>
-<h3 id="进程">进程</h3>
-<p>执行的程序(内存)</p>
-<h3 id="作业">作业</h3>
-<p>暂时不执行的程序(外存)</p>
-<h1 id="操作系统概念">操作系统概念</h1>
-<p><strong>一组控制和管理计算机硬件和软件资源，合理地对各类作业进行调度以及方便用户的程序集合。</strong></p>
-<h1 id="用户方便">用户(方便)</h1>
-<h1 id="作为扩充机器">作为扩充机器</h1>
-<p><strong>把覆盖了软件的机器称为扩充机或虚拟机</strong></p>
-<h1 id="发展">发展</h1>
-<h2 id="脱机spooling假脱机">脱机(spooLing(假脱机))</h2>
-<h3 id="外围机">外围机</h3>
-<p>用于管理输入/输出设备</p>
-<h3 id="磁盘">磁盘</h3>
-<p>优点:容量大</p>
+            </div><div class="content" id="content"><h1 id="进程管理引入">进程管理(引入)</h1>
+<h2 id="前趋图也称为有向无循环图">前趋图(也称为：有向无循环图)</h2>
+<p>条件：有向，无循环
+O(圆圈)：节点，代表指令，程序，进程…
+→：有向边，代表前趋/后继关系</p>
+<h2 id="程序的执行">程序的执行</h2>
+<h3 id="顺序执行及特征">顺序执行及特征</h3>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403042326355.png"
-        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403042326355.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403042326355.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403042326355.png 2x"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051652856.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051652856.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403051652856.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403051652856.png 2x"
         data-sizes="auto"
-        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403042326355.png"
-        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403042326355.png" /></p>
-<h2 id="批处理">批处理</h2>
-<h3 id="单道">单道</h3>
-<h4 id="两种硬件">两种硬件</h4>
-<h5 id="cpu-io">cpu, i/o</h5>
-<p>串行工作</p>
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051652856.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051652856.png" /></p>
+<p><strong>特征：顺序性，封闭性，可再现性</strong></p>
+<p><strong>顺序→并发(可能性分析图)</strong></p>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403042325020.png"
-        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403042325020.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403042325020.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403042325020.png 2x"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051652805.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051652805.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403051652805.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403051652805.png 2x"
         data-sizes="auto"
-        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403042325020.png"
-        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403042325020.png" /></p>
-<h3 id="多道图">多道(图)</h3>
-<h4 id="两种硬件-1">两种硬件</h4>
-<h5 id="cpu-io-1">cpu, i/o</h5>
-<p>并行工作</p>
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051652805.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051652805.png" /></p>
+<p><strong>例题</strong>：</p>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403042325238.png"
-        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403042325238.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403042325238.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403042325238.png 2x"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051701994.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051701994.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403051701994.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403051701994.png 2x"
         data-sizes="auto"
-        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403042325238.png"
-        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403042325238.png" /></p>
-<h1 id="分时操作系统">分时操作系统</h1>
-<p>实现人机交互，满足用户需要</p>
-<h1 id="实时系统">实时系统</h1>
-<p>系统能实时响应外部事件的请求，在规定时间内完成对该事件的处理，并控制所有任务协调一致地运行</p>
-<h1 id="操作系统的特征">操作系统的特征</h1>
-<h2 id="并发性">并发性</h2>
-<h3 id="并发">并发</h3>
-<p>同一个时间间隔发生</p>
-<h3 id="并行">并行</h3>
-<p>同一个时刻发生</p>
-<h3 id="进程和线程">进程和线程</h3>
-<p>线程也被称为轻型进程</p>
-<h2 id="共享">共享</h2>
-<p>系统中资源可供内存中多个并发执行的进程共同使用</p>
-<h3 id="互斥共享">互斥共享</h3>
-<p>一段时间内只允许一个进程访问该资源</p>
-<h3 id="同时访问">同时访问</h3>
-<p>微观上仍是互斥的</p>
-<h2 id="虚拟逻辑物理">虚拟(逻辑&lt;–&gt;物理)</h2>
-<p>通过某种技术把一个物理实体变为若干个逻辑上的对应物</p>
-<h3 id="存储器">存储器</h3>
-<p>逻辑地址→(重定向)物理地址</p>
-<h3 id="io设备">I/O设备</h3>
-<p>逻辑设备→物理设备</p>
-<h2 id="异步">异步</h2>
-<p>运行进度不可预知</p>
-<h1 id="了解常见的os的性能建议ppt">了解常见的os的性能(建议ppt)</h1>
-<h2 id="优点">优点</h2>
-<h2 id="缺点">缺点</h2>
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051701994.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051701994.png" /></p>
+<h1 id="进程的相关概念">进程的相关概念</h1>
+<h2 id="定义">定义</h2>
+<p>程序的一次执行过程</p>
+<h2 id="结构">结构</h2>
+<p>进程映像：PCB+程序段+数据段 (中断返回地址存放在PCB中)</p>
+<h2 id="动态">动态</h2>
+<p>由&quot;创建&quot;而产生，由&quot;调度&quot;而执行，由&quot;撤消&quot;而消亡(而程序是静态的)</p>
+<h2 id="状态">状态</h2>
+<h3 id="三态结构图">三态结构(图)</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051702474.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051702474.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403051702474.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403051702474.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051702474.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051702474.png" /></p>
+<p><strong>就绪状态：</strong>
+条件：获得除CPU以外的所有资源
+一个就绪队列
+<strong>执行状态：</strong>
+条件：已获得CPU，程序正在执行的状态
+在单处理机系统中，只有一个进程处于执行状态；而在多处理机系统中，则有多个进程处于执行状态
+<strong>阻塞状态：</strong>
+条件：进程的执行受到阻塞
+一个阻塞队列
+实事上，在较大的系统中，为了减少队列操作的开销，提高系统效率，根据阻塞原因不同，会设置多个阻塞队列。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-03-04</span>
+                <span>Updated on 2024-03-05</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" data-title="os的定义(one_os_define)" data-hashtags="操作系统"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" data-hashtag="操作系统"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" data-title="os的定义(one_os_define)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" data-title="os的定义(one_os_define)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" data-title="os的定义(one_os_define)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/" data-title="进程管理(two_process)" data-hashtags="操作系统"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/" data-hashtag="操作系统"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/" data-title="进程管理(two_process)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/" data-title="进程管理(two_process)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/" data-title="进程管理(two_process)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -276,8 +212,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/%E6%90%AD%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2buildblog/" class="prev" rel="prev" title="搭建hugo博客(buildblog)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>搭建hugo博客(buildblog)</a>
-            <a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/" class="next" rel="next" title="进程管理(two_process)">进程管理(two_process)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="prev" rel="prev" title="os的定义(one_os_define)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>os的定义(one_os_define)</a>
+            <a href="/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" class="next" rel="next" title="编译引论(one_translate)">编译引论(one_translate)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">

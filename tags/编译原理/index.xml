@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>编译原理 - Tag - 蓝Q曦的博客网站</title>
+        <link>https://adan-ning.github.io/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</link>
+        <description>编译原理 - Tag - 蓝Q曦的博客网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 05 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+    <title>编译引论(one_translate)</title>
+    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</link>
+    <pubDate>Tue, 05 Mar 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</guid>
+    <description><![CDATA[编译程序(图) 某一种语言等价地转换成另外一种语言程序(称为目标语言程序) 解释程序(图) 将源程序按动态顺序逐句分晰解释执行，根据语句的含义执行]]></description>
+</item>
+</channel>
+</rss>
