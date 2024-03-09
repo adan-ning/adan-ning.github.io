@@ -1,19 +1,5 @@
 [
     {
-        "title": "Hugo配合Algolia实现高效美观的站内搜索",
-        "uri": "posts/Hugo配合Algolia实现高效美观的站内搜索",
-        "content": "Hugo  Algolia                   Hugo                                                   Hugo                   Algolia             EVEN       LOVEIT                      Algolia          Application   NEW APPLICATION Name       FREE                     Indices   Index      Indices     Create Index Index name             API Keys     API Keys       Keys                 config yaml  themes    config yaml        key Admin API Key   yaml baseurl   https   www nashome cn   DefaultContentLanguage   zh cn  hasCJKLanguage  true languageCode   zh cn  title   zhaoqiang s blog  theme   loveit  metaDataFormat   yaml  algolia  index     blogloveit  key    9748e4cf6b  appID    KWB5    hugo aligolia         hugo algolia                   hugo aligolia               npm    yarn                      bash   npm install hugo algolia  g                          bash   hugo algolia  s JSON index file created public algolia json   updatedAt   2020 01 23T02 36 09 480Z   taskID  249063848950             dashboard     Indices                                             index     false     hugo toml                Algolia",
-        "objectID": "posts/Hugo配合Algolia实现高效美观的站内搜索",
-        "date": "2024-03-09T00:00:00.000Z",
-        "tags": [
-            "hugo"
-        ],
-        "categories": [
-            "hugo"
-        ],
-        "draft": false
-    },
-    {
         "title": "CodeCreate(代码生成器)",
         "uri": "posts/代码生成器",
         "content": "Springboot                                                                       java   import com baomidou mybatisplus core exceptions MybatisPlusException  import com baomidou mybatisplus core toolkit StringPool  import com baomidou mybatisplus core toolkit StringUtils  import com baomidou mybatisplus generator AutoGenerator  import com baomidou mybatisplus generator InjectionConfig  import com baomidou mybatisplus generator config    import com baomidou mybatisplus generator config po TableInfo  import com baomidou mybatisplus generator config rules NamingStrategy  import com baomidou mybatisplus generator engine FreemarkerTemplateEngine  import java util ArrayList  import java util List  import java util Scanner  public class CodeGenerator          param tip  return            public static String scanner String tip   Scanner scanner   new Scanner System in   StringBuilder help   new StringBuilder    help append       tip       System out println help toString      scanner hasNext     String ipt   scanner next     StringUtils isNotBlank ipt    return ipt      throw new MybatisPlusException          tip                  1                           2             3               param args    public static void main String   args           AutoGenerator mpg   new AutoGenerator           GlobalConfig gc   new GlobalConfig    String projectPath   System getProperty  user dir    gc setOutputDir projectPath   src main java    gc setAuthor  lqx    gc setOpen false   gc setSwagger2 true         Swagger2   gc setBaseResultMap true    XML ResultMap gc setBaseColumnList true    XML ColumnList     service      I  D0 UserService gc setServiceName   sService    mpg setGlobalConfig gc           DataSourceConfig dsc   new DataSourceConfig              dsc setUrl  jdbc mysql   localhost 3306 db serverTimezone UTC    dsc setDriverName  com mysql cj jdbc Driver    dsc setUsername  root    dsc setPassword  1234    mpg setDataSource dsc         PackageConfig pc   new PackageConfig             pc setParent  com lqx    setEntity  entity    setMapper  mapper    setService  service    setServiceImpl  service impl    setController  controller    mpg setPackageInfo pc           InjectionConfig cfg   new InjectionConfig      Override public void initMap        nothing                 freemarker String templatePath     templates mapper xml ftl              velocity    String templatePath     templates mapper xml vm              List focList   new ArrayList                   focList add new FileOutConfig templatePath     Override public String outputFile TableInfo tableInfo                      Entity             xml              return projectPath     src main resources mapper     pc getModuleName         tableInfo getEntityName      Mapper    StringPool DOT_XML           cfg setFileCreate new IFileCreate      Override public boolean isCreate ConfigBuilder configBuilder  FileType fileType  String filePath                      checkDir                         fileType    FileType MAPPER            mapper                 false return  new File filePath  exists                  return true           cfg setFileOutConfigList focList   mpg setCfg cfg           TemplateConfig templateConfig   new TemplateConfig                                    ftl  vm                             templateConfig setEntity  templates entity2 java       templateConfig setService       templateConfig setController    templateConfig setXml null   mpg setTemplate templateConfig           StrategyConfig strategy   new StrategyConfig    strategy setNaming NamingStrategy underlinetocamel   strategy setColumnNaming NamingStrategy underlinetocamel      strategy setSuperEntityClass                       strategy setEntityLombokModel true   strategy setRestControllerStyle true              strategy setSuperControllerClass                                         strategy setSuperEntityColumns  id    strategy setInclude scanner                split        strategy setControllerMappingHyphenStyle true      strategy setTablePrefix pc getModuleName      _                   mpg setStrategy strategy   mpg setTemplateEngine new FreemarkerTemplateEngine     mpg execute",
@@ -75,6 +61,20 @@
         "content": "hugo          hugo           PowerShell   cmd          hugo                   cd e  myblog          markdown  md                          hugo new post FileName md    FileName                    hugo    theme hugo tranquilpeak theme    baseUrl  https   tzq0301 github io     buildDrafts    hugo tranquilpeak theme          https   tzq0301 github io    GitHub  hugo                    GitHub         public      cd public        e  myblog public              git add   git commit  m  yyyy mm dd hh mm  git push  u origin master    yyyy mm dd hh mm                    yyyy mm dd hh mm                               GitHub",
         "objectID": "posts/每次更新hugo博客的操作",
         "date": "2024-02-18T07:56:15.000Z",
+        "tags": [
+            "hugo"
+        ],
+        "categories": [
+            "hugo"
+        ],
+        "draft": false
+    },
+    {
+        "title": "用Hugo配合Algolia实现高效美观的站内搜索",
+        "uri": "posts/用Hugo配合Algolia实现高效美观的站内搜索",
+        "content": "Hugo  Algolia                   Hugo                                                   Hugo                   Algolia             EVEN       LOVEIT                      Algolia          Application   NEW APPLICATION Name       FREE                     Indices   Index      Indices     Create Index Index name             API Keys     API Keys       Keys                 config yaml  themes    config yaml        key Admin API Key   yaml baseurl   https   www nashome cn   DefaultContentLanguage   zh cn  hasCJKLanguage  true languageCode   zh cn  title   zhaoqiang s blog  theme   loveit  metaDataFormat   yaml  algolia  index     blogloveit  key    9748e4cf6b  appID    KWB5    hugo aligolia         hugo algolia                   hugo aligolia               npm    yarn                      bash   npm install hugo algolia  g                          bash   hugo algolia  s JSON index file created public algolia json   updatedAt   2020 01 23T02 36 09 480Z   taskID  249063848950             dashboard     Indices                                             index     false     hugo toml                Algolia",
+        "objectID": "posts/用Hugo配合Algolia实现高效美观的站内搜索",
+        "date": "2024-03-09T00:00:00.000Z",
         "tags": [
             "hugo"
         ],
