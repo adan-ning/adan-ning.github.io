@@ -4,7 +4,7 @@
         <link>https://adan-ning.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
         <description>操作系统 - Category - 蓝Q曦的博客网站</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 05 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
-    <title>进程管理(two_process)</title>
+    <title>操作系统(第二章)</title>
     <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/</link>
     <pubDate>Tue, 05 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
@@ -12,7 +12,7 @@
     <description><![CDATA[进程管理(引入) 前趋图(也称为：有向无循环图) 条件：有向，无循环 O(圆圈)：节点，代表指令，程序，进程… →：有向边，代表前趋/后继关系 程序的]]></description>
 </item>
 <item>
-    <title>os的定义(one_os_define)</title>
+    <title>操作系统(第一章)</title>
     <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
     <pubDate>Mon, 04 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>

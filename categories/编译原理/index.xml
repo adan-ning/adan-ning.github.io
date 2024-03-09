@@ -4,7 +4,7 @@
         <link>https://adan-ning.github.io/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</link>
         <description>编译原理 - Category - 蓝Q曦的博客网站</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 06 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
-    <title>编译引论(two_translate)</title>
+    <title>编译引论(第二章)</title>
     <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862/</link>
     <pubDate>Wed, 06 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
@@ -12,7 +12,7 @@
     <description><![CDATA[高级语言的定义 语法 任何高级语言程序都可以看成是一个特定字母表(即元素的非空有穷集合)上的一个字符串(有穷序列) 词法规则 指单词符号的形成规则，]]></description>
 </item>
 <item>
-    <title>编译引论(one_translate)</title>
+    <title>编译引论(第一章)</title>
     <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</link>
     <pubDate>Tue, 05 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
