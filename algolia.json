@@ -71,9 +71,9 @@
     },
     {
         "title": "用Hugo配合Algolia实现高效美观的站内搜索",
-        "uri": "posts/用Hugo配合Algolia实现高效美观的站内搜索",
+        "uri": "posts/用hugo配合algolia实现高效美观的站内搜索",
         "content": "Hugo  Algolia                   Hugo                                                   Hugo                   Algolia             EVEN       LOVEIT                      Algolia          Application   NEW APPLICATION Name       FREE                     Indices   Index      Indices     Create Index Index name             API Keys     API Keys       Keys                 config yaml  themes    config yaml        key Admin API Key   yaml baseurl   https   www nashome cn   DefaultContentLanguage   zh cn  hasCJKLanguage  true languageCode   zh cn  title   zhaoqiang s blog  theme   loveit  metaDataFormat   yaml  algolia  index     blogloveit  key    9748e4cf6b  appID    KWB5    hugo aligolia         hugo algolia                   hugo aligolia               npm    yarn                      bash   npm install hugo algolia  g                          bash   hugo algolia  s JSON index file created public algolia json   updatedAt   2020 01 23T02 36 09 480Z   taskID  249063848950             dashboard     Indices                                             index     false     hugo toml                Algolia",
-        "objectID": "posts/用Hugo配合Algolia实现高效美观的站内搜索",
+        "objectID": "posts/用hugo配合algolia实现高效美观的站内搜索",
         "date": "2024-03-09T00:00:00.000Z",
         "tags": [
             "hugo"
