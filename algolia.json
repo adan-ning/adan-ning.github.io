@@ -1,0 +1,142 @@
+[
+    {
+        "title": "CodeCreate(代码生成器)",
+        "uri": "posts/代码生成器",
+        "content": "Springboot                                                                       java   import com baomidou mybatisplus core exceptions MybatisPlusException  import com baomidou mybatisplus core toolkit StringPool  import com baomidou mybatisplus core toolkit StringUtils  import com baomidou mybatisplus generator AutoGenerator  import com baomidou mybatisplus generator InjectionConfig  import com baomidou mybatisplus generator config    import com baomidou mybatisplus generator config po TableInfo  import com baomidou mybatisplus generator config rules NamingStrategy  import com baomidou mybatisplus generator engine FreemarkerTemplateEngine  import java util ArrayList  import java util List  import java util Scanner  public class CodeGenerator          param tip  return            public static String scanner String tip   Scanner scanner   new Scanner System in   StringBuilder help   new StringBuilder    help append       tip       System out println help toString      scanner hasNext     String ipt   scanner next     StringUtils isNotBlank ipt    return ipt      throw new MybatisPlusException          tip                  1                           2             3               param args    public static void main String   args           AutoGenerator mpg   new AutoGenerator           GlobalConfig gc   new GlobalConfig    String projectPath   System getProperty  user dir    gc setOutputDir projectPath   src main java    gc setAuthor  lqx    gc setOpen false   gc setSwagger2 true         Swagger2   gc setBaseResultMap true    XML ResultMap gc setBaseColumnList true    XML ColumnList     service      I  D0 UserService gc setServiceName   sService    mpg setGlobalConfig gc           DataSourceConfig dsc   new DataSourceConfig              dsc setUrl  jdbc mysql   localhost 3306 db serverTimezone UTC    dsc setDriverName  com mysql cj jdbc Driver    dsc setUsername  root    dsc setPassword  1234    mpg setDataSource dsc         PackageConfig pc   new PackageConfig             pc setParent  com lqx    setEntity  entity    setMapper  mapper    setService  service    setServiceImpl  service impl    setController  controller    mpg setPackageInfo pc           InjectionConfig cfg   new InjectionConfig      Override public void initMap        nothing                 freemarker String templatePath     templates mapper xml ftl              velocity    String templatePath     templates mapper xml vm              List focList   new ArrayList                   focList add new FileOutConfig templatePath     Override public String outputFile TableInfo tableInfo                      Entity             xml              return projectPath     src main resources mapper     pc getModuleName         tableInfo getEntityName      Mapper    StringPool DOT_XML           cfg setFileCreate new IFileCreate      Override public boolean isCreate ConfigBuilder configBuilder  FileType fileType  String filePath                      checkDir                         fileType    FileType MAPPER            mapper                 false return  new File filePath  exists                  return true           cfg setFileOutConfigList focList   mpg setCfg cfg           TemplateConfig templateConfig   new TemplateConfig                                    ftl  vm                             templateConfig setEntity  templates entity2 java       templateConfig setService       templateConfig setController    templateConfig setXml null   mpg setTemplate templateConfig           StrategyConfig strategy   new StrategyConfig    strategy setNaming NamingStrategy underlinetocamel   strategy setColumnNaming NamingStrategy underlinetocamel      strategy setSuperEntityClass                       strategy setEntityLombokModel true   strategy setRestControllerStyle true              strategy setSuperControllerClass                                         strategy setSuperEntityColumns  id    strategy setInclude scanner                split        strategy setControllerMappingHyphenStyle true      strategy setTablePrefix pc getModuleName      _                   mpg setStrategy strategy   mpg setTemplateEngine new FreemarkerTemplateEngine     mpg execute",
+        "objectID": "posts/代码生成器",
+        "date": "2024-02-29T00:00:00.000Z",
+        "draft": false,
+        "tags": [
+            "java"
+        ],
+        "categories": [
+            "编程技术"
+        ]
+    },
+    {
+        "title": "搭建hugo博客(buildblog)",
+        "uri": "posts/搭建hugo博客(buildblog)",
+        "content": "Hugo Github                 Hugo               Hexo             GitHub io                                           Hugo Git    Hugo      Install Hugo   Hugo                                Win11                  Github    Hugo         Realeases               hugoextended0 82 0_Windows 64bit zip          hugo exe              D  softwares Hugo bin                 win R   sysdm cpl                    Path   Path             hugo version                  Git  Win11     exe                                                Git                                                                    2 39 2 64bit                            Hugo               Hugo          H  HugoWebsite                       Hugo     blog         hugo new site blog      Hugo       hugo theme              LoveIt     Hugo Themes                      blog cd blog     themes                   cd themes        themes      git clone https   github com dillonzq LoveIt git themes LoveIt                                                Hugo    https   themes gohugo io        https   github com dillonzq LoveIt git   Hugo               HugoWebsite    config toml      hugo toml                  hugo serve   buildDrafts      http   localhost 1313                           config toml hugo toml           Github    Hugo      Hugo           H  HugoWebsite blog     hugo      Hugo                       public                GitHub                   H  HugoWebsite blog public        Git       HTML        public       public           Git    git init   Git             H  HugoWebsite blog public       Git           https   github com adan ning adan ning github io git  git remote add origin https   github com adan ning adan ning github io git        H  HugoWebsite blog public                        git status                          git add                      git commit  m  first commit             H  HugoWebsite blog public               git push  u origin master                              git                     pull        push            git                       git pull                                                                             1      git             2 pull                                                      Git   fatal  refusing merge unrelated histories              ctrl       wq     git pull origin master   allow unrelated histories 3                                           4      git add   git commit  m  first commit  5      git push  u origin master                       https   github    github io                         1               H  HugoWebsite blog hugo new post         md 2     H  HugoWebsite blog content post             3       http   localhost 1313  hugo server  D 4    Hugo    hugo 5       H  HugoWebsite blog public           git add   git commit  m  commit info  6          git push  u origin master      1        H  HugoWebsite blog 2     H  HugoWebsite blog content post              3       http   localhost 1313  hugo server  D 4    Hugo    hugo 5       H  HugoWebsite blog public           git add   git commit  m  commit info  6          git push  u origin master      1        H  HugoWebsite blog 2           H  HugoWebsite blog content post  H  HugoWebsite blog public                public                                       git                   hugo         3       http   localhost 1313  hugo server  D 4    Hugo    hugo 5       H  HugoWebsite blog public           git add   git commit  m  commit info  6          git push  u origin master                  GitHub jsDelivr PicGo             zhihu com                     blog                                         themes LoveIt exampleSite                 draft         false      draft                                   Hugo",
+        "objectID": "posts/搭建hugo博客(buildblog)",
+        "date": "2024-03-01T00:00:00.000Z",
+        "draft": false,
+        "tags": [
+            "hugo"
+        ],
+        "categories": [
+            "hugo"
+        ]
+    },
+    {
+        "title": "os的定义(one_os_define)",
+        "uri": "posts/操作系统",
+        "content": "os                                                 cpu                                                                                                                             spooLing                                             cpu  i o                 cpu  i o                                                                                                                                                                                                                                                         I O                              os      ppt",
+        "objectID": "posts/操作系统",
+        "date": "2024-03-04T00:00:00.000Z",
+        "draft": false,
+        "tags": [
+            "操作系统"
+        ],
+        "categories": [
+            "操作系统"
+        ]
+    },
+    {
+        "title": "进程管理(two_process)",
+        "uri": "posts/操作系统2",
+        "content": "O                                                                                                                 PCB                   PCB                                                                 CPU                           CPU",
+        "objectID": "posts/操作系统2",
+        "date": "2024-03-05T00:00:00.000Z",
+        "draft": false,
+        "tags": [
+            "操作系统"
+        ],
+        "categories": [
+            "操作系统"
+        ]
+    },
+    {
+        "title": "每次更新hugo博客的操作",
+        "uri": "posts/每次更新hugo博客的操作",
+        "content": "hugo          hugo           PowerShell   cmd          hugo                   cd e  myblog          markdown  md                          hugo new post FileName md    FileName                    hugo    theme hugo tranquilpeak theme    baseUrl  https   tzq0301 github io     buildDrafts    hugo tranquilpeak theme          https   tzq0301 github io    GitHub  hugo                    GitHub         public      cd public        e  myblog public              git add   git commit  m  yyyy mm dd hh mm  git push  u origin master    yyyy mm dd hh mm                    yyyy mm dd hh mm                               GitHub",
+        "objectID": "posts/每次更新hugo博客的操作",
+        "date": "2024-02-18T07:56:15.000Z",
+        "tags": [
+            "hugo"
+        ],
+        "categories": [
+            "hugo"
+        ],
+        "draft": false
+    },
+    {
+        "title": "算法与程序(one_Algorithms_and_Programs)",
+        "uri": "posts/算法分折与设计",
+        "content": "",
+        "objectID": "posts/算法分折与设计",
+        "date": "2024-03-05T00:00:00.000Z",
+        "draft": false,
+        "tags": [
+            "计算机算法设计与分析"
+        ],
+        "categories": [
+            "计算机算法设计与分析"
+        ]
+    },
+    {
+        "title": "编译引论(one_translate)",
+        "uri": "posts/编译原理",
+        "content": "1                                                                       FOR      I             1      TO      100      DO      2                                                                       i      5        3       j      3                                                                                                             i j  x y           i j T1     x y T2    T1 T2 T3  4                                                                                               5 3 2 T1     T1   x           10 6   x  5                                                                                 6                                   7                                                                                                                                               5                                                                                                                                                              L         L0     L1 L2      Ln                      L0          L0  L1       Li  Li n      i 1 2     n 1                     L              A          L       B          L        A       A           L                     L      A        B     L                        A    L            A       B                         1                 B        B                               LEX           YACC",
+        "objectID": "posts/编译原理",
+        "date": "2024-03-05T00:00:00.000Z",
+        "draft": false,
+        "tags": [
+            "编译原理"
+        ],
+        "categories": [
+            "编译原理"
+        ]
+    },
+    {
+        "title": "编译引论(two_translate)",
+        "uri": "posts/编译原理2",
+        "content": "a b                 a b                         a b aa bb                                                                              x        x              x y  y         x                x y      xy    x x  x         x      x n     n      xn    x0                  x              x          x         0                x          x         0                x         x      x      x                       x x        x     x       x               x x       x         x                         A B                   AB  xy x A y B   A        B                      x   x x       A    A A    A  A                               A         A0       A1 A  A2 AA",
+        "objectID": "posts/编译原理2",
+        "date": "2024-03-06T00:00:00.000Z",
+        "draft": false,
+        "tags": [
+            "编译原理"
+        ],
+        "categories": [
+            "编译原理"
+        ]
+    },
+    {
+        "title": "c++(one)",
+        "uri": "posts/面向对象程序设计",
+        "content": "",
+        "objectID": "posts/面向对象程序设计",
+        "date": "2024-03-08T00:00:00.000Z",
+        "draft": false,
+        "tags": [
+            "面向对象程序设计"
+        ],
+        "categories": [
+            "面向对象程序设计"
+        ]
+    },
+    {
+        "title": "c++(two)",
+        "uri": "posts/面向对象程序设计2",
+        "content": "c      c    c                            C       c                  c             c                                            include using namespace std  int main      cout",
+        "objectID": "posts/面向对象程序设计2",
+        "date": "2024-03-09T00:00:00.000Z",
+        "draft": false,
+        "tags": [
+            "面向对象程序设计"
+        ],
+        "categories": [
+            "面向对象程序设计"
+        ]
+    }
+]
