@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86\/"
-        },"genre": "posts","keywords": "计算机组成原理","wordcount":  308 ,
+        },"genre": "posts","keywords": "计算机组成原理","wordcount":  657 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86\/","datePublished": "2024-03-09T00:00:00+00:00","dateModified": "2024-03-09T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">计算机组成(第一章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机组成原理</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-09">2024-03-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;308 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-09">2024-03-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;657 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -127,6 +127,11 @@
   <ul>
     <li><a href="#各自特点">各自特点</a></li>
     <li><a href="#区别图">区别(图)</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#时间上">时间上</a></li>
+    <li><a href="#空间上">空间上</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="计算机组成部分">计算机组成部分</h1>
@@ -191,6 +196,62 @@
 <li>信息处理</li>
 <li>人工智能</li>
 </ol>
+<h1 id="计算机的硬件系统组成">计算机的硬件系统组成</h1>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403102211181.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403102211181.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403102211181.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403102211181.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403102211181.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403102211181.jpg" /></p>
+<h1 id="指令字和数据字指令流和数据流">指令字和数据字，指令流和数据流</h1>
+<ol>
+<li>
+<p>指令字</p>
+<p>某字为一条指令</p>
+</li>
+<li>
+<p>数据字</p>
+<p>某字代表要处理的数据</p>
+</li>
+<li>
+<p>指令流</p>
+<p>在取指周期中从内存读出的信息，它流向控制器</p>
+</li>
+<li>
+<p>数据流</p>
+<p>而执行周期中从内存读出的信息，它由内存流向运算器</p>
+</li>
+</ol>
+<h2 id="时间上">时间上</h2>
+<p>在取指周期中，CPU从内存读出的信息一定是指令；而执行周期中从内存读出或写入的信息一定是数据</p>
+<h2 id="空间上">空间上</h2>
+<p>指令一定流向控制器；而数据则是在内存(或寄存器)与运算器之间流动</p>
+<h1 id="系统总线">系统总线</h1>
+<ol>
+<li>
+<p>总线</p>
+<p>传递信息的一组公用导线，信息通道</p>
+</li>
+<li>
+<p>系统总线</p>
+<p>微机系统中信息交换的主要公共通道</p>
+</li>
+<li>
+<p>地址总线</p>
+<p>单向输出主存单元或I/O端口的地址信息</p>
+</li>
+<li>
+<p>数据总线</p>
+<p>读(Read)操作数据输入微处理器；写(Write)操作数据输出到外界(主存或外设)</p>
+</li>
+<li>
+<p>控制总线</p>
+<p>有些控制信号或状态信号；有些请求或联络信号输入</p>
+</li>
+</ol>
+<p>微机系统采用总线结构，总线连接使得微机组合灵活，扩展方便</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

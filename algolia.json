@@ -56,6 +56,34 @@
         ]
     },
     {
+        "title": "数据结构(第一章)",
+        "uri": "posts/数据结构",
+        "content": "Data_Structure    D S  D          S D                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ADT    D S P  D      S D      P D      ADT                                                                                                                                                                            C    Pascal      C        C     C                                      c n0      n  n0    f n   mnm am 1nm 1     a1n a0   m      A n  0 nm                       S n  O f n     n",
+        "objectID": "posts/数据结构",
+        "date": "2024-03-10T00:00:00.000Z",
+        "draft": false,
+        "tags": [
+            "数据结构"
+        ],
+        "categories": [
+            "数据结构"
+        ]
+    },
+    {
+        "title": "数据结构(第二章)",
+        "uri": "posts/数据结构2",
+        "content": "n                                                                                                                                                                                                                           100                         Loc ai    Loc ai   i 1  d  1",
+        "objectID": "posts/数据结构2",
+        "date": "2024-03-10T00:00:00.000Z",
+        "draft": false,
+        "tags": [
+            "数据结构"
+        ],
+        "categories": [
+            "数据结构"
+        ]
+    },
+    {
         "title": "每次更新hugo博客的操作",
         "uri": "posts/每次更新hugo博客的操作",
         "content": "hugo          hugo           PowerShell   cmd          hugo                   cd e  myblog          markdown  md                          hugo new post FileName md    FileName                    hugo    theme hugo tranquilpeak theme    baseUrl  https   tzq0301 github io     buildDrafts    hugo tranquilpeak theme          https   tzq0301 github io    GitHub  hugo                    GitHub         public      cd public        e  myblog public              git add   git commit  m  yyyy mm dd hh mm  git push  u origin master    yyyy mm dd hh mm                    yyyy mm dd hh mm                               GitHub",
@@ -86,7 +114,7 @@
     {
         "title": "算法与程序(第一章)",
         "uri": "posts/算法分折与设计",
-        "content": "",
+        "content": "n                            n                               n  2n n                                                                                                                       O     o   g n              T n                 O  T n    O g n                            g n        lim n rightarrow infty  frac Tmax n   g n   c neq0  c          lim n rightarrow infty  frac Tmax n   n 2   frac c4 c5 c6  2       T n  O n2             A       Tmax c1n2 n 4      Tmin c2n2   g n  n2  T n      g n     T n    O g n      T n      g n            o  T n    o g n                             g n        lim n rightarrow infty  frac Tmax n   g n   0     g n    n2 Tmax n  c2nlogn      o n2              T n      g n                             g n        lim n rightarrow infty  frac Tmin n   g n    infty     g n  n Tmin c1nlogn      n",
         "objectID": "posts/算法分折与设计",
         "date": "2024-03-05T00:00:00.000Z",
         "draft": false,
@@ -128,7 +156,7 @@
     {
         "title": "计算机组成(第一章)",
         "uri": "posts/计算机组成原理",
-        "content": "1 4              2 4              1 3 4              1 2 3 4",
+        "content": "1 4              2 4              1 3 4              1 2 3 4                                                                                                                                                                                           CPU                                                                                                                                       I O               Read              Write",
         "objectID": "posts/计算机组成原理",
         "date": "2024-03-09T00:00:00.000Z",
         "draft": false,

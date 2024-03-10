@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>数据结构(第一章) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="数据结构(第一章)" />
+<meta property="og:description" content="概念 相互之间存在一种或多种特定关系的数据元素的集合 逻辑结构，存储结构，运算合称为三要素 数据结构形式定义 数据结构是一个二元组 Data_Structure = (D,S) D是数据元素" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" /><meta property="og:image" content="https://adan-ning.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-03-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-03-10T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://adan-ning.github.io/logo.png" /><meta name="twitter:title" content="数据结构(第一章)"/>
+<meta name="twitter:description" content="概念 相互之间存在一种或多种特定关系的数据元素的集合 逻辑结构，存储结构，运算合称为三要素 数据结构形式定义 数据结构是一个二元组 Data_Structure = (D,S) D是数据元素"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "数据结构(第一章)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/adan-ning.github.io\/posts\/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84\/"
+        },"genre": "posts","keywords": "数据结构","wordcount":  966 ,
+        "url": "https:\/\/adan-ning.github.io\/posts\/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84\/","datePublished": "2024-03-10T00:00:00+00:00","dateModified": "2024-03-10T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">数据结构(第一章)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>数据结构</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-10">2024-03-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;966 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#数据结构形式定义">数据结构形式定义</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#数据">数据</a></li>
+    <li><a href="#数据元素">数据元素</a></li>
+    <li><a href="#数据项">数据项</a></li>
+    <li><a href="#数据类型">数据类型</a></li>
+    <li><a href="#抽象数据元素">抽象数据元素</a></li>
+    <li><a href="#抽象数据类型">抽象数据类型</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#逻辑结构">逻辑结构</a>
+      <ul>
+        <li><a href="#线性结构">线性结构</a></li>
+        <li><a href="#非线性结构">非线性结构</a></li>
+      </ul>
+    </li>
+    <li><a href="#物理结构存储结构">物理结构(存储结构)</a>
+      <ul>
+        <li><a href="#分类">分类</a></li>
+      </ul>
+    </li>
+    <li><a href="#数据运算">数据运算</a>
+      <ul>
+        <li><a href="#分类-1">分类</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#数据类型-1">数据类型</a></li>
+    <li><a href="#抽象数据类型-1">抽象数据类型</a></li>
+    <li><a href="#抽象数据类型用三元组表示">抽象数据类型用三元组表示</a></li>
+    <li><a href="#adt常用定义格式">ADT常用定义格式</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#算法">算法</a>
+      <ul>
+        <li><a href="#基本特性">基本特性</a></li>
+        <li><a href="#评价指标">评价指标</a></li>
+        <li><a href="#算法描述方式">算法描述方式</a></li>
+        <li><a href="#类c语言描述语法">类C语言描述语法</a></li>
+      </ul>
+    </li>
+    <li><a href="#时间复杂度">时间复杂度</a></li>
+    <li><a href="#空间复杂度">空间复杂度</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="概念">概念</h1>
+<p>相互之间存在一种或多种特定关系的数据元素的集合
+逻辑结构，存储结构，运算合称为三要素</p>
+<h2 id="数据结构形式定义">数据结构形式定义</h2>
+<p>数据结构是一个二元组
+Data_Structure = (D,S)
+D是数据元素的有限集，S是D上关系的有限集</p>
+<h1 id="基本术语">基本术语</h1>
+<h2 id="数据">数据</h2>
+<p>所有能被计算机识别，存储和处理的符号的集合</p>
+<h2 id="数据元素">数据元素</h2>
+<p>是数据的基本单位，具有完整的实际意义。一个数据元素可由若干个数据项组成</p>
+<h2 id="数据项">数据项</h2>
+<p>构成数据元素的项目。是数据不可分割的最小单位</p>
+<h2 id="数据类型">数据类型</h2>
+<p>指一个类型和定义在这个类型上的操作集合。</p>
+<h2 id="抽象数据元素">抽象数据元素</h2>
+<p>抽象定义的，没有实际含义的数据元素</p>
+<h2 id="抽象数据类型">抽象数据类型</h2>
+<p>用户自己定义的数据类型</p>
+<h1 id="数据结构涵盖的内客">数据结构涵盖的内客</h1>
+<h2 id="逻辑结构">逻辑结构</h2>
+<h3 id="线性结构">线性结构</h3>
+<p>线性表，栈，队，串，数组</p>
+<h3 id="非线性结构">非线性结构</h3>
+<p>树结构，图结构，集合结构</p>
+<h2 id="物理结构存储结构">物理结构(存储结构)</h2>
+<p>是数据的逻辑结构在计算机存储器内的表示(或映像)。它<strong>依赖于计算机</strong></p>
+<h3 id="分类">分类</h3>
+<p>顺序结构，链式结构，索引结构，散列结构</p>
+<h2 id="数据运算">数据运算</h2>
+<p>在数据的逻辑结构上定义的操作算法</p>
+<h3 id="分类-1">分类</h3>
+<p>插入运算，删除运算，修改运算，查找运算，排序运算</p>
+<h1 id="数据类型与抽象数据类型的区别">数据类型与抽象数据类型的区别</h1>
+<h2 id="数据类型-1">数据类型</h2>
+<p>是一个值的集合和定义在该值上的一组操作的总称</p>
+<h2 id="抽象数据类型-1">抽象数据类型</h2>
+<p>由用户定义，用以表示应用问题的数据类型。它由基本的数据类型构成，并包括一组相关的服务(或称操作)
+它与数据类犁实质上是一个概念，但其特征是使用与实现相分离，实行数据封装和信息隐蔽(独立于计算机)</p>
+<h2 id="抽象数据类型用三元组表示">抽象数据类型用三元组表示</h2>
+<p>ADT = (D,S,P)
+D:数据对象  S:D上的关系集  P:D上的操作集</p>
+<h2 id="adt常用定义格式">ADT常用定义格式</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403101319278.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403101319278.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403101319278.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403101319278.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403101319278.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403101319278.jpg" /></p>
+<h1 id="算法和算法分析">算法和算法分析</h1>
+<h2 id="算法">算法</h2>
+<p>是对特定问题求解步骤的一种描述，是指令的有限序列，输入转换输出的计算步骤
+<strong>好的程序设计</strong>：好算法+好结构</p>
+<h3 id="基本特性">基本特性</h3>
+<p>有穷性，确定性，可行性，必有输出</p>
+<h3 id="评价指标">评价指标</h3>
+<p>正确性，可读性，健状性，高效率(常用时间复杂度衡量)与低存储量(常用空间复杂度衡量)需求</p>
+<h3 id="算法描述方式">算法描述方式</h3>
+<p>自然语言，程序设计语言，流程图，类高级语言(类C语言，类Pascal语言等)</p>
+<h3 id="类c语言描述语法">类C语言描述语法</h3>
+<p>类C语言精选了C语言的一个核心子集，也做了若干扩充，以利于描述</p>
+<h2 id="时间复杂度">时间复杂度</h2>
+<p>若存在两个正常数c,n<!-- raw HTML omitted -->0<!-- raw HTML omitted -->，对于所有的n&gt;=n<!-- raw HTML omitted -->0<!-- raw HTML omitted -->，有| f(n) |&lt;= c| g(n) |，
+则记作f(n)=O(g(n))
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403101319753.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403101319753.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403101319753.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403101319753.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403101319753.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403101319753.jpg" />
+<strong>频度</strong>：是指该语句重复执行的次数
+<strong>定理</strong>：若A(n)=a<!-- raw HTML omitted -->m<!-- raw HTML omitted -->n<!-- raw HTML omitted -->m<!-- raw HTML omitted -->+a<!-- raw HTML omitted -->m-1<!-- raw HTML omitted -->n<!-- raw HTML omitted -->m-1<!-- raw HTML omitted -->+&hellip;+a<!-- raw HTML omitted -->1<!-- raw HTML omitted -->n+a<!-- raw HTML omitted -->0<!-- raw HTML omitted -->是一个m次多项式，则A(n)=0(n<!-- raw HTML omitted -->m<!-- raw HTML omitted -->)</p>
+<h2 id="空间复杂度">空间复杂度</h2>
+<p>算法所需存储空间的量度</p>
+<p>记作：<strong>S(n)=O(f(n))</strong></p>
+<p>其中n为问题的规模(或大小)</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-03-10</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-title="数据结构(第一章)" data-hashtags="数据结构"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-hashtag="数据结构"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-title="数据结构(第一章)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-title="数据结构(第一章)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" data-title="数据结构(第一章)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842/" class="prev" rel="prev" title="数据结构(第二章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>数据结构(第二章)</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
