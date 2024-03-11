@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2\/"
-        },"genre": "posts","keywords": "操作系统","wordcount":  405 ,
+        },"genre": "posts","keywords": "操作系统","wordcount":  848 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2\/","datePublished": "2024-03-05T00:00:00+00:00","dateModified": "2024-03-05T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">操作系统(第二章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-05">2024-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;405 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-05">2024-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;848 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -127,6 +127,31 @@
     <li><a href="#状态">状态</a>
       <ul>
         <li><a href="#三态结构图">三态结构(图)</a></li>
+        <li><a href="#转换关系">转换关系</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#引入原因">引入原因</a></li>
+    <li><a href="#状态分类">状态分类</a></li>
+    <li><a href="#具有挂起状态的进程状态图五态结构">具有挂起状态的进程状态图(五态结构)</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#作用">作用</a></li>
+    <li><a href="#进程控制块中的信息图">进程控制块中的信息(图)</a></li>
+    <li><a href="#pcb的组织">PCB的组织</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#概念">概念</a></li>
+    <li><a href="#关系">关系</a></li>
+    <li><a href="#临界资源">临界资源</a></li>
+    <li><a href="#临界区">临界区</a>
+      <ul>
+        <li><a href="#定义-1">定义</a></li>
+        <li><a href="#描述">描述</a></li>
       </ul>
     </li>
   </ul>
@@ -165,6 +190,7 @@
         data-sizes="auto"
         alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051701994.png"
         title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403051701994.png" /></p>
+<p><strong>引起不可再现性是因为没有临界资源(每一个缓冲区)没有访问(互斥访问)</strong></p>
 <h1 id="进程的相关概念">进程的相关概念</h1>
 <h2 id="定义">定义</h2>
 <p>程序的一次执行过程</p>
@@ -192,6 +218,80 @@
 <p>条件：进程的执行受到阻塞</p>
 <p>一个阻塞队列</p>
 <p>实事上，在较大的系统中，为了减少队列操作的开销，提高系统效率，根据阻塞原因不同，会设置多个阻塞队列。</p>
+<h3 id="转换关系">转换关系</h3>
+<p><strong>经常发生：4个，就绪→执行，执行→就绪，执行→阻塞，阻塞→执行</strong>
+<strong>绝对不会发生：就绪→阻塞</strong>
+<strong>有可能会发生：阻塞→执行</strong></p>
+<h1 id="挂起状态">挂起状态</h1>
+<h2 id="引入原因">引入原因</h2>
+<p>减少内存当中进程的数量(从内存调到外存)</p>
+<h2 id="状态分类">状态分类</h2>
+<p>静止→活动
+被激活(执行激活函数)
+话动→静止
+被挂起(执行挂起函数)</p>
+<h2 id="具有挂起状态的进程状态图五态结构">具有挂起状态的进程状态图(五态结构)</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111343598.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111343598.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403111343598.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403111343598.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111343598.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111343598.png" /></p>
+<h1 id="进程控制块pcb">进程控制块(PCB)</h1>
+<h2 id="作用">作用</h2>
+<p>进程存在的唯一标志</p>
+<h2 id="进程控制块中的信息图">进程控制块中的信息(图)</h2>
+<p>标识，处理机状态，进程调度信息，进程控制信息
+优先数：一般为整数</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111345375.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111345375.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403111345375.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403111345375.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111345375.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111345375.jpg" /></p>
+<h2 id="pcb的组织">PCB的组织</h2>
+<p><strong>链接</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111346608.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111346608.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403111346608.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403111346608.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111346608.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111346608.png" /></p>
+<p><strong>索引</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111347055.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111347055.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403111347055.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403111347055.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111347055.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111347055.png" /></p>
+<h1 id="进程控制三对操作">进程控制(三对操作)</h1>
+<p><strong>创建与终止</strong>
+<strong>阻塞与唤醒</strong>
+<strong>挂起与激活</strong></p>
+<h1 id="进程同步">进程同步</h1>
+<h2 id="概念">概念</h2>
+<p>并发进程在执行次序上的协调，以达到有效的资源共享和相互合作，使程序的执行具有可再现性</p>
+<h2 id="关系">关系</h2>
+<p><strong>间接制约</strong>：互斥共享资源
+<strong>直接制约</strong>：相互合作</p>
+<h2 id="临界资源">临界资源</h2>
+<p>一次只允许一个进程访问的资源
+引起不可再现性是因为没有临界资源(每一个缓冲区)没有访问(互斥访问)</p>
+<h2 id="临界区">临界区</h2>
+<h3 id="定义-1">定义</h3>
+<p><strong>进程访问临界资源的那段代码</strong></p>
+<h3 id="描述">描述</h3>
+<p><strong>进入区</strong>：检查有无进程进入
+<strong>临界区</strong>：
+<strong>退出区</strong>：将访问标志复位</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
