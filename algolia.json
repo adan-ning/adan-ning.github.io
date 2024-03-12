@@ -44,7 +44,7 @@
     {
         "title": "操作系统(第二章)",
         "uri": "posts/操作系统2",
-        "content": "O                                                                                                                 PCB                   PCB                                                                 CPU                           CPU",
+        "content": "O                                                                                                                                                    PCB                   PCB                                                                 CPU                           CPU                                                                                                                                               4                                                                                                                                                     PCB                                                             PCB                                                                                                                                                                                                                                            S           2     wait  s  signal  s              S_      0       1 wait s  p s          1 signal s  v s           wait s  signal s           S 0                     S  S value      s value 0 S L            wait s       S value 1  p s  1 1 0 S value 0  p s  0 1  1 signal s     S value  1  v s   1 1 0 S value  2  v s   2 1  1               wait s  signal s                                 S value                S value",
         "objectID": "posts/操作系统2",
         "date": "2024-03-05T00:00:00.000Z",
         "draft": false,
@@ -58,7 +58,7 @@
     {
         "title": "数据结构(第一章)",
         "uri": "posts/数据结构",
-        "content": "Data_Structure    D S  D          S D                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ADT    D S P  D      S D      P D      ADT                                                                                                                                                                            C    Pascal      C        C     C                                      c n0      n  n0    f n   mnm am 1nm 1     a1n a0   m      A n  0 nm                       S n  O f n     n",
+        "content": "Data_Structure    D S  D          S D                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ADT    D S P  D      S D      P D      ADT                                                                                                                                                                            C    Pascal      C        C     C                                      c n0       n  n_0     f n",
         "objectID": "posts/数据结构",
         "date": "2024-03-10T00:00:00.000Z",
         "draft": false,
@@ -114,9 +114,23 @@
     {
         "title": "算法与程序(第一章)",
         "uri": "posts/算法分折与设计",
-        "content": "n                            n                               n  2n n                                                                                                                       O     o   g n              T n                 O  T n    O g n                            g n        lim n rightarrow infty  frac Tmax n   g n   c neq0  c          lim n rightarrow infty  frac Tmax n   n 2   frac c4 c5 c6  2       T n  O n2             A       Tmax c1n2 n 4      Tmin c2n2   g n  n2  T n      g n     T n    O g n      T n      g n            o  T n    o g n                             g n        lim n rightarrow infty  frac Tmax n   g n   0     g n    n2 Tmax n  c2nlogn      o n2              T n      g n                             g n        lim n rightarrow infty  frac Tmin n   g n    infty     g n  n Tmin c1nlogn      n",
+        "content": "n                            n                               n  2n n                                                                                                                       O     o   g n              T n                 O  T n    O g n                            g n        lim n rightarrow infty  frac Tmax n   g n   c neq0  c          lim n rightarrow infty  frac Tmax n   n 2   frac c4 c5 c6  2       T n  O n2             A       Tmax c1n2 n 4      Tmin c2n2   g n  n2  T n      g n     T n    O g n      T n      g n            o  T n    o g n                             g n        lim n rightarrow infty  frac Tmax n   g n   0     g n    n2 Tmax n  c2nlogn      o n2              T n      g n                             g n        lim n rightarrow infty  frac Tmin n   g n    infty     g n  n Tmin c1nlogn      n              Master",
         "objectID": "posts/算法分折与设计",
         "date": "2024-03-05T00:00:00.000Z",
+        "draft": false,
+        "tags": [
+            "计算机算法设计与分析"
+        ],
+        "categories": [
+            "计算机算法设计与分析"
+        ]
+    },
+    {
+        "title": "算法与程序(第二章)",
+        "uri": "posts/算法分析与设计2",
+        "content": "n      k                                                                                                                                                                                                                                                                                    n     k    n m                  n0 1  adhoc    1     1               k      merge k                f n              n                a n 2  x      x a n 2     x        xa n 2       a        x",
+        "objectID": "posts/算法分析与设计2",
+        "date": "2024-03-12T00:00:00.000Z",
         "draft": false,
         "tags": [
             "计算机算法设计与分析"
@@ -142,7 +156,7 @@
     {
         "title": "编译引论(第二章)",
         "uri": "posts/编译原理2",
-        "content": "a b                 a b                         a b aa bb                                                                              x        x              x y  y         x                x y      xy    x x  x         x      x n     n      xn    x0                  x              x          x         0                x          x         0                x         x      x      x                       x x        x     x       x               x x       x         x                         A B                   AB  xy x A y B   A        B                      x   x x       A    A A    A  A                               A         A0       A1 A  A2 AA",
+        "content": "a b                 a b                         a b aa bb                                                                              x        x              x y  y         x                x y      xy    x x  x         x      x n     n      xn     x 0                   x              x          x         0                x          x         0                x         x      x      x                       x x        x     x       x               x x       x         x                         A B                   AB  xy x A y B   A        B                      x   x x       A    A A    A  A                               A          A 0         A 1  A   A 2  AA                     A         A         A              A   A 0 bigcup  A 1   bigcup  A 2   bigcup  A 3   bigcup            A         A         A              A   A 0 bigcup  A 1   bigcup  A 2   bigcup  A 3   bigcup                     A         AA          BNF                 U          U x  U  x                     G   VN   VT  S P   V_N                  V_T                S                      P                 BNF                                                                 S rightarrow  a1   S rightarrow  a2        S rightarrow  an      S rightarrow  a1   a2        an     a_i    S                                                                   U rightarrow  xUy                 U                                       U rightarrow  Uy                                U rightarrow  xU                                          G E    E rightarrow  E T T   T rightarrow  T F F   F rightarrow   E  i                                 alpha rightarrow   beta     G  VN VT S P         gamma    delta  in  VN  bigcup VT          v w     v  gamma alpha delta   w  gamma beta delta    v       alpha rightarrow beta      w    w v          v Rightarrow w               v Rightarrow w      w     v    n                 v w0 Rightarrow w1 Rightarrow       Rightarrow w_n   w  n geq1     v  n  n 0    w     v stackrel    Rightarrow w     stackrel    Rightarrow               v stackrel    Rightarrow w   v w n 0    v  n  n geq 0      w     v stackrel   Rightarrow w     stackrel   Rightarrow    0                                                                      G",
         "objectID": "posts/编译原理2",
         "date": "2024-03-06T00:00:00.000Z",
         "draft": false,

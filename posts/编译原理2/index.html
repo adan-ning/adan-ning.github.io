@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862\/"
-        },"genre": "posts","keywords": "编译原理","wordcount":  869 ,
+        },"genre": "posts","keywords": "编译原理","wordcount":  2217 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862\/","datePublished": "2024-03-06T00:00:00+00:00","dateModified": "2024-03-06T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">编译引论(第二章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编译原理</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-06">2024-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;869 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-06">2024-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2217 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -127,6 +127,35 @@
       </ul>
     </li>
     <li><a href="#符号串集合的运算">符号串集合的运算</a></li>
+    <li><a href="#符号串集合的闭包">符号串集合的闭包</a>
+      <ul>
+        <li><a href="#星闭包">星闭包</a></li>
+        <li><a href="#正闭包">正闭包</a></li>
+      </ul>
+    </li>
+    <li><a href="#文法及文法的bnf表示">文法及文法的BNF表示</a>
+      <ul>
+        <li><a href="#规则">规则</a></li>
+      </ul>
+    </li>
+    <li><a href="#文法和字汇表">文法和字汇表</a>
+      <ul>
+        <li><a href="#文法的bnf巴科斯范式表示">文法的BNF(巴科斯范式)表示</a></li>
+      </ul>
+    </li>
+    <li><a href="#递归规则及递归文法">递归规则及递归文法</a>
+      <ul>
+        <li><a href="#递归规则">递归规则</a></li>
+        <li><a href="#递归文法">递归文法</a></li>
+      </ul>
+    </li>
+    <li><a href="#推导和归约">推导和归约</a>
+      <ul>
+        <li><a href="#直接推导">直接推导</a></li>
+        <li><a href="#长度为n的推导">长度为n的推导</a></li>
+        <li><a href="#最左推导和最右推导">最左推导和最右推导</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="高级语言的定义">高级语言的定义</h1>
@@ -163,7 +192,7 @@
 </li>
 <li>
 <p>符号串的方幂：设x的符号串，则x的n次连接称为n次方幂，记为x<!-- raw HTML omitted -->n<!-- raw HTML omitted -->。</p>
-<p>例：x<!-- raw HTML omitted -->0<!-- raw HTML omitted -->=ε</p>
+<p>例：$x^0$=ε</p>
 </li>
 <li>
 <p>符号串的前缀，后缀，子串</p>
@@ -186,9 +215,97 @@
 <li>
 <p>符号串集合的方幂：即同一个符号串集合的乘积。</p>
 <p>例：设A为符号串集合，则</p>
-<p>A<!-- raw HTML omitted -->0<!-- raw HTML omitted -->={ε} , A<!-- raw HTML omitted -->1<!-- raw HTML omitted -->=A, A<!-- raw HTML omitted -->2<!-- raw HTML omitted -->=AA,&hellip;..</p>
+<p>$A^0$={ε} , $A^1$=A, $A^2$=AA,&hellip;..</p>
 </li>
 </ol>
+<h2 id="符号串集合的闭包">符号串集合的闭包</h2>
+<h3 id="星闭包">星闭包</h3>
+<p>设A为符号串集合，则$A^*$为符号串集合A的星闭包。具体定义如下：</p>
+<p>$A^*=A^0\bigcup$$A^1$$\bigcup$$A^2$$\bigcup$$A^3$$\bigcup$&hellip;..</p>
+<h3 id="正闭包">正闭包</h3>
+<p>设A为符号串集合，则$A^+$为符号串集合A的正闭包。具体定义如下：</p>
+<p>$A^+=A^0\bigcup$$A^1$$\bigcup$$A^2$$\bigcup$$A^3$$\bigcup$&hellip;..</p>
+<p>**由上述两个定义，显然有 :$A^+$ $=$ $AA^*$ **</p>
+<h2 id="文法及文法的bnf表示">文法及文法的BNF表示</h2>
+<h3 id="规则">规则</h3>
+<p>即产生式，是一有序对(U，ⅹ)，通常记为：
+U→x(或U::x)</p>
+<h2 id="文法和字汇表">文法和字汇表</h2>
+<p>文法可以定义成一个四元组G=($V_N$,$V_T$,S,P)</p>
+<ol>
+<li>$V_N$:一个非空有限的非终结符号集合</li>
+<li>$V_T$:一个非空有限的终结符号集合</li>
+<li>S:文法的开始符号，它是一个特殊的非终结符号</li>
+<li>P:产生式的有限集合</li>
+</ol>
+<p>例如：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121733833.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121733833.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121733833.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121733833.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121733833.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121733833.jpg" /></p>
+<h3 id="文法的bnf巴科斯范式表示">文法的BNF(巴科斯范式)表示</h3>
+<p>为了书写简洁，常常把左部相同的规则缩写在一起，使其结构更加紧凑，在规则中引入符号&quot;|&quot;,以表示“或者”。形如$S\rightarrow$$a_1$,$S\rightarrow$$a_2$,&hellip;.,$S\rightarrow$$a_n$,缩写为$S\rightarrow$$a_1$|$a_2$|&hellip;.|$a_n$,每个$a_i$被称为S的一个候选式</p>
+<p>因此，上述例子的文法还可以写成：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121736855.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121736855.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121736855.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121736855.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121736855.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121736855.jpg" /></p>
+<h2 id="递归规则及递归文法">递归规则及递归文法</h2>
+<h3 id="递归规则">递归规则</h3>
+<p>指那些在规则的右部含有与规则左部相同符号的规则，例如，$U\rightarrow$$xUy$,右部含有与规则左部相同部分符号U，这就是递归规则</p>
+<p>如果这个相同符号出现在右部的最左端，则为左递归规则，例如:$U\rightarrow$$Uy$</p>
+<p>如果这个相同符号出现在左部的最右端，则为右递归规则，例如:$U\rightarrow$$xU$</p>
+<h3 id="递归文法">递归文法</h3>
+<p>若文法中至少包含一条递归规则，则称文法是直接递归的</p>
+<p>例如：</p>
+<p>算术表达式G[E]:</p>
+<p>$E\rightarrow$$E+T|T$</p>
+<p>$T\rightarrow$$T*F|F$</p>
+<p>$F\rightarrow$$(E)|i$</p>
+<p>显然，该文法就是一个直接递归文法</p>
+<h2 id="推导和归约">推导和归约</h2>
+<h3 id="直接推导">直接推导</h3>
+<p>设$\alpha\rightarrow$$\beta$是文法$G=(V_N,V_T,S,P)$的产生式，$\gamma$和$\delta \in (V_N \bigcup V_T)^*$,若有符号串v,w满足：</p>
+<p>$v=\gamma\alpha\delta$，$w=\gamma\beta\delta$</p>
+<p>则称v(利用规则$\alpha\rightarrow\beta$)直接推出w，或则说w是v的直接推导，记作:$v\Rightarrow w$.</p>
+<p><strong>归约是推导的逆过程，若$v\Rightarrow w$,也可以说w直接规约到v</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121803097.JPG"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121803097.JPG, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121803097.JPG 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121803097.JPG 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121803097.JPG"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121803097.JPG" /></p>
+<h3 id="长度为n的推导">长度为n的推导</h3>
+<p>如果存在直接推导的序列:$v=w_0\Rightarrow w_1\Rightarrow &hellip;. \Rightarrow w_n = w (n\geq1)$，则说v经过n步(n&gt;0)推导出w，记作：$v\stackrel{+}\Rightarrow w$。“$\stackrel{+}\Rightarrow$”表示多步直接推导。</p>
+<p>若有$v\stackrel{+}\Rightarrow w$,或v=w(n=0),则说v经过n($n\geq 0$)步推导出w，记作：$v\stackrel{<em>}\Rightarrow w$。“$\stackrel{</em>}\Rightarrow$”表示0步或多步直接推导。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121815404.JPG"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121815404.JPG, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121815404.JPG 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121815404.JPG 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121815404.JPG"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121815404.JPG" /></p>
+<h3 id="最左推导和最右推导">最左推导和最右推导</h3>
+<p>若在推导过程中，每一步总是对当前符号串最左(右)边的非终结符号进行替换，称为最左(右)推导。如果文法G是无二义的，那么最右推导的逆过程为最左归约，最有推导为规范推导，最左规约为规范归约。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121822576.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121822576.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121822576.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121822576.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121822576.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121822576.jpg" /></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2\/"
-        },"genre": "posts","keywords": "操作系统","wordcount":  848 ,
+        },"genre": "posts","keywords": "操作系统","wordcount":  1442 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2\/","datePublished": "2024-03-05T00:00:00+00:00","dateModified": "2024-03-05T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">操作系统(第二章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-05">2024-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;848 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-05">2024-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1442 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -154,6 +154,18 @@
         <li><a href="#描述">描述</a></li>
       </ul>
     </li>
+    <li><a href="#信号量机制">信号量机制</a>
+      <ul>
+        <li><a href="#整型信号量s">整型信号量(S)</a></li>
+      </ul>
+    </li>
+    <li><a href="#信号量的应用">信号量的应用</a>
+      <ul>
+        <li><a href="#利用信号量实现互斥">利用信号量实现互斥</a></li>
+        <li><a href="#同步直接制约">同步(直接制约)</a></li>
+      </ul>
+    </li>
+    <li><a href="#思考题">思考题</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="进程管理引入">进程管理(引入)</h1>
@@ -243,8 +255,8 @@
 <h2 id="作用">作用</h2>
 <p>进程存在的唯一标志</p>
 <h2 id="进程控制块中的信息图">进程控制块中的信息(图)</h2>
-<p>标识，处理机状态，进程调度信息，进程控制信息
-优先数：一般为整数</p>
+<p>标识，处理机状态，进程调度信息，进程控制信息</p>
+<p>优先数：一般为整数</p>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -273,15 +285,15 @@
         alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111347055.png"
         title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403111347055.png" /></p>
 <h1 id="进程控制三对操作">进程控制(三对操作)</h1>
-<p><strong>创建与终止</strong>
-<strong>阻塞与唤醒</strong>
-<strong>挂起与激活</strong></p>
+<p><strong>创建与终止</strong></p>
+<p><strong>阻塞与唤醒</strong></p>
+<p><strong>挂起与激活</strong></p>
 <h1 id="进程同步">进程同步</h1>
 <h2 id="概念">概念</h2>
 <p>并发进程在执行次序上的协调，以达到有效的资源共享和相互合作，使程序的执行具有可再现性</p>
 <h2 id="关系">关系</h2>
-<p><strong>间接制约</strong>：互斥共享资源
-<strong>直接制约</strong>：相互合作</p>
+<p><strong>间接制约</strong>：互斥共享资源</p>
+<p><strong>直接制约</strong>：相互合作</p>
 <h2 id="临界资源">临界资源</h2>
 <p>一次只允许一个进程访问的资源
 引起不可再现性是因为没有临界资源(每一个缓冲区)没有访问(互斥访问)</p>
@@ -289,9 +301,100 @@
 <h3 id="定义-1">定义</h3>
 <p><strong>进程访问临界资源的那段代码</strong></p>
 <h3 id="描述">描述</h3>
-<p><strong>进入区</strong>：检查有无进程进入
-<strong>临界区</strong>：
-<strong>退出区</strong>：将访问标志复位</p>
+<p><strong>进入区</strong>：检查有无进程进入</p>
+<p><strong>临界区</strong>：</p>
+<p><strong>退出区</strong>：将访问标志复位</p>
+<h2 id="信号量机制">信号量机制</h2>
+<h3 id="整型信号量s">整型信号量(S)</h3>
+<p>是一个整型量，通过2个原子操作wait (s)和signal (s)来访问</p>
+<p><strong>含义</strong>：表示资源，$S_{初始值}≥0$</p>
+<p><strong>变化</strong>：
+–1：wait(s) p(s) 表示申请资源</p>
+<p>+1：signal(s) v(s) 表示释放资源</p>
+<p><strong>注</strong>：wait(s)和signal(s)是成对出现</p>
+<p><strong>问题</strong>：当S≤0，不能分配资源，进程阻塞(队列)</p>
+<p><strong>记录型(S)</strong></p>
+<p>S.value：代表资源，s.value≥0</p>
+<p>S.L：阻塞进程的队列</p>
+<h4 id="操作">操作</h4>
+<ol>
+<li>wait(s)</li>
+</ol>
+<p>分析 ：
+S.value=1→(p(s))1-1=0</p>
+<p>S.value=0→(p(s))0-1=-1</p>
+<ol start="2">
+<li>signal(s)</li>
+</ol>
+<p>分析
+S.value=-1→(v(s))-1+1=0</p>
+<p>S.value=-2→(v(s))-2+1=-1
+小结：</p>
+<ol>
+<li>实现进程关系的描述</li>
+<li>wait(s)和signal(s)是成对出现</li>
+</ol>
+<p>同一个进程或两个进程之间出现</p>
+<p><strong>在记录型信号量机制中</strong>
+S.value初值：表示系统中某类资源的数目</p>
+<p>S.value&lt;0：表示信号量链表中已阻塞进程的数目</p>
+<h2 id="信号量的应用">信号量的应用</h2>
+<h3 id="利用信号量实现互斥">利用信号量实现互斥</h3>
+<p>一个进程执行，另一个进程不执行，则成互斥关系</p>
+<p><strong>步骤</strong></p>
+<ol>
+<li>共享临界资源(mutex)=1</li>
+</ol>
+<p>wait(mutex)</p>
+<p>signal(mutex)</p>
+<ol start="2">
+<li>设置临界区</li>
+</ol>
+<p>进入：wait(mutex)</p>
+<p>CS</p>
+<p>退出：signal(mutex)</p>
+<p>同一个进程当中，成对出现</p>
+<p><strong>总结</strong></p>
+<p>mutex实现临界区的设置(2个)</p>
+<p>mutex实现两个进程的互斥</p>
+<h3 id="同步直接制约">同步(直接制约)</h3>
+<h4 id="同步的模型">同步的模型</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121637709.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121637709.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121637709.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121637709.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121637709.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121637709.png" /></p>
+<h4 id="前趋图">前趋图</h4>
+<p>S1(被等待)signal(a)→S2(等待)wait(a)
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121639944.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121639944.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121639944.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121639944.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121639944.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121639944.png" /></p>
+<p><strong>代码框架描述如下</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121640027.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121640027.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121640027.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121640027.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121640027.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121640027.png" /></p>
+<h2 id="思考题">思考题</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121647881.JPG"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121647881.JPG, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121647881.JPG 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403121647881.JPG 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121647881.JPG"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121647881.JPG" /></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
