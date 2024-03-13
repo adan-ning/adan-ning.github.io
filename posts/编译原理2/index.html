@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862\/"
-        },"genre": "posts","keywords": "编译原理","wordcount":  2217 ,
+        },"genre": "posts","keywords": "编译原理","wordcount":  3221 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862\/","datePublished": "2024-03-06T00:00:00+00:00","dateModified": "2024-03-06T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">编译引论(第二章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编译原理</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-06">2024-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2217 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-06">2024-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3221 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -154,6 +154,23 @@
         <li><a href="#直接推导">直接推导</a></li>
         <li><a href="#长度为n的推导">长度为n的推导</a></li>
         <li><a href="#最左推导和最右推导">最左推导和最右推导</a></li>
+      </ul>
+    </li>
+    <li><a href="#句型句子和语言">句型，句子和语言</a>
+      <ul>
+        <li><a href="#句型句子">句型，句子</a></li>
+        <li><a href="#语言">语言</a></li>
+      </ul>
+    </li>
+    <li><a href="#短语简单短语句柄">短语，简单短语，句柄</a>
+      <ul>
+        <li><a href="#定义-2">定义</a></li>
+      </ul>
+    </li>
+    <li><a href="#语法树与文法的二义性">语法树与文法的二义性</a>
+      <ul>
+        <li><a href="#语法树">语法树</a></li>
+        <li><a href="#二义性">二义性</a></li>
       </ul>
     </li>
   </ul>
@@ -306,6 +323,51 @@ U→x(或U::x)</p>
         data-sizes="auto"
         alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121822576.jpg"
         title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121822576.jpg" /></p>
+<h2 id="句型句子和语言">句型，句子和语言</h2>
+<h3 id="句型句子">句型，句子</h3>
+<h4 id="定义">定义</h4>
+<p>设G[S]是文字表V上的一个文法，如果符号串u是由文法的开始符号推导出来的，则称u是文法G[S]的句型。如果u仅由终结符号组成，则称u是文法G[S]的句子</p>
+<p>即：</p>
+<p>若$S\stackrel{<em>}\Rightarrow u$，$u\in V^</em>$，则称u是文法G[S]的句型；</p>
+<p>若$S\stackrel{+}\Rightarrow u$，$u \in V_T^*$，则称u是文法G[S]的句子；</p>
+<h3 id="语言">语言</h3>
+<h4 id="定义-1">定义</h4>
+<p>文法G[S]所产生的所有句子的集合，称为该文法所定义的语言，记为L(G[S])。</p>
+<p>即：</p>
+<p>L(G)={u|$S\stackrel{+}\Rightarrow u$，且$u\in V_T^*$}</p>
+<p><strong>文法和语言的关系</strong></p>
+<ol>
+<li>对于一给定的文法，可以唯一地确定它所产生的语言</li>
+<li>对于一给定的语言，可以找到若干不同的文法定义它</li>
+</ol>
+<h2 id="短语简单短语句柄">短语，简单短语，句柄</h2>
+<h3 id="定义-2">定义</h3>
+<p>设G是一个文法，S是文法G的开始符号，$\alpha\beta\delta$是该文法的一个句型，如果有：</p>
+<p>$S\stackrel{*}\Rightarrow \alpha A \delta$并且 $A\stackrel{+}\Rightarrow\beta$</p>
+<p>则称$\beta$ 是句型$\alpha\beta\delta$相对于非终结符号A的短语。特别的，如果$A\stackrel{+}\Rightarrow\beta$ 是通过1步推导来完成的，则称$\beta$是句型$\alpha\beta\delta$相对于非终结符号A的简单短语，也称为直接短语。一个句型的最左边的简单短语称为句柄</p>
+<h2 id="语法树与文法的二义性">语法树与文法的二义性</h2>
+<h3 id="语法树">语法树</h3>
+<p>用一张图来表示一个句型的推导过程</p>
+<p>设文法G=($V_N,V_T,P,S$)，对于文法G的任意一个句型都存在一个相应的语法树：</p>
+<ol>
+<li>树中每个结点都有一个标记，该标记是$V_NV_T$中的一个符号；</li>
+<li>树的根节点标记文法的识别符号S；</li>
+<li>若树的一个结点至少有一个叶子结点，则该结点的标记一定是一个非终结符；</li>
+<li>若树的一个结点有多个结点，该结点的标记为A，这些叶子结点的标记从左到右分别是$B_1,B_2,&hellip;,B_n$，则($A\rightarrow B_1B_2&hellip;B_n$)$\in P$</li>
+</ol>
+<h3 id="二义性">二义性</h3>
+<h4 id="定义-3">定义</h4>
+<p>一个文法，如果它的一个句子由两颗或两颗以上的语法树，则称此句子具有二义性。如果一个文法含有二义性的句子，则该文法具有二义性。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403131450687.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403131450687.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403131450687.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403131450687.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403131450687.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403131450687.jpg" /></p>
+<p><strong>注意</strong></p>
+<p>文法的二义性和语言的二义性是两个不同的概念。如果产生上下文无关语言的每一个文法都是二义性的，则说该语言是二义性的。并非文法的二义性就说其描述的语言是二义性的。通常可能有两个不同的文法G1和G2，其中一个文法是二义性的，另外一个是没有二义性的，但是却有L(G1) = L(G2)，即两个文法产生的语言是等价的</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
