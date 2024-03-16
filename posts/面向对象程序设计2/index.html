@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A12\/"
-        },"genre": "posts","keywords": "面向对象程序设计","wordcount":  465 ,
+        },"genre": "posts","keywords": "面向对象程序设计","wordcount":  4608 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A12\/","datePublished": "2024-03-09T00:00:00+00:00","dateModified": "2024-03-09T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">c++(two)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>面向对象程序设计</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-09">2024-03-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;465 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-09">2024-03-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4608 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -112,57 +112,168 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#特点">特点</a></li>
+    <li><a href="#实例">实例</a></li>
+    <li><a href="#实例说明">实例说明</a></li>
+  </ul>
+
+  <ul>
     <li><a href="#分类">分类</a></li>
+    <li><a href="#函数驱动机制">函数驱动机制</a></li>
+    <li><a href="#c字符集">c++字符集</a>
+      <ul>
+        <li><a href="#词法记号">词法记号</a></li>
+        <li><a href="#标识符的构成规则">标识符的构成规则</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#c的基本数据类型">C++的基本数据类型</a></li>
+        <li><a href="#数据类型">数据类型</a></li>
+      </ul>
+    </li>
+    <li><a href="#变量">变量</a>
+      <ul>
+        <li><a href="#声明和定义">声明和定义</a></li>
+        <li><a href="#声明语句的形式">声明语句的形式</a></li>
+        <li><a href="#变量赋初值">变量赋初值</a></li>
+      </ul>
+    </li>
+    <li><a href="#整型数据及取值范围">整型数据及取值范围</a>
+      <ul>
+        <li><a href="#符号常量">符号常量</a></li>
+        <li><a href="#不同类型数据混合运算时的类型转换">不同类型数据混合运算时的类型转换</a></li>
+      </ul>
+    </li>
+    <li><a href="#变量的存储类型">变量的存储类型</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#表达式是计算求值的基本单位">表达式是计算求值的基本单位</a></li>
+      </ul>
+    </li>
+    <li><a href="#算术运算符与算术表达式">算术运算符与算术表达式</a></li>
+    <li><a href="#增量和减量运算符">增量和减量运算符</a></li>
+    <li><a href="#赋值运算符和赋值表达式">赋值运算符和赋值表达式</a>
+      <ul>
+        <li><a href="#简单的赋值运算符-">简单的赋值运算符 “=”</a></li>
+        <li><a href="#复合的赋值运算符">复合的赋值运算符</a></li>
+      </ul>
+    </li>
+    <li><a href="#逗号运算和逗号表达式">逗号运算和逗号表达式</a></li>
+    <li><a href="#关系运算与关系表达式">关系运算与关系表达式</a></li>
+    <li><a href="#逻辑运算与逻辑表达式">逻辑运算与逻辑表达式</a></li>
+    <li><a href="#条件运算符与条件表达式">条件运算符与条件表达式</a></li>
+    <li><a href="#sizeof操作符">sizeof操作符</a></li>
+    <li><a href="#位运算按位与">位运算(按位与(&amp;))</a></li>
+    <li><a href="#位运算按位或">位运算(按位或(|))</a></li>
+    <li><a href="#位运算按位异或">位运算(按位异或(^))</a></li>
+    <li><a href="#位运算取反">位运算(取反(~))</a></li>
+    <li><a href="#位运算移位">位运算(移位)</a>
+      <ul>
+        <li><a href="#左移运算">左移运算(&laquo;)</a></li>
+        <li><a href="#右移运算">右移运算</a></li>
+      </ul>
+    </li>
+    <li><a href="#运算符优先级">运算符优先级</a></li>
+    <li><a href="#混合运算时数据类型的转换隐含转换">混合运算时数据类型的转换(隐含转换)</a></li>
+    <li><a href="#混合运算时数据类型的转换强制类型转换">混合运算时数据类型的转换(强制类型转换)</a></li>
+    <li><a href="#语句">语句</a>
+      <ul>
+        <li><a href="#c语言的语句">C++语言的语句</a></li>
+        <li><a href="#表达式与表达式语句的区别"><strong>表达式与表达式语句的区别</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#io流">I/O流</a>
+      <ul>
+        <li><a href="#流">流</a></li>
+        <li><a href="#提取操作">提取操作</a></li>
+        <li><a href="#插入操作">插入操作</a></li>
+      </ul>
+    </li>
+    <li><a href="#预定义的插入符和提取符">预定义的插入符和提取符</a></li>
+    <li><a href="#io标准流类">I/O标准流类</a>
+      <ul>
+        <li><a href="#标准流的设备名">标准流的设备名</a></li>
+        <li><a href="#cout原理">cout原理</a></li>
+        <li><a href="#cin原理">cin原理</a></li>
+      </ul>
+    </li>
+    <li><a href="#简单的io格式控制">简单的I/O格式控制</a>
+      <ul>
+        <li><a href="#io流的常用控制符">I/O流的常用控制符</a></li>
+        <li><a href="#io流的常用控制符举例">I/O流的常用控制符(举例)</a></li>
+      </ul>
+    </li>
+    <li><a href="#算法的基本控制结构">算法的基本控制结构</a>
+      <ul>
+        <li><a href="#if语句多种形式">if语句(多种形式)</a></li>
+        <li><a href="#switch语句特殊的多分支结构">switch语句(特殊的多分支结构)</a></li>
+        <li><a href="#循环语句while">循环语句(while)</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="c的产生">c++的产生</h1>
 <p>c++是从c语言发展演变而来的，引入了类的机制，最初也被称为&quot;带类的C&quot;</p>
-<h1 id="特点">特点</h1>
+<h2 id="特点">特点</h2>
 <p>保持c的简洁，高效和接近汇编语言等特点</p>
 <p>对c的类型系统进行改革和扩充</p>
 <p>c++也支持面向过程的程序设计，不是一个纯正的面向对象的语言</p>
 <p>支持面向对象的方法</p>
-<h1 id="实例">实例</h1>
-<p><code>c++</code></p>
-<p>#include<!-- raw HTML omitted --></p>
-<p>using namespace std;</p>
-<p>int main(){</p>
-<p>​		cout&laquo;&ldquo;Hello\n&rdquo;;</p>
-<p>​		cout&laquo;&ldquo;Welcome to c++!\n&rdquo;;</p>
-<p>}</p>
-<p><strong>结果</strong></p>
+<h2 id="实例">实例</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">​</span>		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Hello</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">​</span>		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Welcome to c++!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>结果</strong></p>
 <p>Hello!</p>
 <p>Welcome to c++!</p>
-<h1 id="实例说明">实例说明</h1>
+<h2 id="实例说明">实例说明</h2>
 <p>在新的c++标准程序库中，所有标识符都声明在命名空间std中，且头文件不使用扩展名</p>
 <p>头文件使用旧版(带扩展名)和新版(不带扩展名)皆可，但不可以混用</p>
 <p>名字空间防止命名冲突</p>
-<p><code>c++</code></p>
-<ol>
-<li>
-<p>命名空间声明：</p>
-<p>namespace NS{</p>
-<p>​	class File;</p>
-<p>​	void fun();</p>
-<p>}</p>
-</li>
-<li>
-<p>命名空间内标识符使用：</p>
-<p>NS::File obj;</p>
-<p>NS::Fun();</p>
-</li>
-<li>
-<p>简洁方法:</p>
-<p>using namespace NS;</p>
-</li>
-</ol>
-<h1 id="函数">函数</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="mf">1.</span> <span class="err">命名空间声明：</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="k">namespace</span> <span class="n">NS</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="err">​</span>	<span class="k">class</span> <span class="nc">File</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="err">​</span>	<span class="kt">void</span> <span class="n">fun</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mf">2.</span> <span class="err">命名空间内标识符使用：</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="n">NS</span><span class="o">::</span><span class="n">File</span> <span class="n">obj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="n">NS</span><span class="o">::</span><span class="n">Fun</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mf">3.</span> <span class="err">简洁方法</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="k">using</span> <span class="k">namespace</span> <span class="n">NS</span><span class="p">;</span>
+</span></span></code></pre></div><h1 id="函数">函数</h1>
 <p>把相关的语句组织在一起，注明相应的名称，利用这种方法把程序分块，这种形式的组合就叫做函数</p>
 <p>一个c++程序由一个主函数(main)和若干个函数构成</p>
 <h2 id="分类">分类</h2>
 <p>标准库函数和用户自定义函数</p>
 <p>由主函数调用其他函数，其他函数也可以相互调用</p>
-<h1 id="函数驱动机制">函数驱动机制</h1>
+<h2 id="函数驱动机制">函数驱动机制</h2>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -171,14 +282,622 @@
         data-sizes="auto"
         alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403091144265.png"
         title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403091144265.png" /></p>
-<h1 id="c字符集">c++字符集</h1>
+<h2 id="c字符集">c++字符集</h2>
 <p>大小写的英文字母：A~Z,a~z</p>
 <p>数字字符:0~9</p>
 <p>特殊字符：</p>
 <p>空格     !     #    %    ^    &amp;    *     __(下划线)     +    =   -(减号)      ~    &lt;     &gt;    /     \    &rsquo;     &quot;     ;    .     ,    ()     [ ]    {}</p>
 <p><strong>关键字</strong></p>
 <p><a href="https://blog.csdn.net/wuxinliulei/article/details/9787901" target="_blank" rel="noopener noreffer ">https://blog.csdn.net/wuxinliulei/article/details/9787901</a></p>
-</div><div class="post-footer" id="post-footer">
+<h3 id="词法记号">词法记号</h3>
+<ol>
+<li>关键字：C++预定义的单词</li>
+<li>标识符：程序员声明的单词，它命名程序正文的一些实体</li>
+<li>文字：在程序中直接使用符号表示的数据</li>
+<li>操作符：用于实现各种运算的符号</li>
+<li>分隔符：用于分隔各个词法记号或程序正文，分隔符是() {} , ;</li>
+<li>空白：空格，制表符（TAB键产生的字符），换行符（Enter键所产生的字符）和注释的总称</li>
+</ol>
+<h3 id="标识符的构成规则">标识符的构成规则</h3>
+<ol>
+<li>
+<p>以大写字母，小写字母或下划线(_)开始</p>
+</li>
+<li>
+<p>可以由以大写字母，小写字母，下划线(_)或数字0·9组成</p>
+</li>
+<li>
+<p>大写字母和小写字母代表不同的标识符</p>
+<p><strong>注释两种(/</strong><em>&hellip;.</em>****/或则//)</p>
+</li>
+</ol>
+<h1 id="基本数据类型和表达式">基本数据类型和表达式</h1>
+<h3 id="c的基本数据类型">C++的基本数据类型</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151427005.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151427005.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151427005.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151427005.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151427005.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151427005.png" /></p>
+<h3 id="数据类型">数据类型</h3>
+<p><strong>常量与变量</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151431245.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151431245.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151431245.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151431245.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151431245.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151431245.png" /></p>
+<p><strong>整型数据</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151432075.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151432075.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151432075.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151432075.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151432075.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151432075.png" /></p>
+<h2 id="变量">变量</h2>
+<p>在程序执行过程中其值可以变化的量，需用名字标识</p>
+<h3 id="声明和定义">声明和定义</h3>
+<p>变量在使用之前需要首先声明其类型和名称</p>
+<h3 id="声明语句的形式">声明语句的形式</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151435735.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151435735.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151435735.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151435735.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151435735.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151435735.png" /></p>
+<h3 id="变量赋初值">变量赋初值</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151436563.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151436563.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151436563.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151436563.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151436563.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151436563.png" /></p>
+<p><strong>注：C++中有字符串常量，却无字符串变量</strong></p>
+<h2 id="整型数据及取值范围">整型数据及取值范围</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151438252.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151438252.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151438252.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151438252.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151438252.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151438252.png" /></p>
+<p><strong>实型数据</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151439856.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151439856.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151439856.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151439856.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151439856.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151439856.png" /></p>
+<p><strong>字符型数据(一)</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151441228.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151441228.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151441228.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151441228.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151441228.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151441228.png" /></p>
+<p><strong>布尔型数据</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151442382.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151442382.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151442382.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151442382.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151442382.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151442382.png" /></p>
+<h3 id="符号常量">符号常量</h3>
+<p>为常量命名，这就是符号常量</p>
+<p><strong>符号常量在使用之前一定要首先声明</strong></p>
+<p>常量声明语句的形式</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151444428.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151444428.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151444428.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151444428.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151444428.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151444428.png" /></p>
+<p><strong>符号常量在声明时一定要赋初值，而在程序中间不能改变其值</strong></p>
+<p>例：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151446221.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151446221.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151446221.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151446221.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151446221.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151446221.png" /></p>
+<h3 id="不同类型数据混合运算时的类型转换">不同类型数据混合运算时的类型转换</h3>
+<p>不同类型数据进行混合运算时，C++编译器会自动进行类型转换</p>
+<p>为了避免不同的数据类型在运算中出现混淆，应尽量使用同种类型数据。</p>
+<p>可以采用强制类型转换：</p>
+<p>例如：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151449217.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151449217.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151449217.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403151449217.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151449217.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403151449217.png" /></p>
+<h2 id="变量的存储类型">变量的存储类型</h2>
+<p><strong>auto</strong>:采用堆栈方式分配内存空间，属于暂时性存储，其存储空间可以被若干变量多次覆盖使用</p>
+<p><strong>register</strong>:存放在通用寄存器中</p>
+<p><strong>extern</strong>:在所有函数和程序段中都可以引用</p>
+<p><strong>static</strong>:在内存中都是以固定地址存放的，在整个程序运行期间都有效</p>
+<h1 id="运算符和表达式">运算符和表达式</h1>
+<h3 id="表达式是计算求值的基本单位">表达式是计算求值的基本单位</h3>
+<p><strong>表达式组成</strong></p>
+<p>有运算符(例：+，-，*，/)，运算量(也称操作符，可以是常量，变量等等)和括号组成</p>
+<p>例：a+b,x/y</p>
+<p><strong>表达式的值</strong></p>
+<p>执行表达式所规定的运算，所得到的结果值是表达式的值</p>
+<p><strong>表达式的定义</strong></p>
+<p>一个常量或表示对象的标识符是一个最简单的表达式，其值是常量或对象的值</p>
+<p>一个表达式的值可以用来参与其他操作，即用作其他运算符的操作数，这就形成了更复杂的表达式</p>
+<p>包括在括号中的表达式仍是一个表达式，其类型和值与未加括号时的表达式相同</p>
+<p><strong>运算符的种类</strong>：算术，关系，逻辑。</p>
+<p><strong>运算符的分类</strong>：</p>
+<p>一元运算符(单目运算符)</p>
+<p>二元运算符(双目运算符)</p>
+<h2 id="算术运算符与算术表达式">算术运算符与算术表达式</h2>
+<p><strong>基本算术运算符</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152052134.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152052134.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152052134.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152052134.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152052134.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152052134.png" /></p>
+<p><strong>优先级与结核性</strong></p>
+<p>先乘除，后加减，同级自左至右</p>
+<p><strong>++，&ndash;</strong></p>
+<p>例：i++;j&ndash;；</p>
+<h2 id="增量和减量运算符">增量和减量运算符</h2>
+<p>增量运算符：前增量和后增量</p>
+<p>前增量操作++a:先修改变量使之增1，然后将增1过的a的值作为表达式的值</p>
+<p>后增量操作a++:先将变量a的值作为表达式的值确定下来，再将a增1</p>
+<h2 id="赋值运算符和赋值表达式">赋值运算符和赋值表达式</h2>
+<h3 id="简单的赋值运算符-">简单的赋值运算符 “=”</h3>
+<p>例：n=n+5,a=b=c=5</p>
+<p><strong>作用</strong></p>
+<p>将等号右边表达式的值赋给等号左边的对象</p>
+<p><strong>类型</strong></p>
+<p>等号左边对象的类型</p>
+<p><strong>值</strong></p>
+<p>等号左边对象被赋值后的值</p>
+<p><strong>运算的结合性为自右向左</strong></p>
+<h3 id="复合的赋值运算符">复合的赋值运算符</h3>
+<p><strong>有10种符合运算符</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152102689.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152102689.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152102689.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152102689.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152102689.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152102689.png" /></p>
+<p><strong>这10种复合的赋值运算都是二元运算符，优先级与“=”相同，结合性也是自右向左。</strong></p>
+<h2 id="逗号运算和逗号表达式">逗号运算和逗号表达式</h2>
+<p><strong>格式</strong></p>
+<p>表达式1，表达式2</p>
+<p><strong>求解顺序及结果</strong></p>
+<p>先求解1，再求解2，最终结果为表达式2的值，若多个表达式，结果为最后表达式的值</p>
+<h2 id="关系运算与关系表达式">关系运算与关系表达式</h2>
+<p><strong>关系运算是比较简单的一种逻辑运算，优先次序为：</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152107802.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152107802.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152107802.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152107802.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152107802.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152107802.png" /></p>
+<p><strong>关系表达式是一种最简单的逻辑表达式其结果类型为bool，值只能为true或false.</strong></p>
+<p><strong>关系运算</strong></p>
+<p>关系运算的结果true或false是逻辑值</p>
+<p><strong>关系运算在C++中，0表示假，任意一个非0的数都表示真</strong></p>
+<p><strong>关系运算注意不要将=和==用错</strong></p>
+<h2 id="逻辑运算与逻辑表达式">逻辑运算与逻辑表达式</h2>
+<p><strong>逻辑运算符</strong></p>
+<p>!(非)  &amp;&amp;(与)  ||(或)</p>
+<p>优先次序：高$\rightarrow$ 低</p>
+<p><strong>逻辑表达式</strong></p>
+<p>其结果类型为bool，值只能为true或false.</p>
+<h2 id="条件运算符与条件表达式">条件运算符与条件表达式</h2>
+<p><strong>一般形式</strong></p>
+<p>表达式1?表达式2:表达式3</p>
+<p><strong>表达式1必须是bool类型</strong></p>
+<p><strong>执行顺序</strong></p>
+<ol>
+<li>先求解表达式1</li>
+<li>若表达式1的值为true，则求解表达式2，表达式2的值为最终结果</li>
+<li>若表达式1的值为false，则求解表达式3，表达式3的值为最终结果</li>
+</ol>
+<h2 id="sizeof操作符">sizeof操作符</h2>
+<p><strong>语法形式</strong></p>
+<p>sizeof(类型名)或sizeof(表达式)</p>
+<p><strong>结果值</strong></p>
+<p>“类型名”所指定的类型或“表达式”的结果类型所占的字节数</p>
+<p><strong>注意不用对括号中的表达式本身求值</strong></p>
+<h2 id="位运算按位与">位运算(按位与(&amp;))</h2>
+<p><strong>运算规则</strong></p>
+<p>将两个运算量的每一个位进行逻辑与操作</p>
+<p><strong>用途</strong></p>
+<p>将某一位置0，其它位不变。例如：</p>
+<p>将char型变量a的最低位置0：a=a&amp;0376;</p>
+<p>取指定位。例如：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152122201.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152122201.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152122201.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152122201.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152122201.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152122201.png" /></p>
+<h2 id="位运算按位或">位运算(按位或(|))</h2>
+<p><strong>运算规则</strong></p>
+<p>将两个运算量的每一个位进行逻辑或操作</p>
+<p><strong>用途</strong></p>
+<p>将某些位置1，其它位不变。</p>
+<p>例如：将int型变量a的低字节位置1：</p>
+<p>a=a|0xff;</p>
+<h2 id="位运算按位异或">位运算(按位异或(^))</h2>
+<p><strong>运算规则</strong></p>
+<p>两个操作数进行异或：</p>
+<p>若对应位相同，则结果该位为0</p>
+<p>若对应位不同，则结果该位为1</p>
+<p><strong>用途</strong></p>
+<p>使特定位翻转(与0异或保持原值，与1异或取反)</p>
+<p>例如：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152129275.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152129275.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152129275.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152129275.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152129275.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152129275.png" /></p>
+<h2 id="位运算取反">位运算(取反(~))</h2>
+<p><strong>单目运算符</strong></p>
+<p>对一个二进制数按位取反</p>
+<h2 id="位运算移位">位运算(移位)</h2>
+<h3 id="左移运算">左移运算(&laquo;)</h3>
+<p>左移后，低位补0，高位舍弃</p>
+<h3 id="右移运算">右移运算</h3>
+<p>右移后，低位：舍弃；</p>
+<p>高位：</p>
+<p>无符号数：补0</p>
+<p>有符号数：补“符号数”</p>
+<h2 id="运算符优先级">运算符优先级</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152134023.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152134023.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152134023.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152134023.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152134023.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152134023.png" /></p>
+<h2 id="混合运算时数据类型的转换隐含转换">混合运算时数据类型的转换(隐含转换)</h2>
+<p>一些二元运算符(算符运算符，关系运算符，逻辑运算符，位运算符和赋值运算符)要求两个操作数的类型一致</p>
+<p>在算数运算和关系运算中如果参与运算的操作数类型不一致，编译系统会自动对数据进行转换(即隐含转换)，基本原则是将低类型数据转换为高类型数据。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152138179.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152138179.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152138179.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152138179.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152138179.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152138179.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152139299.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152139299.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152139299.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152139299.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152139299.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152139299.png" /></p>
+<p><strong>类型转换的规则举例</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152140535.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152140535.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152140535.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152140535.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152140535.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152140535.png" /></p>
+<h2 id="混合运算时数据类型的转换强制类型转换">混合运算时数据类型的转换(强制类型转换)</h2>
+<p>语法形式：</p>
+<p><strong>类型说明符(表达式)或(类型说明符)表达式</strong></p>
+<p>强制类型转换的作用是将表达式的结果类型转换为类型说明符所指定的类型</p>
+<p><strong>强制类型转换的规则举例</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152142188.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152142188.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152142188.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152142188.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152142188.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152142188.png" /></p>
+<h2 id="语句">语句</h2>
+<h3 id="c语言的语句">C++语言的语句</h3>
+<p>声明语句，表达式语句，选择语句，循环语句，跳转语句，复合语句，标号语句几类。</p>
+<h3 id="表达式与表达式语句的区别"><strong>表达式与表达式语句的区别</strong></h3>
+<p>表达式可以包含在其它表达式中，而语句不能。</p>
+<p><strong>注意</strong></p>
+<p>C++语言没有赋值语句也没有函数调用语句，赋值与函数调用功能都是通过表达式来实现的。</p>
+<p>如果在赋值表达式后面加上分号，便成了语句。</p>
+<h1 id="数据的输入与输出">数据的输入与输出</h1>
+<h2 id="io流">I/O流</h2>
+<h3 id="流">流</h3>
+<p>在C++中，将数据从一个对象到另一个对象的流动抽象为“流”</p>
+<h3 id="提取操作">提取操作</h3>
+<p>从流中获取数据的操作称为提取操作</p>
+<h3 id="插入操作">插入操作</h3>
+<p>向流中添加数据的操作称为插入操作</p>
+<h2 id="预定义的插入符和提取符">预定义的插入符和提取符</h2>
+<p><strong>数据的输入和输出通过I/O流(stream)来实现</strong></p>
+<p><strong>插入操作符“&laquo;”</strong></p>
+<p><strong>预定义的流类对象cout</strong></p>
+<p><strong>cout用来处理标准输出，即屏幕输出格式：cout&laquo;表达式&laquo;表达式&hellip;</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152158668.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152158668.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152158668.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152158668.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152158668.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152158668.png" /></p>
+<p><strong>提取操作符“&raquo;”</strong></p>
+<p><strong>预定义的流类对象：cin</strong></p>
+<p><strong>cin用来处理标准输入，即键盘输入</strong></p>
+<p>**格式：cin&raquo;表达式&raquo;表达式&hellip; **</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="n">y</span><span class="p">;</span>  
+</span></span></code></pre></div><p><strong>从键盘上输入两个int型数，两数之间以空格分隔。</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152203533.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152203533.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152203533.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152203533.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152203533.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152203533.png" /></p>
+<h2 id="io标准流类">I/O标准流类</h2>
+<h3 id="标准流的设备名">标准流的设备名</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152248788.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152248788.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152248788.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152248788.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152248788.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152248788.png" /></p>
+<h3 id="cout原理">cout原理</h3>
+<p>cout是iostream流类的对象，它在iostream头文件中作为全局对象定义：</p>
+<p>ostream cout(stdout)</p>
+<p><strong>标准设备名作为其构造时的参数</strong></p>
+<h3 id="cin原理">cin原理</h3>
+<p>cin是istream全局对象</p>
+<p>除了标准输入输出设备，还有标准错误设备cerr</p>
+<h2 id="简单的io格式控制">简单的I/O格式控制</h2>
+<p><strong>流的默认格式输出有时不能满足特殊要求</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152254551.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152254551.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152254551.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152254551.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152254551.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152254551.png" /></p>
+<p>希望显示的是9.40，即保留两位小数，可是却显示了9.40007；默认显示6位有效位</p>
+<p><strong>用控制符(manipulators)可以对I/O流1的格式进行控制</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152257427.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152257427.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152257427.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152257427.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152257427.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152257427.png" /></p>
+<h3 id="io流的常用控制符">I/O流的常用控制符</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152258488.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152258488.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152258488.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152258488.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152258488.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152258488.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152258207.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152258207.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152258207.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152258207.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152258207.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152258207.png" /></p>
+<h3 id="io流的常用控制符举例">I/O流的常用控制符(举例)</h3>
+<p>**例：控制浮点数值显示  **</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152300068.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152300068.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152300068.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152300068.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152300068.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152300068.png" /></p>
+<p><strong>设置值的输出宽度</strong></p>
+<p>除了使用空格来强制输出间隔外，还可以用setw(n)控制符。</p>
+<p>如果一个值需要比setw(n)确定的字符数更多的字符，则该值将用它所需要的所有字符</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152303929.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152303929.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152303929.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152303929.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152303929.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152303929.png" /></p>
+<p>超过setw(4)将会原样输出</p>
+<p>如果一个值的字符比setw(n)确定的字符个数少，则在数字字符前显示空白。</p>
+<p><strong>若要每个数值都有宽度8，则每个值都要设置</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152305460.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152305460.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152305460.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152305460.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152305460.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152305460.png" /></p>
+<p><strong>输出8进制和16进制</strong></p>
+<p><strong>3个常用的控制符是hex,oct和dec</strong></p>
+<p><strong>这3个控制符在iostream.h头文件中定义</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152308195.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152308195.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152308195.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152308195.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152308195.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152308195.png" /></p>
+<p><strong>设置填充字符</strong></p>
+<p><strong>用setfill控制符可以确定一个非空格的别的字符</strong></p>
+<p><strong>setfill在头文件iomanip.h中定义</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152310679.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152310679.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152310679.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152310679.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152310679.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152310679.png" /></p>
+<p><strong>左右对齐输出</strong></p>
+<p>默认时，I/O流左对齐显示的内容。</p>
+<p>使用头文件iomanip.h中的setiosflags(ios::left)可输出左对齐</p>
+<p>使用头文件iomanip.h中的setiosflags(ios::right)可输出右对齐</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152331339.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152331339.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152331339.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403152331339.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152331339.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403152331339.png" /></p>
+<p><strong>强制显示小数</strong></p>
+<p><strong>使用头文件iomanip.h中的setiosflags(ios::showpoint)可强制显示小数(后六位，包括小数点)以及显示正负号</strong></p>
+<h2 id="算法的基本控制结构">算法的基本控制结构</h2>
+<p><strong>顺序结构，分支结构，循环结构</strong></p>
+<h3 id="if语句多种形式">if语句(多种形式)</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403161041828.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403161041828.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403161041828.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403161041828.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403161041828.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403161041828.png" /></p>
+<h4 id="if语句空语句">if语句(空语句)</h4>
+<p>编译器必须在if条件表达式的后面找到一个作为语句结束的分号“;”，以标志if语句的结束。</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="err">条件表达式</span><span class="p">)</span><span class="err">：</span><span class="c1">//空语句做if中的语句
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="err">语句</span><span class="p">;</span>
+</span></span></code></pre></div><p>则不管条件表达式为真为假，总是接着执行语句</p>
+<p><strong>else if 语句</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403161048542.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403161048542.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403161048542.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403161048542.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403161048542.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403161048542.png" /></p>
+<h4 id="if语句嵌套">if语句(嵌套)</h4>
+<p>一般形式</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">c</span><span class="o">++</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">()</span> <span class="err">语句</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="err">语句</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">()</span> <span class="err">语句</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="err">语句</span><span class="mi">4</span>
+</span></span></code></pre></div><p><strong>注意</strong></p>
+<p>语句1，2，3，4可以是复合语句，每层的if与else配对，或用{}来确定层次关系</p>
+<h3 id="switch语句特殊的多分支结构">switch语句(特殊的多分支结构)</h3>
+<p><strong>一般形式</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403161058897.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403161058897.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403161058897.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403161058897.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403161058897.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403161058897.png" /></p>
+<h4 id="特殊的多分支结构">特殊的多分支结构</h4>
+<p><strong>执行顺序</strong></p>
+<p>以case中的常量表达式值为入口标号，由此开始顺序执行。因此，每个case分支最后应该加break语句</p>
+<p>例：输入一个0~6的整数，转换成星期输出</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">day</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">day</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">switch</span><span class="p">(</span><span class="n">day</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nl">case0</span><span class="p">:</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Sunday&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nl">case1</span><span class="p">:</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Monday&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nl">case2</span><span class="p">:</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Tuesday&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nl">case3</span><span class="p">:</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Wednesday&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nl">case4</span><span class="p">:</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Thursday&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nl">case5</span><span class="p">:</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Friday&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nl">case6</span><span class="p">:</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Saturday&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Day out of range Sunday...Saturday&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>使用switch语句应注意的问题</strong></p>
+<ol>
+<li>case分支可包含多个语句，且不用{}.</li>
+<li>switch语句后面的表达式，可以是整型，字符型，枚举型</li>
+<li>各个常量表达式的值不能相同，但次序不影响执行结果</li>
+<li>每个case分支的最后应该加break语句，用来结束整个switch结构</li>
+<li>当若干分支需要执行相同操作时，可以使多个case分支共用一组语句</li>
+</ol>
+<h3 id="循环语句while">循环语句(while)</h3>
+<p>形式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="err">条件表达式</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="err">循环体</span>  <span class="c1">//可以是复合语句，其中必须含有改变条件表达式值的语句
+</span></span></span></code></pre></div><p><strong>执行顺序</strong></p>
+<p>先判断表达式的值，为true时，再执行循环体</p>
+<p><strong>组成</strong></p>
+<p>while循环由四部分组成：循环变量初始化，继续条件，循环体，改变循环变量的值。</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="n">inti</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>  <span class="c1">//循环变量初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1">//继续条件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">{</span>			<span class="c1">//循环体
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">sum</span><span class="o">+=</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">i</span><span class="o">++</span><span class="p">;</span>	<span class="c1">//改变循环体变量的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;sum=&#34;</span><span class="o">&lt;&lt;</span><span class="n">sum</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

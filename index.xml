@@ -3,9 +3,17 @@
         <title>蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/</link>
         <description>这是我的全新 Hugo 网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 12 Mar 2024 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 16 Mar 2024 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://adan-ning.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>计算机组成(第二章)</title>
+    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862/</link>
+    <pubDate>Sat, 16 Mar 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862/</guid>
+    <description><![CDATA[数据与文字的表示方法 数据格式 分类 符号数据：非数字符号的表示(ASCII,汉字，图形等) 数值数据：数字数据的表示方式(定点，浮点) 计算机数字和]]></description>
+</item>
+<item>
     <title>算法与程序(第二章)</title>
     <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A12/</link>
     <pubDate>Tue, 12 Mar 2024 00:00:00 &#43;0000</pubDate>
@@ -76,14 +84,6 @@
     <author>蓝Q曦</author>
     <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/</guid>
     <description><![CDATA[进程管理(引入) 前趋图(也称为：有向无循环图) 条件：有向，无循环 O(圆圈)：节点，代表指令，程序，进程… →：有向边，代表前趋/后继关系 程序的]]></description>
-</item>
-<item>
-    <title>算法与程序(第一章)</title>
-    <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%8A%98%E4%B8%8E%E8%AE%BE%E8%AE%A1/</link>
-    <pubDate>Tue, 05 Mar 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%8A%98%E4%B8%8E%E8%AE%BE%E8%AE%A1/</guid>
-    <description><![CDATA[算法与程序 算法 是满足下述性质的指令序列: 输入:有零个或多个外部量作为算法的输入 输出:算法产生至少一个量作为输出 确定性:组成算法的每条指令是清]]></description>
 </item>
 </channel>
 </rss>
