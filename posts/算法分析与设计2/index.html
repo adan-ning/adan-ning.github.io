@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A12\/"
-        },"genre": "posts","keywords": "计算机算法设计与分析","wordcount":  855 ,
+        },"genre": "posts","keywords": "计算机算法设计与分析","wordcount":  2408 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A12\/","datePublished": "2024-03-12T00:00:00+00:00","dateModified": "2024-03-12T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">算法与程序(第二章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机算法设计与分析</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-12">2024-03-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;855 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-12">2024-03-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2408 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -125,6 +125,18 @@
   <ul>
     <li><a href="#最优子传构性质">最优子传构性质</a></li>
     <li><a href="#分治法时间复杂度分析">分治法时间复杂度分析</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#二分搜索技术递归算法">二分搜索技术(递归算法)</a></li>
+        <li><a href="#二分搜索技术非递归算法">二分搜索技术(非递归算法)</a></li>
+      </ul>
+    </li>
+    <li><a href="#快速幂算法">快速幂算法</a></li>
+    <li><a href="#strassen矩阵乘法">Strassen矩阵乘法</a></li>
+    <li><a href="#棋盘覆盖">棋盘覆盖</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="分治法">分治法</h1>
@@ -195,7 +207,193 @@
         data-sizes="auto"
         alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121921051.jpg"
         title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121921051.jpg" /></p>
-</div><div class="post-footer" id="post-footer">
+<h3 id="二分搜索技术递归算法">二分搜索技术(递归算法)</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">BinarySearch_Rec</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">target</span><span class="p">,</span> <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nf">BinarySearch_Rec</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nf">BinarySearch_Rec</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>算法复杂度分析</strong></p>
+<p>$T(n)\begin{cases}1,n=0\T(n/2)+1,n&gt;1\end{cases}$</p>
+<p>**利用主定理或递归树可求其时间复杂性为O(logn)</p>
+<h3 id="二分搜索技术非递归算法">二分搜索技术(非递归算法)</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">BinarySearch</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">target</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span> <span class="c1">//非递归实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 第一个细节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> 
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">)</span> <span class="c1">// 第二个细节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 第三个细节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 第四个细节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>算法复杂度分析</strong></p>
+<p>每执行一次while循环，待搜素数组的大小减小1/2.在最坏情况下，while循环被执行了O(logn)次，因此算法在最坏情况下计算时间复杂性为O(logn)</p>
+<h2 id="快速幂算法">快速幂算法</h2>
+<p>给定实数a和非负整数n，用分治法设计求$a^n$的快速算法(递归算法)</p>
+<p>分析：</p>
+<p>$a^n\begin{cases}0,a=0\1,n=0\(a^\frac{n}{2})^2,n&gt;0,n为偶数\(a^\frac{n}{2})^2*n,n&gt;0,n为奇数\end{cases}$</p>
+<p><strong>算法如下</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">exp2</span><span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">x</span><span class="o">=</span><span class="nf">exp2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>该问题满足四个条件时间复杂性O(logn)</strong></p>
+<p>给定正整数a和n，用分治法设计求$a^n$的快速算法(非递归算法)</p>
+<p>举例求$a^93$</p>
+<p>n=93的二进制表示(如图)，也就是n=64+16+8+4+1,因此$a^{93}=a^{64}a^{16}a^8a^4a$</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181356063.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181356063.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181356063.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181356063.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181356063.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181356063.jpg" /></p>
+<p><strong>算法如下</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">exp2</span><span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">b</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mf">1.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">b</span><span class="o">=</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">s</span><span class="o">*=</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">i</span><span class="o">/=</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">b</span><span class="o">*=</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="strassen矩阵乘法">Strassen矩阵乘法</h2>
+<p>首先，仍假设n是2的幂。将矩阵A,B和C中的每个矩阵都分块成4个大小相等的子矩阵，每个子矩阵都是n/2*n/2的方阵。由此可将方程C=AB重写为：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181407169.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181407169.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181407169.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181407169.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181407169.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181407169.jpg" /></p>
+<p><strong>时间复杂性分析</strong></p>
+<p>上述分治法的计算时间耗费T(n)应满足</p>
+<p>$T(n)\begin{cases}\O(1),n=2\8T(n/2)+O(n^2),n&gt;2\end{cases}$</p>
+<p>这个递归方程的解仍然是T(n)=O($n^3$)。因此，该方法并不比用原始定义直接计算更有效。究其原因，由于是该方法并没有减少矩阵的乘法次数。</p>
+<p>要想改进矩阵乘法的计算时间复杂性，必须减少乘法运算</p>
+<p><strong>优化</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181415067.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181415067.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181415067.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181415067.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181415067.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181415067.jpg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181416658.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181416658.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181416658.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181416658.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181416658.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181416658.jpg" /></p>
+<p><strong>时间复杂性分析</strong></p>
+<p>Strassen矩阵乘法中用了7次对于n/2阶矩阵乘积的递归调用和18次n/2阶矩阵的加减运算。由此可知，该算法所需的计算时间T(n)满足如下递归方程：</p>
+<p>$T(n)\begin{cases}\O(1),n=2\7T(n/2)+O(n^2),n&gt;2\end{cases}$</p>
+<p>解此递归方程得T(n)=O($n^{log7}$)$\approx$O($n^{2.81}$)。由此可见，Strassen矩阵乘法的计算时间复杂性比普通矩阵乘法有较大改进</p>
+<h2 id="棋盘覆盖">棋盘覆盖</h2>
+<p>当k&gt;0时，将$2^k\times 2^k$棋盘分割为4个$2^{k-1}\times 2{k-1}$子棋盘，如图a所示。特殊方格必位4个较小子棋盘之一中，其余3个子棋盘中无特殊方格。为了将这3个无特殊方格的子棋盘转化为特殊棋盘，可以用一个L型骨牌覆盖这3个较小棋盘的会合处，如b所示，这3个子棋盘上被L型骨牌覆盖的方格就成为该棋盘上的特殊方格，从而将原问题转化为4个较小规模的棋盘覆盖问题。递归地使用这种分割，直至棋盘简化为$1\times1$棋盘</p>
+<p><strong>算法如下</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">chessBoard</span><span class="p">(</span><span class="kt">int</span> <span class="n">tr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">tc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">size</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">    	<span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">s</span> <span class="o">=</span> <span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>     <span class="c1">//分割棋盘
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="o">++</span><span class="n">num</span><span class="p">;</span>      <span class="c1">//L型骨牌号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="c1">//覆盖左上角子棋盘
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">dr</span> <span class="o">&lt;</span> <span class="n">tr</span> <span class="o">+</span> <span class="n">s</span> <span class="o">&amp;&amp;</span> <span class="n">dc</span> <span class="o">&lt;</span> <span class="n">tc</span> <span class="o">+</span><span class="n">s</span><span class="p">)</span>                
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//特殊方格在此棋盘中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">chessBoard</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">dr</span><span class="p">,</span><span class="n">dc</span><span class="p">,</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>            <span class="c1">//此棋盘中无特殊方格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//用t号L型骨牌覆盖右下角
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Matrix</span><span class="p">[</span><span class="n">tr</span><span class="o">+</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">tc</span><span class="o">+</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//覆盖其余方格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">chessBoard</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">tr</span><span class="o">+</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">tc</span><span class="o">+</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">//覆盖右上角子棋盘
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">dr</span> <span class="o">&lt;</span> <span class="n">tr</span> <span class="o">+</span> <span class="n">s</span> <span class="o">&amp;&amp;</span> <span class="n">dc</span> <span class="o">&gt;=</span> <span class="n">tc</span> <span class="o">+</span> <span class="n">s</span> <span class="p">)</span>           
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//特殊方格在此棋盘中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">chessBoard</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="n">tc</span><span class="o">+</span><span class="n">s</span><span class="p">,</span><span class="n">dr</span><span class="p">,</span><span class="n">dc</span><span class="p">,</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>            <span class="c1">//此棋盘中无特殊方格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//用t号L型骨牌覆盖左下角
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Matrix</span><span class="p">[</span><span class="n">tr</span><span class="o">+</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">tc</span><span class="o">+</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//覆盖其余方格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">chessBoard</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="n">tc</span><span class="o">+</span><span class="n">s</span><span class="p">,</span><span class="n">tr</span><span class="o">+</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">tc</span><span class="o">+</span><span class="n">s</span><span class="p">,</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">     <span class="c1">//覆盖左下角子棋盘
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">dr</span> <span class="o">&gt;=</span> <span class="n">tr</span> <span class="o">+</span> <span class="n">s</span> <span class="o">&amp;&amp;</span> <span class="n">dc</span> <span class="o">&lt;</span> <span class="n">tc</span> <span class="o">+</span> <span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//特殊方格在此棋盘中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">chessBoard</span><span class="p">(</span><span class="n">tr</span><span class="o">+</span><span class="n">s</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">dr</span><span class="p">,</span><span class="n">dc</span><span class="p">,</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//用t号L型骨牌覆盖右上角
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Matrix</span><span class="p">[</span><span class="n">tr</span><span class="o">+</span><span class="n">s</span><span class="p">][</span><span class="n">tc</span><span class="o">+</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//覆盖其余方格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">chessBoard</span><span class="p">(</span><span class="n">tr</span><span class="o">+</span><span class="n">s</span><span class="p">,</span><span class="n">tc</span><span class="p">,</span><span class="n">tr</span><span class="o">+</span><span class="n">s</span><span class="p">,</span><span class="n">tc</span><span class="o">+</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">     <span class="c1">//覆盖右下角子棋盘
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">dr</span> <span class="o">&gt;=</span> <span class="n">tr</span> <span class="o">+</span> <span class="n">s</span> <span class="o">&amp;&amp;</span> <span class="n">dc</span> <span class="o">&gt;=</span> <span class="n">tc</span> <span class="o">+</span> <span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">//特殊方格在此棋盘中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">chessBoard</span><span class="p">(</span><span class="n">tr</span><span class="o">+</span><span class="n">s</span><span class="p">,</span><span class="n">tc</span><span class="o">+</span><span class="n">s</span><span class="p">,</span><span class="n">dr</span><span class="p">,</span><span class="n">dc</span><span class="p">,</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//用t号L型骨牌覆盖左上角
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Matrix</span><span class="p">[</span><span class="n">tr</span><span class="o">+</span><span class="n">s</span><span class="p">][</span><span class="n">tc</span><span class="o">+</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//覆盖其余方格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">chessBoard</span><span class="p">(</span><span class="n">tr</span><span class="o">+</span><span class="n">s</span><span class="p">,</span><span class="n">tc</span><span class="o">+</span><span class="n">s</span><span class="p">,</span><span class="n">tr</span><span class="o">+</span><span class="n">s</span><span class="p">,</span><span class="n">tc</span><span class="o">+</span><span class="n">s</span><span class="p">,</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

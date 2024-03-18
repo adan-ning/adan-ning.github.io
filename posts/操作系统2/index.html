@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2\/"
-        },"genre": "posts","keywords": "操作系统","wordcount":  1442 ,
+        },"genre": "posts","keywords": "操作系统","wordcount":  2184 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2\/","datePublished": "2024-03-05T00:00:00+00:00","dateModified": "2024-03-05T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">操作系统(第二章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-05">2024-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1442 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-05">2024-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2184 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -163,6 +163,13 @@
       <ul>
         <li><a href="#利用信号量实现互斥">利用信号量实现互斥</a></li>
         <li><a href="#同步直接制约">同步(直接制约)</a></li>
+      </ul>
+    </li>
+    <li><a href="#经典进程的同步问题">经典进程的同步问题</a>
+      <ul>
+        <li><a href="#生产者--消费者问题">生产者&ndash;消费者问题</a></li>
+        <li><a href="#哲学家进餐问题">哲学家进餐问题</a></li>
+        <li><a href="#读者--写者问题">读者&ndash;写者问题</a></li>
       </ul>
     </li>
     <li><a href="#思考题">思考题</a></li>
@@ -386,6 +393,98 @@ S.value初值：表示系统中某类资源的数目</p>
         data-sizes="auto"
         alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121640027.png"
         title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403121640027.png" /></p>
+<h2 id="经典进程的同步问题">经典进程的同步问题</h2>
+<h3 id="生产者--消费者问题">生产者&ndash;消费者问题</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181745223.JPG"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181745223.JPG, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181745223.JPG 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181745223.JPG 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181745223.JPG"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181745223.JPG" /></p>
+<p><strong>设置信号量</strong></p>
+<ol>
+<li>每个缓冲区：mutex(初值为：1)</li>
+<li>empty:空(初值为：n)</li>
+<li>full:满(初值为：0)</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181750294.JPG"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181750294.JPG, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181750294.JPG 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181750294.JPG 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181750294.JPG"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181750294.JPG" /></p>
+<p><strong>结论</strong></p>
+<ol>
+<li>当有多个信号量时，注意wait的顺序</li>
+<li>临界区的设置，主要是实现变量的修改</li>
+</ol>
+<p>代码描述如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">in</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">out</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">item</span> <span class="n">buffer</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">mutex</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">empty</span><span class="o">=</span><span class="n">n</span><span class="p">;</span><span class="n">full</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">proceducer</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">do</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">proceducer</span> <span class="n">an</span> <span class="n">item</span> <span class="n">nextp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">...</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">wait</span><span class="p">(</span><span class="n">empty</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">buffer</span><span class="p">[</span><span class="n">in</span><span class="p">]</span><span class="o">=</span><span class="n">nextp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="nl">in</span><span class="p">:</span><span class="o">=</span><span class="p">(</span><span class="n">in</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">signal</span><span class="p">(</span><span class="n">full</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="n">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">consumer</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">do</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">wait</span><span class="p">(</span><span class="n">full</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">nextc</span><span class="o">=</span><span class="n">buffer</span><span class="p">[</span><span class="n">out</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="nl">out</span><span class="p">:</span><span class="o">=</span><span class="p">(</span><span class="n">out</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">signal</span><span class="p">(</span><span class="n">empty</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">consumer</span> <span class="n">the</span> <span class="n">item</span> <span class="n">in</span> <span class="n">nextc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="n">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cobegin</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">proceducer</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">consumer</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">coend</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>注意</strong></p>
+<p>在每个程序中的多个wait操作顺序不能颠倒。应先执行对信号资源量的wait操作，然后再执行对互斥信号量的wait操作，否则可能引起死锁</p>
+<h3 id="哲学家进餐问题">哲学家进餐问题</h3>
+<p>经分析可知，放在桌子上的筷子是临界资源，在一段时间只允许一位哲学家使用。为了实现对筷子的互斥使用，可以用一个信号量表示一只筷子，由这五个信号量构成信号量数组，描述如下：</p>
+<p>semaphore chopstick[5]={1,1,1,1,1};</p>
+<p>所有信号量均被初始化为1，第i位哲学家的活动可描述为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">do</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//eat
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//think
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">while</span><span class="p">[</span><span class="n">TRUE</span><span class="p">];</span>
+</span></span></code></pre></div><p><strong>解决漏洞</strong></p>
+<p>假设五位哲学家同时饥饿而各自拿起左边的筷子时，就会使五个信号量chopstick均为0；当他们再试图去拿右边的筷子时，都将因无筷子可拿而无限期等待。从而出现死锁。</p>
+<p>对于这样的死锁问题，可采取以下几种解决办法：</p>
+<ol>
+<li>至多只允许有四位哲学家同时去拿左边的筷子，最终能保证至少有一位哲学家能够进餐，并在用毕时能释放出他用过的两只筷子，从而使更多的哲学家能够进餐</li>
+<li>仅当哲学家的左，右两只筷子均可用时，才允许他拿起筷子进餐</li>
+<li>规定奇数号哲学家先拿起他左边的筷子，然后再去拿右边的筷子；而偶数号哲学家则相反。按此规定，将是1，2号哲学家竞争1号筷子；3，4号哲学家竞争3号筷子，即五位哲学家都先竞争奇数号筷子，获得后，再去竞争偶数号筷子，最后总会有一位哲学家能获得两只筷子而进餐。</li>
+</ol>
+<h3 id="读者--写者问题">读者&ndash;写者问题</h3>
+<p>两者呈互斥关系</p>
+<p>特点：读进程可共享同一对象，写进程不可共享同一对象。</p>
 <h2 id="思考题">思考题</h2>
 <p><img
         class="lazyload"

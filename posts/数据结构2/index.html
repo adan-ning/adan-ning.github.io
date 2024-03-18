@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842\/"
-        },"genre": "posts","keywords": "数据结构","wordcount":  427 ,
+        },"genre": "posts","keywords": "数据结构","wordcount":  2470 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842\/","datePublished": "2024-03-10T00:00:00+00:00","dateModified": "2024-03-10T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">数据结构(第二章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>数据结构</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-10">2024-03-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;427 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-10">2024-03-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2470 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -118,6 +118,24 @@
       <ul>
         <li><a href="#内涵">内涵</a></li>
         <li><a href="#特点">特点</a></li>
+      </ul>
+    </li>
+    <li><a href="#线性表上的基本运算">线性表上的基本运算</a>
+      <ul>
+        <li><a href="#插入运算">插入运算</a></li>
+        <li><a href="#删除运算">删除运算</a></li>
+        <li><a href="#顺序表上删除运算效率分析">顺序表上删除运算效率分析</a></li>
+        <li><a href="#顺序表的优缺点">顺序表的优缺点</a></li>
+      </ul>
+    </li>
+    <li><a href="#类语言书写的算法与c程序之间的差别">类语言书写的算法与C程序之间的差别</a></li>
+    <li><a href="#线性表的链式表示和实现">线性表的链式表示和实现</a>
+      <ul>
+        <li><a href="#线性表的链式存储思路">线性表的链式存储思路</a></li>
+        <li><a href="#链表线性表的链式存储">链表(线性表的链式存储)</a></li>
+        <li><a href="#单链表">单链表</a></li>
+        <li><a href="#单链表上的查找运算">单链表上的查找运算</a></li>
+        <li><a href="#单链表的插入运算第i个位置插入新的结点">单链表的插入运算(第i个位置插入新的结点)</a></li>
       </ul>
     </li>
   </ul>
@@ -173,7 +191,282 @@
         data-sizes="auto"
         alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403101340691.jpg"
         title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403101340691.jpg" /></p>
-</div><div class="post-footer" id="post-footer">
+<h2 id="线性表上的基本运算">线性表上的基本运算</h2>
+<h3 id="插入运算">插入运算</h3>
+<p><strong>含义</strong></p>
+<p>将元素e插入到线性表:($a_1,a_2,……,a_{i-1},a_i,……,a_n$)中，构成新的线性表($a_1,a_2,……,a_{i-1},e,a_i,……,a_n$)，满足$a_{i-1}\leq e \leq a_i$，(其中$\leq$为比较关系)，即不破坏原线性关系。</p>
+<p>一般情况下，在第i($1\leq i \leq n$)个元素之前插入一个元素时，需将<strong>第n至第i(共n-1+1)个元素向后移动一个位置</strong>。</p>
+<p>算法如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Status</span> <span class="n">ListInsert</span> <span class="nf">Sq</span><span class="p">(</span><span class="n">SqList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">,</span><span class="kt">int</span> <span class="n">i</span> <span class="p">,</span><span class="n">ElemType</span> <span class="n">e</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//在顺序线性表L中第i个位置之前插入新的元素额，
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//i的合法值为1&lt;=i&lt;=ListLength_Sq(L)+1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">||</span><span class="n">i</span><span class="o">&gt;</span><span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span> <span class="c1">//i值不合法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="o">&gt;=</span><span class="n">L</span><span class="p">.</span><span class="n">listsize</span><span class="p">){</span>  <span class="c1">//当前存储空间已满，增加分配
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">newbase</span> <span class="o">=</span> <span class="p">(</span><span class="n">ElemType</span> <span class="o">*</span><span class="p">)</span><span class="nf">realloc</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">elem</span><span class="p">,(</span><span class="n">L</span><span class="p">.</span><span class="n">listsize</span><span class="o">+</span><span class="n">LISTINCREMENT</span><span class="p">)</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="n">ElemType</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">newbase</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nf">exit</span><span class="p">(</span><span class="n">OVERFLOW</span><span class="p">);</span>   <span class="c1">//存储分配失败
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">L</span><span class="p">.</span><span class="n">elem</span> <span class="o">=</span> <span class="n">newbase</span><span class="p">;</span>     <span class="c1">//新基址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">L</span><span class="p">.</span><span class="n">listsize</span><span class="o">+=</span><span class="n">LISTINCREMENT</span><span class="p">;</span>   <span class="c1">//增加存储容量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">q</span><span class="o">=&amp;</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>    <span class="c1">//q为插入位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span><span class="p">(</span><span class="n">p</span><span class="o">=&amp;</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span><span class="n">p</span><span class="o">&gt;=</span><span class="n">q</span><span class="p">;</span><span class="o">--</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">=*</span><span class="n">p</span><span class="p">;</span>     <span class="c1">//插入位置及之后的元素右移
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="o">*</span><span class="n">q</span><span class="o">=</span><span class="n">e</span><span class="p">;</span>   <span class="c1">//插入e
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="o">++</span><span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">;</span>   <span class="c1">//表长增1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="c1">//ListInsert_Sq
+</span></span></span></code></pre></div><h4 id="顺序表上插入运算效率分析">顺序表上插入运算效率分析</h4>
+<p><strong>时间复杂度</strong></p>
+<p>最好情况：在表尾插入，不移动元素，T(n)=O(1)</p>
+<p>最坏情况：在表头插入，移动n个元素，T(n)=O(n)</p>
+<p><strong>平均复杂度</strong></p>
+<p>设$p_i$为在第i个元素之前插入一个元素的概率，且$P_1=P_2=&hellip;=P_i=&hellip;P_n=1/(n+1)$，则平均移动次数为：</p>
+<p>$E_is = \sum \limits^{n+1}<em>{i=1}P_i(n-i+1)=1/(n+1)\sum\limits^{n+1}</em>{i=1}(n-i+1)=n/2$</p>
+<p>即T(n)=O(n)</p>
+<p>空间复杂度</p>
+<p>不需要额外空间，S(n)=O(1).</p>
+<h3 id="删除运算">删除运算</h3>
+<p><strong>顺序表上删除运算的实现</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403171339774.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403171339774.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403171339774.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403171339774.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403171339774.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403171339774.jpg" /></p>
+<p>一般情况下，删除第i($1\leq i \leq n$)个元素时需将从<strong>第i+1至第n(共n-i)个元素依次向前移动一个位置</strong></p>
+<p>算法如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Status</span> <span class="nf">ListDelete_Sq</span><span class="p">(</span><span class="n">SqList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">,</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">ElemType</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">//在顺序线性表L中删除第i个元素，并用e返回其值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">//i的合法值为1&lt;=i&lt;=ListLength_Sq(L)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span><span class="p">((</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span>  <span class="o">||</span>  <span class="p">(</span><span class="n">i</span><span class="o">&gt;</span><span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="n">ERROR</span>   <span class="c1">//i值不合法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">p</span><span class="o">=&amp;</span><span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">elem</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>    <span class="c1">//p为删除元素的位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">e</span><span class="o">=*</span><span class="n">p</span><span class="p">;</span>  <span class="c1">//被删除元素的值赋给e
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">q</span><span class="o">=</span><span class="n">L</span><span class="p">.</span><span class="n">elem</span><span class="o">+</span><span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>   <span class="c1">//表尾元素的位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="k">for</span><span class="p">(</span><span class="o">++</span><span class="n">p</span><span class="p">;</span><span class="n">p</span><span class="o">&lt;=</span><span class="n">q</span><span class="p">;</span><span class="o">++</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>   <span class="c1">//被删除元素之后的元素左移
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="o">--</span><span class="n">L</span><span class="p">.</span><span class="n">length</span><span class="p">;</span>    <span class="c1">//表长减1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="c1">//ListDelete_Sq
+</span></span></span></code></pre></div><h3 id="顺序表上删除运算效率分析">顺序表上删除运算效率分析</h3>
+<p><strong>平均复杂度</strong></p>
+<p>假设$q_i$是删除第i个元素的概率，则在长度为n的线性表中删除一个元素时所需移动元素次数的期望值(平均次数)为</p>
+<p>$E_dl=\sum\limits^n_{i=1}q_i(n-i)=1/n\sum\limits^n_{i=1}(n-1)=(n-1)/2$</p>
+<p>即：T(n)=O(n)</p>
+<p>空间复杂度</p>
+<p>S(n)=O(1)</p>
+<h3 id="顺序表的优缺点">顺序表的优缺点</h3>
+<h4 id="优点">优点</h4>
+<ol>
+<li>不需要额外的存储空间来表示元素间的逻辑关系</li>
+<li>可以随机地存取表中的任意一个元素</li>
+</ol>
+<h4 id="缺点">缺点</h4>
+<ol>
+<li>插入和删除元素时要移动大量的元素</li>
+<li>必须事先进行空间分配，表的容量难以扩充(新算法已解决)</li>
+</ol>
+<h2 id="类语言书写的算法与c程序之间的差别">类语言书写的算法与C程序之间的差别</h2>
+<ol>
+<li>算法中除形式参数外，变量不做定义，在C程序中必须定义</li>
+<li>算法中使用的元素类型(ElemType)没有定义，C程序中必须定义，常量OK,ERROR,OVERFLOW等在第一章统一定义</li>
+<li>算法中的比较运算符(equal,less)未作定义，C程序中必须定义</li>
+<li>必要的头文件(用作输入输出的stdio.h及内存申请的stdlib.h)，在C程序中必需包含</li>
+</ol>
+<h2 id="线性表的链式表示和实现">线性表的链式表示和实现</h2>
+<h3 id="线性表的链式存储思路">线性表的链式存储思路</h3>
+<p><strong>逻辑结构</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172302086.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172302086.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172302086.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172302086.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172302086.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172302086.png" /></p>
+<p><strong>存储结构</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172303560.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172303560.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172303560.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172303560.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172303560.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172303560.png" /></p>
+<p><strong>实现方式</strong></p>
+<p>对每一个元素的存储单位进行扩充，在包含元素值存储的同时，在结点中存储与当前元素有直接关系的其他元素(直接前驱/直接后继)存储单位的地址(指针)</p>
+<p><strong>链式存储单位结构示意图</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172311532.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172311532.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172311532.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172311532.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172311532.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172311532.png" /></p>
+<h3 id="链表线性表的链式存储">链表(线性表的链式存储)</h3>
+<p><strong>内涵</strong></p>
+<p>线性表的链式存储指用任意的存储单位存放线性表中的元素，每个元素与其直接前驱和(或)直接后继之间的关系用指针来存储，这称为链表</p>
+<p><strong>术语</strong></p>
+<p>结点：数据元素及其有直接关系的元素的地址构成的存储单位</p>
+<p><strong>链表结点结构示意图</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172317306.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172317306.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172317306.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172317306.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172317306.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172317306.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172317540.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172317540.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172317540.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172317540.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172317540.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172317540.png" /></p>
+<h3 id="单链表">单链表</h3>
+<p>链表中，如果每个结点中只包含一个指针域，则称之为线性链表或单链表</p>
+<p><strong>单链表的存储</strong></p>
+<p>每个结点存储当前元素的直接后继。</p>
+<p>线性表($a_1,a_2,&hellip;,a_{i-1},a_i,a_{i+1},&hellip;,a_n$)</p>
+<p>链表示意图</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172322140.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172322140.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172322140.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172322140.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172322140.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172322140.png" /></p>
+<p>单链表的内存镜像</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172324655.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172324655.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172324655.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172324655.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172324655.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172324655.jpg" /></p>
+<p><strong>单链表的C语言实现</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//用结构指针描述
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">LNode</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ElemType</span> <span class="n">data</span><span class="p">;</span>   <span class="c1">//数据域
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">struct</span> <span class="n">LNode</span> <span class="o">*</span><span class="n">next</span>  <span class="c1">//指针域
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">LNode</span><span class="p">,</span><span class="o">*</span><span class="n">LinkList</span>
+</span></span></code></pre></div><p><strong>与之对应的结点结构示意图</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172328163.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172328163.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172328163.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172328163.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172328163.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172328163.jpg" /></p>
+<p><strong>单链表构建示意图(表头插入法)</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172330736.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172330736.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172330736.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172330736.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172330736.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172330736.jpg" /></p>
+<h4 id="带头结点的单链表">带头结点的单链表</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172332191.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172332191.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172332191.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403172332191.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172332191.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403172332191.jpg" /></p>
+<h3 id="单链表上的查找运算">单链表上的查找运算</h3>
+<p><strong>在单链表中，必须从头指针出发进行查找</strong></p>
+<ol>
+<li>
+<p>查找第i个元素</p>
+</li>
+<li>
+<p>查找指定元素是否在表中</p>
+</li>
+<li>
+<p>&hellip;..</p>
+<p>若找到，则返回该元素的值，否则返回ERROR</p>
+</li>
+</ol>
+<p><strong>在单链表上查找第i个元素的示意图</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403180931968.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403180931968.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403180931968.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403180931968.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403180931968.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403180931968.jpg" /></p>
+<h4 id="用类c语言实现单链表上的查询查找第i个元素">用类C语言实现单链表上的查询(查找第i个元素)</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Status</span> <span class="nf">GetElem_L</span><span class="p">(</span><span class="n">LinkList</span> <span class="n">L</span><span class="p">,</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">ElemType</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">//L为带头结点的单链表的头指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">//当第i个元素存在时，其赋值给e并返回OK，否则返回ERROR
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">p</span><span class="o">=</span><span class="n">L</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>	<span class="c1">//初始化，p指向第一个结点，否则返回ERROR
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="o">&amp;&amp;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">			<span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="o">++</span><span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">p</span><span class="o">||</span><span class="n">j</span><span class="o">&gt;</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span>	<span class="c1">//第i个元素不存在
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">e</span><span class="o">=</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span>	<span class="c1">//取第i个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="c1">//GetElem_L
+</span></span></span></code></pre></div><h3 id="单链表的插入运算第i个位置插入新的结点">单链表的插入运算(第i个位置插入新的结点)</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403180943859.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403180943859.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403180943859.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403180943859.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403180943859.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403180943859.jpg" /></p>
+<h4 id="用类c语言实现单链表上的插入插入第i个元素">用类C语言实现单链表上的插入(插入第i个元素)</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Status</span> <span class="nf">ListInsert_L</span><span class="p">(</span><span class="n">LinkList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">,</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">ElemType</span> <span class="n">e</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//在带头结点的单链线性表L中的第i个位置之前插入元素e
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">p</span><span class="o">=</span><span class="n">L</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="o">&amp;&amp;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="o">++</span><span class="n">j</span><span class="p">;</span>		
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>	<span class="c1">//寻找i-1个结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">p</span><span class="o">||</span><span class="n">j</span><span class="o">&gt;</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span>	<span class="c1">//i小于1或者大于表长+1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">s</span><span class="o">=</span><span class="p">(</span><span class="n">LinkList</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">LNode</span><span class="p">));</span>	<span class="c1">//生成新结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">s</span><span class="o">-&gt;</span><span class="n">data</span><span class="o">=</span><span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">s</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="n">p</span><span class="o">=&gt;</span><span class="n">next</span><span class="p">;</span>	<span class="c1">//插入L中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="c1">//ListInsert_L
+</span></span></span></code></pre></div><h4 id="用类c语言实现单链表上的删除删除第i个元素">用类C语言实现单链表上的删除(删除第i个元素)</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">Status</span> <span class="nf">ListDelete_L</span><span class="p">(</span><span class="n">LinkList</span> <span class="o">&amp;</span><span class="n">L</span><span class="p">,</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">ElemType</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//在带头结点的单链线性表L中，删除第i个元素，并由e返回其值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">p</span><span class="o">=</span><span class="n">L</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">&amp;&amp;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">){</span>	<span class="c1">//寻找第i个结点，并令p指向其前驱
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="o">++</span><span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span><span class="o">||</span><span class="n">j</span><span class="o">&gt;</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">ERROR</span><span class="p">;</span> 	<span class="c1">//删除位置不合理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">q</span><span class="o">=</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">=</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>	<span class="c1">//删除并释放结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">e</span><span class="o">=</span><span class="n">q</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">free</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="c1">//ListDelete_L
+</span></span></span></code></pre></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

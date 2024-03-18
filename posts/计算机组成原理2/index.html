@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862\/"
-        },"genre": "posts","keywords": "计算机组成原理","wordcount":  991 ,
+        },"genre": "posts","keywords": "计算机组成原理","wordcount":  3448 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862\/","datePublished": "2024-03-16T00:00:00+00:00","dateModified": "2024-03-16T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">计算机组成(第二章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机组成原理</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-16">2024-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;991 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-16">2024-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3448 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -132,6 +132,30 @@
         <li><a href="#原码表示法">原码表示法</a></li>
         <li><a href="#反码表示法">反码表示法</a></li>
         <li><a href="#补码表示法">补码表示法</a></li>
+        <li><a href="#移码表示法用在阶码中">移码表示法(用在阶码中)</a></li>
+      </ul>
+    </li>
+    <li><a href="#字符和字符串非数值的表示方法">字符和字符串(非数值)的表示方法</a></li>
+    <li><a href="#奇偶校验概念">奇偶校验概念</a></li>
+    <li><a href="#crc循环冗余校验">CRC循环冗余校验</a></li>
+    <li><a href="#定点加法减法运算">定点加法，减法运算</a>
+      <ul>
+        <li><a href="#补码加减法">补码加减法</a></li>
+      </ul>
+    </li>
+    <li><a href="#溢出的检测">溢出的检测</a></li>
+    <li><a href="#基本的加法器">基本的加法器</a>
+      <ul>
+        <li><a href="#各种逻辑的图形符号">各种逻辑的图形符号</a></li>
+        <li><a href="#串行加法器">串行加法器</a></li>
+      </ul>
+    </li>
+    <li><a href="#定点乘法运算">定点乘法运算</a>
+      <ul>
+        <li><a href="#定点原码乘法原理">定点原码乘法原理</a></li>
+        <li><a href="#由手工计算到机器运算">由手工计算到机器运算</a></li>
+        <li><a href="#原码一位乘法">原码一位乘法</a></li>
+        <li><a href="#算法流程">算法流程</a></li>
       </ul>
     </li>
   </ul>
@@ -257,6 +281,333 @@
 <p>电路容易实现，触发器的输出有正负之分</p>
 <h3 id="补码表示法">补码表示法</h3>
 <p>补码是在“模”和“同余”的概念下导出的(&ldquo;模&quot;是指一个计量单位的计量系统的计量范围，即产生“溢出”的量。)</p>
+<p><strong>定义</strong></p>
+<p>正数的补码就是正数本身，负数的补码是原负数加上模。</p>
+<p>计算机运算受字长限制，属于有模运算</p>
+<ol>
+<li>定点小数$x_0x_1x_2&hellip;&hellip;x_n$溢出量为2，以2为模(周期)</li>
+<li>定点整数$x_0x_1x_2&hellip;&hellip;x_n$溢出量为$2^{n+1}$，以$2{n+1}$为模(周期)</li>
+</ol>
+<p>定点小数$x_0x_1x_2&hellip;&hellip;x_n$</p>
+<p>$[x]_补=\begin{cases}x,1&gt;x\geq-1\2+x,0\geq x \geq -1\end{cases}$</p>
+<p>$符号\begin{cases}0,正数\1,负数\end{cases}$</p>
+<p><strong>补码性质</strong></p>
+<ol>
+<li>高位表示正负</li>
+<li>正数补码，尾数与原码相同</li>
+<li>范围$-2^n\sim2^n-1$(定点正数)</li>
+<li>无正负0之分</li>
+</ol>
+<p>变形补码(双符号补码)</p>
+<p>为了防止溢出而设定</p>
+<p><strong>结论</strong></p>
+<p>若运算结果超出了计算机所能表示的数值范围，则只保留它的小于模的低n位的数值，超过n位的高位部分就自动舍弃了。</p>
+<h3 id="移码表示法用在阶码中">移码表示法(用在阶码中)</h3>
+<p>定点整数定义：$[x]_移=2^n+x$ ($2^n&gt;x\geq-2^n$)</p>
+<p>00000000~11111111($-2^n\sim 2^n-1$)</p>
+<p>例：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181459115.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181459115.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181459115.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181459115.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181459115.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181459115.jpg" />  <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181500904.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181500904.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181500904.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181500904.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181500904.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181500904.jpg" /></p>
+<p><strong>特点</strong></p>
+<p>移码和补码尾数相同，符号位相反</p>
+<p><strong>范围</strong></p>
+<p>$-2^n\sim 2^n-1$</p>
+<p>例：以定点整数为例，用数轴形式说明原码，反码，补码表示范围和可能的数码组合情况</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181505085.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181505085.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181505085.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181505085.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181505085.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181505085.jpg" /></p>
+<p>例：将十进制真值(-127,-1,0,+1,+127)列表表示成二进制数及原码，反码，补码，移码值(要求8位)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181508187.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181508187.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181508187.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181508187.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181508187.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181508187.jpg" /></p>
+<h2 id="字符和字符串非数值的表示方法">字符和字符串(非数值)的表示方法</h2>
+<ol>
+<li>
+<p>符号数据：字符信息用数据表示，如ASCII等</p>
+<p>常见的ASCII码用七位二进制表示一个字符，它包括10个十进制数字(0~9)，52个英文大写和小写字母(a ~ z,A~Z)，34个专用符号和32个控制符号，共计128个字符</p>
+</li>
+<li>
+<p>字符表示方法ASCII：用一个字节表示，低7位用来编码(128)，最高位位校验位</p>
+</li>
+<li>
+<p>字符串的存放方法：向量存放法</p>
+<p>在存储器中占用一片连续的空间，每个字节存放一个字符代码，字符串的所有元素(字符)在物理上是相邻的。</p>
+</li>
+</ol>
+<h2 id="奇偶校验概念">奇偶校验概念</h2>
+<p>奇偶校验码是一种最简单的数据校验码，它的码距等于2，可以检测出一位错误(或奇数位错误)，但不能确定出错的位置，也不能检测出偶数位错误</p>
+<p>码距：将两个码字逐位进行对比，具有不同的位的个数，例如01和10，码距为2</p>
+<p>奇偶校验实现方法是：有若干为有效信息(如一个字节)，再加上一个二进制位(校验位)组成检验码</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181555330.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181555330.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181555330.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181555330.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181555330.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181555330.jpg" /></p>
+<h2 id="crc循环冗余校验">CRC循环冗余校验</h2>
+<p>循环冗余校验码</p>
+<ol>
+<li>与奇偶校验码一样只能检错不能纠错</li>
+<li>应用于数据通信领域和磁介质存储系统中</li>
+<li>利用多项式校验</li>
+</ol>
+<p>步骤：</p>
+<ol>
+<li>K=信息码的长度，R=生成多项式最高次幂-&gt;校验码位数N=K+R</li>
+<li>生成多项式$G(x)=a<em>x3+b</em>x2+c<em>x1+d</em>x0$，对应二进制码abcd，即为模2除法的除数</li>
+<li>信息码左移R位，利用模2除法(上商规则:最高位为1则商1，最高位为0则商0，减法规则：对应位上相同，结果为0，不同，结果为1)，产生余数，将余数补在信息码后形成CRC码，余数某位是1，则该位出错。</li>
+</ol>
+<h2 id="定点加法减法运算">定点加法，减法运算</h2>
+<h3 id="补码加减法">补码加减法</h3>
+<p>公式：$[x+y]_补=[x]_补+[y]_补$</p>
+<p>补码减法：</p>
+<p>为了将减法转变为加法，需证明公式：$[x-y]_补=[x]_补+[-y]_补$</p>
+<p>证明：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181618706.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181618706.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181618706.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181618706.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181618706.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181618706.jpg" /></p>
+<p><strong>$[X]_补+[Y]_补=[X+Y]_补$证明</strong></p>
+<p>假设|x|&lt;1,|y|&lt;1,|x+y|&lt;1</p>
+<p>现在分四种情况来证明</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181621019.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181621019.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181621019.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181621019.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181621019.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181621019.jpg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181622273.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181622273.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181622273.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181622273.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181622273.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181622273.jpg" /></p>
+<p><strong>使用补码加减法求解下列题目</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181624485.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181624485.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181624485.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181624485.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181624485.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181624485.jpg" /></p>
+<h2 id="溢出的检测">溢出的检测</h2>
+<p><strong>检测方法</strong></p>
+<ol>
+<li>
+<p>双符号位法(参与加减运算的数采用变形补码表示)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181627201.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181627201.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181627201.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181627201.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181627201.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181627201.jpg" /></p>
+</li>
+<li>
+<p>单符号位法</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181628915.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181628915.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181628915.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181628915.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181628915.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181628915.jpg" /></p>
+</li>
+</ol>
+<h2 id="基本的加法器">基本的加法器</h2>
+<p><strong>半加器</strong></p>
+<p>$H_i=A_i\bigoplus B_i$</p>
+<p>不考虑进位</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181633937.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181633937.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181633937.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181633937.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181633937.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181633937.jpg" /></p>
+<p><strong>全加器</strong></p>
+<p>考虑低位进位$C_{i-1}$和向高位的进位$C_i$</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181638889.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181638889.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181638889.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181638889.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181638889.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181638889.jpg" /></p>
+<h3 id="各种逻辑的图形符号">各种逻辑的图形符号</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181635960.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181635960.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181635960.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181635960.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181635960.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181635960.jpg" /></p>
+<h3 id="串行加法器">串行加法器</h3>
+<ol>
+<li>
+<p>将n个全加器相连可得n位加法器，但其加法时间较长。这是因为其位间进位是串行传送的，本位全加和$F_i$必须等低位进位$C_{i-1}$来到后才能进行，加法时间与位数有关</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181643897.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181643897.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181643897.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181643897.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181643897.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181643897.jpg" /></p>
+</li>
+<li>
+<p>只有改变进位逐位传送的路径，才能提高加法器工作速度</p>
+</li>
+<li>
+<p>解决办法之一是采用“超前进位产生电路”来同时形成各位进位，从而实现快速加法，我们称这种加法器为超前进位加法器</p>
+</li>
+</ol>
+<h2 id="定点乘法运算">定点乘法运算</h2>
+<p><strong>乘法实现方法</strong></p>
+<ol>
+<li>在现有的加法和减法器的基础上增加适当的以为线路及控制逻辑可以实现</li>
+<li>用LSI和VLSI工艺实现专用的乘法器</li>
+<li>编制子程序(单片机等低端机器)</li>
+</ol>
+<p><strong>原理</strong></p>
+<ol>
+<li>
+<p>$[x]<em>原=x_f\cdot x</em>{n-1}\dots x_1x_0$,$[y]<em>原=y_f \cdot y</em>{n-1} \dots y_1y_0$</p>
+</li>
+<li>
+<p>$[x\cdot y]<em>原=(x_f \bigoplus y_f)+(0.x</em>{n-1} \dots x_1x_0)\cdot(0\cdot y_{n-1}\dots y_1y_0)$</p>
+</li>
+<li>
+<p>尾数乘法如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181655551.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181655551.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181655551.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181655551.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181655551.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181655551.jpg" /></p>
+</li>
+</ol>
+<h3 id="定点原码乘法原理">定点原码乘法原理</h3>
+<ol>
+<li>
+<p>n位乘n位积可能为2n位</p>
+</li>
+<li>
+<p>乘积的最后是所有部分积之和，有n个数相加，而FA只有两个输入端</p>
+<p>所以需要改造</p>
+<ol>
+<li>方法一：硬件实现方法(串行的“加法和移位”)，硬件结构简单，速度太慢(时间延迟太长)</li>
+<li>方法二：不带符号位的阵列乘法器</li>
+</ol>
+</li>
+</ol>
+<h3 id="由手工计算到机器运算">由手工计算到机器运算</h3>
+<ol>
+<li>由手工计算到机器运算，需要解决3个问题：
+<ol>
+<li>符号如何让处理</li>
+<li>多个部分积如何相加</li>
+<li>为保持两次部分积之间的位权对应关系，会导致加法器位数的增加，能否在不增加位数的情况下保持位权对应？</li>
+</ol>
+</li>
+<li>由于解决方式的不同，形成了两种主要的乘法器结构
+<ol>
+<li>采用常规的加法器来实现
+<ol>
+<li>将n位乘法转换为n次累加和移位，每次处理1位</li>
+<li>为避免加法器位数的扩充，可以把手工计算时的新部分积“左移-&gt;累加”改为机器运算的原部分积“累加-&gt;右移”</li>
+</ol>
+</li>
+<li>采用阵列乘法器实现
+<ol>
+<li>利用中大规模集成电路把多项部分积同时相加，这样结构的乘法器称为阵列乘法器</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="原码一位乘法">原码一位乘法</h3>
+<p>原码一位乘法是从手算演变而来的，即用两个操作数的绝对值相乘，乘积的符号为两操作数符号的异或值(同号为正，异号为负)</p>
+<p>乘积P=|X|$\times$|Y|</p>
+<p>符号$P_s=X_s\bigoplus Y_s$</p>
+<p>式中：$P_s$为乘积的符号，$X_s$和$Y_s$为被乘数和乘数的符号</p>
+<p><strong>规则</strong></p>
+<ol>
+<li>参加运算的操作数取其绝对值</li>
+<li>令乘数的最低位为判断位，若为&quot;1&rdquo;，加被乘数，若为“0”，不加被乘数(加0)；</li>
+<li>累加后的部分积以及乘数右移一位</li>
+<li>重复n次(2)和(3)</li>
+<li>符号位单独处理，同号为正，异号为负。</li>
+</ol>
+<p><strong>基本过程</strong></p>
+<p>每次将一位乘数所对应的部分积与原部分积的累加和相加并移位</p>
+<p>设置寄存器：</p>
+<p>A：存放部分累加和，乘积高位，格式为双符号位</p>
+<p>B：存放被乘数，格式为双符号位</p>
+<p>C：存放乘数，乘积低位，格式为无符号位</p>
+<p>设置初值：</p>
+<p>A=00.0000</p>
+<p>B=|X|=00.1101</p>
+<p>C=|Y|=     .1011</p>
+<p>操作步骤</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181725983.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181725983.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181725983.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181725983.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181725983.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181725983.jpg" /></p>
+<h3 id="算法流程">算法流程</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181726929.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181726929.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181726929.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403181726929.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181726929.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181726929.jpg" /></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
