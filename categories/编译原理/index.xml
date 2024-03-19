@@ -3,7 +3,15 @@
         <title>编译原理 - Category - 蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</link>
         <description>编译原理 - Category - 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 06 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 19 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+    <title>编译引论(第三章)</title>
+    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/</link>
+    <pubDate>Tue, 19 Mar 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/</guid>
+    <description><![CDATA[词法分析 词法分析程序的功能 词法分析程序的主要任务是按语言的词法规则从源程序中逐个识别单词，把字符串形式的源程序转换为单词串的形式，并把每个单]]></description>
+</item>
+<item>
     <title>编译引论(第二章)</title>
     <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862/</link>
     <pubDate>Wed, 06 Mar 2024 00:00:00 &#43;0000</pubDate>

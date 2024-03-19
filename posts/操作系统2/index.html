@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2\/"
-        },"genre": "posts","keywords": "操作系统","wordcount":  2184 ,
+        },"genre": "posts","keywords": "操作系统","wordcount":  2378 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2\/","datePublished": "2024-03-05T00:00:00+00:00","dateModified": "2024-03-05T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,7 +103,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">操作系统(第二章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-05">2024-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2184 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-05">2024-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2378 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
@@ -485,7 +485,41 @@ S.value初值：表示系统中某类资源的数目</p>
 <h3 id="读者--写者问题">读者&ndash;写者问题</h3>
 <p>两者呈互斥关系</p>
 <p>特点：读进程可共享同一对象，写进程不可共享同一对象。</p>
-<h2 id="思考题">思考题</h2>
+<p>为实现Reader与Writer进程间在读或写时的互斥而设置了一个互斥信号量Wmutex.另外再设置一个整型变量Readcount表示正在读的进程数目。又因为Readcount是一个可被多个Reader进程访问的临界资源，因此，也因该为它设置一个互斥信号量rmutex</p>
+<p>读者&ndash;写着问题可描述如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">semaphore</span> <span class="n">rmutex</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">wmutex</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">readcount</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">reader</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">do</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">wait</span><span class="p">(</span><span class="n">rmutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">readcount</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nf">wait</span><span class="p">(</span><span class="n">wmutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">readcount</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">signal</span><span class="p">(</span><span class="n">rmutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">...</span>
+</span></span><span class="line"><span class="cl">		<span class="n">perform</span> <span class="n">read</span> <span class="n">operation</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">...</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">wait</span><span class="p">(</span><span class="n">rmutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">readcount</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">readcount</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="nf">signal</span><span class="p">(</span><span class="n">wmutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">signal</span><span class="p">(</span><span class="n">rmutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="n">TRUE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">writer</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">do</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">wait</span><span class="p">(</span><span class="n">wmutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">perform</span> <span class="n">write</span> <span class="n">operation</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">signal</span><span class="p">(</span><span class="n">wmutex</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="n">TRUE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cobegin</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">reader</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">writer</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="n">coend</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="思考题">思考题</h2>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"

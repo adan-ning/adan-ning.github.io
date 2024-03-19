@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862\/"
-        },"genre": "posts","keywords": "编译原理","wordcount":  3221 ,
+        },"genre": "posts","keywords": "编译原理","wordcount":  4435 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862\/","datePublished": "2024-03-06T00:00:00+00:00","dateModified": "2024-03-06T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">编译引论(第二章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编译原理</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-06">2024-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3221 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-06">2024-03-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4435 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -171,6 +171,27 @@
       <ul>
         <li><a href="#语法树">语法树</a></li>
         <li><a href="#二义性">二义性</a></li>
+      </ul>
+    </li>
+    <li><a href="#文法的实用限制">文法的实用限制</a>
+      <ul>
+        <li><a href="#有害规则">有害规则</a></li>
+        <li><a href="#多余规则">多余规则</a></li>
+      </ul>
+    </li>
+    <li><a href="#文法的等价变换">文法的等价变换</a>
+      <ul>
+        <li><a href="#文法直接左递归的消除">文法直接左递归的消除</a></li>
+        <li><a href="#文法一般左递归的消除">文法一般左递归的消除</a></li>
+        <li><a href="#提取左因子">提取左因子</a></li>
+      </ul>
+    </li>
+    <li><a href="#文法">文法</a>
+      <ul>
+        <li><a href="#0型文法">0型文法</a></li>
+        <li><a href="#1型文法上下文有关文法">1型文法(上下文有关文法)</a></li>
+        <li><a href="#2型文法上下文无关文法">2型文法(上下文无关文法)</a></li>
+        <li><a href="#3型文法正规文法">3型文法(正规文法)</a></li>
       </ul>
     </li>
   </ul>
@@ -368,6 +389,114 @@ U→x(或U::x)</p>
         title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403131450687.jpg" /></p>
 <p><strong>注意</strong></p>
 <p>文法的二义性和语言的二义性是两个不同的概念。如果产生上下文无关语言的每一个文法都是二义性的，则说该语言是二义性的。并非文法的二义性就说其描述的语言是二义性的。通常可能有两个不同的文法G1和G2，其中一个文法是二义性的，另外一个是没有二义性的，但是却有L(G1) = L(G2)，即两个文法产生的语言是等价的</p>
+<h2 id="文法的实用限制">文法的实用限制</h2>
+<h3 id="有害规则">有害规则</h3>
+<p>定义：</p>
+<p>文法中形如$U \rightarrow U$的规则就称为有害规则</p>
+<p>如果文法中含有有害规则，它除了造成文法的二义性以外，对定义语言则是没有任何意义。</p>
+<p>例如：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191828650.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191828650.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403191828650.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403191828650.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191828650.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191828650.jpg" /></p>
+<h3 id="多余规则">多余规则</h3>
+<p>多余规则则指文法中任何句子的推导都不会用到的规则，多余规则在文法中以两种形式出现，即不可到达的非终结符和不可终止的非终止符</p>
+<ol>
+<li>文法中某些非终结符(除去文法开始符号)不出现任何其他规则的右部，该非终结符称为不可到达。</li>
+<li>文法中某些非终结符，由它不能推出终结符号串，该非终结符称为不可终止。</li>
+</ol>
+<p>例如：</p>
+<p>G[S]:</p>
+<ol>
+<li>$S\rightarrow Be$</li>
+<li>$B\rightarrow Ce$</li>
+<li>$B\rightarrow Af$</li>
+<li>$A\rightarrow Ae$</li>
+<li>$A\rightarrow e$</li>
+<li>$C\rightarrow Cf$</li>
+<li>$D\rightarrow f$</li>
+</ol>
+<p>根据有害规则和多余规则的定义，显然文法不包含有有害规则，而由于非终结符号C为不可终止，非终结符号D为不可到达，因此产生式2，6，7为多余规则应去掉</p>
+<p><strong>一般所讨论的文法均假定不包含有有害规则和多余规则</strong></p>
+<h2 id="文法的等价变换">文法的等价变换</h2>
+<h3 id="文法直接左递归的消除">文法直接左递归的消除</h3>
+<p>假定关于非终结符U的产生式为：<strong>$U\rightarrow U\alpha|\beta$</strong></p>
+<p>其中$\alpha ,\beta \in (V_N\bigcup V_T)^*$，$\beta$补以U开头，那么，可以把U的产生式改写成如下的非直接左递归形式：</p>
+<p>$U\rightarrow \beta U^,$</p>
+<p>$U^, \rightarrow \alpha U^,|\epsilon$</p>
+<p><strong>引入新的非终结符号消去文法中的直接左递归:</strong></p>
+<p>形如$U \rightarrow Ux_1 | Ux_2 |&hellip;| Ux_m|y_1|y_2|&hellip;|y_m$的规则，可引入一个新的非终结符号$U^,$,则得到等价的规则：</p>
+<p>$U \rightarrow y_1U^,|y_2U^,|&hellip;|y_mU^,$</p>
+<p>$U^, \rightarrow x_1U^,|x_2U^,|&hellip;|x_mU^,|\epsilon$</p>
+<h3 id="文法一般左递归的消除">文法一般左递归的消除</h3>
+<p>如果一个文法不含有形如$U \stackrel{+}\Rightarrow U$的推导，也不含有以$\epsilon$为右部的产生式，那执行下面的算法将保证消除文法中的所有左递归</p>
+<p><strong>消除间接左递归的算法如下</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191947335.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191947335.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403191947335.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403191947335.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191947335.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191947335.jpg" /></p>
+<p>例：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191952258.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191952258.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403191952258.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403191952258.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191952258.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191952258.jpg" /></p>
+<h3 id="提取左因子">提取左因子</h3>
+<p>假设A的产生式为：</p>
+<p>$A \rightarrow \delta\beta_1|\delta\beta_2|&hellip;|\delta\beta_n|\gamma_1|\gamma_2|&hellip;|\gamma_n$（其中，每个$\gamma$不以$\delta$开头）</p>
+<p>可将这些产生式改写成：</p>
+<p>$A \rightarrow A^,|\gamma_1|\gamma_2|&hellip;|\gamma_n$</p>
+<p>$A^,\rightarrow \beta_1|\beta_2|&hellip;|\beta_n$</p>
+<p>经过反复提取左因子，就能够把每个非终结符(包括新引进者)的所有候选式的公共左因子消除掉，则改变后的文法便于自上而下的语法分析，如LL(1)预测分析法。相应付出的代价是，大量引进新的非终结符和$\epsilon -$产生式。</p>
+<p>例：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403192002514.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403192002514.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403192002514.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403192002514.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403192002514.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403192002514.jpg" /></p>
+<h2 id="文法">文法</h2>
+<h3 id="0型文法">0型文法</h3>
+<p>0型文法(无限制的文法)，其产生式具有以下形式：</p>
+<p>$\alpha \rightarrow \beta$</p>
+<p>其中，$\alpha \in V^+$，且至少含有一个非终结符；$\beta \in V^*$</p>
+<h3 id="1型文法上下文有关文法">1型文法(上下文有关文法)</h3>
+<p>定义：1型文法G的产生式具有以下形式：</p>
+<p>$xUy \rightarrow \xuy$</p>
+<p>其中$x,y \in V^*;U \in V_N;u \in V^+$</p>
+<h3 id="2型文法上下文无关文法">2型文法(上下文无关文法)</h3>
+<p>定义：在1型文法的产生式中上下文x和y用空符号串$\epsilon$代替，则有以下形式的产生式称为2型文法：</p>
+<p>$U \rightarrow u$</p>
+<p>其中，$U \in V_N,u \in V^*$</p>
+<h3 id="3型文法正规文法">3型文法(正规文法)</h3>
+<p>定义1：如果文法的产生式只含有下面的两种形式：</p>
+<p>$U \rightarrow a$或$U \rightarrow aB$</p>
+<p>其中U，$B \in V_N,a \in V_T^*$，则称该文法为右线性文法；</p>
+<p>定义2：如果文法的产生式只含有下面的两种形式：</p>
+<p>$U \rightarrow a$或$U \rightarrow Ba$</p>
+<p>其中U，$B \in V_N,a \in V_T^*$，则称该文法为左线性文法；</p>
+<p>例：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403192015512.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403192015512.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403192015512.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403192015512.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403192015512.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403192015512.jpg" /></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

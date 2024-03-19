@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A12\/"
-        },"genre": "posts","keywords": "计算机算法设计与分析","wordcount":  2408 ,
+        },"genre": "posts","keywords": "计算机算法设计与分析","wordcount":  3559 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A12\/","datePublished": "2024-03-12T00:00:00+00:00","dateModified": "2024-03-12T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">算法与程序(第二章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机算法设计与分析</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-12">2024-03-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2408 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-12">2024-03-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3559 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -137,6 +137,9 @@
     <li><a href="#快速幂算法">快速幂算法</a></li>
     <li><a href="#strassen矩阵乘法">Strassen矩阵乘法</a></li>
     <li><a href="#棋盘覆盖">棋盘覆盖</a></li>
+    <li><a href="#合并排序">合并排序</a></li>
+    <li><a href="#快速排序">快速排序</a></li>
+    <li><a href="#线性时间选择">线性时间选择</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="分治法">分治法</h1>
@@ -224,7 +227,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>算法复杂度分析</strong></p>
 <p>$T(n)\begin{cases}1,n=0\T(n/2)+1,n&gt;1\end{cases}$</p>
-<p>**利用主定理或递归树可求其时间复杂性为O(logn)</p>
+<p>**利用主定理或递归树可求其时间复杂性为O(logn) **</p>
 <h3 id="二分搜索技术非递归算法">二分搜索技术(非递归算法)</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">BinarySearch</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">target</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span> <span class="c1">//非递归实现
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
@@ -249,7 +252,7 @@
 <h2 id="快速幂算法">快速幂算法</h2>
 <p>给定实数a和非负整数n，用分治法设计求$a^n$的快速算法(递归算法)</p>
 <p>分析：</p>
-<p>$a^n\begin{cases}0,a=0\1,n=0\(a^\frac{n}{2})^2,n&gt;0,n为偶数\(a^\frac{n}{2})^2*n,n&gt;0,n为奇数\end{cases}$</p>
+<p>$$a^n\begin{cases}0,a=0\1,n=0\(a^\frac{n}{2})^2,n&gt;0,n为偶数\(a^\frac{n}{2})^2*n,n&gt;0,n为奇数\end{cases}$$</p>
 <p><strong>算法如下</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">exp2</span><span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
@@ -266,7 +269,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><strong>该问题满足四个条件时间复杂性O(logn)</strong></p>
 <p>给定正整数a和n，用分治法设计求$a^n$的快速算法(非递归算法)</p>
-<p>举例求$a^93$</p>
+<p>举例求$a^{93}$</p>
 <p>n=93的二进制表示(如图)，也就是n=64+16+8+4+1,因此$a^{93}=a^{64}a^{16}a^8a^4a$</p>
 <p><img
         class="lazyload"
@@ -302,7 +305,7 @@
         title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181407169.jpg" /></p>
 <p><strong>时间复杂性分析</strong></p>
 <p>上述分治法的计算时间耗费T(n)应满足</p>
-<p>$T(n)\begin{cases}\O(1),n=2\8T(n/2)+O(n^2),n&gt;2\end{cases}$</p>
+<p>$T(n)\begin{cases}O(1),n=2\8T(n/2)+O(n^2),n&gt;2\end{cases}$</p>
 <p>这个递归方程的解仍然是T(n)=O($n^3$)。因此，该方法并不比用原始定义直接计算更有效。究其原因，由于是该方法并没有减少矩阵的乘法次数。</p>
 <p>要想改进矩阵乘法的计算时间复杂性，必须减少乘法运算</p>
 <p><strong>优化</strong></p>
@@ -324,10 +327,18 @@
         title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403181416658.jpg" /></p>
 <p><strong>时间复杂性分析</strong></p>
 <p>Strassen矩阵乘法中用了7次对于n/2阶矩阵乘积的递归调用和18次n/2阶矩阵的加减运算。由此可知，该算法所需的计算时间T(n)满足如下递归方程：</p>
-<p>$T(n)\begin{cases}\O(1),n=2\7T(n/2)+O(n^2),n&gt;2\end{cases}$</p>
+<p>$T(n)\begin{cases}O(1),n=2\7T(n/2)+O(n^2),n&gt;2\end{cases}$</p>
 <p>解此递归方程得T(n)=O($n^{log7}$)$\approx$O($n^{2.81}$)。由此可见，Strassen矩阵乘法的计算时间复杂性比普通矩阵乘法有较大改进</p>
 <h2 id="棋盘覆盖">棋盘覆盖</h2>
 <p>当k&gt;0时，将$2^k\times 2^k$棋盘分割为4个$2^{k-1}\times 2{k-1}$子棋盘，如图a所示。特殊方格必位4个较小子棋盘之一中，其余3个子棋盘中无特殊方格。为了将这3个无特殊方格的子棋盘转化为特殊棋盘，可以用一个L型骨牌覆盖这3个较小棋盘的会合处，如b所示，这3个子棋盘上被L型骨牌覆盖的方格就成为该棋盘上的特殊方格，从而将原问题转化为4个较小规模的棋盘覆盖问题。递归地使用这种分割，直至棋盘简化为$1\times1$棋盘</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191822190.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191822190.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403191822190.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403191822190.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191822190.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191822190.jpg" /></p>
 <p><strong>算法如下</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">chessBoard</span><span class="p">(</span><span class="kt">int</span> <span class="n">tr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">tc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -393,7 +404,114 @@
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+</span></span></code></pre></div><p><strong>复杂度分析</strong></p>
+<p>$T(n)\begin{cases}O(1),n=1\4T({n\over2})+O(1),n&gt;1\end{cases}$</p>
+<p>T(n)=O($n^2$)</p>
+<p>本算法可使用队列或者栈实现，非递归算法</p>
+<h2 id="合并排序">合并排序</h2>
+<p>将待排序元素分成大小大致相同的两个子集合，分别对两个子集合进行排序，最终将排好序的子集合合并成要求好的排好序的集合</p>
+<p><strong>算法描述(可递归)</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">MergeSort</span><span class="p">(</span><span class="n">Type</span> <span class="n">a</span><span class="p">[],</span><span class="kt">int</span> <span class="n">left</span><span class="p">,</span><span class="kt">int</span> <span class="n">right</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">left</span><span class="o">&lt;</span><span class="n">right</span><span class="p">){</span>			<span class="c1">//至少有2个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>	<span class="c1">//取中点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nf">MergeSort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">left</span><span class="p">,</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">MergeSort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">Merge</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">left</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">right</span><span class="p">);</span>		<span class="c1">//合并到数组b
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nf">Copy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">left</span><span class="p">,</span><span class="n">right</span><span class="p">);</span>		<span class="c1">//复制回数组a
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}</span>				
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>算法MergeSort的递归过程可以消去</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191730648.jpg"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191730648.jpg, https://cdn.jsdelivr.net/gh/adan-ning/images/202403191730648.jpg 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403191730648.jpg 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191730648.jpg"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403191730648.jpg" /></p>
+<p><strong>复杂度分析</strong></p>
+<p>最坏时间复杂度：O(nlogn)</p>
+<p>平均时间复杂度：O(nlogn)</p>
+<p>辅助空间：O(n)</p>
+<p>稳定性：稳定</p>
+<h2 id="快速排序">快速排序</h2>
+<p><strong>快速排序算法是基于分治策略的另一个排序算法。其基本思想是，对于输入的子数组a[p:r]，按以下三个步骤进行排序。</strong></p>
+<ol>
+<li>分解(Divide):以a[p]为基准元素将a[p:r]划分成3段a[p:q-1],a[q]和a[q+1:r]，使a[p:q-1]中任何一个元素小于等于a[q]，而a[q+1:r]中任何一个元素大于等于a[q]。下标q在划分过程中确定</li>
+<li>递归求解(Conquer)：通过递归调用快速排序算法，分别对a[p:q-1]和a[q+1:r]进行排序</li>
+<li>合并(Merge):由于对a[p:q-1]和a[q+1:r]的排序是就地进行的，因此在a[p:q-1]和a[q+1:r]都已排好的序后，不需要执行任何计算，a[p:r]则已排好序</li>
+</ol>
+<p>算法如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">template</span><span class="p">(</span><span class="n">class</span> <span class="n">Type</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">QuickSort</span><span class="p">(</span><span class="n">Type</span> <span class="n">a</span><span class="p">[],</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="o">&lt;</span><span class="n">r</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">q</span><span class="o">=</span><span class="nf">Partition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">QuickSort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>		<span class="c1">//对左半段排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nf">QuickSort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">q</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>		<span class="c1">//对右半段排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>对含有n个元素的数组a[0:n-1]进行快速排序只要调用QuickSort(a,0,n-1)即可。</p>
+<p>上述算法中的函数Partition()以一个确定的基准元素a[p]对子数组a[p:r]进行划分，它是快速排序算法的关键。</p>
+<p>算法如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">template</span><span class="o">&lt;</span><span class="n">Class</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Partition</span> <span class="p">(</span><span class="n">Type</span> <span class="n">a</span><span class="p">[],</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="n">p</span><span class="p">,</span><span class="n">j</span><span class="o">=</span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Type</span> <span class="n">x</span> <span class="o">=</span><span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//将小于x的元素交换到左边区域，将大于x的元素交换到右边区域
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">++</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="n">x</span><span class="o">&amp;&amp;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">r</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="o">--</span><span class="n">j</span><span class="p">]</span><span class="o">&gt;</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">j</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">Swap</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>复杂度分析</strong></p>
+<p><strong>快速排序算法的性能取决于划分的对称性</strong></p>
+<p>最坏情况，每次划分出的二个子问题，一个长度为0，另一个长度为n-1，其对应的时间复杂性的递归定义为：</p>
+<p>$T(n)\begin{cases}1,n=1\T(n-1)+n,n&gt;1\end{cases}$</p>
+<p>最坏时间复杂度：O($n^2$)</p>
+<p>平均时间复杂度：O(nlogn)</p>
+<p>稳定性：不稳定</p>
+<p><strong>通过修改算法partition，可以设计出采用随机选择策略的快速排序算法。可以在a[p:r]中随机选出一个元素作为划分基准。可以期望划分是较对称的。</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">template</span><span class="o">&lt;</span><span class="n">Class</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">RandomizedPartition</span><span class="p">(</span><span class="n">Type</span> <span class="n">a</span><span class="p">[],</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="nf">Random</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Swap</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nf">Partition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">RandomizedQuickSort</span><span class="p">(</span><span class="n">Type</span> <span class="n">a</span><span class="p">[],</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="o">&lt;</span><span class="n">r</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">int</span> <span class="n">q</span><span class="o">=</span><span class="nf">RandomizedPartition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">RandomizedQuickSort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>		<span class="c1">//对左半段排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nf">RandomizedQuickSort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">q</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>		<span class="c1">//对右半段排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="线性时间选择">线性时间选择</h2>
+<p>给定线性序集中n个元素和一个整数k，$1\leq k \leq n$，要求找出这n个元素中第k小的元素</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">template</span><span class="o">&lt;</span><span class="n">Class</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Type</span> <span class="nf">RandomizedSelect</span><span class="p">(</span><span class="n">Type</span> <span class="n">a</span><span class="p">[],</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span><span class="kt">int</span> <span class="n">r</span><span class="p">,</span><span class="kt">int</span> <span class="n">k</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="o">==</span><span class="n">r</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="nf">RandomizedPartition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">r</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">j</span><span class="o">=</span><span class="n">j</span><span class="o">-</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">==</span><span class="n">k</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">k</span><span class="o">&lt;</span><span class="n">j</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nf">RandomizedSelect</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nf">RandomizedSelect</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>时间复杂性分析</strong></p>
+<p>在最坏情况下，算法RandomizedSelect需要O($n^2$)计算时间</p>
+<p>但可以证明，算法RandomizedSelect可以在O(n)平均时间内找出n个输入元素中的第k小元素</p>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
