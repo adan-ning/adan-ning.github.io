@@ -1,30 +1,30 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>hugo - Category - 蓝Q曦的博客网站</title>
-        <link>https://adan-ning.github.io/categories/hugo/</link>
+        <link>https://adan-ning.gtihub.io/categories/hugo/</link>
         <description>hugo - Category - 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 09 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/hugo/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 09 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.gtihub.io/categories/hugo/" rel="self" type="application/rss+xml" /><item>
     <title>用Hugo配合Algolia实现高效美观的站内搜索</title>
-    <link>https://adan-ning.github.io/posts/%E7%94%A8hugo%E9%85%8D%E5%90%88algolia%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%BE%8E%E8%A7%82%E7%9A%84%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/</link>
+    <link>https://adan-ning.gtihub.io/posts/%E7%94%A8hugo%E9%85%8D%E5%90%88algolia%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%BE%8E%E8%A7%82%E7%9A%84%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/</link>
     <pubDate>Sat, 09 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E7%94%A8hugo%E9%85%8D%E5%90%88algolia%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%BE%8E%E8%A7%82%E7%9A%84%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/</guid>
+    <guid>https://adan-ning.gtihub.io/posts/%E7%94%A8hugo%E9%85%8D%E5%90%88algolia%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%BE%8E%E8%A7%82%E7%9A%84%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/</guid>
     <description><![CDATA[用Hugo配合Algolia实现高效美观的站内搜索 前言 很多的 Hugo 主题是没有自带搜索功能的，但是们为了方便用户浏览和查找内容是需要在网站上提供搜]]></description>
 </item>
 <item>
     <title>搭建hugo博客(buildblog)</title>
-    <link>https://adan-ning.github.io/posts/%E6%90%AD%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2buildblog/</link>
+    <link>https://adan-ning.gtihub.io/posts/%E6%90%AD%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2buildblog/</link>
     <pubDate>Fri, 01 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E6%90%AD%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2buildblog/</guid>
+    <guid>https://adan-ning.gtihub.io/posts/%E6%90%AD%E5%BB%BAhugo%E5%8D%9A%E5%AE%A2buildblog/</guid>
     <description><![CDATA[使用Hugo+Github搭建自己的个人博客 一、前言介绍 Hugo是一个个人博客静态框架，相比于Hexo更加轻量生成更加快速。结合GitHub]]></description>
 </item>
 <item>
     <title>每次更新hugo博客的操作</title>
-    <link>https://adan-ning.github.io/posts/%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0hugo%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%93%8D%E4%BD%9C/</link>
+    <link>https://adan-ning.gtihub.io/posts/%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0hugo%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%93%8D%E4%BD%9C/</link>
     <pubDate>Sun, 18 Feb 2024 15:56:15 &#43;0800</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0hugo%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%93%8D%E4%BD%9C/</guid>
+    <guid>https://adan-ning.gtihub.io/posts/%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0hugo%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%93%8D%E4%BD%9C/</guid>
     <description><![CDATA[每次更新hugo博客的操作 每次更新hugo博客所需的操作 打开 PowerShell / cmd 终端，打开最初用 hugo 搭建的博客所在的文件夹，以我为例： cd e:\myblog 第一步 新建一个 markdown(.md) 格]]></description>
 </item>
 </channel>

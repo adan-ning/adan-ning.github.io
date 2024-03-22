@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>c&#43;&#43;(three) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="c&#43;&#43;(three)" />
+<meta property="og:description" content="函数 函数的定义与使用 所有的高级语言都有子程序的概念，实现模块的划分 C和C&#43;&#43;中的子程序体现为函数 一个C&#43;&#43;程序由一个主函数和若干其他函数构成" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://adan-ning.gtihub.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/" /><meta property="og:image" content="https://adan-ning.gtihub.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-03-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-03-21T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://adan-ning.gtihub.io/logo.png" /><meta name="twitter:title" content="c&#43;&#43;(three)"/>
+<meta name="twitter:description" content="函数 函数的定义与使用 所有的高级语言都有子程序的概念，实现模块的划分 C和C&#43;&#43;中的子程序体现为函数 一个C&#43;&#43;程序由一个主函数和若干其他函数构成"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.gtihub.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/" /><link rel="prev" href="https://adan-ning.gtihub.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "c++(three)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/adan-ning.gtihub.io\/posts\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13\/"
+        },"genre": "posts","keywords": "面向对象程序设计","wordcount":  7135 ,
+        "url": "https:\/\/adan-ning.gtihub.io\/posts\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13\/","datePublished": "2024-03-21T00:00:00+00:00","dateModified": "2024-03-21T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">c++(three)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>面向对象程序设计</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-21">2024-03-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;7135 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;15 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#函数的定义与使用">函数的定义与使用</a>
+      <ul>
+        <li><a href="#函数的定义">函数的定义</a></li>
+        <li><a href="#函数的调用">函数的调用</a></li>
+        <li><a href="#函数调用的执行过程">函数调用的执行过程</a></li>
+        <li><a href="#函数调用的内部机制">函数调用的内部机制</a></li>
+      </ul>
+    </li>
+    <li><a href="#栈">栈</a>
+      <ul>
+        <li><a href="#函数调用时栈的建立过程">函数调用时栈的建立过程</a></li>
+        <li><a href="#函数调用的返回">函数调用的返回</a></li>
+        <li><a href="#递归调用">递归调用</a></li>
+        <li><a href="#三点认识">三点认识</a></li>
+        <li><a href="#递归的条件">递归的条件</a></li>
+      </ul>
+    </li>
+    <li><a href="#自学汉诺塔问题">自学(汉诺塔问题)</a>
+      <ul>
+        <li><a href="#函数的参数传递机制传递参数值">函数的参数传递机制(传递参数值)</a></li>
+      </ul>
+    </li>
+    <li><a href="#引用">引用</a>
+      <ul>
+        <li><a href="#函数的参数传递用引用做形参">函数的参数传递(用引用做形参)</a></li>
+        <li><a href="#小结">小结</a></li>
+      </ul>
+    </li>
+    <li><a href="#内联函数">内联函数</a>
+      <ul>
+        <li><a href="#内联函数声明与使用">内联函数声明与使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#带默认形参值的函数默认形参值的作用">带默认形参值的函数(默认形参值的作用)</a></li>
+    <li><a href="#函数重载">函数重载</a></li>
+    <li><a href="#函数模板">函数模板</a>
+      <ul>
+        <li><a href="#代码重用">代码重用</a></li>
+        <li><a href="#函数模板的定义形式">函数模板的定义形式</a></li>
+        <li><a href="#函数模板的说明">函数模板的说明</a></li>
+        <li><a href="#函数模板实例化">函数模板实例化</a></li>
+        <li><a href="#使用函数模板注意事项">使用函数模板注意事项</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用c系统函数">使用C++系统函数</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="函数">函数</h1>
+<h2 id="函数的定义与使用">函数的定义与使用</h2>
+<ol>
+<li>所有的高级语言都有子程序的概念，实现模块的划分</li>
+<li>C和C++中的子程序体现为函数</li>
+<li>一个C++程序由一个主函数和若干其他函数构成</li>
+<li>函数分为：标准库函数和用户自定义函数</li>
+</ol>
+<h3 id="函数的定义">函数的定义</h3>
+<p>函数是面向对象设计中的基本抽象单元，是对功能的抽象</p>
+<p>函数声明的语法形式</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403212155128.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403212155128.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403212155128.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403212155128.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403212155128.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403212155128.png" /></p>
+<p><strong>函数的定义(函数的类型和返回值)</strong></p>
+<p>形式参数表</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403212157314.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403212157314.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403212157314.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403212157314.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403212157314.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403212157314.png" /></p>
+<p>函数的返回值</p>
+<p>​	C++语言把函数返回值的数据类型规定为该函数的数据类型。因此，函数返回值的类型一定要与函数的类型相同</p>
+<ol>
+<li>
+<p>由return语句给出，例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">return</span> <span class="mi">0</span>
+</span></span></code></pre></div></li>
+<li>
+<p>无返回值的函数(void类型)，不必写return语句</p>
+</li>
+</ol>
+<p><strong>函数的定义(说明)</strong></p>
+<p>所有函数都是平行的，即在定义函数时是相互独立的，C++和C<strong>不允许函数嵌套定义</strong>，即在函数体中在定义一个函数是非法的(与PASCAL不同)</p>
+<p>C++程序的执行从main函数开始，调用其他函数后回到main函数，在main函数中结束整个程序的运行。main函数是系统定义的</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">add</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">,</span><span class="kt">float</span> <span class="n">y</span><span class="p">);</span>		<span class="c1">//函数声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="o">=</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">add</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">,</span><span class="kt">float</span> <span class="n">y</span><span class="p">){</span>		<span class="c1">//函数首部
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="n">z</span><span class="p">;</span>					<span class="c1">//函数体
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">z</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">z</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//float add(float x,float y){}为函数定义 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">add</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">,</span><span class="kt">float</span> <span class="n">y</span><span class="p">){</span>		<span class="c1">//函数首部
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">z</span><span class="p">;</span>			<span class="c1">//float改为int		//函数体
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">z</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">z</span><span class="p">;</span>		<span class="c1">//出错
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p><strong>函数定义的一般形式</strong></p>
+<p>获取参数并返回值</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">bigger</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="p">)</span><span class="o">?</span><span class="nl">a</span><span class="p">:</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>获取参数但不返回值</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">delay</span><span class="p">(</span><span class="kt">long</span> <span class="n">a</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">a</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>没有获取参数但返回值</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">geti</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>		<span class="c1">//键盘获取一个整数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;please input a integer:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>没有获取参数也不返回值</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">message</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>  <span class="c1">//在屏幕上显示一个消息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;This is a message.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="函数的调用">函数的调用</h3>
+<p>调用形式</p>
+<p>函数名(实参列表)</p>
+<p>调用的方式</p>
+<p>函数语句：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">func</span><span class="p">();</span>  <span class="c1">//此时函数可以无返回值
+</span></span></span></code></pre></div><p>函数表达式</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">if</span><span class="p">((</span><span class="n">x</span><span class="o">=</span><span class="n">func</span><span class="p">())</span><span class="o">==</span><span class="n">somevalue</span><span class="p">)</span> 	<span class="c1">//函数做参数
+</span></span></span><span class="line"><span class="cl"><span class="c1">// func()必须有一个明确的返回值
+</span></span></span></code></pre></div><p>函数参数</p>
+<p>m=max(a,max(b,c));</p>
+<p>函数声明和函数原型</p>
+<ol>
+<li>
+<p>一个函数调用另一个函数(被调函数)的条件：</p>
+<p>点用函数之前必须首先对被调函数进行声明</p>
+</li>
+<li>
+<p>函数声明(declaration)</p>
+<ol>
+<li>是一条程序语句，包含函数名，返回类型和形式参数列表</li>
+<li>作用是把函数的名字、返回类型以及形参的类型、个数和顺序通知编译系统，以便在调用该函数时按此进行对照检查(例如函数名是否正确、实参和形参的类型和个数是否一致)</li>
+</ol>
+</li>
+</ol>
+<p><strong>函数声明和函数原型(说明)</strong></p>
+<ol>
+<li>
+<p>函数声明的形式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="mf">1.</span><span class="err">类型标识符</span> <span class="err">函数名</span><span class="p">(</span><span class="err">参数类型</span><span class="mi">1</span><span class="err">，参数类型</span><span class="mi">2</span><span class="err">，</span><span class="p">...</span> <span class="p">...);</span>
+</span></span><span class="line"><span class="cl"><span class="mf">2.</span><span class="err">类型标识符</span> <span class="err">函数名</span><span class="p">(</span><span class="err">参数类型</span><span class="mi">1</span> <span class="err">参数名</span><span class="mi">1</span><span class="err">，参数类型</span><span class="mi">2</span> <span class="err">参数名</span><span class="mi">2</span><span class="err">，</span><span class="p">...</span> <span class="p">...);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>函数声明的说明</p>
+<ol>
+<li>
+<p>第1种是基本形式，只包含参数的类型</p>
+</li>
+<li>
+<p>为了阅读，也允许加上参数名</p>
+</li>
+<li>
+<p>以下三种声明形式等价</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">add</span><span class="p">(</span><span class="kt">float</span><span class="p">,</span><span class="kt">float</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">add</span><span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span><span class="kt">float</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">add</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">,</span><span class="kt">float</span> <span class="n">y</span><span class="p">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>函数原型(function prototype)</p>
+<p>在C++和C中，<strong>函数声明就是函数原型</strong></p>
+</li>
+<li>
+<p>函数声明和函数定义的区别</p>
+<ol>
+<li>“定义”指对函数功能的确定，包括指定函数名，返回类型，形参及其类型，函数体，它是一个完整，独立的函数单位</li>
+<li>“声明”只是把函数的原型通知编译系统</li>
+<li><strong>注意</strong>：声明函数时，函数原型预定义函数时函数首部在写法上必须一致，既函数名，返回类型，参数个数，参数类型和参数顺序必须相同，否则产生编译错误。</li>
+</ol>
+</li>
+<li>
+<p>函数原型的作用</p>
+<p>在编译阶段对函数调用的合法性进行全面检查</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">main</span><span class="p">(){</span>				<span class="c1">//编译从上到下逐条进行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="nf">add</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">,</span><span class="kt">float</span> <span class="n">y</span><span class="p">);</span>		
+</span></span><span class="line"><span class="cl">    <span class="c1">//如果没有函数声明，当编译“c=add(a,b)”时，编译系统不知道add是不是函数名，也无法判断实参的类型和个数是否正确，无法进行正确性检查。有可能导致运行时则错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//在函数调用之前声明了函数原型，编译系统就会根据函数原型对函数调用的合法性进行全面检查，和函数原型不匹配的函数调用就会导致编译出错
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">c</span><span class="o">=</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>				
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">add</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">,</span><span class="kt">float</span> <span class="n">y</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>函数声明的位置</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">char</span> <span class="nf">letter</span><span class="p">(</span><span class="kt">char</span><span class="p">,</span><span class="kt">char</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">f</span><span class="p">(</span><span class="kt">float</span><span class="p">,</span><span class="kt">float</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">i</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//如果在所有函数定义之前，在函数的外部已做了函数声明，那么函数原型在本文件中任何地方有效，即在本文件中任何地方都可以按照函数原型调用相应的函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="nf">letter</span><span class="p">(</span><span class="kt">char</span> <span class="n">c1</span><span class="p">,</span><span class="kt">char</span> <span class="n">c2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">f</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">,</span><span class="kt">float</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">i</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{...}</span>
+</span></span></code></pre></div><p><strong>函数在被调用之前必须声明或定义，如同变量使用之前必须先定义</strong></p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="函数调用的执行过程">函数调用的执行过程</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220937768.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220937768.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403220937768.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403220937768.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220937768.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220937768.png" /></p>
+<p><strong>函数调用的图例</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220938216.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220938216.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403220938216.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403220938216.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220938216.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220938216.png" /></p>
+<p><strong>嵌套调用</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220939252.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220939252.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403220939252.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403220939252.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220939252.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220939252.png" /></p>
+<h3 id="函数调用的内部机制">函数调用的内部机制</h3>
+<p><strong>函数调用的过程就是栈空间的操作过程</strong></p>
+<ol>
+<li>建立被调函数的栈空间</li>
+<li>保护主调函数的运行状态和返回地址</li>
+<li>传递参数</li>
+<li>将控制转变为被调函数</li>
+</ol>
+<p><strong>栈</strong></p>
+<ol>
+<li>是一种数据结构</li>
+<li>是后进先出(Last In First Out)的线性表</li>
+</ol>
+<h2 id="栈">栈</h2>
+<p>只允许在一端插入和删除的顺序表，插入和删除的一端称为<strong>栈顶</strong>，另一端称为<strong>栈底</strong></p>
+<p><strong>特点</strong>：后进先出</p>
+<h3 id="函数调用时栈的建立过程">函数调用时栈的建立过程</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220945921.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220945921.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403220945921.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403220945921.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220945921.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220945921.png" /></p>
+<h3 id="函数调用的返回">函数调用的返回</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220947422.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220947422.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403220947422.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403220947422.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220947422.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220947422.png" /></p>
+<h3 id="递归调用">递归调用</h3>
+<p>再调用一个子程序或函数的过程之中出现直接或间接调用该子程序或函数本身，称为过程的递归调用</p>
+<p><strong>递归调用的形式</strong></p>
+<ol>
+<li>
+<p>直接递归</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">fun1</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fun1</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Long</span> <span class="nf">fib</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">(</span><span class="n">fib</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">fib</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>			<span class="c1">//直接递归
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>间接递归</p>
+<p>例:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">fn1</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="o">=</span><span class="n">fn2</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>		<span class="c1">//间接递归
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">fn2</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="o">=</span><span class="n">fn1</span><span class="p">(</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>		<span class="c1">//间接递归
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<p><strong>递归过程的两个阶段</strong></p>
+<ol>
+<li>
+<p>递推</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220955373.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220955373.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403220955373.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403220955373.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220955373.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220955373.png" /></p>
+</li>
+<li>
+<p>回归</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220955337.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220955337.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403220955337.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403220955337.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220955337.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403220955337.png" /></p>
+</li>
+</ol>
+<p>例：求n!</p>
+<p>分析：计算n!的公式如下</p>
+<p>$n!= \begin{cases}1,(n=0)\n(n-1)!,(n&gt;0)\end{cases}$</p>
+<p>这是一个递归实现的公式，应该用递归函数实现</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">long</span> <span class="nf">Factorial</span><span class="p">(</span><span class="kt">long</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> 
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="n">Factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>求解阶乘n!的过程</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221320815.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221320815.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403221320815.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403221320815.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221320815.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221320815.png" /></p>
+<h3 id="三点认识">三点认识</h3>
+<ol>
+<li>
+<p>对于一个较为复杂的问题，如果能够分解成几个相对简单的且解法相同或类似的子问题时，只要解决了这些子问题，那么原问题就迎刃而解了，这就是递归求解。</p>
+<p>例：4！=4*3！</p>
+</li>
+<li>
+<p>递归结束条件</p>
+<p>当分解后的子问题可以直接解决时，就停止分解。可以直接求解的问题叫做递归结束条件</p>
+<p>如：0！=1</p>
+</li>
+<li>
+<p>定义的结构</p>
+<p>递归定义的函数可以简单地用递归过程来编程求解。递归直接反映了定义的结构</p>
+</li>
+</ol>
+<h3 id="递归的条件">递归的条件</h3>
+<p>须有完成函数任务的语句</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">count</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span> 	<span class="c1">//递归函数可以没有返回值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">val</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">count</span><span class="p">(</span><span class="n">val</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;ok:&#34;</span><span class="o">&lt;&lt;</span><span class="n">val</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//此语句完成函数任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>一个确定是否能避免递归调用的测试</p>
+<p>例：上例代码中，语句“if(val&gt;1)”便是一个测试</p>
+<p>一个递归调用语句</p>
+<p>例：上例代码中，“count(val-1);”</p>
+<p>先测试，后递归调用</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">count</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">count</span><span class="p">(</span><span class="n">val</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>		<span class="c1">//无限递归下去
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">val</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span>			<span class="c1">//该语句无法达到
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;ok:&#34;</span><span class="o">&lt;&lt;</span><span class="n">val</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="自学汉诺塔问题">自学(汉诺塔问题)</h2>
+<p>有三根针A、B、C。A针上有N个盘子，大的在下，小的在上，要求把这N个盘子从A针移到C针，在移动过程中可以借助B针，每次只允许移动一个盘，且在移动过程中在三根针上都保持大盘在下，小盘在上。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221353174.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221353174.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403221353174.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403221353174.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221353174.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221353174.png" /></p>
+<p>分析：将n个盘子从A移到C针可以分解为下面三个步骤</p>
+<ol>
+<li>
+<p>将A上n-1个盘子移到B针上(借助C针)</p>
+</li>
+<li>
+<p>把A针上剩下的一个盘子移到C针上</p>
+</li>
+<li>
+<p>将n-1个盘子从B针移到C针上(借助A针)</p>
+<p><strong>事实上，上面是三个步骤包含两种操作</strong>：</p>
+<ol>
+<li>将多个盘子从一个针移到另一个针上，这是一个递归的过程。hanoi函数实现</li>
+<li>将1个盘子从一个针上移到另一个针上用move函数实现</li>
+</ol>
+</li>
+</ol>
+<p>如图：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221358223.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221358223.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403221358223.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403221358223.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221358223.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221358223.png" /></p>
+<p>代码实现：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;strcalss&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">Hanoi</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">string</span> <span class="n">A</span><span class="p">,</span><span class="n">string</span> <span class="n">B</span><span class="p">,</span><span class="n">string</span> <span class="n">C</span><span class="p">)</span>	<span class="c1">//解决汉诺塔问题的算法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">A</span><span class="o">&lt;&lt;</span><span class="s">&#34;to&#34;</span><span class="o">&lt;&lt;</span><span class="n">C</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">B</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;move&#34;</span><span class="o">&lt;&lt;</span><span class="n">A</span><span class="o">&lt;&lt;</span><span class="s">&#34;to&#34;</span><span class="o">&lt;&lt;</span><span class="n">C</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">C</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>过程：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221403119.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221403119.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403221403119.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403221403119.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221403119.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221403119.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221403330.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221403330.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403221403330.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403221403330.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221403330.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403221403330.png" /></p>
+<h3 id="函数的参数传递机制传递参数值">函数的参数传递机制(传递参数值)</h3>
+<p>函数定义中指定的形参，在函数未被调用时，并不占有存储单元，在函数被调用时才在栈中为形参分配存储单元，并将实参与形参结合</p>
+<p>实参可以是常量，变量，表达式</p>
+<p>实参类型必须与形参相同</p>
+<p>传递时是传递参数值(Call by value)，即单向传递，将实参的值传递给形参，形参值的改变对实参不起作用</p>
+<p>举例：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403222142217.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403222142217.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403222142217.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403222142217.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403222142217.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403222142217.png" /></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">Swap</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">x</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="n">y</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;x=&#34;</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="s">&#34;y=&#34;</span><span class="o">&lt;&lt;</span><span class="n">y</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Swap</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;x=&#34;</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="s">&#34;y=&#34;</span><span class="o">&lt;&lt;</span><span class="n">y</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Swap</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">t</span><span class="o">=</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="o">=</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span><span class="o">=</span><span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="引用">引用</h2>
+<p><strong>概念</strong></p>
+<ol>
+<li>引用是一个变量或对象的别名</li>
+<li>通过引用名与通过被引用的变量名访问变量的效果一样</li>
+<li>声明一个引用时，必须同时对它进行初始化，使它指向一个已存在的对象</li>
+<li>一旦一个引用被初始化后，就不能改为指向其它对象</li>
+</ol>
+<p><strong>一个引用，从它诞生之时起，就必须确定是那个变量的别名，而且始终只能作为这一变量的别名，不能另作他用</strong></p>
+<p><strong>引用的建立</strong></p>
+<p>建立引用时，先写上目标类型，后跟引用运算符”&amp;“，然后是引用的名字。引用能使用任何合法的变量名</p>
+<p>例：引用一个整型变量</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">someInt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">&amp;</span> <span class="n">rInt</span> <span class="o">=</span> <span class="n">someInt</span><span class="p">;</span>
+</span></span></code></pre></div><p>程序的建立和使用引用</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">intOne</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">&amp;</span> <span class="n">rInt</span><span class="o">=</span><span class="n">intOne</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">intOne</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;intOne:&#34;</span><span class="o">&lt;&lt;</span><span class="n">intOne</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;rInt:&#34;</span><span class="o">&lt;&lt;</span><span class="n">rInt</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rInt</span><span class="o">=</span><span class="mi">7</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;intOne:&#34;</span><span class="o">&lt;&lt;</span><span class="n">intOne</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;rInt:&#34;</span><span class="o">&lt;&lt;</span><span class="n">rInt</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//运行结果
+</span></span></span><span class="line"><span class="cl"><span class="c1">//intOne:5
+</span></span></span><span class="line"><span class="cl"><span class="c1">//rInt:5
+</span></span></span><span class="line"><span class="cl"><span class="c1">//intOne:7
+</span></span></span><span class="line"><span class="cl"><span class="c1">//rInt:7
+</span></span></span></code></pre></div><h3 id="函数的参数传递用引用做形参">函数的参数传递(用引用做形参)</h3>
+<ol>
+<li>
+<p>引用运算符只在声明的时候使用，它放在类型名后面</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span><span class="o">&amp;</span> <span class="n">rInt</span><span class="o">=</span><span class="n">intOne</span><span class="p">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>任何其它”&amp;“的使用都是地址操作符：</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">ip</span><span class="o">=&amp;</span><span class="n">intOne</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;&amp;</span><span class="n">ip</span><span class="p">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>为了提高可读性，不应在同一行上同时声明引用，指针和变量</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">&amp;</span><span class="n">rInt</span><span class="p">,</span><span class="n">sa</span><span class="p">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>与指针类似，下面三种声明引用的方法都是合法的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">&amp;</span><span class="n">rInt</span><span class="p">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>引用可以作为形参</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>引用作为形参时，用实参来初始化形参。引用类型的形参就通过形式结合，成为实参的别名，对形参的任何操作就会作用于实参。</p>
+</li>
+</ol>
+<p>例：输入两个整数交换后输出</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">Swap</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">main</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="nf">x</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;x=&#34;</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="s">&#34;    y=&#34;</span><span class="o">&lt;&lt;</span><span class="n">y</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Swap</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;x=&#34;</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="s">&#34;    y=&#34;</span><span class="o">&lt;&lt;</span><span class="n">y</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Swap</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">t</span><span class="o">=</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">a</span><span class="o">=</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">b</span><span class="o">=</span><span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//运行结果
+</span></span></span><span class="line"><span class="cl"><span class="c1">//x=5,y=10
+</span></span></span><span class="line"><span class="cl"><span class="c1">//x=1-,y=5
+</span></span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403222208481.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403222208481.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403222208481.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403222208481.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403222208481.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403222208481.png" /></p>
+<p><strong>注意</strong>：</p>
+<ol>
+<li>引用不能绑定常量</li>
+<li>引用一旦初始化，其值就不能修改</li>
+<li>数组不能定义引用</li>
+</ol>
+<h3 id="小结">小结</h3>
+<p>值调用和引用调用的比较</p>
+<ol>
+<li>值调用是在发生函数调用时，给形参分配存储单元，并用实参来初始化形参（将实参的值直接传递给形参）。这一过程是参数值的单向传递过程，一旦形参获得了值，便与实参脱离关系。以后无论形参怎样改变，都不会影响到实参。</li>
+<li>引用调用将引用作为形参，在发生函数调用时，实参初始化形参，形参就成为实参的一个别名，对形参的任何操作就直接作用于实参。</li>
+</ol>
+<h2 id="内联函数">内联函数</h2>
+<ol>
+<li>
+<p>为何使用内联函数(内嵌函数)</p>
+<ol>
+<li>
+<p>函数调用需要建立栈内存环境，进行参数传递，并产生程序执行转移，需要时间和空间的开销。如果有的函数被频繁调用，则耗时很长，降低执行效率</p>
+</li>
+<li>
+<p>将规模较小又使用频繁的函数定义为内联函数，在编译时就会将函数体的代码嵌入到主调函数内的每一个调用语句处，节省了参数传递，控制转移等开销</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">isnumber</span><span class="p">(</span><span class="kt">char</span><span class="p">);</span>		<span class="c1">//函数声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">((</span><span class="n">c</span><span class="o">=</span><span class="n">cin</span><span class="p">.</span><span class="n">get</span><span class="p">())</span><span class="o">!=</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>	<span class="c1">//读入一个字符给变量并于’\n‘作比较
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">isnumber</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>		<span class="c1">//调用一个小函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;You entered a digit </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;You entered a non-digit </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">isnumber</span><span class="p">(</span><span class="kt">char</span> <span class="n">ch</span><span class="p">)</span>		<span class="c1">//函数定义
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">(</span><span class="n">ch</span><span class="o">&gt;=</span><span class="sc">&#39;0&#39;</span><span class="o">&amp;&amp;</span><span class="n">ch</span><span class="o">&lt;=</span><span class="sc">&#39;9&#39;</span><span class="p">)</span><span class="o">?</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>为了提高效率，可将程序改为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">((</span><span class="n">c</span><span class="o">=</span><span class="n">cin</span><span class="p">.</span><span class="n">get</span><span class="p">())</span><span class="o">!=</span><span class="sc">&#39;\n&#39;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">((</span><span class="n">ch</span><span class="o">&gt;=</span><span class="sc">&#39;0&#39;</span><span class="o">&amp;&amp;</span><span class="n">ch</span><span class="o">&lt;=</span><span class="sc">&#39;9&#39;</span><span class="p">)</span><span class="o">?</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;You entered a digit </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;You entered a non-digit </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>解决办法</p>
+<p>将isnumber()函数声明为inline</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">isnumber</span><span class="p">(</span><span class="kt">char</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">isnumber</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">(</span><span class="n">ch</span><span class="o">&gt;=</span><span class="sc">&#39;0&#39;</span><span class="o">&amp;&amp;</span><span class="n">ch</span><span class="o">&lt;=</span><span class="sc">&#39;9&#39;</span><span class="p">)</span><span class="o">?</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>声明和定义时使用关键字inline</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kr">inline</span> <span class="err">类型说明符</span> <span class="err">被调函数名</span>
+</span></span><span class="line"><span class="cl">				<span class="p">(</span><span class="err">含类型说明的形参表</span><span class="p">)</span>
+</span></span></code></pre></div><p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">isnumber</span><span class="p">(</span><span class="kt">char</span><span class="p">);</span>		<span class="c1">//inline函数声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">((</span><span class="n">c</span><span class="o">=</span><span class="n">cin</span><span class="p">.</span><span class="n">getc</span><span class="p">())</span><span class="o">!=</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">isnumber</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>		<span class="c1">//调用一个小函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;You entered a digit </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;You entered a non-digit </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">isnumber</span><span class="p">(</span><span class="kt">char</span> <span class="n">ch</span><span class="p">)</span>	<span class="c1">//此处无inlinr,视为inline
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">(</span><span class="n">ch</span><span class="o">&gt;=</span><span class="sc">&#39;0&#39;</span><span class="o">&amp;&amp;</span><span class="n">ch</span><span class="o">&lt;=</span><span class="sc">&#39;9&#39;</span><span class="p">)</span><span class="o">?</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>先声明后调用</p>
+<ol>
+<li>
+<p>内联函数的声明必须出现在内联函数第一次被调用之前</p>
+<p>例：下面的代码不会像预计的那样被编译</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">isnumber</span><span class="p">(</span><span class="kt">char</span><span class="p">);</span>		<span class="c1">//此处无inline
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">((</span><span class="n">c</span><span class="o">=</span><span class="n">cin</span><span class="p">.</span><span class="n">getc</span><span class="p">())</span><span class="o">!=</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">isnumber</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>		<span class="c1">//调用一个小函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;You entered a digit </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;You entered a non-digit </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">isnumber</span><span class="p">(</span><span class="kt">char</span> <span class="n">ch</span><span class="p">)</span>	<span class="c1">//此处为inline
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">(</span><span class="n">ch</span><span class="o">&gt;=</span><span class="sc">&#39;0&#39;</span><span class="o">&amp;&amp;</span><span class="n">ch</span><span class="o">&lt;=</span><span class="sc">&#39;9&#39;</span><span class="p">)</span><span class="o">?</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ol>
+<h3 id="内联函数声明与使用">内联函数声明与使用</h3>
+<ol>
+<li>
+<p>内联函数的函数体限制</p>
+<ol>
+<li>内联函数体内不能有循环语句和switch语句</li>
+<li>递归函数(自己调用自己的函数)是不能被用来做内联函数的</li>
+<li>内联函数体只适合只有1~5行的小函数</li>
+<li>对内联函数不能进行异常接口声明</li>
+<li>使用内按函数可以节省运行时间，但却增加了目标程序的长度</li>
+</ol>
+<p>举例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kr">inline</span> <span class="kt">int</span> <span class="nf">max</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">,</span><span class="n">intc</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">b</span><span class="o">&gt;</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span><span class="o">=</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">c</span><span class="o">&gt;</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span><span class="o">=</span><span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">j</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span><span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">);</span>	<span class="c1">//编译系统遇见函数调用max(i,j,k)时，就用max函数体的代码代替max(i,j,k),同时将实参代替形参。这样，max(i,j,k)就被置换成：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     if ( j&gt;i )  i = j ;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     if ( k&gt;i ) i = k;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     m=i;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">m</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="带默认形参值的函数默认形参值的作用">带默认形参值的函数(默认形参值的作用)</h2>
+<ol>
+<li>
+<p>默认形参值</p>
+<ol>
+<li>
+<p>一般情况下，实参个数应该与形参个数相同。C++允许实参和形参个数不同，办法是在形参列表中对形参指定默认值。</p>
+</li>
+<li>
+<p>调用时如给出实参，则用实参初始化形参，否则采用预先给出的默认形参值。</p>
+</li>
+<li>
+<p>c++可以给函数定义默认参数值。 通常要为函数的每个参数给定对应的实参</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">delay</span><span class="p">(</span><span class="kt">int</span> <span class="n">loops</span><span class="p">);</span>		<span class="c1">//函数声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">delay</span><span class="p">(</span><span class="kt">int</span> <span class="n">loops</span><span class="p">)</span>		<span class="c1">//函数定义
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">loops</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">loops</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>有时需要用相同的实参反复调用delay()函数。c++可以给参数定义默认值。</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">delay</span><span class="p">(</span><span class="kt">int</span> <span class="n">loops</span><span class="o">=</span><span class="mi">1000</span><span class="p">);</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ol>
+<p><strong>默认形参值得说明次序</strong></p>
+<ol>
+<li>
+<p>默认形参值必须按从右向左顺序声明，并且在默认形参值的右面不能有非缺省形参值的参数。因为调用时实参初始化形参是从左向右的顺序。</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="kt">int</span> <span class="n">z</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span>		<span class="c1">//正确
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="kt">int</span> <span class="n">z</span><span class="p">);</span>		<span class="c1">//错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">,</span><span class="kt">int</span> <span class="n">z</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span>		<span class="c1">//错误
+</span></span></span></code></pre></div></li>
+</ol>
+<p><strong>缺省形参值与函数的调用位置</strong></p>
+<p>默认形参值在函数声明中提供，当既有声明又有定义时，定义中不允许默认参数。如果函数只有定义，则默认形参值才可以在函数定义中提供。</p>
+<p><strong>缺省形参值得作用域</strong></p>
+<p>在相同的作用域内，缺省形参值的说明应保持唯一，但如果在不同的作用域内，允许说明不同的缺省形参。</p>
+<p>注：</p>
+<ol>
+<li>在相同的作用域内，即使前后定义的值相同也不行；</li>
+<li>如果一个函数在定义之前又有原型声明，默认形参值需要在原型中给出，定义中不能再出现默认形参值。</li>
+</ol>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="o">=</span><span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">add</span><span class="p">();</span>		<span class="c1">//使用局部缺省形参值（实现3+4）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">fun</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">add</span><span class="p">();</span>	<span class="c1">//使用全局缺省形参值(实现1+2)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<h2 id="函数重载">函数重载</h2>
+<p><strong>如果没有重载机制，即使是完全相同的操作，但是针对不同的数据类型，就需要定义名称完全不同的函数。</strong></p>
+<p>例如定义加法函数，必须对整数加法和浮点数加法使用不同的函数名：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">iadd</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">z</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">z</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">z</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">fadd</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">,</span><span class="kt">float</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">z</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">z</span><span class="o">=</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">z</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ol>
+<li>
+<p>C++允许功能相近的函数在相同的作用域内以相同函数名定义, 从而形成重载。方便使用,便于记忆。</p>
+</li>
+<li>
+<p>若干函数,名称相同,但形参个数或类型不同,编译器根据实参和形参的类型及个数的最佳匹配，自动确定调用那一个函数,这就是函数重载。</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//形参类型不同 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">add</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">,</span><span class="kt">float</span> <span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//形参个数不同
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">,</span><span class="kt">int</span> <span class="n">z</span><span class="p">);</span>
+</span></span></code></pre></div></li>
+</ol>
+<p>注意事项</p>
+<ol>
+<li>重载函数的形参必须不同: <strong>个数不同或类型不同。</strong></li>
+<li>编译程序将根据实参和形参的类型及个数的最佳匹配来自动选择调用哪一个函数</li>
+<li>不要将不同功能的函数声明为重载函数，以免出现调用结果的误解、混淆。这样不好：</li>
+</ol>
+<p>例：编写三个名为add的重载函数，分别实现两整数相加，两实数相加和两个复数相加的功能</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">struct</span> <span class="nc">complex</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">real</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">imaginary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">complex</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">c3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">add</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">complex</span> <span class="n">add</span><span class="p">(</span><span class="n">complex</span> <span class="n">c1</span><span class="p">,</span> <span class="n">complex</span> <span class="n">c2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Enter two integer: &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">m</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;integer&#34;</span><span class="o">&lt;&lt;</span><span class="n">m</span><span class="o">&lt;&lt;</span><span class="sc">&#39;+&#39;</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="o">&lt;&lt;</span><span class="s">&#34;=“                                          &lt;&lt;add(m,n)&lt;&lt;endl;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Enter two real number: &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;real number &#34;</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="sc">&#39;+&#39;</span><span class="o">&lt;&lt;</span><span class="n">y</span><span class="o">&lt;&lt;</span>                                     <span class="s">&#34;= &#34;</span><span class="o">&lt;&lt;</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Enter the first complex number: &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">c1</span><span class="p">.</span><span class="n">real</span><span class="o">&gt;&gt;</span><span class="n">c1</span><span class="p">.</span><span class="n">imaginary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Enter the second complex number: &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">c2</span><span class="p">.</span><span class="n">real</span><span class="o">&gt;&gt;</span><span class="n">c2</span><span class="p">.</span><span class="n">imaginary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">c3</span><span class="o">=</span><span class="n">add</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span><span class="n">c2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;complex number (&#34;</span> <span class="o">&lt;&lt;</span><span class="n">c1</span><span class="p">.</span><span class="n">real</span><span class="o">&lt;&lt;</span> <span class="sc">&#39;,&#39;</span>
+</span></span><span class="line"><span class="cl">           <span class="o">&lt;&lt;</span> <span class="n">c1</span><span class="p">.</span><span class="n">imaginary</span> <span class="o">&lt;&lt;</span><span class="s">&#34;)+(&#34;</span><span class="o">&lt;&lt;</span><span class="n">c2</span><span class="p">.</span><span class="n">real</span><span class="o">&lt;&lt;</span><span class="sc">&#39;,&#39;</span>
+</span></span><span class="line"><span class="cl">           <span class="o">&lt;&lt;</span><span class="n">c2</span><span class="p">.</span><span class="n">imaginary</span><span class="o">&lt;&lt;</span><span class="s">&#34;)=(&#34;</span><span class="o">&lt;&lt;</span><span class="n">c3</span><span class="p">.</span><span class="n">real</span><span class="o">&lt;&lt;</span><span class="sc">&#39;,&#39;</span>
+</span></span><span class="line"><span class="cl">           <span class="o">&lt;&lt;</span><span class="n">c3</span><span class="p">.</span><span class="n">imaginary</span><span class="o">&lt;&lt;</span><span class="s">&#34;)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="k">return</span> <span class="n">m</span><span class="o">+</span><span class="n">n</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">add</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">complex</span> <span class="nf">add</span><span class="p">(</span><span class="n">complex</span> <span class="n">c1</span><span class="p">,</span> <span class="n">complex</span> <span class="n">c2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">complex</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">c</span><span class="p">.</span><span class="n">real</span><span class="o">=</span><span class="n">c1</span><span class="p">.</span><span class="n">real</span><span class="o">+</span><span class="n">c2</span><span class="p">.</span><span class="n">real</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">c</span><span class="p">.</span><span class="n">imaginary</span><span class="o">=</span><span class="n">c1</span><span class="p">.</span><span class="n">imaginary</span><span class="o">+</span><span class="n">c2</span><span class="p">.</span><span class="n">imaginary</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//运行结果
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Enter two integer: 3 5
+</span></span></span><span class="line"><span class="cl"><span class="c1">//integer 3+5=8
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Enter two real number: 2.3 5.8
+</span></span></span><span class="line"><span class="cl"><span class="c1">//real number 2.3+5.8= 8.1
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Enter the first complex number: 12.3 45.6
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Enter the second complex number: 56.7 67.8
+</span></span></span><span class="line"><span class="cl"><span class="c1">//complex number (12.3,45.6)+(56.7,67.8)=(69,113.4)
+</span></span></span></code></pre></div><p><strong>重载函数需要注意以下五个问题</strong></p>
+<ol>
+<li>函数的返回类型不能成为判断依据</li>
+<li>如果在两个函数的参数列表中只有缺省实参不同，那么它们也不会被看作是重载函数。</li>
+<li>采用typedef定义的类型也不能作为判断依据。</li>
+<li>采用const来修饰按值传递的参数也意味着不改变实参的数值，所以不能被看作是重载函数</li>
+<li>重载函数中所有的函数定义都必须在同一个域中，不同类域中的函数也不能构成重载函数</li>
+</ol>
+<p><strong>重载函数的选择</strong></p>
+<p>重载函数被调用时，系统会根据指定的实参在多个同名的函数中选择一个最合适的函数，通常分为三个步骤：</p>
+<ol>
+<li>在重载函数集合中找出可行函数，可行函数的参数个数要和调用时的实参的个数相同，或者多一些缺省的参数，可行函数的参数类型要和调用时实参的类型相同，或者可以转换。</li>
+<li>在可行函数中，寻找精确匹配的函数，精确匹配是指实参和形类的类型和个数完全相同，也指从数组到指针的类型转换，从函数到指针的类型转换。</li>
+<li>依据数据类型转换规则，找到可匹配函数。类型转换被分成三个等级：提升转换、标准转换和自定义转换。</li>
+</ol>
+<p>如果通过上述三步仍然无法找到任何可匹配函数，那么该函数的调用就是二义的。</p>
+<h2 id="函数模板">函数模板</h2>
+<h3 id="代码重用">代码重用</h3>
+<ol>
+<li>按不同方式重复使用已有的代码</li>
+<li>代码必须通用，不受数据类型的限制，这是参数化程序设计</li>
+<li>模板有可以使用和操作任何数据类型的通用代码构成，其中将所使用的数据类型说明为参数</li>
+</ol>
+<p><strong>函数模板可以用来创建</strong>一个通用功能的函数，以支持多种不同形参，进一步简化重载函数的函数体设计。</p>
+<h3 id="函数模板的定义形式">函数模板的定义形式</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="err">类型形式参数表</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="err">类型名</span> <span class="err">函数名</span><span class="p">(</span><span class="err">形式参数表</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//函数体
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>如果形式参数包含基本数据类型，加前缀typename</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span><span class="n">T</span> <span class="n">func</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="p">)</span>
+</span></span></code></pre></div><p>如果形式参数表包含类类型名，加前缀class template <!-- raw HTML omitted --> T func(T x)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="err">或</span> <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="err">类型名</span>  <span class="err">函数名</span><span class="p">(</span><span class="err">形式参数表</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">函数体</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>例：求绝对值函数的模板</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">T</span> <span class="n">abs</span> <span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>    <span class="k">return</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">?-</span><span class="nl">x</span><span class="p">:</span><span class="n">x</span><span class="p">;</span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="kt">int</span> <span class="n">n</span><span class="o">=-</span><span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">d</span><span class="o">=-</span><span class="mf">5.5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">abs</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">abs</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>当类型参数的含义确定后，编译器将以函数模板为样板，生成一个函数：</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">abs</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>    <span class="k">return</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">?-</span><span class="nl">x</span><span class="p">:</span><span class="n">x</span><span class="p">;</span>    <span class="p">}</span>
+</span></span></code></pre></div><p><strong>对于调用表达式abs(d)，由于实参d为double类型，所以推导出模板中类型参数T为double。接着，编译器将以函数模板为样板</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">double</span>  <span class="nf">abs</span> <span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>    <span class="k">return</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">?-</span><span class="nl">x</span><span class="p">:</span><span class="n">x</span><span class="p">;</span>    <span class="p">}</span>
+</span></span></code></pre></div><h3 id="函数模板的说明">函数模板的说明</h3>
+<ol>
+<li>
+<p>函数模板</p>
+<ol>
+<li>函数模板的定义不是一个实实在在的函数，编译系统不为其产生任何执行代码。该定义只是对函数的描述，表示它每次能处理在类型形式参数表中说明的数据类型</li>
+<li>当编译系统发现一个函数调用：func(实参表)，将根据实参表中的类型，确认是否匹配函数模板中对应的形式参数表，然后生成一个函数。该函数的函数体与函数模板中的函数体相同，而形式参数表的类型则以实参表的实际类型为依据。该函数称为模板函数。</li>
+</ol>
+</li>
+<li>
+<p>函数模板与模板函数的区别</p>
+<p>函数模板是模板的定义，定义中用到通用类型参数；
+模板函数是实实在在的函数定义,由编译系统遇见具体的函数调用时生成,具有执行代码。</p>
+</li>
+<li>
+<p>对上例的说明</p>
+<ol>
+<li>
+<p>编译器从调用abs（ ）时实参的类型，推导出函数模板的类型参数。例如,对于调用表达式abs(n),由于实参n为int类型,所以推导出模板中类型参数T为int。</p>
+</li>
+<li>
+<p>当编译器发现调用函数模板时，就创建一个模板函数。在上例中，当编译器发现abs(n)调用用时，产生一个如下的函数定义，生成其程序代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">abs</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">?-</span><span class="nl">x</span><span class="p">:</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>当发现abs(d)调用时，产生如下的函数定义，也生成其程序代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">abs</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">?-</span><span class="nl">x</span><span class="p">:</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ol>
+<h3 id="函数模板实例化">函数模板实例化</h3>
+<h4 id="隐式实例化">隐式实例化</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//定义函数模板
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">T</span> <span class="n">add</span><span class="p">(</span><span class="n">T</span> <span class="n">t1</span><span class="p">,</span> <span class="n">T</span> <span class="n">t2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">t1</span> <span class="o">+</span> <span class="n">t2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">//传入int类型参数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">//传入double类型参数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="显式实例化">显式实例化</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">T</span> <span class="n">add</span><span class="p">(</span><span class="n">T</span> <span class="n">t1</span><span class="p">,</span> <span class="n">T</span> <span class="n">t2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">t1</span> <span class="o">+</span> <span class="n">t2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="kt">int</span> <span class="n">add</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">int</span> <span class="n">t1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">t2</span><span class="p">);</span> <span class="c1">//显式实例化为int类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">//函数模板调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="使用函数模板注意事项">使用函数模板注意事项</h3>
+<ol>
+<li>函数模板中每一个类型参数在函数参数表中必须至少使用一次</li>
+<li>在全局域中声明的模板参数同名对象、函数或类型、在函数模板中将被隐藏。</li>
+<li>函数模板中定义声明的对象或类型不能与模板参数同名</li>
+<li>模板参数名在同一模板参数表中只能使用一次，但可以在多个函数模板声明或定义之间重复使用。</li>
+</ol>
+<h2 id="使用c系统函数">使用C++系统函数</h2>
+<ol>
+<li>
+<p>模板参数名在同一模板参数表中只能使用一次，但可以在多个函数模板声明或定义之间重复使用。</p>
+<p>例如：</p>
+<p><strong>求平方根函数(sqrt)，求绝对值函数(abs)等</strong></p>
+</li>
+<li>
+<p>使用系统函数是要包含相应的头文件</p>
+<p>使用函数之前必须先声明函数原型。系统函数的原型存在于不同的头文件中。用#include指令嵌入相应的头文件，就可以使用系统函数。</p>
+<p><strong>例如：</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;math&gt;
+</span></span></span></code></pre></div></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-03-21</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.gtihub.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/" data-title="c&#43;&#43;(three)" data-hashtags="面向对象程序设计"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.gtihub.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/" data-hashtag="面向对象程序设计"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.gtihub.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/" data-title="c&#43;&#43;(three)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.gtihub.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/" data-title="c&#43;&#43;(three)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.gtihub.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/" data-title="c&#43;&#43;(three)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">面向对象程序设计</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/" class="prev" rel="prev" title="编译引论(第三章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>编译引论(第三章)</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
