@@ -1,89 +1,89 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>蓝Q曦的博客网站</title>
-        <link>https://adan-ning.gtihub.io/</link>
+        <link>https://adan-ning.github.io/</link>
         <description>这是我的全新 Hugo 网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 21 Mar 2024 00:00:00 &#43;0000</lastBuildDate>
-            <atom:link href="https://adan-ning.gtihub.io/index.xml" rel="self" type="application/rss+xml" />
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 26 Mar 2024 00:00:00 &#43;0000</lastBuildDate>
+            <atom:link href="https://adan-ning.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>操作系统(第三章)</title>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3/</link>
+    <pubDate>Tue, 26 Mar 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3/</guid>
+    <description><![CDATA[处理机调度与死锁 调度算法和银行家算法 处理机调度的层次和调度算法的目标 处理机调度的层次 高级调度(又称：作业，长程，接纳调度) 高级调度又称长程调]]></description>
+</item>
+<item>
+    <title>算法与程序(第三章)</title>
+    <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A13/</link>
+    <pubDate>Mon, 25 Mar 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A13/</guid>
+    <description><![CDATA[动态规划 算法总体思想 如果能够保存已解决的子问题答案，而在需要时再找出以求得的答案，就可以避免大量重复计算，从而得到多项式时间算法 矩阵连乘问题]]></description>
+</item>
+<item>
+    <title>c&#43;&#43;(four)</title>
+    <link>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14/</link>
+    <pubDate>Fri, 22 Mar 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14/</guid>
+    <description><![CDATA[类和对象 面向对象程序设计的基本特点 抽象 抽象是对具体对象（问题）进行概括，抽出这一类对象的公共性质并加以描述的过程。 先注意问题的本质及描述，其]]></description>
+</item>
+<item>
     <title>c&#43;&#43;(three)</title>
-    <link>https://adan-ning.gtihub.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/</link>
+    <link>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/</link>
     <pubDate>Thu, 21 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/</guid>
+    <guid>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/</guid>
     <description><![CDATA[函数 函数的定义与使用 所有的高级语言都有子程序的概念，实现模块的划分 C和C++中的子程序体现为函数 一个C++程序由一个主函数和若干其他函数构成]]></description>
 </item>
 <item>
     <title>编译引论(第三章)</title>
-    <link>https://adan-ning.gtihub.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/</link>
+    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/</link>
     <pubDate>Tue, 19 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/</guid>
+    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/</guid>
     <description><![CDATA[词法分析 词法分析程序的功能 词法分析程序的主要任务是按语言的词法规则从源程序中逐个识别单词，把字符串形式的源程序转换为单词串的形式，并把每个单]]></description>
 </item>
 <item>
     <title>计算机组成(第二章)</title>
-    <link>https://adan-ning.gtihub.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862/</link>
+    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862/</link>
     <pubDate>Sat, 16 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862/</guid>
+    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862/</guid>
     <description><![CDATA[数据与文字的表示方法 数据格式 分类 符号数据：非数字符号的表示(ASCII,汉字，图形等) 数值数据：数字数据的表示方式(定点，浮点) 计算机数字和]]></description>
 </item>
 <item>
     <title>算法与程序(第二章)</title>
-    <link>https://adan-ning.gtihub.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A12/</link>
+    <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A12/</link>
     <pubDate>Tue, 12 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A12/</guid>
+    <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A12/</guid>
     <description><![CDATA[分治法 思想 分+治+合 过程 分治法产生的子问题是原问题的较小模式 反复应用分治手段，可以使子问题规模不断减小 最终使子问题缩小到很容易直接求出其解 将]]></description>
 </item>
 <item>
     <title>数据结构(第一章)</title>
-    <link>https://adan-ning.gtihub.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+    <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
     <pubDate>Sun, 10 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+    <guid>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
     <description><![CDATA[概念 相互之间存在一种或多种特定关系的数据元素的集合 逻辑结构，存储结构，运算合称为三要素 数据结构形式定义 数据结构是一个二元组 Data_Structure = (D,S) D是数据元素]]></description>
 </item>
 <item>
     <title>数据结构(第二章)</title>
-    <link>https://adan-ning.gtihub.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842/</link>
+    <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842/</link>
     <pubDate>Sun, 10 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842/</guid>
+    <guid>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842/</guid>
     <description><![CDATA[线性表定义 一个线性表是n个数据元素的有限序列 数据元素类型 原子型 整数，字符 结构类型 表示学生的数据元素 线性表中的元素之间的关系是线性关系 存在惟一]]></description>
 </item>
 <item>
     <title>c&#43;&#43;(two)</title>
-    <link>https://adan-ning.gtihub.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A12/</link>
+    <link>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A12/</link>
     <pubDate>Sat, 09 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A12/</guid>
+    <guid>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A12/</guid>
     <description><![CDATA[c++的产生 c++是从c语言发展演变而来的，引入了类的机制，最初也被称为&quot;带类的C&quot; 特点 保持c的简洁，高效和接近汇编语言]]></description>
-</item>
-<item>
-    <title>用Hugo配合Algolia实现高效美观的站内搜索</title>
-    <link>https://adan-ning.gtihub.io/posts/%E7%94%A8hugo%E9%85%8D%E5%90%88algolia%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%BE%8E%E8%A7%82%E7%9A%84%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/</link>
-    <pubDate>Sat, 09 Mar 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E7%94%A8hugo%E9%85%8D%E5%90%88algolia%E5%AE%9E%E7%8E%B0%E9%AB%98%E6%95%88%E7%BE%8E%E8%A7%82%E7%9A%84%E7%AB%99%E5%86%85%E6%90%9C%E7%B4%A2/</guid>
-    <description><![CDATA[用Hugo配合Algolia实现高效美观的站内搜索 前言 很多的 Hugo 主题是没有自带搜索功能的，但是们为了方便用户浏览和查找内容是需要在网站上提供搜]]></description>
-</item>
-<item>
-    <title>计算机组成(第一章)</title>
-    <link>https://adan-ning.gtihub.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</link>
-    <pubDate>Sat, 09 Mar 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</guid>
-    <description><![CDATA[计算机组成部分 运算器，控制器，存储器，输入/输出设备 概念 计算机是一种以电子器件为基础的，不需人的直接干预，能够对各种数字化信息，进行算术和逻]]></description>
-</item>
-<item>
-    <title>c&#43;&#43;(one)</title>
-    <link>https://adan-ning.gtihub.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</link>
-    <pubDate>Fri, 08 Mar 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</guid>
-    <description><![CDATA[计算机程序 面向对象的方法 抽象 分类所依据的原则 忽略事物的非本质特征，从而找出事物的共性，把具有共同性质的事物划分为一类，得出一个抽象的概念 封装]]></description>
 </item>
 </channel>
 </rss>

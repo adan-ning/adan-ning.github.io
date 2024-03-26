@@ -1,22 +1,22 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>数据结构 - Tag - 蓝Q曦的博客网站</title>
-        <link>https://adan-ning.gtihub.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+        <link>https://adan-ning.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
         <description>数据结构 - Tag - 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 10 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.gtihub.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 10 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="self" type="application/rss+xml" /><item>
     <title>数据结构(第一章)</title>
-    <link>https://adan-ning.gtihub.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+    <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
     <pubDate>Sun, 10 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+    <guid>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
     <description><![CDATA[概念 相互之间存在一种或多种特定关系的数据元素的集合 逻辑结构，存储结构，运算合称为三要素 数据结构形式定义 数据结构是一个二元组 Data_Structure = (D,S) D是数据元素]]></description>
 </item>
 <item>
     <title>数据结构(第二章)</title>
-    <link>https://adan-ning.gtihub.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842/</link>
+    <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842/</link>
     <pubDate>Sun, 10 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842/</guid>
+    <guid>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842/</guid>
     <description><![CDATA[线性表定义 一个线性表是n个数据元素的有限序列 数据元素类型 原子型 整数，字符 结构类型 表示学生的数据元素 线性表中的元素之间的关系是线性关系 存在惟一]]></description>
 </item>
 </channel>

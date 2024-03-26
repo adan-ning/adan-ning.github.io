@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>c&#43;&#43;(four) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="c&#43;&#43;(four)" />
+<meta property="og:description" content="类和对象 面向对象程序设计的基本特点 抽象 抽象是对具体对象（问题）进行概括，抽出这一类对象的公共性质并加以描述的过程。 先注意问题的本质及描述，其" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14/" /><meta property="og:image" content="https://adan-ning.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-03-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-03-22T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://adan-ning.github.io/logo.png" /><meta name="twitter:title" content="c&#43;&#43;(four)"/>
+<meta name="twitter:description" content="类和对象 面向对象程序设计的基本特点 抽象 抽象是对具体对象（问题）进行概括，抽出这一类对象的公共性质并加以描述的过程。 先注意问题的本质及描述，其"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/" /><link rel="next" href="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A13/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "c++(four)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/adan-ning.github.io\/posts\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14\/"
+        },"genre": "posts","keywords": "面向对象程序设计","wordcount":  3998 ,
+        "url": "https:\/\/adan-ning.github.io\/posts\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14\/","datePublished": "2024-03-22T00:00:00+00:00","dateModified": "2024-03-22T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">c++(four)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>面向对象程序设计</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-22">2024-03-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3998 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#面向对象程序设计的基本特点">面向对象程序设计的基本特点</a>
+      <ul>
+        <li><a href="#抽象">抽象</a></li>
+        <li><a href="#封装">封装</a></li>
+        <li><a href="#继承">继承</a></li>
+        <li><a href="#多态性">多态性</a></li>
+      </ul>
+    </li>
+    <li><a href="#类和对象c中的类">类和对象(c++中的类)</a>
+      <ul>
+        <li><a href="#类的定义">类的定义</a></li>
+        <li><a href="#类成员的访问控制">类成员的访问控制</a></li>
+        <li><a href="#类的成员函数">类的成员函数</a></li>
+        <li><a href="#类的成员函数-1">类的成员函数</a></li>
+        <li><a href="#类的声明和内部实现">类的声明和内部实现</a></li>
+        <li><a href="#对象">对象</a></li>
+        <li><a href="#类和对象-1">类和对象</a></li>
+        <li><a href="#类的成员的访问方式">类的成员的访问方式</a></li>
+        <li><a href="#类与结构体">类与结构体</a></li>
+      </ul>
+    </li>
+    <li><a href="#构造函数和析构函数">构造函数和析构函数</a>
+      <ul>
+        <li><a href="#构造函数">构造函数</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="类和对象">类和对象</h1>
+<h2 id="面向对象程序设计的基本特点">面向对象程序设计的基本特点</h2>
+<h3 id="抽象">抽象</h3>
+<p>抽象是对具体对象（问题）进行概括，抽出这一类对象的公共性质并加以描述的过程。</p>
+<ol>
+<li>先注意问题的本质及描述，其次是实现过程或细节</li>
+<li>数据抽象：描述某类的属性或状态(对象相互区别的物理量)</li>
+<li>代码抽象：描述某类对象的共有的行为特征或具有的功能</li>
+<li>抽象的实现：通过类的声明</li>
+</ol>
+<p><strong>实例(钟表)</strong></p>
+<ol>
+<li>
+<p>数据抽象</p>
+<p>需要三个整数来存储时间，分别表示时、分和秒，这就是对时钟所具有的数据进行抽象。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">Hour</span><span class="p">,</span><span class="kt">int</span> <span class="n">Minute</span><span class="p">,</span><span class="kt">int</span> <span class="n">Second</span>
+</span></span></code></pre></div></li>
+<li>
+<p>代码抽象</p>
+<p>时钟要具有显示时间、设置时间等简单的功能,这就是对它的行为的抽象。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">SetTime</span><span class="p">(),</span><span class="n">ShowTime</span><span class="p">()</span>
+</span></span></code></pre></div></li>
+</ol>
+<p><strong>抽象实例</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Clock</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">SetTime</span><span class="p">(</span><span class="kt">int</span> <span class="n">NewH</span><span class="p">,</span><span class="kt">int</span> <span class="n">NewM</span><span class="p">,</span><span class="kt">int</span> <span class="n">NewS</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">ShowTime</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">Hour</span><span class="p">,</span><span class="n">Minute</span><span class="p">,</span><span class="n">Second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p><strong>抽象实例(人)</strong></p>
+<p>数据抽象：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">name</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">sex</span><span class="p">,</span><span class="kt">int</span> <span class="n">age</span><span class="p">,</span><span class="kt">int</span> <span class="n">id</span><span class="p">(</span><span class="err">或：</span><span class="n">string</span> <span class="n">name</span><span class="p">,</span><span class="n">string</span> <span class="n">sex</span><span class="p">,</span><span class="kt">int</span> <span class="n">age</span><span class="p">,</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span>
+</span></span></code></pre></div><p>代码抽象</p>
+<p>生物属性角度：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">GetCloth</span><span class="p">(),</span><span class="n">Eat</span><span class="p">(),</span><span class="n">Step</span><span class="p">(),..</span>
+</span></span></code></pre></div><p>社会属性角度：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Work</span><span class="p">(),</span><span class="n">Promote</span><span class="p">(),...</span>
+</span></span></code></pre></div><h3 id="封装">封装</h3>
+<p><strong>封装就是将抽象得到的数据和行为（或功能）相结合，形成一个有机的整体。也就是将数据与操作数据的函数代码进行有机地结合，形成“类”，其中的数据和函数都是类的成员。</strong></p>
+<ol>
+<li>目的是增强安全性和简化编程，使用者不必了解具体的实现细节，而只需要通过<strong>外部接口</strong>，以特定的访问权限，来使用类的成员。</li>
+<li>实现封装：类声明中的{}</li>
+</ol>
+<p>实例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Clock</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">SetTime</span><span class="p">(</span><span class="kt">int</span> <span class="n">NewH</span><span class="p">,</span><span class="kt">int</span> <span class="n">NewM</span><span class="p">,</span><span class="kt">int</span> <span class="n">NewS</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">ShowTime</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//SetTime()，ShowTime()为外部接口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">Hour</span><span class="p">,</span><span class="n">Minute</span><span class="p">,</span><span class="n">Second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//public,private为特定访问权限
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//{}：边界
+</span></span></span></code></pre></div><h3 id="继承">继承</h3>
+<p><strong>C++语言中提供了类的继承机制，允许程序员在保持原有类特性的基础上，进行更具体、更详细的说明</strong></p>
+<p>是C++中支持层次分类的一种机制，允许程序员在保持原有类特性的基础上，进行更具体的说明。</p>
+<p>实现：声明派生类——第七章</p>
+<h3 id="多态性">多态性</h3>
+<ol>
+<li>
+<p>多态：同一名称，不同的功能实现方式</p>
+<p><strong>多态性是指一段程序能够处理多种类型对象的能力。</strong></p>
+</li>
+<li>
+<p>目的：达到行为标识统一，减少程序中标识符的个数</p>
+</li>
+<li>
+<p>实现：<strong>在C++中语言中，这种多态性可以通过强制多态、重载多态、类型参数化多态（模板）、包含多态(虚函数）4种形式来实现。</strong></p>
+</li>
+</ol>
+<h2 id="类和对象c中的类">类和对象(c++中的类)</h2>
+<ol>
+<li>类是具有相同属性和行为的一组对象的集合，它为属于该类的全部对象提供了统一的抽象描述，其内部包括属性和行为两个主要部分。</li>
+<li>利用类可以实现数据的封装、隐藏、继承与派生</li>
+<li>利用类易于编写大型复杂程序，其模块化程度比C中采用函数更高。</li>
+</ol>
+<p>类实际上相当于一种用户自定义的类型，它和前面学习过的基本类型，如整型、实型，有类似的特征。同样，也可以声明某个类类型的变量，这个变量就称为类的对象（或实例），这个声明的过程也称为类的实例化。类和基本类型的不同之处在于，类这个特殊类型中同时包含了对数据进行操作的函数。</p>
+<h3 id="类的定义">类的定义</h3>
+<p>以时钟为例：时钟类的定义如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403231928009.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403231928009.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403231928009.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403231928009.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403231928009.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403231928009.png" /></p>
+<p><strong>类的声明形式</strong></p>
+<p>类是一种用户自定义类型，声明形式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="err">类名称</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="err">公有成员（外部接口）</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="err">私有成员</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="err">保护型成员</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><ol>
+<li>
+<p>公有类型成员</p>
+<p>在关键字public后面声明，它们是类与外部的接口（interface），任何外部函数都可以访问公有类型数据和函数。</p>
+</li>
+<li>
+<p>私有类型成员</p>
+<p>在关键字private后面声明，只允许本类中的函数访问，而类外部的任何函数都不能访问。</p>
+</li>
+<li>
+<p>保护类型</p>
+<p>与private类似，其差别表现在继承与派生时对派生类的影响不同，第七章讲。</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Clock</span><span class="o">::</span><span class="n">SetTime</span><span class="p">(</span><span class="kt">int</span> <span class="n">NewH</span><span class="p">,</span><span class="kt">int</span> <span class="n">NewM</span><span class="p">,</span><span class="kt">int</span> <span class="n">NewS</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>   <span class="n">Hour</span> <span class="o">=</span> <span class="n">NewH</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">         <span class="n">Minute</span> <span class="o">=</span> <span class="n">NewM</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">         <span class="n">Second</span> <span class="o">=</span> <span class="n">NewS</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">Clock</span><span class="o">::</span><span class="n">ShowTime</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">Hour</span><span class="o">&lt;&lt;</span> <span class="err">“</span><span class="o">:</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">Minute</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="o">:</span><span class="err">”</span><span class="o">&lt;&lt;</span> <span class="n">Second</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></div><h3 id="类成员的访问控制">类成员的访问控制</h3>
+<ol>
+<li>
+<p>定义访问控制属性的基本原则</p>
+<ol>
+<li>将需要隐藏的成员设为私有类型；将提供给外界的接口设为公有类型。</li>
+<li>设计一个类时，一定要设计必要的外部接口</li>
+<li>一般情况下，一个类的数据成员都应该声明为私有成员，内部数据结构就不会对类外造成影响，程序模块之间的耦合性降低到最小。</li>
+</ol>
+</li>
+<li>
+<p>类的成员</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Clock</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">SetTime</span><span class="p">(</span><span class="kt">int</span> <span class="n">NewH</span><span class="p">,</span><span class="kt">int</span> <span class="n">NewM</span><span class="p">,</span><span class="kt">int</span> <span class="n">NewS</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">ShowTime</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//成员函数 (member function)或 函数成员
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">Hour</span><span class="p">,</span><span class="n">Minute</span><span class="p">,</span><span class="n">Second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//数据成员 （data member）或 成员数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Clock</span> <span class="o">::</span> <span class="n">SetTime</span><span class="p">(</span><span class="kt">int</span> <span class="n">NewH</span><span class="p">,</span> <span class="kt">int</span> <span class="n">NewM</span><span class="p">,</span><span class="kt">int</span> <span class="n">NewS</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Hour</span><span class="o">=</span><span class="n">NewH</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Minute</span><span class="o">=</span><span class="n">NewM</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Second</span><span class="o">=</span><span class="n">NewS</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Clock</span> <span class="o">::</span> <span class="n">ShowTime</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">Hour</span><span class="o">&lt;&lt;</span><span class="s">&#34;:&#34;</span><span class="o">&lt;&lt;</span><span class="n">Minute</span><span class="o">&lt;&lt;</span><span class="s">&#34;:&#34;</span><span class="o">&lt;&lt;</span><span class="n">Second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<p>概念设计中的类的表示</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403231941357.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403231941357.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403231941357.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403231941357.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403231941357.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403231941357.png" /></p>
+<p><strong>数据成员</strong></p>
+<p>与一般的变量声明相同，但需要将它放在类的声明体中。</p>
+<h3 id="类的成员函数">类的成员函数</h3>
+<p><strong>一般在类中声明成员函数的原型，在类外定义函数体的实现</strong>，并在函数名前使用类名加以限定。也可以直接在类中给出函数体，形成内联成员函数。</p>
+<h3 id="类的成员函数-1">类的成员函数</h3>
+<ol>
+<li>
+<p>成员函数调用中的目的对象</p>
+<p>在类中调用成员函数与普通函数是不同，需要使用“对象.成员”，成员函数调用本类中成员不需要使用“.”，成员函数通过其它类的对象调用其它类中成员需要使用“.”。</p>
+</li>
+<li>
+<p>成员函数可以调用本类中公开，私有、保护成员</p>
+</li>
+<li>
+<p>允许声明重载函数和带缺省形参值的函数</p>
+<ol>
+<li>
+<p>成员函数重载</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Clock</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span><span class="n">setTime</span><span class="p">(</span><span class="kt">int</span> <span class="n">newH</span><span class="p">,</span><span class="kt">int</span> <span class="n">newM</span><span class="p">,</span><span class="kt">int</span> <span class="n">newS</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">setTime</span><span class="p">(</span><span class="kt">int</span> <span class="n">newH</span><span class="p">,</span><span class="kt">int</span> <span class="n">newM</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">......</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>带缺省形参值的成员函数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Clock</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span><span class="n">setTime</span><span class="p">(</span><span class="kt">int</span> <span class="n">newH</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="kt">int</span> <span class="n">newM</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="kt">int</span> <span class="n">newS</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">......</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>内联成员函数(1)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Clock</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span><span class="n">setTime</span><span class="p">(</span><span class="kt">int</span> <span class="n">newH</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="kt">int</span> <span class="n">newM</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="kt">int</span> <span class="n">newS</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">showTime</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">hour</span><span class="o">&lt;&lt;</span><span class="err">”</span><span class="o">:</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">minute</span><span class="o">&lt;&lt;</span><span class="err">”</span><span class="o">:</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">......</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>内联成员函数(2)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Clock</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span><span class="n">setTime</span><span class="p">(</span><span class="kt">int</span> <span class="n">newH</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="kt">int</span> <span class="n">newM</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="kt">int</span> <span class="n">newS</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="p">......</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="n">Clock</span><span class="o">::</span><span class="n">showTime</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">hour</span><span class="o">&lt;&lt;</span><span class="err">”</span><span class="o">:</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">minute</span><span class="o">&lt;&lt;</span><span class="err">”</span><span class="o">:</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//注意：上面两种方式内联的效果是一样的
+</span></span></span></code></pre></div></li>
+</ol>
+</li>
+</ol>
+<p><strong>成员函数</strong></p>
+<ol>
+<li>
+<p>成员函数的声明和实现</p>
+<ol>
+<li>
+<p>成员函数的实现</p>
+<ol>
+<li>具体是现在类声明之外</li>
+<li>与普通函数不同的是，实现函数时要指明类的名称。</li>
+</ol>
+</li>
+<li>
+<p>成员函数声明的格式</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">返回值类型</span>  <span class="err">类名</span> <span class="o">::</span> <span class="err">成员函数名</span> <span class="err">（参数列表）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="err">函数体</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>内联成员函数举例(一)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span>  <span class="nc">Clock</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">SetTime</span><span class="p">(</span><span class="kt">int</span> <span class="n">NewH</span><span class="p">,</span> <span class="kt">int</span> <span class="n">NewM</span><span class="p">,</span><span class="kt">int</span> <span class="n">NewS</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="n">ShowTime</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">Hour</span><span class="o">&lt;&lt;</span><span class="s">&#34;:&#34;</span><span class="o">&lt;&lt;</span><span class="n">Minute</span><span class="o">&lt;&lt;</span><span class="s">&#34;:&#34;</span><span class="o">&lt;&lt;</span><span class="n">Second</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"> <span class="k">private</span><span class="o">:</span> 
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">Hour</span><span class="p">,</span> <span class="n">Minute</span><span class="p">,</span> <span class="n">Second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div></li>
+<li>
+<p>内联成员函数举例(二)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Point</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">void</span> <span class="n">Init</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">initX</span><span class="p">,</span><span class="kt">int</span> <span class="n">initY</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">GetX</span><span class="err">（</span> <span class="err">）；</span> 
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">GetY</span><span class="err">（</span> <span class="err">）；</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">void</span> <span class="n">Move</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">xOffset</span><span class="p">,</span> <span class="kt">int</span> <span class="n">yOffset</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="n">Point</span> <span class="o">::</span> <span class="n">Init</span><span class="p">(</span><span class="kt">int</span> <span class="n">initX</span><span class="p">,</span><span class="kt">int</span> <span class="n">initY</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">X</span><span class="o">=</span><span class="n">initX</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="n">Y</span><span class="o">=</span><span class="n">initY</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">int</span> <span class="n">Point</span> <span class="o">::</span> <span class="n">GetX</span><span class="err">（</span> <span class="err">）</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="n">X</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">int</span> <span class="n">Point</span> <span class="o">::</span> <span class="n">GetY</span><span class="err">（</span> <span class="err">）</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="n">Y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">inline</span> <span class="kt">void</span> <span class="n">Point</span> <span class="o">::</span> <span class="n">Move</span><span class="err">（</span> <span class="kt">int</span> <span class="n">xOffset</span><span class="p">,</span>                                                      <span class="kt">int</span> <span class="n">yOffset</span><span class="err">）</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">X</span> <span class="o">+</span> <span class="o">=</span> <span class="n">xOffset</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="n">Y</span> <span class="o">+</span> <span class="o">=</span> <span class="n">yOffset</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="类的声明和内部实现">类的声明和内部实现</h3>
+<ol>
+<li>将类的声明和其成员函数的定义分开，是目前程序开发的通常做法。</li>
+<li>将类的声明放在头文件中，将类的成员函数的定义放在另外的源程序中</li>
+<li>把类的声明看作是类的外部接口,成员函数的定义是类的内部实现(implementation)</li>
+<li>将类拿来编写应用程序时，只需要类的外部接口（头文件）。和使用标准库函数一样，只需要包含函数声明的头文件。因为在类定义中，全部包含了类中成员函数的声明。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//date.h   类的声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Date</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span>  <span class="n">Set</span> <span class="p">(</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span><span class="kt">int</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">Print</span> <span class="p">(</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">year</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="err">；</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">//date.cpp  成员函数定义
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  类的内部实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span>  <span class="cpf">&lt;iostream.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include  “date.h”
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="n">Date</span><span class="o">::</span> <span class="n">Set</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">d</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">month</span><span class="o">=</span><span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">day</span><span class="o">=</span><span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">year</span><span class="o">=</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Date</span><span class="o">::</span> <span class="n">Print</span><span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">month</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="o">/</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">day</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="o">/</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">year</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="对象">对象</h3>
+<ol>
+<li>
+<p>类和对象的关系</p>
+<ol>
+<li>对象的类型称为类。类代表了一类对象的共性和特征。</li>
+<li>类是对象的抽象，类的对象是具有该类类型的具体的<strong>实例</strong>（instance）。</li>
+<li>每一种数据类型都是对一类对象的抽象，声明的每一个变量都是所属数据类型的一个实例。</li>
+<li>类是用来定义对象的<strong>抽象数据类型，对象是类类型的变量</strong></li>
+</ol>
+</li>
+<li>
+<p>声明一个对象和声明一个一般变量相同</p>
+</li>
+<li>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Clock</span> <span class="n">myClock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//myClock是对象的名字， Clock 是myClock的类型
+</span></span></span></code></pre></div></li>
+<li>
+<p>声明类类型的变量，这个变量就称为类的对象（或实例），这个声明的过程也称为类的实例化（instantiation）。</p>
+</li>
+</ol>
+<p><strong>面向对象的问题求解过程</strong></p>
+<p>面向对象语言中的对象用来模拟现实世界中的对象。面向对象强调的是程序的类型化。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403232041825.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403232041825.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403232041825.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403232041825.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403232041825.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403232041825.png" /></p>
+<h3 id="类和对象-1">类和对象</h3>
+<p><strong>类和对象的区别</strong></p>
+<ol>
+<li>类是在程序源代码中存在的实体，声明类的目的是为了建立对象。 对象是在程序运行过程中创建的运行时的实体。</li>
+<li>程序执行时，一个对象被创建（这一过程称为实例化），即为程序中声明的一个对象分配存储单元。这时对象的生命周期开始。当对象生命期结束时，对象被删除，所占用的存储单元被释放</li>
+<li>一个类的所有实例具有相同的结构和共享共同的行为，所没有共享的是它们各自的状态值（或属性值，即数据成员的值）。 对象的状态值分别保存在每个对象中。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Point</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">void</span> <span class="n">Init</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">initX</span><span class="p">,</span><span class="kt">int</span> <span class="n">initY</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">GetX</span><span class="err">（</span> <span class="err">）；</span> 
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">GetY</span><span class="err">（</span> <span class="err">）；</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">void</span> <span class="n">Move</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">xOffset</span><span class="p">,</span> <span class="kt">int</span> <span class="n">yOffset</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p>在运行时，我们只看到对象，程序的任务是由对象承担的。在程序中，我们只看到类。类定义了它的所有对象共享的代码，它还提供了结构样板，用于创建不同的对象。</p>
+<p>每个对象的成员函数的代码并不存储于每个对象中，代码存储于某个公用的存储空间中。只有每个对象的状态值存储于每个对象之中</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403232049484.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403232049484.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403232049484.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403232049484.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403232049484.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403232049484.png" /></p>
+<h3 id="类的成员的访问方式">类的成员的访问方式</h3>
+<ol>
+<li>类中成员互访
+<ol>
+<li>类的内部，所有成员之间可以通过成员名(公开、私有、保护）直接访问。</li>
+</ol>
+</li>
+<li>类外访问
+<ol>
+<li>类的外部只能访问类的公有成员</li>
+<li>使用**&ldquo;对象名.成员名&rdquo;**方式访问</li>
+</ol>
+</li>
+</ol>
+<p><strong>类的应用举例</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">class</span> <span class="nc">Clock</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="p">......</span><span class="c1">//类的声明略
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//......类的实现略
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>    <span class="n">Clock</span>  <span class="n">myClock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">myClock</span><span class="p">.</span><span class="n">SetTime</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">myClock</span><span class="p">.</span><span class="n">ShowTime</span><span class="err">（</span> <span class="err">）</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="类与结构体">类与结构体</h3>
+<p>在C++中的结构体比C中的结构体具有更强大的功能，它是另外一种形式的类。C++中的结构体也能像类一样包括数据和成员函数。</p>
+<ol>
+<li>
+<p>结构体成员</p>
+<p>在于缺省情况下，结构体的成员是公有的。除此之外，类与结构体有完全相同的功能。所以结构体又称为全部成员都是公有成员的类。</p>
+</li>
+</ol>
+<p>例如：考虑实现“点”类的定义</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//C++中的结构体
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Struct</span> <span class="n">SMyPoint</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">void</span> <span class="nf">Draw</span><span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="err">“在坐标</span><span class="p">(</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="p">,</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">y</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="p">)</span><span class="err">处画一个点”</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p><strong>类的成员</strong></p>
+<p>缺省情况下，类中包括的数据成员和成员函数都是私有的。如果要在类中定义公有成员，必须显示声明public关键字。</p>
+<p>例如：我们希望函数Draw是公有的，所以在类CMyPoint的定义中，显示地给出关键字public。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//定义一个“点”类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">CMyPoint</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">          <span class="kt">void</span> <span class="n">Draw</span><span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">           <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="err">“在坐标</span><span class="p">(</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="p">,</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">y</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="p">)</span>                                      <span class="err">处画一个点”</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="构造函数和析构函数">构造函数和析构函数</h2>
+<ol>
+<li>一个类的所有对象都共享该类。每个对象都区别于其他的对象。外在的区别是对象的标识符，即对象名字。内在的区别是对象自身的属性值和所在的存储单元</li>
+<li>在声明对象时对数据成员赋初值，称为<strong>对象的初始化</strong>。</li>
+<li>在声明对象时，给对象分配存储单元，同时调用构造函数将对象初始化为一个特定的状态。</li>
+</ol>
+<h3 id="构造函数">构造函数</h3>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-03-22</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14/" data-title="c&#43;&#43;(four)" data-hashtags="面向对象程序设计"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14/" data-hashtag="面向对象程序设计"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14/" data-title="c&#43;&#43;(four)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14/" data-title="c&#43;&#43;(four)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14/" data-title="c&#43;&#43;(four)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">面向对象程序设计</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/" class="prev" rel="prev" title="c&#43;&#43;(three)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>c++(three)</a>
+            <a href="/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A13/" class="next" rel="next" title="算法与程序(第三章)">算法与程序(第三章)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

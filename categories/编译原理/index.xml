@@ -1,30 +1,30 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>编译原理 - Category - 蓝Q曦的博客网站</title>
-        <link>https://adan-ning.gtihub.io/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</link>
+        <link>https://adan-ning.github.io/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</link>
         <description>编译原理 - Category - 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 19 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.gtihub.io/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 19 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
     <title>编译引论(第三章)</title>
-    <link>https://adan-ning.gtihub.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/</link>
+    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/</link>
     <pubDate>Tue, 19 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/</guid>
+    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/</guid>
     <description><![CDATA[词法分析 词法分析程序的功能 词法分析程序的主要任务是按语言的词法规则从源程序中逐个识别单词，把字符串形式的源程序转换为单词串的形式，并把每个单]]></description>
 </item>
 <item>
     <title>编译引论(第二章)</title>
-    <link>https://adan-ning.gtihub.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862/</link>
+    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862/</link>
     <pubDate>Wed, 06 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862/</guid>
+    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862/</guid>
     <description><![CDATA[高级语言的定义 语法 任何高级语言程序都可以看成是一个特定字母表(即元素的非空有穷集合)上的一个字符串(有穷序列) 词法规则 指单词符号的形成规则，]]></description>
 </item>
 <item>
     <title>编译引论(第一章)</title>
-    <link>https://adan-ning.gtihub.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</link>
+    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</link>
     <pubDate>Tue, 05 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.gtihub.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</guid>
+    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</guid>
     <description><![CDATA[编译程序(图) 某一种语言等价地转换成另外一种语言程序(称为目标语言程序) 解释程序(图) 将源程序按动态顺序逐句分晰解释执行，根据语句的含义执行]]></description>
 </item>
 </channel>
