@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863\/"
-        },"genre": "posts","keywords": "编译原理","wordcount":  5934 ,
+        },"genre": "posts","keywords": "编译原理","wordcount":  11649 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863\/","datePublished": "2024-03-19T00:00:00+00:00","dateModified": "2024-03-19T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">编译引论(第三章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编译原理</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-19">2024-03-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5934 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;12 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-19">2024-03-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;11649 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;24 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -136,6 +136,24 @@
         <li><a href="#lex源程序的结构lex输入文件的格式">lex源程序的结构(lex输入文件的格式)</a></li>
       </ul>
     </li>
+    <li><a href="#非确定有限自动机的确定化">非确定有限自动机的确定化</a>
+      <ul>
+        <li><a href="#状态集i的ε闭包">状态集I的ε闭包</a></li>
+        <li><a href="#状态集i的a弧转换集">状态集I的a弧转换集</a></li>
+        <li><a href="#非确定有限自动机的确定化方法子集法">非确定有限自动机的确定化方法(子集法)</a></li>
+        <li><a href="#确定有限自动机的化简">确定有限自动机的化简</a></li>
+      </ul>
+    </li>
+    <li><a href="#正规文法与有限自动机的等价性">正规文法与有限自动机的等价性</a>
+      <ul>
+        <li><a href="#右线性文法有限自动机">右线性文法→有限自动机</a></li>
+        <li><a href="#有限自动机右线性文法">有限自动机→右线性文法</a></li>
+        <li><a href="#左线性文法有限性自动机">左线性文法→有限性自动机</a></li>
+        <li><a href="#有限自动机左线性文法">有限自动机→左线性文法</a></li>
+        <li><a href="#正则表达式与有限自动机的等价性">正则表达式与有限自动机的等价性</a></li>
+      </ul>
+    </li>
+    <li><a href="#正则表达式e有限自动机fa-m">正则表达式e→有限自动机FA M</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="词法分析">词法分析</h1>
@@ -526,7 +544,438 @@ $ P_i$      {ACTION i}
 </span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34; No of words:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">wordCount</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34; Count of nombers:%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">noCount</span><span class="p">);</span>          
 </span></span><span class="line"><span class="cl"><span class="p">}</span> 
-</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+</span></span></code></pre></div><h2 id="非确定有限自动机的确定化">非确定有限自动机的确定化</h2>
+<p><strong>补充算法</strong></p>
+<p>已知NFA  $M_N$=(S,Σ,f,$S_0$,Z)，假设与之等价的DFA  $M_D$ =(S’,Σ,f’,$S_0’$,Z’)，其中：</p>
+<ol>
+<li>DFA  $M_D$ 的状态集S’就是S的一切子集组成的集合；</li>
+<li>Σ不变；</li>
+<li>$S_0’= S_0$ ；</li>
+<li>S’中含有NFA  $M_N$的终态子集就是DFA  $M_D$ 的终态的集合Z’；</li>
+<li>DFA  MD转换函数f’的构成：若${p_1,p_2, …,p_k}$是DFA $M_D$的一个状态，则
+$f’({p_1,p_2, …,p_k},a)= f(p_1,a) ∪f(p_2,a) ∪ … ∪ f(p_k,a)$</li>
+</ol>
+<p>通过上述步骤，便可得到与NFA $M_N$等价的DFA $M_D$等价，从而得到与之对应的状态转换矩阵和状态转换图。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281109350.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281109350.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281109350.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281109350.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281109350.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281109350.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281115026.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281115026.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281115026.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281115026.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281115026.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281115026.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281116863.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281116863.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281116863.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281116863.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281116863.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281116863.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281225887.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281225887.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281225887.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281225887.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281225887.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281225887.png" /></p>
+<p>非确定的有限自动机和确定的有限自动机从功能上来说是等价的，它们所接受的语言类相同。给定任一不确定的有限自动机NFA M，就能构造一个确定的有限自动机DFA M＂，使得L(M)=L（M＂）</p>
+<h3 id="状态集i的ε闭包">状态集I的ε闭包</h3>
+<p>假定I是一NFA M的状态集S的一个子集，则ε_closure(I) 称为状态集I的ε闭包，ε闭包也是状态集S的一个子集，其计算方法如下：</p>
+<ol>
+<li>若q∈I，则q∈ε_closure(I)，即I的所有成员都是I的ε闭包的成员;</li>
+<li>若q∈I，那么从q出发经过任意条ε弧而能到达的任何状态都属于ε_closure (I)。</li>
+</ol>
+<p>例：对图所示的NFA M，求I={1}、I={2}、I={1，2}的ε闭包。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281228407.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281228407.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281228407.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281228407.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281228407.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281228407.png" /></p>
+<p>解：
+当I={1}时，有f(1,ε)=3，f(3,ε) =5，f(3,ε) =4，
+则有 ε_closure({1})={1,3,4,5}；
+当I={2}, 有f(2,ε)=5，
+则有ε_closure({2})={2,5}
+当I={1,2},
+则有ε_closure({1,2})=ε_closure({1})∪ε_closure({2})
+={1,3,4,5}∪{2,5}
+={1,2,3,4,5}</p>
+<h3 id="状态集i的a弧转换集">状态集I的a弧转换集</h3>
+<p>假定I是一NFA M的状态集S的一个子集，I={ $P_1, P_2,…,P_n$ }, a∈∑,即a是字母表∑ 的一个输入符号，则P的a弧转换集为：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281230357.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281230357.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281230357.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281230357.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281230357.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281230357.png" /></p>
+<p>即J是从状态子集I中的每个状态出发，沿着标记为a的箭弧而转移到达的状态所组成的集合。</p>
+<p>从定义可知，状态集I的a弧转换集Ia也是状态子集，其元素为从I的每个状态出发，沿着标记为a的箭弧所转移到达的每个后继状态的ε闭包。</p>
+<h3 id="非确定有限自动机的确定化方法子集法">非确定有限自动机的确定化方法(子集法)</h3>
+<p>过程如下：</p>
+<ol>
+<li>
+<p>假定NFA M=(S, Σ, f,S0，Z)，首先对NFA M的状态转换图进行改造：</p>
+<ol>
+<li>引进新的初态结点X和终态结点Y（X  S,Y  S），从X到S0任意状态结点连一条ε箭弧，从Z中任意状态结点连一条ε箭弧到Y</li>
+<li>对M的状态转换图进行图所示的替换，其中k是新引入的状态。重复这种分裂过程直至状态转换图中的每条箭弧上的标记或为ε，或为Σ中的单个字母。将最终得到的NFA Mˊ，显然L(Mˊ)=L(M)。</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281233180.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281233180.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281233180.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281233180.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281233180.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281233180.png" /></p>
+</li>
+<li>
+<p>对改造后的NFA Mˊ使用子集法进行确定化</p>
+<ol>
+<li>
+<p><strong>对Σ={a1，…，ak}，构造一张表，该表的每一行含有k+1列。置该表的首行首列为ε_CLOSURE({X})，它就是DFA的唯一初态</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281233648.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281233648.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281233648.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281233648.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281233648.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281233648.png" /></p>
+</li>
+<li>
+<p>如果某一行的第一列的状态子集已经确定，如记为I，那么，置该行的i+1列为Iai（i=1，….，k）。然后，检查该行上的所有状态子集，看它们是否已在表的第一列中出现，将未曾出现者填入到后面空行的第一列。重复上述过程，直至出现在第i+1列（i=1，…，k）上的所有状态子集均已在第一列上出现。</p>
+</li>
+<li>
+<p>**将构造出来的表视为状态转换矩阵，将其中的每个状态子集视为新的状态，就得到了一个DFA M＂。它的初态是该表首行首列的那个状态，终态是那些含有原来NFA M的任一终态的状态子集。 **</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>例：已知有非确定的有限自动机NFA M，具体如图所示，利用子集法将它确定化。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281235711.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281235711.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281235711.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281235711.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281235711.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281235711.png" /></p>
+<p>解：</p>
+<ol>
+<li>
+<p>改造状态转换图，引进新的初态结点X和终态结点Y，得到新的状态转换图如图所示。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281235440.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281235440.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281235440.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281235440.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281235440.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281235440.png" /></p>
+</li>
+<li>
+<p><strong>构造状态转换矩阵，因为f(X,ε)=0，f(0,ε) =1，所以ε_CLOSURE(X) ={X ,0,1}，根据子集法可构造出所有状态子集，具体见表3.5。对表3.5中的所有状态子集重新命名，得到表3.6所列的状态转换矩阵。</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281237974.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281237974.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281237974.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281237974.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281237974.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281237974.png" /></p>
+</li>
+<li>
+<p>与表3.6相对应的状态转换图如图3.17所示，其中0为初态，3﹑4﹑5和6为终态。显然，图3.15和图3.17所示的有限自动机是等价的。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281238918.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281238918.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281238918.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281238918.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281238918.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281238918.png" /></p>
+</li>
+</ol>
+<h3 id="确定有限自动机的化简">确定有限自动机的化简</h3>
+<p>确定有限自动机DFA M的化简是指：寻找一个状态数比M少的DFA Mˊ，使得L(M)=L(Mˊ)。化简的方法就是消除DFA M中的无关状态，合并等价状态。</p>
+<p>通常把无用状态和死状态统称为无关状态。</p>
+<p><strong>所谓无用状态，就是指从初态出发，读入何输入串都不可能到达的状态；</strong></p>
+<p><strong>所谓死状态，就是对于任何输入符号，该状态的后继状态都是它自身，而不可能从它到达终态。</strong></p>
+<p>如图所示的状态转换图中，状态1是无用状态，状态2是死状态，状态1、2均为无用状态</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281240260.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281240260.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281240260.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281240260.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281240260.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281240260.png" /></p>
+<p>DFA M的状态最小化过程的核心思想：将DFA M的状态集分割成一些不相交的子集，使得任何不同的两子集中的状态都是可区别的，而同一子集中的任何两个状态都是等价的。最后，在每个字集中选出一个代表，同时消去其它等价状态。</p>
+<p>具体过程如下：</p>
+<ol>
+<li>
+<p>把DFA M的所有状态集S分成两个子集——终态集与非终态集，形成基本分划∏。显然，属于这两个不同子集的状态是可区别的。</p>
+</li>
+<li>
+<p><strong>对各状态子集按下面的方法进一步划分</strong></p>
+<p><strong>假定经过第i次划分后，∏={$S_1,S_2,….,S_m$}，其中的任何一个都是状态子集。对于任意一个状态子集Sj={$q_1,q_2,….,q_k$}，若存在一个输入字符a∈Σ，使得($S_j$)a（即将子集Sj的所有状态读入a所到达的状态的集合）不全包含在现行∏的某一子集中，就将$S_j$一分为二。</strong></p>
+</li>
+<li>
+<p>经上述过程之后，得到一个最后分划∏。对于∏中的每一个子集，选取子集中的一个状态代表其他状态，删除其他一切的等价状态。例如，假定∏中有子集$S_j={q_1，…，q_k}$，则可将$q_2，…，q_k$从原来的状态集中删除。若$S_j$中含有原来的初态，则$q_1$是新初态；若$S_j$中含有原来的终态，则$q_1$是新终态。</p>
+</li>
+</ol>
+<p>通过上述步骤进行化简后，再删除所有的无关状态，便可以得到最简的DFA M</p>
+<p>例：已知有图所示的DFA  M，试写出其最小化过程。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281244685.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281244685.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281244685.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281244685.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281244685.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281244685.png" /></p>
+<p>解：</p>
+<p>首先，把DFA M的状态分成两个子集：终态集{3,4,5,6}，非终态集{0,1,2}，即S={3,4,5,6}∪{0,1,2}。</p>
+<p><strong>其次，考察子集{3,4,5,6}，由于{3,4,5,6}a={3,6}  {3,4,5,6}和{3,4,5,6}b={4,5}  {3,4,5,6}，所以，它不能再分划。</strong></p>
+<p>再考察{0,1,2}，由于{0,1,2}a={1,3}，它既不包含在{3,4,5,6}之中也不包含在{0,1,2}之中，因此，应把{0,1,2}一分为二。由于状态1经a箭弧到达状态3，而状态0和2经a箭弧都能到达状态1，因此，应把1分出来，形成{1}，{0,2}。</p>
+<p>现在，整个状态集划分成三个子集，即S={3,4,5,6}∪{1}∪{0,2}。</p>
+<p>由于{0,2}b={2,5}未包含在上述三个子集中的任何一个子集之中，故{0,2}也应一分为二：{0}，{2}。</p>
+<p>至此，整个划分结束，状态集分成四个子集，即S={3,4,5,6}∪{0}∪{1}∪{2}，且每个子集都已不可再分。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281247564.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281247564.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281247564.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281247564.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281247564.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281247564.png" /></p>
+<h2 id="正规文法与有限自动机的等价性">正规文法与有限自动机的等价性</h2>
+<p>一个正规集可以由正则文法产生，也可以用有限自动机来识别，对于正规文法G和有限自动机M，如果L（G）=L(M)，则称G和M是等价的。对于正规文法和有限自动机的等价性，有以下两个结论：</p>
+<ol>
+<li>对任一正规文法G（$G_R$右线性文法和左线性文法$G_L$），都存在一个有限自动机（FA）M，使得$L(M)= L(G_R)=L(G_L)$。</li>
+<li>对任一有限自动机FAM，都存在一个正规文法（$G_R$右线性文法和左线性文法$G_L$），使得$L(M)=L(G_R)=L(G_L)$。</li>
+</ol>
+<h3 id="右线性文法有限自动机">右线性文法→有限自动机</h3>
+<p>设右线性文法$G_R=(V_T,V_N, P,S)$，$NFA为（S,Σ, f,S_0,Z）$。根据右线性文法的四个部分求NFA的五个部分。</p>
+<ol>
+<li>
+<p>文法$G_R$的开始符号S就是NFA的初态；</p>
+</li>
+<li>
+<p>文法$G_R$的$V_T$就是NFA的输入字母表Σ；</p>
+</li>
+<li>
+<p>为NFA引入一个终态符号Z’，$Z \notin V_N$，则NFA的终态集Z={Z’}；</p>
+</li>
+<li>
+<p>文法GR的$V_N∪{Z’}$构成NFA的状态集S；</p>
+</li>
+<li>
+<p>利用文法$G_R$的产生式集P来构成NFA的转换函数f，具体方法如下：</p>
+<p>若对于某个$A∈V_N$及$a∈V_T∪{ε}$，P中<strong>产生式A→a</strong>，则令
+<strong>f（A，a）=Z’。</strong></p>
+<p>对任意的$A∈V_N及a∈V_T∪{ε}$，设P中左端为A，右端第一符号为a的所有产生式为：<strong>$A→aA_1|….|aA_k$</strong>（不包括A→a），则令
+<strong>$f(A,a)={A_1，…，A_k}$</strong>。</p>
+</li>
+</ol>
+<p>例：已知$G_R[A]＝（{A,B,C,D}，{0,1}，A，P）$，其中产生式集P为：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281255862.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281255862.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281255862.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281255862.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281255862.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281255862.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281255278.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281255278.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281255278.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281255278.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281255278.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281255278.png" /></p>
+<h3 id="有限自动机右线性文法">有限自动机→右线性文法</h3>
+<ol>
+<li>
+<p><strong>有限自动机转换成右线性文法，需要满足一个条件：有限自动机只有一个初态结，且终态结没有非 $ \varepsilon $ _弧射入。 如果不满足,则须进行改造。具体工作如下:</strong></p>
+<ol>
+<li>如果M有多个初态结,则引入一个新的初态结,并从新的初态结引一_弧到原初态结,原初态结则不再作初态。</li>
+<li>如果M的终态结有射入弧,则引入一新的终态,并从原来的任意终态结引一$\varepsilon$_弧到新终态结,原终态结则不再作终态</li>
+</ol>
+</li>
+<li>
+<p><strong>构造过程:</strong></p>
+<p>有限自动机M的输入字母表Σ就是文法G的终结符号集$V_T$; 初态结就是文法G的开始符号S;文法G的产生式集P由M的转换函数f得到:</p>
+<pre><code>        若f(A,a)=B,则A→aB
+        若f(A,a)=Z’,其中Z’∈Z,则A→a 
+</code></pre>
+<p>M的终态不会出现在文法的产生式中,所以$V_N$为M的状态集S去掉终态集Z中的状态构成,即$V_N=S-Z$。</p>
+</li>
+</ol>
+<p>例：</p>
+<p>将下图有限自动机转换成右线性文法：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031515753.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031515753.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031515753.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031515753.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031515753.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031515753.png" /></p>
+<p>右线性文法$G[S]=(V_N,V_T,P,S)$，其中$V_N ={S,S_1,S_2,A,B}$ , $V_T ={a,b,c}$,P由下列规则组成:</p>
+<p>$S →S_1∣S_2$</p>
+<p>$S_1→aA$</p>
+<p>$S_2→cA$</p>
+<p>$A →aA∣ bB ∣ \varepsilon$</p>
+<p>$B →bB∣ aB ∣ \varepsilon $</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031519158.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031519158.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031519158.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031519158.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031519158.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031519158.png" /></p>
+<h3 id="左线性文法有限性自动机">左线性文法→有限性自动机</h3>
+<p>设左线性文法$GL=(V_T,V_N,P,S)$，$NFA为（S,Σ, f,S_0,Z）$。根据右线性文法的四个部分求NFA的五个部分。</p>
+<ol>
+<li>文法$G_L$的开始符号S就是NFA的终态；</li>
+<li>文法$G_L$的$V_T$就是NFA的输入字母表Σ；</li>
+<li>为NFA引入一个初态S’，$S’ \notin VN$，则NFA的初态集$S_0 ={S’}$；</li>
+<li>文法$G_L$的$V_N∪{S’}$构成M的状态集S；</li>
+<li>利用文法$G_L$的产生式集P来构成NFA的转换函数f，具体方法如下：
+<ol>
+<li>若对某个$A∈V_N及a ∈V_T∪{ε}$，P中有产生式A→a，则令
+f（S’,a）=A。</li>
+<li>对任意的$A∈V_N$及$a ∈V_T∪{ε}$，若P中所有右端第一符号为A，第二个符号为a的产生式为：$A_1→A_a|，….，A_k→Aa$，则令
+$f（A，a）={A_1，….，A_k}$。</li>
+</ol>
+</li>
+</ol>
+<p>例：</p>
+<p>已知有左线性文法G[S]:</p>
+<p>S→Sa | Aa|Bb</p>
+<p>A→Ba | a</p>
+<p>B→Ab| b</p>
+<p>试构造与文法G[S]等价的有限自动机。</p>
+<p>解：按照左线性文法到有限自动机的转换方法，为有限自动机引入一个初态S’；因为文法G[S]的开始符号S作为有限自动机的终态（设该终态为Z’），为了方便设计，避免混淆现将所有产生式中的S替换成Z。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031524601.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031524601.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031524601.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031524601.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031524601.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031524601.png" /></p>
+<h3 id="有限自动机左线性文法">有限自动机→左线性文法</h3>
+<p>有限自动机转换成左线性文法，需要满足一个条件：<strong>有限自动机只有一个终态结,且初态结没有非$\varepsilon _$弧射入</strong></p>
+<p>如果它不满足，则须对进行改造，具体工作如下：如果NFA M有多个终态结，则引入一个新的终态结，并从原来的终态结各引_弧到新的终态结（原终态结则不再作终态）。如果NFA M的初态结有射入弧，则引入一新的初态，并从该初态结各引一_弧到原初态结（原初态结则不再作初态）</p>
+<p>一般的，改造后的非确定有限自动机$NFA M=（S,Σ, f,S_0，Z）$，由它构造左线性文法$G_L=( V_N,V_T, P, S)$的方法是：</p>
+<ol>
+<li>NFA M的输入字母表Σ就是文法$G_L$的终结符号集$V_T$；</li>
+<li>NFA M的唯一终态结就是文法$G_L$的开始符号；</li>
+<li>文法$G_L$的产生式集P由NFA M的转换函数f得到，具体方法是：
+<ol>
+<li><strong>若f(A,a)=B，则B→Aa∈P；</strong></li>
+<li><strong>若f(S’,a)=B，其中S’∈$S_0$，则B→a∈P；</strong></li>
+</ol>
+</li>
+<li>显然，NFA M的初态不会出现在文法的产生式中，所以$V_N$为NFA M的状态集S去掉初态集$S_0$中的状态构成，即$V_N=S-S_0$。</li>
+</ol>
+<p>例：</p>
+<p>将<a href="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031515753.png" target="_blank" rel="noopener noreffer ">上图</a>的有限自动机转换成与之等价的左线性文法</p>
+<p>解：按照有限自动机到左线性文法的转换方法，由于该有限自动机有多个终态，则引入一新终Z，则改造后的有限自动机如图所示</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031536038.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031536038.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031536038.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031536038.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031536038.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031536038.png" /></p>
+<p>按上述方法，与该自动机相应的左线性文法为$G[Z]=( V_N, V_T,P,Z)$，其中，Z 是文法开始符号，$V_N ={Z,A,B}, V_T ={a,b,c}$，P的规则如下：</p>
+<p>**Z→A | B **</p>
+<p>​     <strong>A→Aa | a | c</strong></p>
+<p>​     **B→Ba |Bb| Ab 	**</p>
+<h3 id="正则表达式与有限自动机的等价性">正则表达式与有限自动机的等价性</h3>
+<ol>
+<li>有限自动机→正则表达式，具体步骤如下：
+<ol>
+<li>首先拓广转换图的概念，允许每条箭弧用正则表达式作标记。</li>
+<li>在FA M的转换图上加进一个初态结X和一个终态结Y，从初态结X用弧连接到M的所有初态结；从M的所有终态结用弧连接到Y结；</li>
+<li>反复用<strong>替换规则</strong>，对自动机进行消弧，直到只剩下一个初态X,一个终态Y，和一条箭弧为止，则箭弧上的标记的正则表达式就是所求的e。</li>
+</ol>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031606935.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031606935.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031606935.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031606935.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031606935.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031606935.png" /></p>
+<p>例：</p>
+<p>已知有一个非确定的有限自动机NFA M如图3.29所示，试转换出与之等价的正规式</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031606085.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031606085.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031606085.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031606085.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031606085.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031606085.png" /></p>
+<p>解：按照有限自动机到正规式的转换方法，首先引入一个初态X和一个终态Y，得到如图所示的状态转换图。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031607370.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031607370.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031607370.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031607370.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031607370.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031607370.png" /></p>
+<h2 id="正则表达式e有限自动机fa-m">正则表达式e→有限自动机FA M</h2>
+<p><strong>具体步骤如下：</strong></p>
+<ol>
+<li>先构造一个FA M的一个广义转换图，其中，只有X与Y两个状态，X是初态，Y是终态，弧上是正规表达式e。</li>
+<li>然后，按照<strong>替换规则</strong>对正规表达式e逐步进行分解，直到转换图中所有的弧上都是中的单个符号或$\varepsilon$为止。</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031609039.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031609039.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031609039.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031609039.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031609039.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031609039.png" /></p>
+<p>例：</p>
+<p>构造与正规式$ (a|b)^<em>(aa|bb)(a|b)^</em>$ 等价的非确定的有限自动机</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031611266.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031611266.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031611266.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404031611266.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031611266.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404031611266.png" /></p>
+<p>注：第1，2步骤中的$ (a|b)^<em>(aa|bb)^</em>(a|b)^<em>$和$(aa|bb)^</em>$要改为$ (a|b)^<em>(aa|bb)(a|b)^</em>$和$(aa|bb)$</p>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14\/"
-        },"genre": "posts","keywords": "面向对象程序设计","wordcount":  3998 ,
+        },"genre": "posts","keywords": "面向对象程序设计","wordcount":  10307 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14\/","datePublished": "2024-03-22T00:00:00+00:00","dateModified": "2024-03-22T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">c++(four)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>面向对象程序设计</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-22">2024-03-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3998 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-22">2024-03-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;10307 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;21 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -136,6 +136,22 @@
     <li><a href="#构造函数和析构函数">构造函数和析构函数</a>
       <ul>
         <li><a href="#构造函数">构造函数</a></li>
+        <li><a href="#析构函数destructor">析构函数（destructor）</a></li>
+      </ul>
+    </li>
+    <li><a href="#类的组合">类的组合</a>
+      <ul>
+        <li><a href="#组合类的构造函数设计">组合类的构造函数设计</a></li>
+        <li><a href="#组合类的构造函数调用">组合类的构造函数调用</a></li>
+        <li><a href="#构造函数调用顺序">构造函数调用顺序</a></li>
+        <li><a href="#前向引用声明">前向引用声明</a></li>
+      </ul>
+    </li>
+    <li><a href="#类模板class-template">类模板(class template)</a>
+      <ul>
+        <li><a href="#类模板声明形式">类模板声明形式</a></li>
+        <li><a href="#类模板和模板类">类模板和模板类</a></li>
+        <li><a href="#总结">总结</a></li>
       </ul>
     </li>
   </ul>
@@ -583,6 +599,916 @@
 <li>在声明对象时，给对象分配存储单元，同时调用构造函数将对象初始化为一个特定的状态。</li>
 </ol>
 <h3 id="构造函数">构造函数</h3>
+<ol>
+<li>
+<p>构造函数是特殊形式的成员函数。</p>
+</li>
+<li>
+<p>编译系统在遇见对象声明语句时，自动生成对构造函数的调用语句。因此构造函数是在对象被创建时<strong>由系统自动调用</strong></p>
+</li>
+<li>
+<p>如果程序中<strong>未定义</strong>构造函数，则编译系统自动生成一个<strong>默认形式</strong>的构造函数。</p>
+</li>
+<li>
+<p>允许为<strong>内联函数、重载函数、带缺省形参值的函数</strong>。</p>
+</li>
+<li>
+<p>构造函数的需要性</p>
+<ol>
+<li>
+<p>变量初始的方法</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">pa</span><span class="o">=&amp;</span><span class="n">a</span><span class="p">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>数组初始的方法</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">b</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span>
+</span></span></code></pre></div></li>
+<li>
+<p>结构初始的方法</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">student</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">semesHours</span><span class="p">;</span>	<span class="c1">//总需学时数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="n">gpa</span><span class="p">;</span> 		<span class="c1">//平均成绩
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">fn</span> <span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">student</span>  <span class="n">s</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">100</span> <span class="p">,</span> <span class="mf">3.5</span> <span class="p">}</span> <span class="p">;</span>    
+</span></span><span class="line"><span class="cl">                  <span class="c1">//创建结构变量时，初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="c1">//…
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<p>但是对类对象来说，如此初始化不行，这是由类的特殊性所决定。</p>
+<p><strong>例：下面的代码企图在对象创建时，为其初始化：</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">student</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// …公共成员…
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">protected</span> <span class="o">:</span>       <span class="c1">//此处的数据成员是受保护的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="kt">int</span>  <span class="n">semesHours</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl">      <span class="kt">float</span>   <span class="n">gpa</span> <span class="p">;</span>      
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Void</span> <span class="nf">fa</span><span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">student</span> <span class="n">s</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">100</span> <span class="p">,</span> <span class="mf">3.5</span> <span class="p">}</span>   <span class="c1">// error: 不能访问
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// … 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>如果上面的函数允许那样初始化的话,就意味在函数中,允许：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">fn</span> <span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">s</span><span class="p">.</span><span class="n">semesHours</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">s</span><span class="p">.</span><span class="n">gpa</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span>      
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></div></li>
+<li>
+<p>类的封装性，就体现在一部分数据是不能让外界访问的。所以直接在非成员函 数中访问类对象的保护或私有数据是不允许的</p>
+</li>
+<li>
+<p>类对象的初始化任务，自然就落在了类的成员函数身上，因为它们可以访问保护和私有数据成员。</p>
+</li>
+<li>
+<p>初始化构想</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">student</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">   <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">void</span> <span class="n">init</span> <span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">semesHours</span> <span class="o">=</span> <span class="mi">100</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="n">gpa</span> <span class="o">=</span> <span class="mf">3.5</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// …其他公共成员
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">protected</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">semesHours</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">gpa</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">fn</span> <span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">student</span> <span class="n">s</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">s</span><span class="p">.</span><span class="n">init</span> <span class="p">(</span> <span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//类的初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1">//函数的其他部分
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>类对象的定义</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">student</span> <span class="n">ss</span><span class="p">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>构造函数的作用</p>
+<p>在对象被创建时利用特定的值构造对象，将对象初始化为一个特定的状态，使此对象具有区别于其他对象的特征。</p>
+</li>
+<li>
+<p>定义构造函数的格式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="err">类名</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="k">public</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">   <span class="err">类名（形参列表）；</span><span class="c1">//构造函数声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>           <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="err">；</span>
+</span></span><span class="line"><span class="cl">   <span class="err">类名</span><span class="o">::</span> <span class="err">类名（形参列表）</span><span class="c1">// 构造函数的实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>    <span class="err">函数体</span>    <span class="p">}</span>
+</span></span></code></pre></div><p>构造函数举例:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Clock</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Clock</span> <span class="p">(</span><span class="kt">int</span> <span class="n">NewH</span><span class="p">,</span> <span class="kt">int</span> <span class="n">NewM</span><span class="p">,</span> <span class="kt">int</span> <span class="n">NewS</span><span class="p">);</span>  <span class="c1">//构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">void</span> <span class="nf">SetTime</span><span class="p">(</span><span class="kt">int</span> <span class="n">NewH</span><span class="p">,</span> <span class="kt">int</span> <span class="n">NewM</span><span class="p">,</span> <span class="kt">int</span> <span class="n">NewS</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="n">ShowTime</span><span class="err">（</span> <span class="err">）</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">Hour</span><span class="p">,</span><span class="n">Minute</span><span class="p">,</span><span class="n">Second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><ol>
+<li>
+<p>构造函数的实现：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Clock</span><span class="o">::</span><span class="n">Clock</span><span class="p">(</span><span class="kt">int</span> <span class="n">NewH</span><span class="p">,</span> <span class="kt">int</span> <span class="n">NewM</span><span class="p">,</span> <span class="kt">int</span> <span class="n">NewS</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Hour</span><span class="o">=</span><span class="n">NewH</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Minute</span><span class="o">=</span><span class="n">NewM</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Second</span><span class="o">=</span><span class="n">NewS</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>建立对象时构造函数的作用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Clock</span>  <span class="nf">c</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">  <span class="c1">//隐含调用构造函数，将初始值作为实参
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">c</span><span class="p">.</span><span class="n">ShowTime</span><span class="err">（</span> <span class="err">）</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Clock</span> <span class="n">c1</span><span class="p">;</span>	<span class="c1">//错误的，没有给出必要的实参
+</span></span></span></code></pre></div></li>
+<li>
+<p>构造函数可以带默认的形参值，也可以是内联函数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt; iostream.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">class</span> <span class="nc">Clock</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Clock</span><span class="p">(</span><span class="kt">int</span> <span class="n">NewH</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="kt">int</span> <span class="n">NewM</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="kt">int</span> <span class="n">NewS</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>	<span class="c1">//既是构造函数也是内联函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	  <span class="n">hour</span><span class="o">=</span><span class="n">NewH</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	  <span class="n">minute</span><span class="o">=</span><span class="n">NewM</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	  <span class="n">second</span><span class="o">=</span><span class="n">NewS</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">ShowTime</span><span class="p">()</span> 
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>	
+</span></span><span class="line"><span class="cl">    	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">hour</span><span class="o">&lt;&lt;</span><span class="s">&#34;:&#34;</span><span class="o">&lt;&lt;</span><span class="n">minute</span><span class="o">&lt;&lt;</span><span class="s">&#34;:“&lt;&lt;second&lt;&lt;endl; </span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">hour</span><span class="p">,</span><span class="n">minute</span><span class="p">,</span><span class="n">second</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">   <span class="n">Clock</span> <span class="n">c</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="n">c</span><span class="p">.</span><span class="n">ShowTime</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>构造函数可以无形参值</p>
+<p>下面的代码初始化桌子和凳子类对象：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Desk</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Desk</span><span class="p">(</span> <span class="p">)</span>      <span class="c1">// 构造函数定义
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">weight</span> <span class="o">=</span> <span class="mi">10</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">height</span> <span class="o">=</span> <span class="mi">5</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">width</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">length</span> <span class="o">=</span> <span class="mi">5</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	 <span class="k">protected</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span> <span class="n">weight</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span> <span class="n">height</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span> <span class="n">width</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span> <span class="n">length</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Stool</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stool</span><span class="p">(</span> <span class="p">)</span>	<span class="c1">// 构造函数定义
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="n">weight</span> <span class="o">=</span> <span class="mi">6</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="n">height</span> <span class="o">=</span> <span class="mi">3</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="n">width</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="n">length</span> <span class="o">=</span> <span class="mi">3</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">weight</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">height</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">width</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">length</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">fn</span><span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">Desk</span> <span class="n">da</span>  <span class="err">；</span> <span class="c1">//自动调用Desk( ), 创建对象并初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">Stool</span> <span class="n">sa</span> <span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">//自动调用Stool( )
+</span></span></span><span class="line"><span class="cl"><span class="c1">//…
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>构造函数放在类的外部定义：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">class</span> <span class="nc">Desk</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Desk</span><span class="p">(</span> <span class="p">);</span>   <span class="c1">// 构造函数声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">protected</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">weight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">height</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>         
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Stool</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stool</span><span class="p">(</span> <span class="p">);</span>     <span class="c1">// 构造函数声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">protected</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">weight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">height</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span> 
+</span></span><span class="line"><span class="cl"><span class="n">Desk</span> <span class="o">::</span> <span class="n">Desk</span><span class="p">(</span> <span class="p">)</span>      <span class="c1">//构造函数定义
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">weight</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">length</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span><span class="n">weight</span><span class="o">&lt;&lt;</span><span class="err">“</span> <span class="err">“</span><span class="o">&lt;&lt;</span><span class="n">height</span><span class="o">&lt;&lt;</span><span class="err">“</span> <span class="err">“</span><span class="o">&lt;&lt;</span><span class="n">width</span><span class="o">&lt;&lt;</span><span class="err">““</span><span class="o">&lt;&lt;</span><span class="n">length</span><span class="o">&lt;&lt;</span><span class="n">endl</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stool</span> <span class="o">::</span> <span class="n">Stool</span><span class="p">(</span> <span class="p">)</span>      <span class="c1">//构造函数定义
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">weight</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">height</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">width</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">length</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">cout</span> <span class="o">&lt;&lt;</span><span class="n">weight</span><span class="o">&lt;&lt;</span><span class="err">“</span> <span class="err">“</span><span class="o">&lt;&lt;</span><span class="n">height</span><span class="o">&lt;&lt;</span><span class="err">“</span> <span class="err">“</span><span class="o">&lt;&lt;</span><span class="n">width</span> <span class="o">&lt;&lt;</span><span class="err">““</span><span class="o">&lt;&lt;</span><span class="n">length</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>    
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">fn</span><span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">Desk</span> <span class="n">da</span><span class="p">;</span> <span class="c1">//自动调用Desk( ) 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">Stool</span> <span class="n">sa</span><span class="p">;</span>    <span class="c1">//自动调用Stool( )
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span> <span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fn</span><span class="p">(</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//运行结果为：
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 10 5 5 5
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 6 3 3 3
+</span></span></span></code></pre></div></li>
+</ol>
+<h4 id="默认构造函数">默认构造函数</h4>
+<ol>
+<li>若未提供一个类的构造函数（<strong>一个都未提供</strong>），则C++提供一个默认的构造函数。该默认构造函数无参数，仅负责创建对象，不做任何初始化工作。</li>
+<li><strong>只要一个类定义了一个或一个以上的构造函数，C++就不再提供默认的构造函数。即如果为类定义了一个带参数的构造函数，还想要无参构造函数，必须自己定义</strong></li>
+</ol>
+<p>举例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Class</span> <span class="n">Student</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//无构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">char</span>  <span class="n">name</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//等价于下面的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Class</span> <span class="n">Student</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nl">Public</span><span class="p">:</span>    
+</span></span><span class="line"><span class="cl">     <span class="n">Student</span> <span class="p">(</span> <span class="p">)</span> <span class="p">{</span> <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">     <span class="c1">//一个空的无参构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span> 
+</span></span></code></pre></div><h4 id="拷贝构造函数">拷贝构造函数</h4>
+<p>拷贝构造函数是一种特殊的构造函数，其形参是<strong>本类的对象的引用</strong>。其作用是使用一个已存在的对象（由拷贝构造函数的参数指定的对象）去初始化一个新的同类的对象。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="err">类名</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="k">public</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="err">类名（形参）；</span><span class="c1">//构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">//形参是本类的对象的引用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="err">类名（类名</span> <span class="o">&amp;</span><span class="err">对象名）；</span><span class="c1">//拷贝构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>           <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="err">；</span>
+</span></span><span class="line"><span class="cl"><span class="err">类名</span><span class="o">::</span> <span class="err">类名（类名</span> <span class="o">&amp;</span><span class="err">对象名）</span><span class="c1">// 拷贝构造函数的实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>    <span class="err">函数体</span>    <span class="p">}</span>
+</span></span></code></pre></div><p>如果程序员<strong>没有定义类的拷贝构造函数，则编译系统为程序自动生成一个默认拷贝构造函数</strong>。</p>
+<p>这个默认拷贝构造函数执行的<strong>功能是：用作为初始值的对象的每个数据成员的值，初始化将要建立的对象的对应数据成员</strong>。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281709743.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281709743.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281709743.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281709743.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281709743.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281709743.png" /></p>
+<p>举例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Point</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">       <span class="n">Point</span><span class="p">(</span><span class="kt">int</span> <span class="n">xx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="kt">int</span> <span class="n">yy</span><span class="o">=</span><span class="mi">0</span><span class="p">){</span><span class="n">X</span><span class="o">=</span><span class="n">xx</span><span class="p">;</span> <span class="n">Y</span><span class="o">=</span><span class="n">yy</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">       <span class="n">Point</span><span class="p">(</span><span class="n">Point</span><span class="o">&amp;</span>  <span class="n">p</span><span class="p">);</span>	<span class="c1">//拷贝构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>       <span class="kt">int</span> <span class="n">GetX</span><span class="err">（</span> <span class="err">）</span> <span class="p">{</span><span class="k">return</span> <span class="n">X</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span> <span class="n">GetY</span><span class="err">（</span> <span class="err">）</span> <span class="p">{</span><span class="k">return</span> <span class="n">Y</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">   <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span>  <span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">Point</span><span class="o">::</span><span class="n">Point</span> <span class="p">(</span><span class="n">Point</span><span class="o">&amp;</span>  <span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">X</span><span class="o">=</span><span class="n">p</span><span class="p">.</span><span class="n">X</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Y</span><span class="o">=</span><span class="n">p</span><span class="p">.</span><span class="n">Y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;拷贝构造函数被调&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="拷贝构造函数被调用的三种情况">拷贝构造函数被调用的三种情况</h4>
+<ol>
+<li>
+<p><strong>当用类的一个对象去初始化该类的另一个对象时系统自动调用它实现拷贝赋值</strong>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="n">Point</span>  <span class="n">p1</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="n">Point</span>   <span class="n">p2</span><span class="p">(</span><span class="n">p1</span><span class="p">);</span> <span class="c1">//拷贝构造函数被调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">Point</span>  <span class="n">p3</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span>	<span class="c1">//不同的方法含义一样(拷贝构造函数被调用)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>   
+</span></span></code></pre></div></li>
+<li>
+<p><strong>若函数形参的类型为类的对象,调用函数时,实参赋值给形参,系统自动调用拷贝构造函数</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">fn</span>  <span class="p">(</span> <span class="n">Point</span>  <span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">p</span><span class="p">.</span><span class="n">GetX</span><span class="err">（</span> <span class="err">）</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   <span class="n">Point</span>   <span class="nf">mp</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="n">fn</span> <span class="p">(</span><span class="n">mp</span><span class="p">);</span>    <span class="c1">//调用拷贝构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> 
+</span></span></code></pre></div><ol>
+<li>函数 fn ( )的参数传递方式是值传递(<strong>引用传递除外</strong>）,实参mp传给形参p,形参p是mp的一个拷贝,即对象p用对象mp的值进行初始化</li>
+</ol>
+</li>
+<li>
+<p><strong>当函数的返回值类型是类的对象，系统自动调用拷贝构造函数。</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Point</span> <span class="nf">fn</span> <span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>    <span class="n">Point</span>   <span class="n">tp</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span>  <span class="n">tp</span><span class="p">;</span>     <span class="c1">//调用拷贝构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span> <span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">Point</span>  <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="n">p</span><span class="o">=</span><span class="n">fn</span><span class="p">(</span> <span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>(3的补充)当函数返回一个对象时，要创建一个<strong>临时的无名对象</strong>。在这里，系统调用拷贝构造函数将tp拷贝到新创建的临时对象中</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Point</span>  <span class="n">fn</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>    
+</span></span><span class="line"><span class="cl">     <span class="n">Point</span>   <span class="nf">tp</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span>  <span class="n">tp</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Point</span>  <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="n">fn</span><span class="err">（</span> <span class="err">）</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281718944.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281718944.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281718944.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403281718944.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281718944.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403281718944.png" />  临时对象的生存期只在函数调用的表达式中，即p=f n( )中。当fn( )返回时产生的临时对象拷贝给p后，<strong>临时对象就析构</strong></p>
+</li>
+</ol>
+<p>举例：Point类的完整程序。</p>
+<p>在程序主函数中，三个部分分别给出拷贝构造函数调用的三种情况。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt; iostream.h &gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">class</span> <span class="nc">point</span>               <span class="c1">//point类的声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span> <span class="k">public</span><span class="o">:</span>                   <span class="c1">//外部接口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">point</span><span class="p">(</span> <span class="kt">int</span> <span class="n">xx</span><span class="o">=</span><span class="mi">0</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">yy</span> <span class="o">=</span> <span class="mi">0</span><span class="p">){</span> <span class="n">X</span> <span class="o">=</span> <span class="n">xx</span> <span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">yy</span><span class="p">;}</span> <span class="c1">// 构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">point</span><span class="p">(</span> <span class="n">point</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">);</span>      <span class="c1">//拷贝构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="kt">int</span> <span class="nf">GetX</span><span class="p">(</span> <span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">X</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="nf">GetY</span><span class="p">(</span> <span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">Y</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">private</span> <span class="o">:</span>             <span class="c1">//私有数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="kt">int</span> <span class="n">X</span> <span class="p">,</span><span class="n">Y</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//成员函数的实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">point</span><span class="o">::</span><span class="n">point</span><span class="p">(</span> <span class="n">point</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">X</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">X</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Y</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">Y</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="err">“拷贝构造函数调用”</span><span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//形参为point类对象的函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">fun1</span><span class="p">(</span> <span class="n">point</span> <span class="n">p</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">GetX</span><span class="p">(</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 返回值为point类对象的函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">point</span> <span class="nf">fun2</span><span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">point</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span> <span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="n">A</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//主函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">point</span> <span class="n">A</span><span class="p">(</span> <span class="mi">4</span> <span class="p">,</span> <span class="mi">5</span> <span class="p">)</span> <span class="p">;</span>   <span class="c1">//第一个对象Ａ
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">point</span> <span class="n">B</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="p">;</span>   <span class="c1">//情况1，用A初始化B。//第一次调 用拷贝构造函数。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">B</span><span class="p">.</span><span class="n">GetX</span><span class="p">(</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">fun1</span><span class="p">(</span> <span class="n">B</span> <span class="p">)</span> <span class="p">;</span>   <span class="c1">// 情况2，对象B作为fun1的实参。//第二次调 用拷贝构造函数。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">B</span> <span class="o">=</span> <span class="n">fun2</span><span class="p">(</span> <span class="p">)</span> <span class="p">;</span> <span class="c1">// 情况3，函数返回值是类对象，函数返回时，调 用拷贝构造函数。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">B</span><span class="p">.</span><span class="n">GetX</span><span class="p">(</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>                      
+</span></span><span class="line"><span class="cl"><span class="c1">//运行结果：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  拷贝构造函数被调用
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  ４
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  拷贝构造函数被调用
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  ４
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  拷贝构造函数被调用
+</span></span></span><span class="line"><span class="cl"><span class="c1">//  １
+</span></span></span></code></pre></div><h3 id="析构函数destructor">析构函数（destructor）</h3>
+<ol>
+<li>
+<p>对象在声明时开始生存期，生存期结束时从内存中删除</p>
+</li>
+<li>
+<p>完成对象被删除前的一些清理工作，例如关闭文件或释放内存</p>
+</li>
+<li>
+<p>在对象的生存期即将结束的时刻由<strong>系统自动调用</strong>，然后对象消失，释放对象所占内存空间</p>
+</li>
+<li>
+<p>如果程序中未定义析构函数，编译系统将自动生成一个默认的析构函数</p>
+</li>
+<li>
+<p>析构函数也是特殊的类成员函数，它没有返回类型,没有参数,不能随意调用,也没有重载</p>
+</li>
+<li>
+<p>只是在类对象生命期结束的时候,由系统自动调用</p>
+</li>
+<li>
+<p>析构函数的格式</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="err">类名</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="k">public</span> <span class="o">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">~</span> <span class="err">类名</span><span class="p">(</span> <span class="p">)</span> <span class="p">;</span>          <span class="c1">//析构函数声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="err">；</span>
+</span></span><span class="line"><span class="cl">   <span class="err">类名</span><span class="o">::</span> <span class="o">~</span><span class="err">类名（）</span>    <span class="c1">// 析构函数的实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>    <span class="err">函数体</span>    <span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<p><strong>构造函数和析构函数举例</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">class</span> <span class="nc">Point</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>     
+</span></span><span class="line"><span class="cl">  <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="n">Point</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">xx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">yy</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="o">~</span><span class="n">Point</span><span class="err">（</span> <span class="err">）</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="c1">//...其它函数原形
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><p><strong>类的应用举例</strong></p>
+<p>一圆型游泳池如图所示，现在需在其周围建一圆型过道，并在其四周围上栅栏。栅栏价格为35元/米，过道造价为20元/平方米。过道宽度为3米，游泳池半径由键盘输入。要求编程计算并输出过道和栅栏的造价</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403301102995.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403301102995.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403301102995.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403301102995.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403301102995.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403301102995.png" /></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">const</span> <span class="kt">float</span> <span class="n">PI</span> <span class="o">=</span> <span class="mf">3.14159</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">float</span> <span class="n">FencePrice</span> <span class="o">=</span> <span class="mi">35</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">float</span> <span class="n">ConcretePrice</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Circle</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">float</span>   <span class="n">radius</span><span class="p">;</span>       
+</span></span><span class="line"><span class="cl">  <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Circle</span><span class="p">(</span><span class="kt">float</span> <span class="n">r</span><span class="p">);</span>  <span class="c1">//构造函数        
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="n">Circumference</span><span class="err">（</span> <span class="err">）</span><span class="p">;</span> <span class="c1">//圆周长
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="n">Area</span><span class="err">（</span> <span class="err">）</span><span class="p">;</span>  <span class="c1">//圆面积 };
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 类的实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 构造函数初始化数据成员radius
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">Circle</span><span class="o">::</span><span class="n">Circle</span><span class="p">(</span><span class="kt">float</span> <span class="n">r</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  		<span class="p">{</span><span class="n">radius</span><span class="o">=</span><span class="n">r</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 计算圆的周长
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">float</span> <span class="n">Circle</span><span class="o">::</span><span class="n">Circumference</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  <span class="k">return</span>  <span class="mi">2</span> <span class="o">*</span> <span class="n">PI</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;}</span>        
+</span></span><span class="line"><span class="cl">	<span class="c1">// 计算圆的面积 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">float</span> <span class="n">Circle</span><span class="o">::</span><span class="n">Area</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>  <span class="k">return</span> <span class="n">PI</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span> <span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">float</span> <span class="n">radius</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">float</span> <span class="n">FenceCost</span><span class="p">,</span> <span class="n">ConcreteCost</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">  <span class="c1">// 提示用户输入半径
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Enter the radius of the pool: &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">radius</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 声明 Circle 对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Circle</span> <span class="nf">Pool</span><span class="p">(</span><span class="n">radius</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Circle</span> <span class="nf">PoolRim</span><span class="p">(</span><span class="n">radius</span> <span class="o">+</span> <span class="mi">3</span><span class="p">);</span>       
+</span></span><span class="line"><span class="cl"><span class="c1">//计算栅栏造价并输出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="n">FenceCost</span> <span class="o">=</span> <span class="n">PoolRim</span><span class="p">.</span><span class="n">Circumference</span><span class="p">()</span> <span class="o">*</span> <span class="n">FencePrice</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Fencing Cost is ￥&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">FenceCost</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>    
+</span></span><span class="line"><span class="cl">    <span class="c1">//  计算过道造价并输出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ConcreteCost</span> <span class="o">=</span> <span class="p">(</span> <span class="n">PoolRim</span><span class="p">.</span><span class="n">Area</span><span class="p">())</span><span class="o">-</span> <span class="n">Pool</span><span class="p">.</span><span class="n">Area</span><span class="p">(</span> <span class="p">))</span><span class="o">*</span><span class="n">ConcretePrice</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Concrete Cost is ￥&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">ConcreteCost</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//运行结果
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Enter the radius of the pool: 10
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Fencing Cost is ￥2858.85
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Concrete Cost is ￥4335.39
+</span></span></span></code></pre></div><h2 id="类的组合">类的组合</h2>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nf">Circle</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Circle</span><span class="p">(</span><span class="kt">float</span> <span class="n">r</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float</span> <span class="n">Circumference</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float</span> <span class="n">area</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float</span> <span class="n">radius</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><ol>
+<li>类中的数据成员是另一个类的对象</li>
+<li>可以在已有的抽象的基础上实现更复杂的抽象</li>
+<li>在创建组合类的对象时，不仅要对本类中的<strong>基本数据类型成员进行初始化</strong>，也要对<strong>内嵌对象成员初始化</strong></li>
+</ol>
+<p>举例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Point</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">float</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span> <span class="c1">//点的坐标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">       <span class="n">Point</span><span class="p">(</span><span class="kt">float</span> <span class="n">h</span><span class="p">,</span><span class="kt">float</span> <span class="n">v</span><span class="p">);</span> <span class="c1">//构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>       <span class="kt">float</span> <span class="nf">GetX</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span> <span class="c1">//取X坐标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>       <span class="kt">float</span> <span class="nf">GetY</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span> <span class="c1">//取Y坐标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>       <span class="kt">void</span> <span class="nf">Draw</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span> <span class="c1">//在(x,y)处画点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span><span class="c1">//...函数的实现略
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Line</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Point</span>  <span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">;</span> <span class="c1">//线段的两个端点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Line</span><span class="p">(</span><span class="n">Point</span> <span class="n">a</span><span class="p">,</span><span class="n">Point</span> <span class="n">b</span><span class="p">);</span> <span class="c1">//构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="kt">void</span> <span class="nf">Draw</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span> <span class="c1">//画出线段
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span><span class="c1">//...函数的实现略
+</span></span></span></code></pre></div><h3 id="组合类的构造函数设计">组合类的构造函数设计</h3>
+<ol>
+<li>
+<p><strong>组合类构造函数定义的一般形式：</strong></p>
+<p><strong>类名::类名(形参表) ：内嵌对象1(形参表)，内嵌对象2(形参表)，&hellip;&hellip;
+{  本类的初始化  }</strong></p>
+<p>注：初始化列表，可以用于完成内嵌对象的初始化</p>
+</li>
+<li>
+<p>对类中一般的数据成员也可以这样初始化</p>
+<p><strong>Point::Point(float h , float v):x(h) , y(v){ }</strong></p>
+</li>
+</ol>
+<h3 id="组合类的构造函数调用">组合类的构造函数调用</h3>
+<ol>
+<li>声明一个组合类的对象时，不仅它自身的构造函数将被调用，而且还将调用其内嵌对象的构造函数。</li>
+</ol>
+<h3 id="构造函数调用顺序">构造函数调用顺序</h3>
+<p>先调用内嵌对象的构造函数（按声明时出现的顺序，先声明者先构造）。然后执行本类构造函数的函数体。（析构函数的调用顺序相反）</p>
+<ol>
+<li>若调用默认构造函数（即无形参的），则内嵌对象的初始化也将调用相应的默认构造函数</li>
+<li>如果声明组合类的对象时没有指定对象的初始值，则自动调用无形参的构造函数。这时相应地，也调用内嵌对象的无形参的构造函数。</li>
+<li>析构函数的调用执行顺序与构造函数刚好相反。</li>
+<li>内嵌对象的构造顺序与内嵌对象的定义顺序相同</li>
+</ol>
+<p>类的组合举例:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Part</span>  
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Part</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Part</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>  <span class="p">{</span> <span class="n">val</span><span class="o">=</span><span class="n">i</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">~</span><span class="n">Part</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">void</span> <span class="nf">Print</span><span class="p">(){</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">val</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Whole</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">       <span class="n">Whole</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">       <span class="n">Whole</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">       <span class="o">~</span><span class="n">Whole</span><span class="p">(){</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">void</span> <span class="nf">Print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">       <span class="n">Part</span>  <span class="n">one</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="n">Part</span>  <span class="n">two</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span>  <span class="n">date</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">Whole</span><span class="o">::</span><span class="n">Whole</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="n">date</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Whole</span><span class="o">::</span><span class="n">Whole</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span><span class="o">:</span> <span class="n">two</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">one</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="n">date</span><span class="o">=</span><span class="n">k</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Whole</span><span class="o">::</span><span class="n">Print</span><span class="p">()</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   <span class="n">one</span><span class="p">.</span><span class="n">Print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">     <span class="n">two</span><span class="p">.</span><span class="n">Print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">     <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">date</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Whole</span>  <span class="n">w</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="n">w</span><span class="p">.</span><span class="n">Print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//输出结果:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//6
+</span></span></span><span class="line"><span class="cl"><span class="c1">//5
+</span></span></span><span class="line"><span class="cl"><span class="c1">//7
+</span></span></span></code></pre></div><p>例：类的组合&mdash;-线段距离Distance类</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt; iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt; cmath&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">class</span> <span class="nc">point</span>                     <span class="c1">//point类声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span> <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="n">point</span> <span class="p">(</span><span class="kt">int</span> <span class="n">xx</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">yy</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">)</span> 
+</span></span><span class="line"><span class="cl">         <span class="p">{</span> <span class="n">X</span> <span class="o">=</span> <span class="n">xx</span> <span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">yy</span> <span class="p">;}</span>
+</span></span><span class="line"><span class="cl">     <span class="n">point</span><span class="p">(</span> <span class="n">point</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="nf">Getx</span><span class="p">(</span> <span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">X</span><span class="p">;)</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">Gety</span><span class="p">(</span> <span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">Y</span><span class="p">;)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">int</span> <span class="n">x</span> <span class="p">,</span> <span class="n">y</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="n">point</span><span class="o">::</span><span class="n">point</span><span class="p">(</span><span class="n">point</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">x</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Y</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">y</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">Point拷贝构造函数被调用</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;}</span> <span class="c1">//类的组合
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">class</span> <span class="nc">Distance</span>            <span class="c1">//Distance类的声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">{</span>     
+</span></span><span class="line"><span class="cl">   <span class="k">public</span><span class="o">:</span>     <span class="c1">//外部接口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">Distance</span> <span class="p">(</span> <span class="n">Point</span> <span class="n">xp1</span> <span class="p">,</span> <span class="n">Point</span> <span class="n">xp2</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">double</span> <span class="n">GetDis</span><span class="p">(</span> <span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">dist</span> <span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Point</span> <span class="n">p1</span> <span class="p">,</span> <span class="n">p2</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">double</span> <span class="n">dist</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>  
+</span></span><span class="line"><span class="cl">  <span class="c1">// 组合类的构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Distance</span><span class="o">::</span><span class="n">Distance</span><span class="p">(</span> <span class="n">Point</span> <span class="n">xp1</span> <span class="p">,</span> <span class="n">Point</span> <span class="n">xp2</span> <span class="p">)</span><span class="o">:</span><span class="n">p1</span><span class="p">(</span><span class="n">xp1</span><span class="p">)</span> <span class="p">,</span> <span class="n">p2</span><span class="p">(</span><span class="n">xp2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">Distance构造函数被用</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="kt">double</span><span class="p">(</span> <span class="n">p1</span><span class="p">.</span><span class="n">Getx</span><span class="p">(</span> <span class="p">)</span> <span class="err">–</span> <span class="n">p2</span><span class="p">.</span><span class="n">Getx</span><span class="p">(</span> <span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="kt">double</span><span class="p">(</span> <span class="n">p1</span><span class="p">.</span><span class="n">Gety</span><span class="p">(</span> <span class="p">)</span> <span class="err">–</span> <span class="n">p2</span><span class="p">.</span><span class="n">Gety</span><span class="p">(</span> <span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="n">dist</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span> <span class="p">)</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// 主函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">main</span><span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>    
+</span></span><span class="line"><span class="cl">   <span class="c1">//声明Point类的对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">Point</span> <span class="n">myp1</span><span class="p">(</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="p">,</span> <span class="n">myp2</span><span class="p">(</span> <span class="mi">4</span> <span class="p">,</span> <span class="mi">5</span> <span class="p">);</span>  
+</span></span><span class="line"><span class="cl">   <span class="c1">//声明Distance类的对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">Distance</span> <span class="n">myd</span> <span class="p">(</span> <span class="n">myp1</span> <span class="p">,</span> <span class="n">myp2</span> <span class="p">)</span> <span class="p">;</span>                                       
+</span></span><span class="line"><span class="cl">   <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">The</span> <span class="n">distance</span> <span class="nl">is</span> <span class="p">:</span><span class="err">”</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">myd</span><span class="p">.</span><span class="n">GetDis</span><span class="p">(</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span><span class="line"><span class="cl">                  
+</span></span><span class="line"><span class="cl"><span class="c1">//程序的运行 结果为:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Point拷贝构造函数被调用
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Point拷贝构造函数被调用
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Point拷贝构造函数被调用
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Point拷贝构造函数被调用
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Distance构造函数被调用
+</span></span></span><span class="line"><span class="cl"><span class="c1">//The distance is : 5
+</span></span></span></code></pre></div><h3 id="前向引用声明">前向引用声明</h3>
+<ol>
+<li>类应该先声明，然后再使用</li>
+<li>如果需要在某个类的声明之前，引用该类，则应进行前向引用声明。</li>
+<li>前向引用声明只为程序引入一个代表该类的标识符，但具体声明在其它地方。</li>
+<li><strong>注意：在提供一个完整的类定义之前，不能定义该类的对象，也不能在内联函数中使用该类的对象。</strong></li>
+</ol>
+<p>举例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">B</span><span class="p">;</span>               <span class="c1">//前向引用声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">A</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">B</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">B</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="kt">void</span> <span class="n">g</span><span class="p">(</span><span class="n">A</span> <span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>  
+</span></span></code></pre></div><h2 id="类模板class-template">类模板(class template)</h2>
+<ol>
+<li>
+<p>通用代码重用</p>
+</li>
+<li>
+<p>类模板</p>
+<p>使用类模板使用户可以为类声明一种模式，使得类中的<strong>某些数据</strong>成员、<strong>某些成员函数的参数、某些成员函数的返回值</strong>，能取任意类型(包括系统预定义的和用户自定义的)。</p>
+</li>
+<li>
+<p>参数化程序设计</p>
+<p>在多数情况下，越通用的代码越能够重用</p>
+</li>
+<li>
+<p>模板是<strong>C++支持参数化</strong>的工具</p>
+<p>实现参数化多态性，就是将程序所处理的对象的类型参数化</p>
+</li>
+</ol>
+<h3 id="类模板声明形式">类模板声明形式</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">template</span>  <span class="o">&lt;</span><span class="err">形式类型参数表</span><span class="o">&gt;</span> 
+</span></span><span class="line"><span class="cl">          <span class="k">class</span>  <span class="nc">classname</span>
+</span></span><span class="line"><span class="cl">     <span class="p">{</span>    <span class="c1">//类声明体 };
+</span></span></span></code></pre></div><ol>
+<li>
+<p>“形式类型参数表”中可包含下列内容</p>
+<ol>
+<li>
+<p><strong>class</strong>标识符</p>
+<p>指明可以接受一个类型参数。</p>
+</li>
+<li>
+<p><strong>类型说明符</strong>   标识符</p>
+<p>指明可以接受一个由“类型说明符”所规定类型的常量作为参数</p>
+</li>
+</ol>
+</li>
+<li>
+<p>模板类的成员函数必须是<strong>函数模板</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">template</span>  <span class="o">&lt;</span><span class="err">形式类型参数表</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="err">返回类型</span>  <span class="n">classname</span>  <span class="o">&lt;</span><span class="err">类型名表</span><span class="o">&gt;</span> <span class="o">::</span> <span class="n">MemberFuncName1</span> <span class="p">(</span><span class="err">形式参数表</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   <span class="c1">//成员函数定义体  }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span>  <span class="o">&lt;</span><span class="err">形式类型参数表</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="err">返回类型</span>  <span class="n">classname</span>  <span class="o">&lt;</span><span class="err">类型名表</span><span class="o">&gt;</span> <span class="o">::</span><span class="n">MemberFuncName2</span> <span class="p">(</span><span class="err">形式参数表</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   <span class="c1">//成员函数定义体   }
+</span></span></span></code></pre></div></li>
+<li>
+<p><strong>类模板</strong>(包括成员函数的定义)不是一个实实在在的类，只是对类的描述</p>
+</li>
+<li>
+<p>建立类模板之后，可用以下方式创建类模板的实例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">classname</span>  <span class="o">&lt;</span><span class="err">实际存在类型参数表</span><span class="o">&gt;</span>   <span class="n">object</span>
+</span></span></code></pre></div><p>其中实在类型参数表和类模板中形式类型参数表匹配。</p>
+<p><strong>classname</strong>  &lt;实际存在<strong>类型参数表</strong>&gt; <strong>是模板类</strong>( template class ),<strong>object</strong>是该模板类的一个对象。</p>
+</li>
+</ol>
+<p>举例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TestClass</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">   <span class="n">T</span> <span class="n">buffer</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">void</span> <span class="nf">setArray</span><span class="p">(</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">void</span> <span class="nf">showArray</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">TestClass</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">i</span><span class="o">&gt;::</span><span class="n">setArray</span><span class="p">(</span> <span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">i</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">buffer</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">TestClass</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">i</span><span class="o">&gt;::</span><span class="n">showArray</span><span class="p">()</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">i</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">buffer</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">TestClass</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="mi">5</span><span class="o">&gt;</span> <span class="n">ClassInst</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">ClassInst</span><span class="p">.</span><span class="n">setArray</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">   <span class="n">ClassInst</span><span class="p">.</span><span class="n">showArray</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//运行结果：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//a
+</span></span></span><span class="line"><span class="cl"><span class="c1">//b
+</span></span></span><span class="line"><span class="cl"><span class="c1">//c
+</span></span></span><span class="line"><span class="cl"><span class="c1">//d
+</span></span></span><span class="line"><span class="cl"><span class="c1">//e
+</span></span></span><span class="line"><span class="cl"><span class="c1">//abcde
+</span></span></span></code></pre></div><h3 id="类模板和模板类">类模板和模板类</h3>
+<ol>
+<li>类模板和模板类的区别：
+<ol>
+<li>类模板是模板的定义，不是一个    实实在在的类，定义中用到通用形式    类型参数。</li>
+<li>模板类是实实在在的类定义，是    类模板的实例化。形式类型参数被实    际类型所代替</li>
+</ol>
+</li>
+</ol>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Class</span> <span class="n">Store</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="nl">Private</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">T</span>  <span class="n">item</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="nl">Public</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Store</span> <span class="p">(</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">T</span>  <span class="nf">GetElem</span> <span class="p">(</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span>  <span class="nf">Putelem</span> <span class="p">(</span><span class="n">T</span>  <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">Void</span>  <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="n">Store</span> <span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span>  <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Store</span> <span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span>  <span class="n">s3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//其中Store&lt;int&gt; s1,s2;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//模板生成函数为：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Class Store
+</span></span></span><span class="line"><span class="cl"><span class="c1">//{
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Private:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   int  item;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Public:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   Store ( );
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   int  GetElem ( );
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   void  Putelem (int  x);
+</span></span></span><span class="line"><span class="cl"><span class="c1">//};
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//其中Store &lt;Student&gt;  s3;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//模板生成函数为：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Class Store
+</span></span></span><span class="line"><span class="cl"><span class="c1">//{
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Private:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   Student  item;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Public:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   Store ( );
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   Student  GetElem ( );
+</span></span></span><span class="line"><span class="cl"><span class="c1">// void  Putelem (Student  x);     
+</span></span></span><span class="line"><span class="cl"><span class="c1">// };
+</span></span></span></code></pre></div><p><strong>类模板应用举例</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 结构体Student
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">struct</span> <span class="nc">Student</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>               <span class="c1">//学号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="n">gpa</span><span class="p">;</span>          <span class="c1">//平均分
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>  
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>  
+</span></span><span class="line"><span class="cl">  <span class="c1">//类模板：实现对任意类型数据进行存取
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">class</span> <span class="nc">Store</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">T</span> <span class="n">item</span><span class="p">;</span>      <span class="c1">// 用于存放任意类型的数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="kt">int</span> <span class="n">haveValue</span><span class="p">;</span>  <span class="c1">// 用于标记item是否已被存入内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Store</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>    <span class="c1">// 缺省形式（无形参）的构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">T</span> <span class="nf">GetElem</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>  <span class="c1">//提取数据函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">void</span> <span class="nf">PutElem</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="p">);</span>  <span class="c1">//存入数据函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 默认形式构造函数的实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>                              
+</span></span><span class="line"><span class="cl"><span class="n">Store</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Store</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="o">:</span> <span class="n">haveValue</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>      <span class="c1">// 提取数据函数的实现
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">T</span> <span class="n">Store</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">GetElem</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>    
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   <span class="c1">// 如果试图提取未初始化的数据，则终止程序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">haveValue</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;No item present!&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">item</span><span class="p">;</span>    <span class="c1">// 返回item中存放的数据 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>     <span class="c1">// 存入数据函数的实现 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">Store</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">PutElem</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   <span class="n">haveValue</span><span class="o">++</span><span class="p">;</span>    <span class="c1">// 将haveValue 置为 TRUE， 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                                 <span class="c1">//表示item中已存入数值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">item</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>             <span class="c1">// 将x值存入item
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   <span class="n">Student</span> <span class="n">g</span><span class="o">=</span> <span class="p">{</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">23</span><span class="p">};</span>  
+</span></span><span class="line"><span class="cl">	<span class="n">Store</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">	<span class="n">S1</span><span class="p">.</span><span class="n">PutElem</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">S2</span><span class="p">.</span><span class="n">PutElem</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">S1</span><span class="p">.</span><span class="n">GetElem</span><span class="p">(</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;  &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">S2</span><span class="p">.</span><span class="n">GetElem</span><span class="p">(</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">S3</span><span class="p">.</span><span class="n">PutElem</span><span class="p">(</span><span class="n">g</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;The student id is &#34;</span> <span class="o">&lt;&lt;</span><span class="n">S3</span><span class="p">.</span><span class="n">GetElem</span><span class="p">(</span> <span class="p">).</span><span class="n">id</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Retrieving object D  &#34;</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">D</span><span class="p">.</span><span class="n">GetElem</span><span class="p">(</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">       <span class="c1">//输出对象D的数据成员,由于D未经初始化,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="c1">//在执行函数D.GetElement( )时出错
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//运行结果:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//3      -7
+</span></span></span><span class="line"><span class="cl"><span class="c1">//The student id is 1000
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Retrieving object D No item present!
+</span></span></span></code></pre></div><h3 id="总结">总结</h3>
+<ol>
+<li>
+<p>类的组合</p>
+</li>
+<li>
+<p>组合类构造函数定义的一般形式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">类名</span><span class="o">::</span><span class="err">类名</span><span class="p">(</span><span class="err">形参表</span><span class="p">)</span> <span class="err">：内嵌对象</span><span class="mi">1</span><span class="p">(</span><span class="err">形参表</span><span class="p">)</span><span class="err">，内嵌对象</span><span class="mi">2</span><span class="p">(</span><span class="err">形参表</span><span class="p">)</span><span class="err">，</span><span class="p">......</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="err">本类的初始化</span>  <span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>前向引用声明</p>
+</li>
+<li>
+<p>类模板</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">template</span>  <span class="o">&lt;</span><span class="err">形式类型参数表</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">class</span>   <span class="nc">classname</span>
+</span></span><span class="line"><span class="cl">  		<span class="p">{</span> <span class="c1">//类声明体 };
+</span></span></span></code></pre></div></li>
+<li>
+<p>使用一个模板类来建立对象时，声明形式</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">classname</span> <span class="o">&lt;</span><span class="err">实在类型参数表</span><span class="o">&gt;</span> <span class="n">object</span><span class="p">;</span>
+</span></span></code></pre></div></li>
+</ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

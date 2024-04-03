@@ -3,7 +3,31 @@
         <title>All Posts - 蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/posts/</link>
         <description>All Posts | 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 26 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 03 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>编译引论(第四章)</title>
+    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%BC%95%E8%AE%BA4/</link>
+    <pubDate>Wed, 03 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%BC%95%E8%AE%BA4/</guid>
+    <description><![CDATA[语法分析——自顶向下分析 按照语法分析树的建立方法，可将语法分析方法分成自顶向下和自底向上两大类。 自顶向下分析方法：语法分析从顶部（树根、语言]]></description>
+</item>
+<item>
+    <title>数据结构(第三章)</title>
+    <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/</link>
+    <pubDate>Sun, 31 Mar 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/</guid>
+    <description><![CDATA[栈和队列 栈 栈的定义及基本运算 栈(Stack)的定义 栈(Stack)是限制在表的一端进行插入和删除运算的线性表，通常称插入、删除的这一端为栈顶]]></description>
+</item>
+<item>
+    <title>计算机组成(第三章)</title>
+    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/</link>
+    <pubDate>Sun, 31 Mar 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/</guid>
+    <description><![CDATA[存储系统 ROM 的分类 只读存储器简称ROM，它只能读出，不能写入。它的最大优点是具有不易失性。根据编程方式的不同，ROM通常分为三类： ROM芯片的]]></description>
+</item>
+<item>
     <title>操作系统(第三章)</title>
     <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3/</link>
     <pubDate>Tue, 26 Mar 2024 00:00:00 &#43;0000</pubDate>
@@ -58,30 +82,6 @@
     <author>蓝Q曦</author>
     <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A12/</guid>
     <description><![CDATA[分治法 思想 分+治+合 过程 分治法产生的子问题是原问题的较小模式 反复应用分治手段，可以使子问题规模不断减小 最终使子问题缩小到很容易直接求出其解 将]]></description>
-</item>
-<item>
-    <title>数据结构(第一章)</title>
-    <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
-    <pubDate>Sun, 10 Mar 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
-    <description><![CDATA[概念 相互之间存在一种或多种特定关系的数据元素的集合 逻辑结构，存储结构，运算合称为三要素 数据结构形式定义 数据结构是一个二元组 Data_Structure = (D,S) D是数据元素]]></description>
-</item>
-<item>
-    <title>数据结构(第二章)</title>
-    <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842/</link>
-    <pubDate>Sun, 10 Mar 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%842/</guid>
-    <description><![CDATA[线性表定义 一个线性表是n个数据元素的有限序列 数据元素类型 原子型 整数，字符 结构类型 表示学生的数据元素 线性表中的元素之间的关系是线性关系 存在惟一]]></description>
-</item>
-<item>
-    <title>c&#43;&#43;(two)</title>
-    <link>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A12/</link>
-    <pubDate>Sat, 09 Mar 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A12/</guid>
-    <description><![CDATA[c++的产生 c++是从c语言发展演变而来的，引入了类的机制，最初也被称为&quot;带类的C&quot; 特点 保持c的简洁，高效和接近汇编语言]]></description>
 </item>
 </channel>
 </rss>

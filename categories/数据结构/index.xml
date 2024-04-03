@@ -3,7 +3,15 @@
         <title>数据结构 - Category - 蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
         <description>数据结构 - Category - 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 10 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 31 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="self" type="application/rss+xml" /><item>
+    <title>数据结构(第三章)</title>
+    <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/</link>
+    <pubDate>Sun, 31 Mar 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/</guid>
+    <description><![CDATA[栈和队列 栈 栈的定义及基本运算 栈(Stack)的定义 栈(Stack)是限制在表的一端进行插入和删除运算的线性表，通常称插入、删除的这一端为栈顶]]></description>
+</item>
+<item>
     <title>数据结构(第一章)</title>
     <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
     <pubDate>Sun, 10 Mar 2024 00:00:00 &#43;0000</pubDate>

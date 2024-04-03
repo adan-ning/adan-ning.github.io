@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862\/"
-        },"genre": "posts","keywords": "计算机组成原理","wordcount":  8494 ,
+        },"genre": "posts","keywords": "计算机组成原理","wordcount":  11238 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862\/","datePublished": "2024-03-16T00:00:00+00:00","dateModified": "2024-03-16T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">计算机组成(第二章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机组成原理</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-16">2024-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;8494 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;17 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-16">2024-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;11238 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;23 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -187,6 +187,13 @@
         <li><a href="#算术逻辑部件alu">算术逻辑部件ALU</a></li>
       </ul>
     </li>
+    <li><a href="#浮点运算方法和浮点运算器">浮点运算方法和浮点运算器</a>
+      <ul>
+        <li><a href="#浮点加法减法运算">浮点加法、减法运算</a></li>
+        <li><a href="#浮点乘法和除法运算">浮点乘法和除法运算</a></li>
+      </ul>
+    </li>
+    <li><a href="#本-章-小-结">本 章 小 结</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="数据与文字的表示方法">数据与文字的表示方法</h1>
@@ -1252,6 +1259,227 @@ Pi=Ai⊕Bi ，称为进位传递函数</p>
         alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403251558483.png"
         title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403251558483.png" /></p>
 <p>两条总线同时供给操作数，输出与第三条总线相连；完成一次运算需要1步。特点是操作速度快，控制相对复杂一些</p>
+<h2 id="浮点运算方法和浮点运算器">浮点运算方法和浮点运算器</h2>
+<h3 id="浮点加法减法运算">浮点加法、减法运算</h3>
+<ol>
+<li>
+<p>浮点加减运算</p>
+<p>设有两个浮点数ｘ和ｙ,它们分别为</p>
+<p>$ｘ＝2^{Ex}·M_x$</p>
+<p>$ｙ＝2^{Ey}·M_y$</p>
+<p>其中$E_x$和$E_y$分别为数ｘ和ｙ的<strong>阶码</strong>,$M_x$和$M_y$为数ｘ和ｙ的<strong>尾数</strong>。两浮点数进行加法和减法的运算规则是</p>
+<p>$ｘ±ｙ＝(M_x2^{Ex-Ey}±M_y)2^{Ey}$，</p>
+<p>　　设$E_x&lt;＝E_y$</p>
+</li>
+<li>
+<p>浮点运算步骤如下：</p>
+<ol>
+<li>0 操作数的检查,看有无简化操作的可能；</li>
+<li>比较阶码大小并完成对阶（<strong>小阶向大阶对齐</strong>）；</li>
+<li>尾数进行加或减运算；</li>
+<li>结果规格化并进行舍入处理</li>
+</ol>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404011946605.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404011946605.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404011946605.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404011946605.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404011946605.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404011946605.png" /></p>
+<p>例:</p>
+<p>设$x＝2^2×0.11011011,y=-2^4×0.10101100$</p>
+<ol>
+<li>
+<p>0操作数检查（非0）</p>
+</li>
+<li>
+<p>对阶：阶码对齐后才能加减。规则是阶码小的向阶码大的数对齐；</p>
+<p>若△E＝0,表示两数阶码相等,即Ex＝Ey；</p>
+<p>若△E&gt;0,表示Ex&gt;Ey；</p>
+<p>若△E&lt;0,表示Ex&lt;Ey。</p>
+<p>当Ex≠Ey 时,要通过尾数的移动以改变Ex或Ey,使之相等</p>
+<p><strong>原则:小阶向大阶</strong></p>
+<p>设△E&gt;0,表示Ex&gt;Ey，则移动y的尾数，My右移△E位</p>
+<p>阶差=Ex-Ey=00 010- 00 100 =11 110</p>
+<p>即阶差为-2，Mx右移两位，Ex加2</p>
+<p>x=00100 , 0.00110110（11）</p>
+</li>
+<li>
+<p>尾数相加</p>
+<p>00.00110110（11）+11.01010100=11.10001010（11）</p>
+</li>
+<li>
+<p>结果规格化</p>
+<ol>
+<li>
+<p>在浮点加减运算时,尾数求和的结果也可以得到01.ф…ф或10.ф…ф,即两符号位不等,此时将运算结果右移以实现规格化表示,称为向右规格化。</p>
+<p>规则：尾数右移1位，阶码加1</p>
+</li>
+<li>
+<p>结果是00.0..01&hellip;..或11.1&hellip;10&hellip;时，则向左规格化</p>
+<p>规则：尾数左移1位，阶码减1，直到规格化</p>
+<p>右规，阶码加1，左规，阶码减1</p>
+<p>刚才例子左规为11.00010101（10），阶码减1为00011</p>
+</li>
+</ol>
+</li>
+<li>
+<p>舍入处理（对阶和向右规格化时）</p>
+<ol>
+<li>就近舍入(0舍1入):类似”四舍五入”,丢弃的最高位为1,进1</li>
+<li>朝0舍入:截尾</li>
+<li>朝＋∞舍入:正数多余位不全为”0”,进1;负数,截尾</li>
+<li>朝－∞ 舍入:负数多余位不全为”0”,进1;正数,截尾</li>
+</ol>
+</li>
+<li>
+<p>溢出判断和处理</p>
+<ol>
+<li>阶码上溢，一般将其认为是＋∞和－∞ 。</li>
+<li>阶码下溢，则数值为0</li>
+<li>尾数上溢，两个同符号位的数相加。处理方法是尾数右移，阶码 加1</li>
+<li>尾数下溢。尾数右移时，最低位从最右端流出。要进行舍入处理 。</li>
+</ol>
+</li>
+</ol>
+<p><strong>课堂练习：x=0.1101<em>21   y=-0.1010</em>23</strong></p>
+<p>尾数和阶符都采用补码表示，都采用双符号位表示法。求x+y</p>
+<p>[x]浮=0001，00.1101
+[y]浮=0011，11.0110
+阶差=1110       即为-2
+Mx应当右移2位，
+[x]浮=0011，00.0011（01）
+尾数和为11.1001（01）
+左规11.0010（10），阶码减1为0010
+舍入（就近舍入）11.0011       丢弃10
+x+y=-0.1101*210</p>
+<h3 id="浮点乘法和除法运算">浮点乘法和除法运算</h3>
+<ol>
+<li>
+<p>设有两个浮点数ｘ和ｙ：</p>
+<p>$ｘ＝2^{Ex}·M_x　$　　　　</p>
+<p>$ｙ＝2^{Ey}·M_y$</p>
+</li>
+<li>
+<p>乘除运算分为四步</p>
+<ol>
+<li>0操作数检查</li>
+<li>阶码加减操作（无需对阶）</li>
+<li>尾数乘除操作</li>
+<li>结果规格化和舍入处理</li>
+</ol>
+<p>浮点数的阶码运算（移码的运算规则）</p>
+<p>$[X]_移+[Y]_移=2^n+[X+Y]_移$</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404012023984.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404012023984.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404012023984.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404012023984.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404012023984.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404012023984.png" /></p>
+</li>
+<li>
+<p>移码采用双符号位，为了对溢出进行判断</p>
+<p><strong>01     为正           00        为负</strong></p>
+<p>10     上溢           11        下溢</p>
+<p>x＝＋011,y＝＋110,求[$x+y]_移 和 [x-y]_移$,并判断是否溢出</p>
+<p>$[x]_移＝01 011, [y]_补＝00 110, [-y]_补＝11 010$</p>
+<p>$[x+y]_移＝[x]_移＋[y]_补＝10 001$, 结果上溢。</p>
+<p>$[x-y]_移＝[x]_移＋[-y]_补＝00 101$, 结果正确,为－3。</p>
+</li>
+<li>
+<p>尾数处理</p>
+<ol>
+<li>截断</li>
+<li>舍入
+<ol>
+<li>尾数用原码表示时
+<ol>
+<li>只要尾数最低为1或者移出位中有1数值位，使最低位置1</li>
+<li>0舍1入</li>
+</ol>
+</li>
+<li>尾数用补码表示时
+<ol>
+<li>丢失的位全为0，不必舍入。</li>
+<li>丢失的最高位为0，以后各位不全为0时；或者最高为1，以后各位全为0时，不必舍入</li>
+<li>丢失的最高位为1，以后各位不全为0时，则在尾数的最低位入1的修正操作</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>例：</p>
+<p>设有浮点数x＝2-5×0.0110011， y＝23×(－0.1110010)，阶码用4位移码表示,尾数(含符号位)用8位补码表示。求[x×y]浮。要求用补码完成尾数乘法运算,运算结果尾数保留高8位(含符号位),并用尾数低位字长值处理舍入操作。</p>
+<p>解：</p>
+<p>移码采用双符号位,尾数补码采用单符号位,则有</p>
+<p>$[Mx]_补＝0.0110011, [My]_补＝1.0001110,$</p>
+<p>$[Ey]_移＝01 011, [Ey]_补＝00 011, [Ex]_移＝00 011,$</p>
+<p>$[x]_浮＝00 011, 0.0110011, [y]_浮＝01 011, 1.0001110$</p>
+<ol>
+<li>
+<p>判断操作是否为”0”,求阶码和</p>
+<p>$[Ex＋Ey]_移＝[Ex]_移＋[Ey]_补＝00 011＋00 011＝00 110,$</p>
+<p>值为移码形式－2。</p>
+</li>
+<li>
+<p>尾数乘法运算可采用补码阵列乘法器实现,即有</p>
+<p>$[Mx]_补×[My]_补＝[0.0110011]_补×[1.0001110]_补 =[1.1010010,1001010]_补$</p>
+</li>
+<li>
+<p>规格化处理</p>
+<p>乘积的尾数符号位与最高数值位符号相同，不是规格化的数,需要左规，阶码变为00 101(-3),</p>
+<p>尾数变为 1.0100101,0010100。</p>
+</li>
+<li>
+<p>舍入处理</p>
+<p>尾数为负数，取尾数高位字长，按舍入规则,舍去低位字长，故尾数为1.0100101 。</p>
+<p>最终相乘结果为</p>
+<p>$[x×y]_浮＝00 101,1.0100101$</p>
+<p>其真值为</p>
+<p>$x×y＝2^{－3}×(－0.1011011)$</p>
+</li>
+<li>
+<p>实现的逻辑框图</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404012057816.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404012057816.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404012057816.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404012057816.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404012057816.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404012057816.png" /></p>
+</li>
+<li>
+<p>浮点运算器实例</p>
+<ol>
+<li>CPU之外的浮点运算器（数学协处理器）如80287
+<ol>
+<li>完成浮点运算功能，不能单用。</li>
+<li>可以和80386或80286异步并行工作</li>
+<li>高性能的80位字长的内部结构。有8个80位字长以堆栈方式管理的寄存器组。</li>
+<li>浮点数格式完全符合IEEE标准</li>
+</ol>
+</li>
+<li>CPU之内的浮点运算器（486DX以上）</li>
+</ol>
+</li>
+</ol>
+<h2 id="本-章-小-结">本 章 小 结</h2>
+<ol>
+<li>一个定点数由符号位和数值域两部分组成。按小数点位置不同，<strong>定点数有纯小数和纯整数两种表示方法。</strong></li>
+<li>按<strong>IEEE754标准</strong>，一个浮点数由符号位S、阶码E、尾数M三个域组成。其中阶码E的值等于指数的真值e加上一个固定偏移值。</li>
+<li>为了使计算机能直接处理十进制形式的数据，采用两种表示形式：(1)字符串形式，主要用在非数值计算的应用领域；(2)压缩的十进制数串形式，用于直接完成十进制数的算术运算。</li>
+<li>数的真值变成机器码时有四种表示方法：<strong>原码表示法，反码表示法，补码表示法，移码表示法</strong>。其中移码主要用于表示浮点数的阶码E，以利于比较两个指数的大小和对阶操作</li>
+<li>字符信息属于符号数据，是处理非数值领域的问题。国际上采用的字符系统是七单位的<strong>ASCII</strong>码。直接使用西文标准键盘输入汉字，进行处理，并显示打印汉字，是一项重大成就。为此要解决汉字的输入编码、汉字内码、字模码等三种不同用途的编码</li>
+<li>为运算器构造的简单性，运算方法中算术运算通常采用<strong>补码加、减法，原码乘除法或补码乘除法</strong>。为了运算器的高速性和控制的简单性，采用了<strong>先行进位</strong>、阵列乘除法、流水线等并行技术措施。<strong>运算方法和运算器是本章的重点</strong></li>
+</ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

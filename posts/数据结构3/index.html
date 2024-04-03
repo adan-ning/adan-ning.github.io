@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>数据结构(第三章) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="数据结构(第三章)" />
+<meta property="og:description" content="栈和队列 栈 栈的定义及基本运算 栈(Stack)的定义 栈(Stack)是限制在表的一端进行插入和删除运算的线性表，通常称插入、删除的这一端为栈顶" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/" /><meta property="og:image" content="https://adan-ning.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-03-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-03-31T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://adan-ning.github.io/logo.png" /><meta name="twitter:title" content="数据结构(第三章)"/>
+<meta name="twitter:description" content="栈和队列 栈 栈的定义及基本运算 栈(Stack)的定义 栈(Stack)是限制在表的一端进行插入和删除运算的线性表，通常称插入、删除的这一端为栈顶"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/" /><link rel="next" href="https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%BC%95%E8%AE%BA4/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "数据结构(第三章)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/adan-ning.github.io\/posts\/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843\/"
+        },"genre": "posts","keywords": "数据结构","wordcount":  1496 ,
+        "url": "https:\/\/adan-ning.github.io\/posts\/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843\/","datePublished": "2024-03-31T00:00:00+00:00","dateModified": "2024-03-31T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">数据结构(第三章)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>数据结构</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-31">2024-03-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1496 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#栈">栈</a>
+      <ul>
+        <li><a href="#栈的定义及基本运算">栈的定义及基本运算</a></li>
+        <li><a href="#栈的存储结构和实现">栈的存储结构和实现</a></li>
+      </ul>
+    </li>
+    <li><a href="#栈的应用举例">栈的应用举例</a>
+      <ul>
+        <li><a href="#数制转换">数制转换</a></li>
+        <li><a href="#括号匹配">括号匹配</a></li>
+        <li><a href="#迷宫问题">迷宫问题</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="栈和队列">栈和队列</h1>
+<h2 id="栈">栈</h2>
+<h3 id="栈的定义及基本运算">栈的定义及基本运算</h3>
+<ol>
+<li>
+<p>栈(Stack)的定义</p>
+<p>栈(Stack)是限制在表的一端进行插入和删除运算的线性表，通常称插入、删除的这一端为栈顶(top),另一端为栈底(bottom)。当表中没有元素时称为空栈。</p>
+</li>
+<li>
+<p>栈的特点</p>
+<p>栈的修改是按后进先出的原则进行的。因此，栈称为后进先出表（LIFO）。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311324102.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311324102.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403311324102.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403311324102.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311324102.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311324102.png" /></p>
+</li>
+<li>
+<p>栈的运算演示</p>
+<ol>
+<li>A、B、C、D四个元素依次进入一个栈，再依次出栈，得到一个输出序列DCBA。</li>
+</ol>
+</li>
+<li>
+<p>栈的基本运算</p>
+<ol>
+<li>InitStack(&amp;S): 初始化栈S</li>
+<li>StackEmpty(): 判断栈是否为空</li>
+<li>Push(e): 将元素e放入栈顶</li>
+<li>Pop(e): 移走栈顶的元素，同时由e带回该元素的值</li>
+<li>Gettop(): 获取栈顶的元素，但不从栈中移走</li>
+</ol>
+</li>
+</ol>
+<h3 id="栈的存储结构和实现">栈的存储结构和实现</h3>
+<ol>
+<li>
+<p>栈的表示和实现</p>
+<p>假设栈$S=(a_1，a_2，a_3，…，a_n)$，则**$a_1$称为栈底元素，$a_n$为栈顶元素**。栈中元素按$a_1，a_2，a_3，…,a_n$的次序进栈，退栈的第一个元素应为栈顶元素。换句话说，栈的修改是按后进先出的原则进行的。因此，**栈称为后进先出表(Last In First Out，LIFO)  **</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311328231.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311328231.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403311328231.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403311328231.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311328231.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311328231.png" /></p>
+</li>
+<li>
+<p>顺序栈</p>
+<p>由于栈是<strong>运算受限的线性表</strong>，因此线性表的存储结构对栈也适应。<strong>栈的顺序存储结构简称为顺序栈</strong>，它是运算受限的线性表。因此，可用数组来实现顺序栈。</p>
+</li>
+<li>
+<p>顺序栈的类型定义</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// -----栈的顺序存储表示-----
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp"># define STACK_INIT_SIZE 100;
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define STACKINCREMENT 10;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	  <span class="n">SElemType</span>  <span class="o">*</span><span class="n">base</span><span class="p">;</span>    <span class="c1">//栈底指针，栈构造前和销毁后为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	  <span class="n">SElemType</span>  <span class="o">*</span><span class="n">top</span><span class="p">;</span>    <span class="c1">//栈顶指针，指向栈顶元素的下一位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	  <span class="kt">int</span>  <span class="n">stacksize</span><span class="p">;</span>    <span class="c1">//当前分配的栈的存储空间数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">SqStack</span><span class="p">;</span> 
+</span></span></code></pre></div></li>
+<li>
+<p>顺序栈运算</p>
+<p>设S是SqStack类型的指针变量。base是栈底指针。Top是栈顶指针。</p>
+<ol>
+<li>栈不存在条件S.base=NULL</li>
+<li>栈空条件S.top=S.base</li>
+<li>插入栈顶元素，栈顶指针S.top=S.top+1</li>
+<li>删除栈顶元素，栈顶指针S.top=S.top-1</li>
+<li>栈满条件S.top-S.base&gt;=S.stacksize</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311332990.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311332990.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403311332990.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403311332990.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311332990.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311332990.png" /></p>
+</li>
+<li>
+<p>顺序栈的C语言实现</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Status</span> <span class="nf">InitStack</span><span class="p">(</span><span class="n">SqStack</span>  <span class="o">&amp;</span><span class="n">S</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	  <span class="c1">//构造一个空栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	  <span class="n">S</span><span class="p">.</span><span class="n">base</span> <span class="o">=</span> <span class="p">(</span><span class="n">ElemType</span> <span class="o">*</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">malloc</span><span class="p">(</span><span class="n">STACK_INIT_SIZE</span> <span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="n">SElemType</span><span class="p">))</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">	  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">S</span><span class="p">.</span><span class="n">base</span><span class="p">)</span> <span class="nf">exit</span> <span class="p">(</span><span class="n">OVERFLOW</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	  <span class="n">S</span><span class="p">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">base</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	  <span class="n">S</span><span class="p">.</span><span class="n">stacksize</span> <span class="o">=</span> <span class="n">STACK_INIT_SIZE</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">	  <span class="k">return</span>  <span class="n">OK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="c1">//InitStack
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//判断栈空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">StackEmpty</span><span class="p">(</span><span class="n">SqStack</span> <span class="o">&amp;</span><span class="n">S</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span><span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">base</span><span class="o">==</span><span class="n">S</span><span class="p">.</span><span class="n">top</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//判断栈满
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">StackFull</span><span class="p">(</span><span class="n">SqStack</span> <span class="o">&amp;</span><span class="n">S</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span><span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">top</span><span class="o">-</span><span class="n">S</span><span class="p">.</span><span class="n">base</span><span class="o">&gt;=</span><span class="n">S</span><span class="p">.</span><span class="n">stacksize</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//元素入栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Status</span> <span class="nf">Push</span><span class="p">(</span><span class="n">SqStack</span>  <span class="o">&amp;</span><span class="n">S</span><span class="p">,</span> <span class="n">SElemType</span> <span class="n">e</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//插入元素e为新的栈顶元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">top</span> <span class="err">–</span> <span class="n">S</span><span class="p">.</span><span class="n">base</span> <span class="o">&gt;=</span> <span class="n">S</span><span class="p">.</span><span class="n">stacksize</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">           <span class="k">return</span> <span class="n">OVERFLOW</span><span class="p">;</span>       <span class="c1">//栈满
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="o">*</span><span class="n">S</span><span class="p">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">S</span><span class="p">.</span><span class="n">top</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span>  <span class="n">OK</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="c1">//Push
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//出栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">Pop</span><span class="p">(</span><span class="n">SqStack</span> <span class="o">&amp;</span><span class="n">S</span><span class="p">,</span> <span class="n">SElemType</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">top</span><span class="o">==</span><span class="n">s</span><span class="p">.</span><span class="n">base</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">UNDERFLOW</span><span class="p">;</span> <span class="c1">// 栈空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">S</span><span class="p">.</span><span class="n">top</span><span class="o">--</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">e</span><span class="o">=*</span><span class="n">S</span><span class="p">.</span><span class="n">top</span><span class="p">;</span>   
+</span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>链栈</p>
+<p><strong>栈的链式存储结构称为链栈</strong>，它是运算是受限的单链表，插入和删除操作仅限制在表头位置上进行。由于只能在链表头部进行操作，故链表没有必要像单链表那样附加头结点。<strong>栈顶指针就是链表的头指针</strong>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//链栈的类型说明如下：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">stacknode</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">SElemType</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">struct</span> <span class="n">stacknode</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">stacknode</span><span class="p">,</span><span class="o">*</span><span class="n">linkstack</span><span class="p">;</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311339861.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311339861.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403311339861.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403311339861.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311339861.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403311339861.png" /></p>
+</li>
+<li>
+<p>链栈的基本操作</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//置空栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">InitStack</span><span class="p">(</span><span class="n">linkStack</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">p</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//判断栈空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">StackEmpty</span><span class="p">(</span><span class="n">linkstack</span> <span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">return</span> <span class="n">p</span><span class="o">==</span><span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//进栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">Push</span><span class="p">(</span><span class="n">linkstack</span>  <span class="o">&amp;</span><span class="n">p</span><span class="p">,</span> <span class="n">SElemType</span> <span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="n">stacknode</span> <span class="o">*</span><span class="n">q</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">q</span><span class="o">=</span><span class="p">(</span><span class="n">stacknode</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">stacknode</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">	<span class="n">q</span><span class="err">–</span><span class="o">&gt;</span><span class="n">data</span><span class="o">=</span><span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">q</span><span class="err">–</span><span class="o">&gt;</span><span class="n">next</span><span class="o">=</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="o">=</span><span class="n">q</span><span class="p">;</span> <span class="c1">//设置栈顶指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//退栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">SElemType</span> <span class="nf">Pop</span><span class="p">(</span><span class="n">linkstack</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">SElemType</span> <span class="n">x</span><span class="p">;</span>    <span class="c1">//临时变量，保存栈顶元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">linkstack</span>  <span class="n">q</span><span class="o">=</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="o">==</span><span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">error</span><span class="p">(</span><span class="err">“</span><span class="n">stack</span> <span class="n">underflow</span><span class="p">.</span><span class="err">”</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="err">–</span><span class="o">&gt;</span><span class="n">next</span><span class="p">;</span>      <span class="c1">//调整栈顶指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">x</span><span class="o">=</span><span class="n">q</span><span class="err">–</span><span class="o">&gt;</span><span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">free</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>             <span class="c1">//删除栈顶元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//取栈顶元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">SElemType</span> <span class="nf">GetTop</span><span class="p">(</span><span class="n">linkstack</span> <span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="o">==</span><span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      	<span class="nf">error</span><span class="p">(</span><span class="err">“</span><span class="n">stack</span> <span class="n">is</span> <span class="n">empty</span><span class="p">.</span><span class="err">”</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">p</span><span class="err">–</span><span class="o">&gt;</span><span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<h2 id="栈的应用举例">栈的应用举例</h2>
+<p>根据栈的FILO特性，用作某些处理问题的工具。</p>
+<h3 id="数制转换">数制转换</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403312226417.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403312226417.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403312226417.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403312226417.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403312226417.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403312226417.png" /></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">conversion</span><span class="p">(</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nf">InitStack</span><span class="p">(</span><span class="n">S</span><span class="p">);</span>  <span class="c1">//构造空栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">scanf</span> <span class="p">(</span><span class="err">“</span><span class="o">%</span><span class="n">d</span><span class="err">”</span><span class="p">,</span><span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Push</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">n</span><span class="o">%</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="o">!</span> <span class="nf">StackEmpty</span><span class="p">(</span><span class="n">S</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl"><span class="nf">Pop</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">e</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="err">“</span><span class="o">%</span><span class="n">d</span><span class="err">”</span><span class="p">,</span><span class="n">e</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="括号匹配">括号匹配</h3>
+<p>设一个表达式中可以包含三种括号：“(”和“)”、“[”和“]”、“{”和“}”，并且这三种括号可以按照任意的次序<strong>嵌套</strong>使用，考查表达式中的括号是否匹配。例如：
+&hellip;[&hellip;{&hellip;[&hellip;}&hellip;]&hellip;]&hellip;[&hellip;]&hellip;(&hellip;)&hellip;)&hellip;</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">a</span><span class="o">=</span><span class="n">b</span><span class="o">+</span><span class="p">(</span><span class="n">c</span><span class="o">-</span><span class="n">d</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">e</span><span class="o">-</span><span class="n">f</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="n">m</span><span class="o">&lt;</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">+</span><span class="n">t</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>  <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>实现方法－－利用栈进行表达式中的括号匹配</p>
+<p><strong>自左至右扫描表达式，若遇左括号，则将左括号入栈，若遇右括号，则将其与栈顶的左括号进行匹配，若配对，则栈顶的左括号出栈，否则出现括号不匹配错误。</strong></p>
+<h3 id="迷宫问题">迷宫问题</h3>
+<p>寻找一条从入口到出口的通路</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202403312229579.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202403312229579.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202403312229579.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202403312229579.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403312229579.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403312229579.png" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-03-31</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/" data-title="数据结构(第三章)" data-hashtags="数据结构"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/" data-hashtag="数据结构"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/" data-title="数据结构(第三章)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/" data-title="数据结构(第三章)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/" data-title="数据结构(第三章)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/" class="prev" rel="prev" title="计算机组成(第三章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>计算机组成(第三章)</a>
+            <a href="/posts/%E7%BC%96%E8%AF%91%E5%BC%95%E8%AE%BA4/" class="next" rel="next" title="编译引论(第四章)">编译引论(第四章)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

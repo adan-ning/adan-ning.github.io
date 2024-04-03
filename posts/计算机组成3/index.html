@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>计算机组成(第三章) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="计算机组成(第三章)" />
+<meta property="og:description" content="存储系统 ROM 的分类 只读存储器简称ROM，它只能读出，不能写入。它的最大优点是具有不易失性。根据编程方式的不同，ROM通常分为三类： ROM芯片的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/" /><meta property="og:image" content="https://adan-ning.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-03-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-03-31T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://adan-ning.github.io/logo.png" /><meta name="twitter:title" content="计算机组成(第三章)"/>
+<meta name="twitter:description" content="存储系统 ROM 的分类 只读存储器简称ROM，它只能读出，不能写入。它的最大优点是具有不易失性。根据编程方式的不同，ROM通常分为三类： ROM芯片的"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3/" /><link rel="next" href="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "计算机组成(第三章)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/adan-ning.github.io\/posts\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903\/"
+        },"genre": "posts","keywords": "计算机组成原理","wordcount":  4695 ,
+        "url": "https:\/\/adan-ning.github.io\/posts\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903\/","datePublished": "2024-03-31T00:00:00+00:00","dateModified": "2024-03-31T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">计算机组成(第三章)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机组成原理</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-31">2024-03-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4695 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#rom-的分类">ROM 的分类</a></li>
+    <li><a href="#rom芯片的类型">ROM芯片的类型</a></li>
+    <li><a href="#半导体存储器对比">半导体存储器对比</a></li>
+    <li><a href="#闪速存储器">闪速存储器</a>
+      <ul>
+        <li><a href="#双端口存储器">双端口存储器</a></li>
+        <li><a href="#多模块交叉存储器">多模块交叉存储器</a></li>
+        <li><a href="#相联存储器">相联存储器</a></li>
+      </ul>
+    </li>
+    <li><a href="#cache存储器">Cache存储器</a>
+      <ul>
+        <li><a href="#cache基本原理">Cache基本原理</a></li>
+        <li><a href="#主存与cache的地址映射">主存与Cache的地址映射</a></li>
+        <li><a href="#替换策略">替换策略</a></li>
+        <li><a href="#写入策略">写入策略</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="存储系统">存储系统</h1>
+<h2 id="rom-的分类">ROM 的分类</h2>
+<p>只读存储器简称ROM，它只能读出，不能写入。它的最大优点是具有不易失性。根据编程方式的不同，ROM通常分为三类：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404012155565.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404012155565.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404012155565.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404012155565.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404012155565.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404012155565.png" /></p>
+<h2 id="rom芯片的类型">ROM芯片的类型</h2>
+<ol>
+<li>
+<p>MROM（掩膜ROM）</p>
+<p>掩膜工艺直接制作</p>
+</li>
+<li>
+<p>PROM（一次性编程ROM）</p>
+<p>允许用户进行一次性编程</p>
+</li>
+<li>
+<p>EPROM（可擦除可编程ROM）</p>
+<p>紫外光擦除、并可重复编程的ROM</p>
+</li>
+<li>
+<p>EEPROM（电擦除可编程ROM）</p>
+<p>擦除和编程（擦写）通过加电进行</p>
+</li>
+<li>
+<p>Flash Memory（闪速存储器）</p>
+<p>新型的电擦除可编程ROM</p>
+<p>快速擦除整片或数据块</p>
+</li>
+</ol>
+<h2 id="半导体存储器对比">半导体存储器对比</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021758880.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021758880.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021758880.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021758880.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021758880.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021758880.png" /></p>
+<h2 id="闪速存储器">闪速存储器</h2>
+<ol>
+<li>
+<p>什么是闪速存储器</p>
+<p>闪速存储器是一种高密度、非易失性的读/写<strong>半导体</strong>存储器，它突破了传统的存储器体系，改善了现有存储器的特性。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021759174.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021759174.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021759174.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021759174.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021759174.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021759174.png" /></p>
+</li>
+<li>
+<p>在不加电时仍可长期保持信息</p>
+</li>
+<li>
+<p>本质上属于EEPROM，存储速度快</p>
+</li>
+<li>
+<p>易于擦除和重写，功耗很小</p>
+</li>
+<li>
+<p>存放BIOS，升级方便，CIH病毒</p>
+</li>
+<li>
+<p>NOR &amp; NAND  FLASH</p>
+</li>
+<li>
+<p>闪速存储器是在EPROM功能基础上增加了芯片的电擦除和重新编程能力</p>
+<p>编程操作：编程操作就是对闪存的写操作。</p>
+<p>读取操作：从闪存读出数据。</p>
+<p>擦除操作：将闪存全部变为1。</p>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021801210.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021801210.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021801210.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021801210.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021801210.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021801210.png" /></p>
+<p><strong>速度不配怎么办？</strong></p>
+<p>由于CPU和主存储器在速度上不匹配，而且在一个CPU周期中可能需要用几个存储器字，这便限制了高速计算，为了使CPU不至因为等待存储器读写操作的完成而无事可做，可以采取一些加速CPU和存储器之间有效传输的特殊措施。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021801498.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021801498.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021801498.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021801498.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021801498.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021801498.png" /></p>
+<h3 id="双端口存储器">双端口存储器</h3>
+<p>同一个存储器具有两组相互独立的读写控制线路,提供了两个相互独立的端口，都可以对存储器中任何位置上的数据进行独立的存取操作</p>
+<ol>
+<li>具有两组相互独立的读写控制线路</li>
+<li>两组读写控制线路可以并行操作</li>
+<li>端口地址不相同，无冲突，并行存取</li>
+<li>端口地址相同，读写冲突，无法并行存取</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021803078.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021803078.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021803078.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021803078.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021803078.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021803078.png" /></p>
+<h3 id="多模块交叉存储器">多模块交叉存储器</h3>
+<p>每个模块各自以等同的方式与CPU传送信息。</p>
+<p>连续地址分布在相邻的模块，对连续字的成块传送可以重叠进行实现流水线并行存取</p>
+<ol>
+<li>
+<p>存储器的模块化组织</p>
+<p>一个由若干个模块组成的主存储器是线性编址的。</p>
+<p>这些地址在各模块有两种安排方式：一种是顺序方式，一种是交叉方式。</p>
+</li>
+</ol>
+<p><strong>顺序方式</strong>:某个模块进行存取时，其他模块不工作，某一模块出现故障时，其他模块可以照常工作，通过增添模块来扩充存储器容量比较方便。但各模块串行工作，存储器的带宽受到了限制。</p>
+<p><strong>交叉方式</strong>:地址码的低位字段经过译码选择不同的模块，而高位字段指向相应模块内的存储字。连续地址分布在相邻的不同模块内，同一个模块内的地址都是不连续的。对连续字的成块传送可实现多模块流水式并行存取，大大提高存储器的带宽。</p>
+<p>**方案一：顺序方式 **</p>
+<ol>
+<li>主存地址被分成高n位和低m位，高位（n）表示模块号，低位（m位）表示块内地址；</li>
+<li>在一个模块内，程序是从低位地址连续存放；</li>
+<li>对连续单元存取，一般仅对一个模块操作</li>
+<li>特点：
+<ol>
+<li>多模块串行工作</li>
+<li>易扩充容量</li>
+<li>故障局部性。</li>
+</ol>
+</li>
+</ol>
+<p><strong>多模块顺序存储器（地址总线扩展，容量扩展）</strong></p>
+<ol>
+<li>一个地址寄存器</li>
+<li>高位片选，多模块串行</li>
+<li>扩充容量方便</li>
+<li>性能无提升</li>
+<li>方便故障隔离</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021807444.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021807444.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021807444.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021807444.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021807444.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021807444.png" /></p>
+<p>**方案二：交叉方式 **</p>
+<ol>
+<li>主存地址被分成<strong>高n位和低m位，低位（m位）表示模块号</strong>，高位（n）表示块内地址；</li>
+<li>各模块间采用多模块交叉编址；</li>
+<li>对连续单元存取，则多个模块并行工作</li>
+<li>特点：
+<ol>
+<li>多模块并行工作，速度快</li>
+<li>不易扩展</li>
+<li>故障全局性。</li>
+</ol>
+</li>
+</ol>
+<p><strong>多模块交叉存储器</strong></p>
+<ol>
+<li>模块并行工作</li>
+<li>CPU比存储器要快</li>
+<li>能同时取出多条指令或者数据</li>
+<li>可大大提高机器的运行速度及存储带宽</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021809542.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021809542.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021809542.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021809542.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021809542.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021809542.png" /></p>
+<p><strong>定量分析：</strong></p>
+<p><strong>模块字长等于数据总线宽度；</strong></p>
+<p>设：模块存取一个字的存储周期为T，总线传送周期为τ，存储器交叉模块数为m，则</p>
+<p>$T=m \tau$（$m=T/ \tau$称为交叉存取度）</p>
+<p>表示每经过τ时间延迟后启动下一模块</p>
+<p>交叉存储器连续读取m个字所需时间为$t1=T+(m-1) \tau $</p>
+<p>而顺序存储器所需时间为t2=mT</p>
+<p>显然t1&lt;t2，故交叉存储器带宽提高。</p>
+<p><strong>交叉编址顺序访问时可按流水方式存取</strong></p>
+<ol>
+<li>$nT = m\tau$</li>
+<li>m = T/  交叉存取度连续读取n个字的时间</li>
+<li>$t_1=T+(n-1) \tau $,$t_1&lt;t_2$</li>
+<li>$t_2=nT$</li>
+</ol>
+<h3 id="相联存储器">相联存储器</h3>
+<p>按内容寻址的存储器</p>
+<p>把存储单元所存内容的某一部分作为检索项，去检索该存储器，并对存储器中与该检索项符合的存储单元内容进行读出或写入</p>
+<h2 id="cache存储器">Cache存储器</h2>
+<ol>
+<li>在相对容量较大而速度较慢的主存与高速处理器之间设置的少量但快速的存储器</li>
+<li>主要目的：提高存储器速度</li>
+<li>为追求高速，包括管理在内的<strong>全部功能由硬件</strong>实现</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021817957.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021817957.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021817957.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021817957.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021817957.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021817957.png" /></p>
+<p><strong>cache 术语</strong></p>
+<ol>
+<li>命中    hit:  CPU访问数据在cache中（上层存储器）</li>
+<li>缺失 miss:  CPU访问数据不在cache中</li>
+<li>块   block:  cache与主存交换最小单位</li>
+<li>行/槽  Line/Slot   标记、标志位、数据块容器
+<ol>
+<li>有效位、查找标记、脏标志位、置换标志、数据块副本</li>
+</ol>
+</li>
+<li>Cold Cache、Warm Cache</li>
+<li>命中率 （ hit rate ）
+<ol>
+<li>主存访问中cache命中比例</li>
+</ol>
+</li>
+<li>缺失率 （miss rate）
+<ol>
+<li>1 – 命中率</li>
+</ol>
+</li>
+<li>命中访问时间: （hit time）
+<ol>
+<li>数据查找时间、cache访问时间、总线传输时间</li>
+</ol>
+</li>
+<li>缺失损失  （miss penalty）
+<ol>
+<li>主存块调入cache，数据传输到处理器的时间</li>
+<li>远大于命中时间，所以一些相对较小的时间可忽略</li>
+</ol>
+</li>
+</ol>
+<p><strong>cache关键技术</strong></p>
+<ol>
+<li>数据查找     Data Identification</li>
+<li>地址映射    Address Mapping</li>
+<li>替换策略    Placement Policy</li>
+<li>写入策略   Write Policy</li>
+</ol>
+<h3 id="cache基本原理">Cache基本原理</h3>
+<ol>
+<li>CPU与cache之间的数据交换以字(字节)为单位</li>
+<li>Cache与主存间的数据传送以数据块为单位</li>
+<li>一个块(Block)由若干字组成</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021908769.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021908769.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021908769.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021908769.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021908769.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021908769.png" /></p>
+<p><strong>Cache的读操作</strong></p>
+<p><strong>高速命中(Hit)</strong>：微处理器读取主存的内容已包含在Cache中，可以直接读取Cache，不用访问主存</p>
+<p><strong>高速失效(Miss)</strong>、缺失、未命中：微处理器读取主存的内容不在Cache中，需要访问主存读取一个数据块</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021909238.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021909238.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021909238.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021909238.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021909238.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021909238.png" /></p>
+<p><strong>Cache的工作原理</strong></p>
+<ol>
+<li>Cache以块为单位进行操作</li>
+<li>当CPU发出访内操作请求后，首先由Cache控制器判断当前请求的字是否在Cache中，若在，叫命中，否则，不命中</li>
+<li>若命中：
+<ol>
+<li>若是“读”请求，则直接对Cache读，与主存无关</li>
+<li>若是“写”请求：
+<ol>
+<li>Cache单元与主存单元同时写（Write through写）</li>
+<li>只更新Cache单元并加标记，移出时修改主存（写回Copy back）</li>
+<li>只写入主存，并在Cache中加标记，下次从MM读出，保证正确。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>未命中时：
+<ol>
+<li>若是“读”请求，则从主存读出所需字送CPU，且把含该字的一块送Cache，称“装入通过”，若Cache已满，置换算法；</li>
+<li>若是“写”请求，直接写入主存</li>
+</ol>
+</li>
+</ol>
+<p><strong>Cache的命中率</strong></p>
+<p><strong>命中率（Hit Rate）</strong>：高速命中的概率</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021911652.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021911652.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021911652.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021911652.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021911652.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021911652.png" /></p>
+<p>cache/主存系统的平均访问时间$t_a$：</p>
+<p>$t_a=ht_c+(1-h)t_m$</p>
+<p>$t_c$＝命中时的cache访问时间</p>
+<p>$t_m$＝未命中时的主存访问时间</p>
+<p><strong>Cache的访问效率e</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021913763.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021913763.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021913763.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021913763.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021913763.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021913763.png" /></p>
+<p>设$r=t_m/t_c$表示主存慢于cache的倍率</p>
+<p>例：</p>
+<p>CPU执行一段程序时，cache完成存取的次数为1900次，主存完成存取的次数为100次，已知cache存取周期为50ns，主存存取周期为250ns，求cache/主存系统的效率和平均访问时间。</p>
+<p>解：</p>
+<p>$h=N_c/(N_c+N_m)=1900/(1900+100)=0.95$</p>
+<p>$r=t_m/t_c=250ns/50ns=5$</p>
+<p>$e=1/(r+(1-r)h)=1/(5+(1-5)×0.95)=83.3%$</p>
+<p>$t_a=t_c/e=50ns/0.833=60ns$</p>
+<p>或者，$t_a=h·t_c+(1-h)·t_m=60ns$</p>
+<p><strong>Cache结构</strong></p>
+<ol>
+<li>Cache的数据块称为行（线Line，槽Slot）
+<ol>
+<li>用$L_i$表示，其中i=0,1,…,m-1，共有m=$2^r$行</li>
+</ol>
+</li>
+<li>主存的数据块称为块（Block）
+<ol>
+<li>用$B_j$表示，其中j=0,1,…,n-1，共有n=$2^s$块</li>
+</ol>
+</li>
+<li><strong>行与块是等长的</strong>，包含$k=2^w$个<strong>主存字</strong>
+<ol>
+<li>字是CPU每次访问存储器时可存取的最小单位</li>
+</ol>
+</li>
+<li>Cache由数据存储器和标签存储器组成
+<ol>
+<li>数据存储器：高速缓存主存数据</li>
+<li>标签存储器：保存数据所在主存的地址信息</li>
+</ol>
+</li>
+</ol>
+<h3 id="主存与cache的地址映射">主存与Cache的地址映射</h3>
+<ol>
+<li>
+<p>Cache通过地址映射(mapping)的方法确定主存块与Cache行之间的对应关系，确定一个主存块应该存放到哪个Cache行中</p>
+</li>
+<li>
+<p>全相联映射(fully associative mapping)</p>
+<p>可以将一个主存块存储到任意一个Cache行</p>
+</li>
+<li>
+<p>直接映射(direct mapping)</p>
+<p>将一个主存块存储到唯一的一个Cache行</p>
+</li>
+<li>
+<p>组相联映射(set associative mapping)</p>
+<p>可以将一个主存块存储到唯一的一个Cache组中任意一个行</p>
+</li>
+</ol>
+<p>注：直接映射、2/4/8路组相联映射使用较多</p>
+<p><strong>全相联映射</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021919367.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021919367.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021919367.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021919367.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021919367.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021919367.png" /></p>
+<p><strong>全相联应用场合</strong></p>
+<ol>
+<li>块映射灵活，一对多映射</li>
+<li>cache全部装满后才会出现块冲突</li>
+<li>块冲突的概率低，cache利用率高</li>
+<li>淘汰算法复杂</li>
+<li>命中率高</li>
+</ol>
+<p><strong>直接相联映射</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021920807.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021920807.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021920807.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021920807.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021920807.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021920807.png" /></p>
+<ol>
+<li>cache容量 = 行大小 × 行数 =（标志位+标记位+数据块+<strong>置换标记</strong>） ×  行数</li>
+<li><strong>标记位=区地址</strong></li>
+<li>标志位（有效标志位，脏数据位）</li>
+<li>无相联存储器，一个比较器</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021922798.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021922798.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021922798.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021922798.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021922798.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021922798.png" /></p>
+<p><strong>直接相联应用场合</strong></p>
+<ol>
+<li>块映射速度快，一对一映射，无须查表
+<ol>
+<li>利用索引字段直接对比相应标记位即可</li>
+<li>查找表可以和副本一起存放，无需相联存储器</li>
+</ol>
+</li>
+<li>cache容易冲突，cache利用率低</li>
+<li>淘汰算法简单</li>
+<li>命中率低，适合大容量cache</li>
+</ol>
+<p><strong>组相联映射</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021923282.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021923282.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021923282.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021923282.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021923282.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021923282.png" /></p>
+<p><strong>组相联应用场合</strong></p>
+<ol>
+<li>容量小的cache可采用全相联映射或组相联映射
+<ol>
+<li>Pentium CPU  L1 L2 cache</li>
+</ol>
+</li>
+<li>容量大的可采用直接映射方式
+<ol>
+<li>查找速度快，命中率相对低</li>
+<li>但cache容量大可提高命中率</li>
+<li>块设备缓存</li>
+</ol>
+</li>
+</ol>
+<p><strong>不同映射方式主存地址划分</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021924360.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021924360.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021924360.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021924360.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021924360.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021924360.png" /></p>
+<h3 id="替换策略">替换策略</h3>
+<ol>
+<li>
+<p>替换问题</p>
+<ol>
+<li>新主存块要进入Cache，决定替换哪个原主存块</li>
+<li>直接映射，只能替换唯一的一个Cache行</li>
+<li>全相联和组相联，需要选择替换策略（算法）</li>
+</ol>
+</li>
+<li>
+<p>最不常用(LFU: least-frequently used)</p>
+<p>替换使用次数最少的块</p>
+</li>
+<li>
+<p>最近最少使用法(LRU: least-recently used)</p>
+<p>本指替换近期最少使用的块，实际实现的是替换最久没有被使用的块</p>
+</li>
+<li>
+<p>随机法(random)</p>
+<p>随意选择被替换的块，不依赖以前的使用情况</p>
+</li>
+</ol>
+<p><strong>LRU替换算法</strong></p>
+<ol>
+<li>
+<p>LRU能较好地反映程序的局部性，因而其命中率较高，但实现的硬件较复杂</p>
+</li>
+<li>
+<p>2路组相联：使用一个U位。某个Cache块被访问，该块U位置1；对应块U位置0。替换U位为0的块</p>
+</li>
+<li>
+<p>4/8路组相联：运用堆栈型算法。最近访问的块放上面，最下面存放最久没有访问的块。替换最下面的块</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021926390.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021926390.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021926390.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404021926390.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021926390.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404021926390.png" /></p>
+</li>
+</ol>
+<h3 id="写入策略">写入策略</h3>
+<ol>
+<li>
+<p>处理器对Cache读占大多数，也容易提高速度</p>
+</li>
+<li>
+<p>写入Cache有些问题：</p>
+<ol>
+<li>确认命中，才可以对Cache块写入</li>
+<li>写入的数据字数不定</li>
+<li>写入后可能导致与主存内容不一致</li>
+</ol>
+</li>
+<li>
+<p><strong>写入策略</strong>解决主存内容的更新问题，保持正确</p>
+</li>
+<li>
+<p><strong>直写法(write through)＝全写法</strong></p>
+<p>写入Cache的同时也写入主存（下一级存储器）</p>
+</li>
+<li>
+<p><strong>回写法(write back)＝写回法</strong></p>
+<p>只写入Cache，在被替换时才写回主存</p>
+</li>
+</ol>
+<p><strong>直写和回写的比较</strong></p>
+<ol>
+<li>直写策略
+<ol>
+<li>优点：简单可靠</li>
+<li>缺点：总线操作频繁、影响工作速度</li>
+<li>解决方法：在Cache与主存间设置一级/多级缓冲器，形成实用的“缓冲直写”方式，提高速度</li>
+</ol>
+</li>
+<li>回写策略
+<ol>
+<li>优点：可以减少写入主存次数、提高速度</li>
+<li>缺点：硬件结构比较复杂</li>
+<li>实现方法：为了表明Cache是否被修改，需要设置一个更新位（update，污染位dirty bit）。替换时只需将被修改的Cache块内容写入主存</li>
+</ol>
+</li>
+</ol>
+<p><strong>写未命中的处理方法</strong></p>
+<ol>
+<li>
+<p>写访问并不需要Cache块中所有数据。写未命中时，写入的数据是否还要将其读回Cache呢？</p>
+</li>
+<li>
+<p><strong>写分配法( write allocate，WTWA )</strong></p>
+<p>先把数据所在的块调入Cache，然后再进行写入。类似读失效的方式，也称fetch on write</p>
+</li>
+<li>
+<p><strong>不写分配法( no-write allocate，WTNWA )</strong></p>
+<p>直接把数据写入下一级存储器，不将相应的块调入Cache，也称write around</p>
+</li>
+<li>
+<p>直写策略通常配合不写分配法，回写策略一般采用写分配法</p>
+</li>
+</ol>
+<p><strong>Cache一致性</strong></p>
+<ol>
+<li>有了Cache，同一个数据会在主存也会在Cache</li>
+<li>有了多级Cache，在主存、一级、二级或三级Cache中可能存在同一个数据的多个拷贝</li>
+<li>多处理器系统存在有多个Cache，同一个数据的拷贝份数会更多</li>
+<li>如何保证它们都相同，或者说如何保证程序获得最新的正确的数据，就是Cache数据的一致性问题</li>
+</ol>
+<p><strong>实现Cache一致性的基本方案</strong></p>
+<ol>
+<li>软件方法：由编译程序和操作系统在编译时分析代码，避免共享变量进入Cache</li>
+<li>硬件方法：程序运行时动态处理，对程序员和编译员透明，称为Cache一致性协议(Cache coherence protocol)
+<ol>
+<li>目录(directory)：物理主存中共享数据的状态及相关信息保存在目录中，通常由中央控制器集中维护</li>
+<li>监听(snoopy)：各个Cache除保存数据拷贝外，也保存数据的共享状态信息，通过监听总线操作判断</li>
+</ol>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-03-31</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/" data-title="计算机组成(第三章)" data-hashtags="计算机组成原理"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/" data-hashtag="计算机组成原理"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/" data-title="计算机组成(第三章)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/" data-title="计算机组成(第三章)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/" data-title="计算机组成(第三章)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3/" class="prev" rel="prev" title="操作系统(第三章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>操作系统(第三章)</a>
+            <a href="/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/" class="next" rel="next" title="数据结构(第三章)">数据结构(第三章)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

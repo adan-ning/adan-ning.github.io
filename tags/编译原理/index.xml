@@ -3,7 +3,15 @@
         <title>编译原理 - Tag - 蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</link>
         <description>编译原理 - Tag - 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 19 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 03 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+    <title>编译引论(第四章)</title>
+    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%BC%95%E8%AE%BA4/</link>
+    <pubDate>Wed, 03 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%BC%95%E8%AE%BA4/</guid>
+    <description><![CDATA[语法分析——自顶向下分析 按照语法分析树的建立方法，可将语法分析方法分成自顶向下和自底向上两大类。 自顶向下分析方法：语法分析从顶部（树根、语言]]></description>
+</item>
+<item>
     <title>编译引论(第三章)</title>
     <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/</link>
     <pubDate>Tue, 19 Mar 2024 00:00:00 &#43;0000</pubDate>
