@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3\/"
-        },"genre": "posts","keywords": "操作系统","wordcount":  626 ,
+        },"genre": "posts","keywords": "操作系统","wordcount":  1640 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3\/","datePublished": "2024-03-26T00:00:00+00:00","dateModified": "2024-03-26T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">操作系统(第三章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-26">2024-03-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;626 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-26">2024-03-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1640 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -125,6 +125,14 @@
         <li><a href="#sjpf短作业优先调度算法">SJ(P)F短作业优先调度算法</a></li>
         <li><a href="#优先权调度">优先权调度</a></li>
         <li><a href="#时间片轮转rr">时间片轮转(RR)</a></li>
+        <li><a href="#最早截至时间优先edf">最早截至时间优先(EDF)</a></li>
+        <li><a href="#最低松弛度优先llf">最低松弛度优先(LLF)</a></li>
+      </ul>
+    </li>
+    <li><a href="#死锁">死锁</a>
+      <ul>
+        <li><a href="#避免死锁">避免死锁</a></li>
+        <li><a href="#补充银行家算法">补充(银行家算法)</a></li>
       </ul>
     </li>
   </ul>
@@ -232,6 +240,198 @@
         data-sizes="auto"
         alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202403262053255.png"
         title="https://cdn.jsdelivr.net/gh/adan-ning/images/202403262053255.png" /></p>
+</li>
+</ol>
+<p>例题：</p>
+<p>考虑5个进程P1,P2,P3,P4,P5,见表1.规定进程的优先度越小,优先级越高.试描述在采用下述几种调度算法时各个进程的运行过程.并计算采用每种算法时的进程平均周转时间.假设忽略进程的调度时间.</p>
+<ol>
+<li>先来先服务调度算法</li>
+<li>时间片轮转调度算法(时间片为1ms)</li>
+<li>时间片轮转调度算法(时间片为2ms)</li>
+<li>非剥夺式SJF调度算法</li>
+<li>剥夺式优先级调度算法</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042014540.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042014540.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042014540.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042014540.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042014540.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042014540.png" /></p>
+<p>解：</p>
+<ol>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042014354.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042014354.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042014354.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042014354.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042014354.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042014354.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042016737.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042016737.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042016737.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042016737.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042016737.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042016737.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042017392.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042017392.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042017392.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042017392.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042017392.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042017392.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042018486.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042018486.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042018486.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042018486.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042018486.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042018486.png" /></li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042018748.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042018748.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042018748.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042018748.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042018748.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042018748.png" /></li>
+</ol>
+<h3 id="最早截至时间优先edf">最早截至时间优先(EDF)</h3>
+<p>策略：</p>
+<ol>
+<li>根据截止时间的早晚确定调度顺序</li>
+<li>越早就越先执行</li>
+<li>到达时间</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042023203.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042023203.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042023203.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042023203.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042023203.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042023203.png" /></p>
+<p>已知：</p>
+<ol>
+<li>到达顺序：$p_1 \rightarrow p_2 \rightarrow p_3 \rightarrow p_4$</li>
+<li>截止时间：$p_1 \rightarrow p_3 \rightarrow p_4 \rightarrow p_2$</li>
+</ol>
+<p>则调度顺序：$p_1 \rightarrow p_3 \rightarrow p_4 \rightarrow p_2$</p>
+<p>注：抢占与非抢占的执行顺序一样</p>
+<h3 id="最低松弛度优先llf">最低松弛度优先(LLF)</h3>
+<p>若A进程需在200ms时完成，其本身运行需要100ms，当前时刻是10ms，则A的松弛度为：200－100－10＝90</p>
+<p>主要用于可抢占的调度方式中</p>
+<h2 id="死锁">死锁</h2>
+<ol>
+<li>
+<p>定义</p>
+<p>因为某些原因使进程不能执行，系统进入一种僵局定义为死锁</p>
+</li>
+<li>
+<p>产生的原因</p>
+<ol>
+<li>
+<p>竞争资源</p>
+<ol>
+<li>可剥夺性：共享(不会发生)</li>
+<li>非剥夺性：互斥(可能会)</li>
+<li>临时性：(可能会)</li>
+</ol>
+</li>
+<li>
+<p>进程推进的顺序不当</p>
+<p>例：两个进程：$p_1/p_2$；资源两个$R_1/R_2$</p>
+<p>两个操作：Req()[申请资源]，Rel()[释放资源]</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042035398.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042035398.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042035398.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042035398.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042035398.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042035398.png" /></p>
+<p>则：1，2，3不会发生死锁；4会产生死锁</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="避免死锁">避免死锁</h3>
+<p>方法：</p>
+<ol>
+<li>判断系统的状态
+<ol>
+<li>安全(不会发生死锁)</li>
+<li>不安全(有可能会发生死锁)</li>
+</ol>
+</li>
+<li>再资源分配(银行家算法)</li>
+</ol>
+<h3 id="补充银行家算法">补充(银行家算法)</h3>
+<p>引入4个资源分配相关的变量</p>
+<ol>
+<li>Max:最大资源数</li>
+<li>Allocation:已分配的资源数</li>
+<li>Needi:还需要的资源数</li>
+<li>Available:当前系统的可用资源数</li>
+</ol>
+<p>**关系：**Max=Allocation+Needi</p>
+<p>Needi与Available比较：</p>
+<ol>
+<li>
+<p>$\leq$ 可执行</p>
+</li>
+<li>
+<p>$&gt;$:阻塞等待</p>
+</li>
+<li>
+<p>安全状态</p>
+<p>找出进程推进顺序$\Rightarrow$安全序列(不是唯一的)$\Rightarrow$系统安全$\Rightarrow$不会发生死锁</p>
+<p>例：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042049795.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042049795.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042049795.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404042049795.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042049795.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404042049795.png" /></p>
+<p>Available=12-(5+2+2)=3</p>
+<p>Needi:</p>
+<p>p1=10-5=5</p>
+<p>p2=4-2=2</p>
+<p>p3=9-2=7</p>
+<p>则安全序列：$p2 \rightarrow p1 \rightarrow p3$</p>
+<p>以p2为例：</p>
+<p>3(执行之前的Available)+2(Allocation)=5(执行之后的)</p>
+</li>
+<li>
+<p>不安全状态</p>
+<p>一个安全序列都没有(可能进入死锁)</p>
+</li>
+</ol>
+<p>申请资源：</p>
+<p>发出请求向量Request:$\Rightarrow$银行家算法</p>
+<p>增加了3个变量：</p>
+<ol>
+<li>请求向量Request(已知)</li>
+<li>可用资源数:work&lt;-&gt;Available</li>
+<li>布尔变量:Finish</li>
+</ol>
+<p><strong>算法步骤</strong></p>
+<ol>
+<li>两次比较</li>
+<li>预分配(修改3个变量)</li>
+<li>安全性检测
+<ol>
+<li>安全：可以分配</li>
+<li>不安全：不分配，恢复变量</li>
+</ol>
 </li>
 </ol>
 </div><div class="post-footer" id="post-footer">

@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A13\/"
-        },"genre": "posts","keywords": "计算机算法设计与分析","wordcount":  2028 ,
+        },"genre": "posts","keywords": "计算机算法设计与分析","wordcount":  4558 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A13\/","datePublished": "2024-03-25T00:00:00+00:00","dateModified": "2024-03-25T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">算法与程序(第三章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机算法设计与分析</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-25">2024-03-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2028 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-25">2024-03-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4558 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -126,6 +126,11 @@
         <li><a href="#最优子结构">最优子结构</a></li>
         <li><a href="#重叠子问题">重叠子问题</a></li>
         <li><a href="#备忘录方法">备忘录方法</a></li>
+        <li><a href="#数字塔问题">数字塔问题</a></li>
+        <li><a href="#最长公共子序列">最长公共子序列</a></li>
+        <li><a href="#凸多边形最优三角剖分">凸多边形最优三角剖分</a></li>
+        <li><a href="#0-1-背包问题">0-1 背包问题</a></li>
+        <li><a href="#四柱汉诺塔问题">四柱汉诺塔问题</a></li>
       </ul>
     </li>
   </ul>
@@ -289,7 +294,201 @@ $A_k$（i≤k&lt;j）和 $A_{k+1}$ 之间断开，则 m[i][j]=m[i][k]+m[k+1][j]+
 </span></span><span class="line"><span class="cl"> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">u</span><span class="p">;</span> 
 </span></span><span class="line"><span class="cl"> <span class="k">return</span> <span class="n">u</span><span class="p">;</span> 
 </span></span><span class="line"><span class="cl"><span class="p">}</span> 
-</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+</span></span></code></pre></div><h3 id="数字塔问题">数字塔问题</h3>
+<h4 id="数塔问题原型">数塔问题原型</h4>
+<h5 id="问题描述">问题描述</h5>
+<pre tabindex="0"><code>        7 
+      3   8 
+    8   1   0 
+  2   7   4   4 
+4   5   2   6   5
+</code></pre><p>有一个r行的数塔，数塔上有若干数字。问从数塔的最高点到底部，在所有的路径中，经过的数字的和最大为多少？</p>
+<p>如上图，是一个5行的数塔，其中7—3—8—7—5的路径经过数字和最大，为30。</p>
+<h5 id="解法思路">解法思路</h5>
+<p>面对数塔问题，使用贪心算法显然是行不通的，比如给的样例，如果使用贪心算法，那选择的路径应当是7—8—1—7—5，其经过数字和只有28，并不是最大。而用深搜DFS很容易算出时间复杂度为 $O(2^n)$
+(因为每个数字都有向左下和右下两种选择)，行数一多必定超时。</p>
+<ol>
+<li>
+<p><strong>我们可以从上往下遍历。</strong></p>
+<p>可以发现，要想经过一个数字，只能从左上角或右上角的数字往下到达。</p>
+<p>所以显然，经过任一数字A时，路径所经过的数字最大和——是这个数字A左上方的数字B以及右上方的数字C两个数字中，所能达到的数字最大和中较大的那一个，再加上该数字A。</p>
+<p>故状态转移方程为： $dp[i][j] = max(dp[i-1][j],dp[i-1][j-1]+num[i][j])$</p>
+<p>其中i，j表示行数和列数，dp表示储存的最大和，num表示位置上的数字。</p>
+<p>$dp[i-1][j]$表示左上角， $dp[i-1][j-1]$表示右上角。</p>
+<p>以样例来说明：在经过第三行的数字1时，我们先看它左上角的数字3和右上角的数字8其能达到的最大和。3显然只有7—3一条路径，故最大和是10；8显然也只有7—8一条路径，其最大和是15；两者中较大的是15，故经过1所能达到的最大和是15+1=16。</p>
+<p>这样一步步向下遍历，最后经过每一个位置所能达到的最大和都求出来了，只要从最底下的一行里寻找最大值并输出即可。</p>
+</li>
+<li>
+<p><strong>我们也可以从下往上遍历</strong></p>
+<p>一条路径不管是从上往下走还是从下往上走，其经过的数字和都是一样的，所以这题完全可以变成求——从最底层到最高点所经过的最大数字和。</p>
+<p>其写法与顺序遍历是一样的，只是状态转移时，变成从该数字的左下角和右下角来取max了。逆序遍历的写法相比于顺序遍历优点在于：少了最后一步求最后一行max的过程，可以直接输出最高点所储存的值。</p>
+</li>
+</ol>
+<h4 id="代码实现">代码实现</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span><span class="c1">//这里以顺序遍历为例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">num</span><span class="p">[</span><span class="mi">1005</span><span class="p">][</span><span class="mi">1005</span><span class="p">];</span><span class="c1">//用于储存数塔每个位置的数字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">dp</span><span class="p">[</span><span class="mi">1005</span><span class="p">][</span><span class="mi">1005</span><span class="p">];</span><span class="c1">//用于储存经过数塔每个位置所能达到的最大和
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">r</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">r</span><span class="p">);</span><span class="c1">//输入数塔行数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">r</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">i</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//输入数塔数据，注意i和j要从1开始，防止数组越界
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">r</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="c1">//共计r行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">i</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="c1">//每行有j个数字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="nf">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//经过该数字的最大和，为左上角和右上角中的max，再加上该数字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">ans</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">r</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ans</span><span class="o">=</span><span class="nf">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="n">dp</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span><span class="c1">//从最后一行中找到最大数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">ans</span><span class="p">);</span><span class="c1">//就是答案
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="最长公共子序列">最长公共子序列</h3>
+<h4 id="最长公共子序列的结构">最长公共子序列的结构</h4>
+<p>设序列 $X={x_1, x_2, …, x_m}$和 $Y={y_1, y_2, …, y_n}$的最长公共子序列为 $Z={z_1, z_2, …, z_k}$，则</p>
+<p>① 若 $x_m=y_n$，则$ z_k=x_m=y_n$，且 $Z_{k−1} 是 X_{m−1}和 Y_{n−1}$的最长公共子序列。</p>
+<p>② 若$ x_m≠y_n$ 且 $z_k≠x_m$，则 Z 是 $X_{m−1}$和 Y 的最长公共子序列。</p>
+<p>③ 若 $x_m≠y_n $且 $z_k≠y_n$，则 Z 是 X 和$ Y_{n−1}$的最长公共子序列。</p>
+<p>其中，$X_{m−1}={x_1, x_2, …, x_{m−1}}，Y_{n−1}={y_1, y_2, …, y{n−1}}，Z_{k−1}={z_1, z_2, …, z_{k−1}}$</p>
+<p>由此可见，两个序列的最长公共子序列包含了这两个序列的前缀的最长公共子序列。因
+此，最长公共子序列问题具有最优子结构性质。</p>
+<h4 id="子问题的递归结构">子问题的递归结构</h4>
+<p>用 c[i][j]记录序列 $X_i和 Y_j$的最长公共子序列的长度。
+其中，$X_i={x_1, x_2, …, x_i}；Y_j={y_1, y_2, …, y_j}$。当 i=0 或 j=0 时，空序列是$ X_i和 Y_j$的最长公共子
+序列。所以，此时 c[i][j]=0。其他情况下，由最优子结构性质可建立递归关系如下</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052106634.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052106634.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404052106634.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404052106634.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052106634.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052106634.png" /></p>
+<h4 id="计算最优值-1">计算最优值</h4>
+<p>在所考虑的子问题空间中，共有 θ(mn)个不同的子问题，因此，用动态规划算法自
+底向上计算最优值能提高算法的效率。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">LCSLength</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="o">**</span><span class="n">c</span><span class="p">,</span> <span class="kt">int</span> <span class="o">**</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl"> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">	<span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">         <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl"> 			<span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="err">−</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="err">−</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> 			<span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> 		<span class="p">}</span> 
+</span></span><span class="line"><span class="cl"> 		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="err">−</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="err">−</span><span class="mi">1</span><span class="p">])</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl"> 			<span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="err">−</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl">			<span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">		 <span class="p">}</span> 
+</span></span><span class="line"><span class="cl">		 <span class="k">else</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">			 <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="err">−</span><span class="mi">1</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl">			 <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> 		<span class="p">}</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="p">}</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>由于每个数组单元的计算耗费 O(1)时间，因此算法 LCSLength 耗时 O(mn)。</p>
+<h4 id="构造最长公共子序列">构造最长公共子序列</h4>
+<p>由算法 LCSLength 计算得到的数组 b 可用于快速构造序列 X={x1, x2, …, xm}和 Y={y1,
+y2, …, yn}的最长公共子序列。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">LCS</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="kt">int</span><span class="o">**</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span><span class="mi">0</span> <span class="o">||</span> <span class="n">j</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="k">return</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="nf">LCS</span><span class="p">(</span><span class="n">i</span><span class="err">−</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="err">−</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl"> <span class="p">}</span> 
+</span></span><span class="line"><span class="cl"> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="nf">LCS</span><span class="p">(</span><span class="n">i</span><span class="err">−</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"> <span class="k">else</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="nf">LCS</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="err">−</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></div><p>在算法 LCS 中，每次递归调用使 i 或 j 减 1，因此算法的计算时间为 O(m+n)。</p>
+<h3 id="凸多边形最优三角剖分">凸多边形最优三角剖分</h3>
+<p><a href="https://blog.csdn.net/m0_56147044/article/details/128760113" target="_blank" rel="noopener noreffer ">3.5动态规划&ndash;凸多边形的最优三角剖分_凸多边形最优三角剖分动态规划-CSDN博客</a></p>
+<h3 id="0-1-背包问题">0-1 背包问题</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052151403.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052151403.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404052151403.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404052151403.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052151403.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052151403.png" /></p>
+<h4 id="递归关系">递归关系</h4>
+<p>设所给 0-1 背包问题的子问题</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052152500.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052152500.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404052152500.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404052152500.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052152500.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052152500.png" /></p>
+<p>的最优值为 m(i, j)，即 m(i, j)是背包容量为 j，可选择物品为 i, i+1, …, n 时 0-1 背包问题的最
+优值。由 0-1 背包问题的最优子结构性质，可以建立计算 m(i, j)的递归式如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052153264.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052153264.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404052153264.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404052153264.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052153264.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052153264.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052203406.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052203406.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404052203406.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404052203406.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052203406.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404052203406.png" /></p>
+<h4 id="算法描述">算法描述</h4>
+<p>基于以上讨论，当 wi（1≤i≤n）为正整数时，用二维数组 m[][]来存储 m(i, j)的相应值，
+可设计解 0-1 背包问题的动态规划算法 Knapsack 如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">template</span><span class="err">＜</span><span class="k">class</span> <span class="nc">Type</span><span class="err">＞</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Knapsack</span><span class="p">(</span><span class="n">Type</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">Type</span><span class="o">**</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="kt">int</span> <span class="n">jMax</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="err">−</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">jMax</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"> 		<span class="n">m</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="n">n</span><span class="p">];</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"> 		<span class="n">m</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">n</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="err">−</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="err">−−</span><span class="p">){</span> 
+</span></span><span class="line"><span class="cl"> 		<span class="n">jMax</span><span class="o">=</span><span class="n">min</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="err">−</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"> 		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">jMax</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"> 			<span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl"> 		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"> 			<span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="err">−</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">+</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span> 
+</span></span><span class="line"><span class="cl"> 		<span class="p">}</span> 
+</span></span><span class="line"><span class="cl"> 		<span class="n">m</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">m</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">c</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl"> 		<span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> 
+</span></span><span class="line"><span class="cl"> 			<span class="n">m</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">c</span><span class="p">]</span><span class="o">=</span><span class="n">max</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">c</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">c</span><span class="err">−</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">+</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> 
+</span></span><span class="line"><span class="cl"> <span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="err">＜</span><span class="k">class</span> <span class="nc">Type</span><span class="err">＞</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Traceback</span><span class="p">(</span><span class="n">Type</span> <span class="o">**</span><span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl"> <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="k">if</span> <span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">==</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">c</span><span class="p">])</span> 
+</span></span><span class="line"><span class="cl">       <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> 	<span class="k">else</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl"> 		<span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> 		<span class="n">c</span> <span class="err">−</span><span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl"> <span class="p">}</span> 
+</span></span><span class="line"><span class="cl"> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">c</span><span class="p">])</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>   
+</span></span></code></pre></div><h4 id="计算复杂性分析">计算复杂性分析</h4>
+<p>算法 Knapsack 需要 O(nc)计算时间，而 Traceback 需要 O(n)计算时间。</p>
+<p>当背包容量 c 很大时，算法需要的计算时间较多。</p>
+<h3 id="四柱汉诺塔问题">四柱汉诺塔问题</h3>
+<p><a href="https://blog.csdn.net/QMU111/article/details/127702923" target="_blank" rel="noopener noreffer ">3-7四柱汉诺塔问题（动态规划）-CSDN博客</a></p>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
