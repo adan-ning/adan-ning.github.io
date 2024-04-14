@@ -3,7 +3,15 @@
         <title>操作系统 - Tag - 蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
         <description>操作系统 - Tag - 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 26 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 10 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
+    <title>操作系统(第四章)</title>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</link>
+    <pubDate>Wed, 10 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</guid>
+    <description><![CDATA[存储器管理 存储器 内存 主存 连续分配 单一 分区 离散分配 分页式 分段式 段页式 虚拟(主+辅) 请求式分页 请求式分段 请求式段页 外存(第五章) 程序的运行与存储]]></description>
+</item>
+<item>
     <title>操作系统(第三章)</title>
     <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3/</link>
     <pubDate>Tue, 26 Mar 2024 00:00:00 &#43;0000</pubDate>

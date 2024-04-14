@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>操作系统(第四章) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="操作系统(第四章)" />
+<meta property="og:description" content="存储器管理 存储器 内存 主存 连续分配 单一 分区 离散分配 分页式 分段式 段页式 虚拟(主&#43;辅) 请求式分页 请求式分段 请求式段页 外存(第五章) 程序的运行与存储" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/" /><meta property="og:image" content="https://adan-ning.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-04-10T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://adan-ning.github.io/logo.png" /><meta name="twitter:title" content="操作系统(第四章)"/>
+<meta name="twitter:description" content="存储器管理 存储器 内存 主存 连续分配 单一 分区 离散分配 分页式 分段式 段页式 虚拟(主&#43;辅) 请求式分页 请求式分段 请求式段页 外存(第五章) 程序的运行与存储"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E7%A8%8B%E5%BA%8F4/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "操作系统(第四章)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4\/"
+        },"genre": "posts","keywords": "操作系统","wordcount":  491 ,
+        "url": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4\/","datePublished": "2024-04-10T00:00:00+00:00","dateModified": "2024-04-10T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">操作系统(第四章)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-10">2024-04-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;491 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#存储器">存储器</a></li>
+    <li><a href="#程序的运行与存储器的关系">程序的运行与存储器的关系</a></li>
+    <li><a href="#连续分配">连续分配</a></li>
+    <li><a href="#离散分配">离散分配</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="存储器管理">存储器管理</h1>
+<h2 id="存储器">存储器</h2>
+<ol>
+<li>内存
+<ol>
+<li>主存
+<ol>
+<li>连续分配
+<ol>
+<li>单一</li>
+<li>分区</li>
+</ol>
+</li>
+<li>离散分配
+<ol>
+<li>分页式</li>
+<li>分段式</li>
+<li>段页式</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>虚拟(主+辅)
+<ol>
+<li>请求式分页</li>
+<li>请求式分段</li>
+<li>请求式段页</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>外存(第五章)</li>
+</ol>
+<h2 id="程序的运行与存储器的关系">程序的运行与存储器的关系</h2>
+<ol>
+<li>
+<p>地址转换</p>
+<ol>
+<li>逻辑地址|相对地址</li>
+<li>物理地址|绝对地址</li>
+</ol>
+<p>重定位：$逻辑地址 \rightarrow 物理地址$</p>
+</li>
+<li>
+<p>两种重定位</p>
+<ol>
+<li>静态：地址只能一次修改</li>
+<li>动态：地址的多次修改</li>
+</ol>
+<p>区别：增加了一个重定位寄存器(存放内存的起始地址)</p>
+</li>
+</ol>
+<h2 id="连续分配">连续分配</h2>
+<p>为用户作业分配的内存空间</p>
+<ol>
+<li>
+<p>单一连续</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404131631990.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404131631990.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404131631990.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404131631990.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404131631990.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404131631990.png" /></p>
+</li>
+<li>
+<p>分区式</p>
+<p>把内存分成若干个连续的分区，每个分区都可以存储一个作业</p>
+<ol>
+<li>
+<p>固定式</p>
+<ol>
+<li>分区大小相等</li>
+<li>分区大小不相等</li>
+</ol>
+</li>
+<li>
+<p>可变式(动态分区分配)</p>
+<p>$分区分配算法 \rightarrow 分区链接的要求$</p>
+<ol>
+<li>首次适应算法</li>
+</ol>
+<p>要求：$由低地址 \rightarrow 高地址链接$</p>
+<ol start="2">
+<li>
+<p>循环首次适应算法</p>
+<p>要求：$由低地址 \rightarrow 高地址链接$</p>
+</li>
+<li>
+<p>最佳适应算法(最容易产生外零头)</p>
+<p>要求：按大小：$从小 \rightarrow 大链接$</p>
+</li>
+<li>
+<p>最坏性算法</p>
+<p>要求：按大小：$从大 \rightarrow 小链接$</p>
+</li>
+</ol>
+<p>碎片的处理方式：</p>
+<p>设置分区单位：粒度(1KB)</p>
+<ol>
+<li>$碎片 \leq 粒度$：可以分配作业</li>
+<li>$碎片 \geq 粒度$：可以进行二次分配</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>重定位</p>
+<p>动态重定位：程序可以移动(整理碎片)$\rightarrow$紧凑</p>
+</li>
+</ol>
+<h2 id="离散分配">离散分配</h2>
+<ol>
+<li>
+<p>分页式</p>
+<p>页/页面，页框/物理块，逻辑地址/物理地址，页表，逻辑地址$\rightarrow$物理地址</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404131643907.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404131643907.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404131643907.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404131643907.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404131643907.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404131643907.png" /></p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-04-10</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/" data-title="操作系统(第四章)" data-hashtags="操作系统"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/" data-hashtag="操作系统"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/" data-title="操作系统(第四章)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/" data-title="操作系统(第四章)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/" data-title="操作系统(第四章)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E7%A8%8B%E5%BA%8F4/" class="prev" rel="prev" title="算法与程序(第四章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>算法与程序(第四章)</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

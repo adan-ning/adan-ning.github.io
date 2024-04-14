@@ -3,12 +3,44 @@
         <title>All Posts - 蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/posts/</link>
         <description>All Posts | 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 03 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 10 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>操作系统(第四章)</title>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</link>
+    <pubDate>Wed, 10 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</guid>
+    <description><![CDATA[存储器管理 存储器 内存 主存 连续分配 单一 分区 离散分配 分页式 分段式 段页式 虚拟(主+辅) 请求式分页 请求式分段 请求式段页 外存(第五章) 程序的运行与存储]]></description>
+</item>
+<item>
+    <title>算法与程序(第四章)</title>
+    <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E7%A8%8B%E5%BA%8F4/</link>
+    <pubDate>Wed, 10 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E7%A8%8B%E5%BA%8F4/</guid>
+    <description><![CDATA[贪心算法 贪心算法的基本要素 贪心算法通过一系列选择来得到问题的解，所做的每个选择都是当前状态下局部最好选 择，即贪心选择。这种启发式的策略并不总]]></description>
+</item>
+<item>
+    <title>编译引论(第五章)</title>
+    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865/</link>
+    <pubDate>Wed, 10 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865/</guid>
+    <description><![CDATA[语法分析——自底向上分析 **自底向上的语法分析需要解决的关键问题是：如何确定可归约串（即可以归约的字符串）以及每个可归约串用哪个产生式左部的]]></description>
+</item>
+<item>
+    <title>数据结构(第四章)</title>
+    <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%844/</link>
+    <pubDate>Fri, 05 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%844/</guid>
+    <description><![CDATA[串 串的定义及基本运算 串的定义 串(String)是零个或多个字符组成的有限序列。一般记作：S=“a1a2a3…an”，其中： S：串名； “a1a]]></description>
+</item>
+<item>
     <title>编译引论(第四章)</title>
-    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%BC%95%E8%AE%BA4/</link>
+    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%864/</link>
     <pubDate>Wed, 03 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%BC%95%E8%AE%BA4/</guid>
+    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%864/</guid>
     <description><![CDATA[语法分析——自顶向下分析 按照语法分析树的建立方法，可将语法分析方法分成自顶向下和自底向上两大类。 自顶向下分析方法：语法分析从顶部（树根、语言]]></description>
 </item>
 <item>
@@ -29,11 +61,11 @@
 </item>
 <item>
     <title>计算机组成(第三章)</title>
-    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/</link>
+    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%863/</link>
     <pubDate>Sun, 31 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/</guid>
-    <description><![CDATA[存储系统 ROM 的分类 只读存储器简称ROM，它只能读出，不能写入。它的最大优点是具有不易失性。根据编程方式的不同，ROM通常分为三类： ROM芯片的]]></description>
+    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%863/</guid>
+    <description><![CDATA[存储系统 存储器概述 存储器的两大功能： 存储（写入Write） 取出（读出Read） 三项基本要求： 大容量 高速度 低成本 概念 基本存储单元：存储一位（b]]></description>
 </item>
 <item>
     <title>操作系统(第三章)</title>
@@ -50,38 +82,6 @@
     <author>蓝Q曦</author>
     <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A13/</guid>
     <description><![CDATA[动态规划 算法总体思想 如果能够保存已解决的子问题答案，而在需要时再找出以求得的答案，就可以避免大量重复计算，从而得到多项式时间算法 矩阵连乘问题]]></description>
-</item>
-<item>
-    <title>c&#43;&#43;(four)</title>
-    <link>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14/</link>
-    <pubDate>Fri, 22 Mar 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A14/</guid>
-    <description><![CDATA[类和对象 面向对象程序设计的基本特点 抽象 抽象是对具体对象（问题）进行概括，抽出这一类对象的公共性质并加以描述的过程。 先注意问题的本质及描述，其]]></description>
-</item>
-<item>
-    <title>c&#43;&#43;(three)</title>
-    <link>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/</link>
-    <pubDate>Thu, 21 Mar 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A13/</guid>
-    <description><![CDATA[函数 函数的定义与使用 所有的高级语言都有子程序的概念，实现模块的划分 C和C++中的子程序体现为函数 一个C++程序由一个主函数和若干其他函数构成]]></description>
-</item>
-<item>
-    <title>编译引论(第三章)</title>
-    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/</link>
-    <pubDate>Tue, 19 Mar 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863/</guid>
-    <description><![CDATA[词法分析 词法分析程序的功能 词法分析程序的主要任务是按语言的词法规则从源程序中逐个识别单词，把字符串形式的源程序转换为单词串的形式，并把每个单]]></description>
-</item>
-<item>
-    <title>计算机组成(第二章)</title>
-    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862/</link>
-    <pubDate>Sat, 16 Mar 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862/</guid>
-    <description><![CDATA[数据与文字的表示方法 数据格式 分类 符号数据：非数字符号的表示(ASCII,汉字，图形等) 数值数据：数字数据的表示方式(定点，浮点) 计算机数字和]]></description>
 </item>
 </channel>
 </rss>

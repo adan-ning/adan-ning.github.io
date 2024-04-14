@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>编译引论(第五章) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="编译引论(第五章)" />
+<meta property="og:description" content="语法分析——自底向上分析 **自底向上的语法分析需要解决的关键问题是：如何确定可归约串（即可以归约的字符串）以及每个可归约串用哪个产生式左部的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865/" /><meta property="og:image" content="https://adan-ning.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-04-10T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://adan-ning.github.io/logo.png" /><meta name="twitter:title" content="编译引论(第五章)"/>
+<meta name="twitter:description" content="语法分析——自底向上分析 **自底向上的语法分析需要解决的关键问题是：如何确定可归约串（即可以归约的字符串）以及每个可归约串用哪个产生式左部的"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%844/" /><link rel="next" href="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E7%A8%8B%E5%BA%8F4/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "编译引论(第五章)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/adan-ning.github.io\/posts\/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865\/"
+        },"genre": "posts","keywords": "编译原理","wordcount":  3238 ,
+        "url": "https:\/\/adan-ning.github.io\/posts\/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865\/","datePublished": "2024-04-10T00:00:00+00:00","dateModified": "2024-04-10T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">编译引论(第五章)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编译原理</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-10">2024-04-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3238 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#自底向上的语法分析概述">自底向上的语法分析概述</a>
+      <ul>
+        <li><a href="#自底向上语法分析器的体系结构">自底向上语法分析器的体系结构</a></li>
+        <li><a href="#自底向上分析的归约过程">自底向上分析的归约过程</a></li>
+      </ul>
+    </li>
+    <li><a href="#lr分析法">LR分析法</a>
+      <ul>
+        <li><a href="#lr分析法概述">LR分析法概述</a></li>
+        <li><a href="#lr0分析器">LR(0)分析器</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="语法分析自底向上分析">语法分析——自底向上分析</h1>
+<p>**自底向上的语法分析需要解决的关键问题是：如何确定可归约串（即可以归约的字符串）以及每个可归约串用哪个产生式左部的非终结符来归约？针对这些问题的不同解决方法，本章将描述以下两类分析算法：算法优先分析法和LR分析法。其中，LR分析法在目前编译程序中的应用最为广泛，它包括一组分析能力不同的四个算法，按照分析能力从弱到强分别是：LR（0）、SLR（1）、LALR（1）和LR（1）。 **</p>
+<h2 id="自底向上的语法分析概述">自底向上的语法分析概述</h2>
+<h3 id="自底向上语法分析器的体系结构">自底向上语法分析器的体系结构</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122135375.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122135375.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122135375.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122135375.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122135375.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122135375.png" /></p>
+<p>它主要包括四个组成部分：待分析的输入符号串、分析栈、语法分析总控程序以及语法分析表。</p>
+<p>在自底向上的语法分析过程中，语法分析的总控程序从左向右地逐个扫描输入字符，根据栈顶元素A和输入符号a所构成的二元组&lt;A，a&gt;查语法分析表，以执行不同的分析动作。其分析动作一共有四种，分别如下：</p>
+<ol>
+<li><strong>移进</strong>：把输入串的当前符号a压入栈顶，并把指针指向下一个输入符号；</li>
+<li><strong>归约</strong>：把自栈顶A向下的若干个符号用某个产生式左端的非终结符替换；</li>
+<li><strong>接受</strong>：表示语法分析成功，此时分析栈的指针指向栈内的唯一符号（即文法的开始符号），输入串指针指向结束符号#；</li>
+<li><strong>出错</strong>：发现源程序有语法错，调用出错处理程序。</li>
+</ol>
+<h3 id="自底向上分析的归约过程">自底向上分析的归约过程</h3>
+<p>例：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122136602.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122136602.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122136602.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122136602.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122136602.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122136602.png" /></p>
+<p>实际上，规范归约过程是最右推导的逆过程，从表5.1可以看出，表中从下往上的六个归约正好对应了最右推导（规范推导）的六个步骤</p>
+<p><strong>$E \Rightarrow E+T \Rightarrow E+F \Rightarrow E+i \Rightarrow T+i \Rightarrow  F+i \Rightarrow i+i$</strong></p>
+<p>显然，该语法分析过程还可以用一棵语法分析树表示出来。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122139797.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122139797.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122139797.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122139797.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122139797.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122139797.png" /></p>
+<h2 id="lr分析法">LR分析法</h2>
+<h3 id="lr分析法概述">LR分析法概述</h3>
+<ol>
+<li>LR分析法是一类分析方法的简称，通常记为LR(k)分析法
+<ol>
+<li>L是指从左至右方式扫描输入串；</li>
+<li>R是指最右推导(规范推导)的逆过程；</li>
+<li>K是指每次根据当前输入符号最多向前查看K个符号就可以确定下一步动作；</li>
+</ol>
+</li>
+<li>本章重点介绍LR(0) 分析表的构造算法及相关知识。</li>
+</ol>
+<p><strong>规范归约（最左归约一最右推导的逆过程）的关键问题是寻找句柄。在一般的“移进-归约”过程中，当一串貌似句柄的符号串出现在栈顶时，用什么方法来判断它是否为一个真正的句柄呢?</strong></p>
+<p><strong>LR方法的基本思想是，在规范归约过程中，一方面记住已移进和归约出的整个符号串，即记住“历史”，另一方面根据所用的产生式推测未来可能碰到的输入符号，即对未来进行“展望”。当一串貌似句柄的符号串呈现于分析栈的顶端时，我们希望能够根据所记载的“历史”和“展望”以及“现实”的输入符号等三方面的材料，来确定栈顶的符号串是否构成相对某一产生式的句柄</strong></p>
+<ol>
+<li>
+<p><strong>LR(k)分析器的结构</strong></p>
+<ol>
+<li>分析栈（含状态栈和符号栈）</li>
+<li>总控程序（也称为驱动程序）</li>
+<li>分析表（分析动作表和状态转换表）</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122142001.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122142001.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122142001.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122142001.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122142001.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122142001.png" /></p>
+</li>
+<li>
+<p>LR分析表构成</p>
+<p>LR分析表是LR分析器的核心部分,它由两张表组成:一是动作表(即action表);二是状态转换表(即goto表),见表5.6。表中的$S_1,S_2,…, S_n$为分析器的各个状态；$a_1,a_2,…,a_m$为文法的全部终结符号及右界符&rsquo;#&rsquo;；$A_1,A_2,…,A_k$为文法的非终结符号。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122143345.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122143345.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122143345.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122143345.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122143345.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122143345.png" /></p>
+<p>在action表中，$action[S_i,a_j]$（即$S_i$所在的行与$a_j$所在的列对应的单元）表示当分析状态栈的栈顶为$S_i$，输入符号为$a_j$时应执行的动作。</p>
+<p>在goto表中，$goto[S_i,A_j]$（即$S_i$行$A_j$列对应的单元）表示当前状态为$S_i$而符号栈顶为非终结符号$A_j$后应移入状态栈的状态。</p>
+<p><strong>action表的动作</strong>有以下4种:</p>
+<ol>
+<li><strong>移进($S_m$)</strong>。将输入符号$a_j$移进符号栈,将状态m移进状态栈,输入指针指向下一个输入符号。</li>
+<li><strong>归约($r_j$)</strong>。当栈顶形成句柄时,按照第j条产生式（如U→ω）进行归约。若产生式右部ω的长度为x,则将符号栈栈顶x个符号和状态栈栈顶x个状态出栈,然后将归约后的文法非终结符号U移入符号栈,并根据此时状态栈顶的状态$S_i$及符号栈顶的符号U,查goto表,将$goto[S_i,U]$移入状态栈。</li>
+<li><strong>接受(acc)</strong>。当输入符号串到达右界符&rsquo;#&lsquo;时,且符号栈只有文法的开始符号时,则宣布分析成功,接受输入符号串。</li>
+<li><strong>报错(Error)</strong>。当状态栈顶的状态为$S_i$时,如果输入符号为不应该遇到的符号时,即$action[S_i,a_j]$=空白,则报错,调用出错处理程序。</li>
+</ol>
+</li>
+<li>
+<p>LR分析步骤</p>
+<ol>
+<li>
+<p>将初始状态0、句子的左界符#分别进状态栈和符号栈。</p>
+</li>
+<li>
+<p>从输入串中读入当前输入符a，然后由状态栈栈顶元素i与当前输入字符a查action表，决定应取何种动作。</p>
+<p>若$action[i,a]=s_j$，则将状态j及相应的输入符a分别移入状态栈和符号栈栈顶。</p>
+<p>若$action[i,a]=r_j$，则按第j个生产式A→β右部符号β的长度t分别将符号栈、状态栈栈顶t个元素上托出栈，将归约后的A移入符号栈。据此时状态栈栈顶元素 i与归约后的非终结符A，查goto表的[i，A]项，设得到状态j，则将状态j移入状态栈栈顶。</p>
+<p>若为action[i,a]=acc，则结束分析，输入串被接受。</p>
+<p>否则转错误处理程序。</p>
+</li>
+<li>
+<p>重复2的工作，直到接受或出错为止。</p>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122148730.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122148730.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122148730.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122148730.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122148730.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122148730.png" /></p>
+</li>
+</ol>
+<p>例：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122148694.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122148694.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122148694.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122148694.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122148694.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122148694.png" /></p>
+<h3 id="lr0分析器">LR(0)分析器</h3>
+<p>**拓广文法 **</p>
+<p>给定文法G，S是其开始符号，G的拓广文法是G，其开始符号为S，区别在于后者仅增加一个产生式$S&rsquo; \rightarrow S$,把它作为第0个产生式添加到文法G中。
+例如：文法G[A]:	$A \rightarrow (A) , A \rightarrow a$
+则该文法的拓广文法G &lsquo;[A &lsquo;]：</p>
+<p>$A&rsquo; \rightarrow A， A \rightarrow (A)，A \rightarrow a $</p>
+<ol>
+<li>
+<p><strong>活前缀与可规前缀</strong></p>
+<p>自下而上的移进——规约分析，是对句柄进行规范规约，它是规范推导的逆过程，规范推导出来的句型是规范句型。一个符号串的前缀是指该串的任意首部，包括$\varepsilon$。</p>
+<p>对于一个规范句型来说,其<strong>活前缀</strong>定义如下:</p>
+<p>设λβt是一个规范句型,即λβt是能用最右推导得到的句型,其中β表示句柄,$t∈V_T^*$  ,如果$λβ= u_1u_2…u_r$,那么称符号串$u_1u_2…u_i$(其中l≤i≤r)是句型λβt的活前缀。</p>
+<p>从活前缀的定义可知,一个规范句型的活前缀可以有多个,但观察这些活前缀,会发现其中活前缀$u_1,u_1u_2, u_1u_2…u_{r-1}$不含有完整句柄β,只有活前缀$u_1u_2…u_r$含有完整句柄β,那么这个含有句柄的活前缀$u_1u_2…u_r$称为可归前缀,是最长的活前缀。</p>
+<p><strong>从上述定义可知，活前缀不含句柄右边的任意符号,而可归前缀是含有句柄的活前缀。对一个规范句型来说，活前缀可有多个,可归前缀只有一个。</strong></p>
+<p>例：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122156454.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122156454.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122156454.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122156454.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122156454.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122156454.png" /></p>
+</li>
+<li>
+<p>LR(0)项目</p>
+<p><strong>定义：在文法G的每一个产生式右部的某个位置添加一个“·”，点号左边表示该产生式的右部在符号栈的栈顶已经出现的部分，点号右边表示如果要用该产生式进行规约，还应该出现的部分。</strong></p>
+<p>一般产生式$A\rightarrow β$对应的项目个数为| β |+1，特别地，产生式$A \rightarrow ε$的项目个数为1，即$A\rightarrow .$</p>
+<p>$A \rightarrow ·AB $ 希望看到从输入串中与AB对应的符号串。</p>
+<p>$A \rightarrow A·B $ 已识别出由A对应的输入符号，并希望看到与B对应的输入串。</p>
+<p>$A \rightarrow AB· $ 与AB对应的输入串已经识别出来，可以进行规约</p>
+</li>
+</ol>
+<p><strong>项目的分类</strong></p>
+<p>不同的项目反映了分析过程中栈顶的不同情况，因此我们可以根据它们的不同作用，将一个文法的全部L(0)项目进行分类：</p>
+<ol>
+<li>
+<p>对于形如$A\rightarrow α·$ 项目，因为它表示右部符号串α(可为ε)已经出现在栈顶，此时相应的动作应该是按此产生式进行归约，故将此项目称为归约项目。</p>
+</li>
+<li>
+<p>项目$S&rsquo; \rightarrow S·$仅用于分析过程中最后一次归约，所以称为接受项目。</p>
+</li>
+<li>
+<p>对于形如$A\rightarrow α· Xβ$的项目，其中α可以为空符号串：</p>
+<p>当X为<strong>终结符号</strong>时，相应的分析动作应该将当前的输入符号移入栈中，我们称它为<strong>移进项目</strong>；</p>
+<p>当X为<strong>非终结符号</strong>时，由于我们期待着从余留的输入串中进行归约而得到X，因此此类项目为<strong>待约项目</strong>；</p>
+<p>注： 有的书上还把$S&rsquo; \rightarrow · S$称为开始项目，也可称为待约项目</p>
+</li>
+</ol>
+<p>例：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122202224.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122202224.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122202224.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404122202224.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122202224.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404122202224.png" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-04-10</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865/" data-title="编译引论(第五章)" data-hashtags="编译原理"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865/" data-hashtag="编译原理"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865/" data-title="编译引论(第五章)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865/" data-title="编译引论(第五章)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865/" data-title="编译引论(第五章)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%844/" class="prev" rel="prev" title="数据结构(第四章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>数据结构(第四章)</a>
+            <a href="/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E7%A8%8B%E5%BA%8F4/" class="next" rel="next" title="算法与程序(第四章)">算法与程序(第四章)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

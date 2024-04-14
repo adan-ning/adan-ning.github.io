@@ -5,11 +5,11 @@
         <description>计算机组成原理 - Category - 蓝Q曦的博客网站</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 31 Mar 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
     <title>计算机组成(第三章)</title>
-    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/</link>
+    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%863/</link>
     <pubDate>Sun, 31 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%903/</guid>
-    <description><![CDATA[存储系统 ROM 的分类 只读存储器简称ROM，它只能读出，不能写入。它的最大优点是具有不易失性。根据编程方式的不同，ROM通常分为三类： ROM芯片的]]></description>
+    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%863/</guid>
+    <description><![CDATA[存储系统 存储器概述 存储器的两大功能： 存储（写入Write） 取出（读出Read） 三项基本要求： 大容量 高速度 低成本 概念 基本存储单元：存储一位（b]]></description>
 </item>
 <item>
     <title>计算机组成(第二章)</title>
