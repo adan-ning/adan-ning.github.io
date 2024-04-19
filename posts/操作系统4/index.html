@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4\/"
-        },"genre": "posts","keywords": "操作系统","wordcount":  491 ,
+        },"genre": "posts","keywords": "操作系统","wordcount":  1540 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4\/","datePublished": "2024-04-10T00:00:00+00:00","dateModified": "2024-04-10T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">操作系统(第四章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-10">2024-04-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;491 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-10">2024-04-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1540 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -116,6 +116,10 @@
     <li><a href="#程序的运行与存储器的关系">程序的运行与存储器的关系</a></li>
     <li><a href="#连续分配">连续分配</a></li>
     <li><a href="#离散分配">离散分配</a></li>
+    <li><a href="#地址变换机构逻辑rightarrow-物理">地址变换机构(逻辑$\rightarrow$ 物理)</a></li>
+    <li><a href="#分段式">分段式</a></li>
+    <li><a href="#分页与分段区别">分页与分段区别</a></li>
+    <li><a href="#虚拟存储器">虚拟存储器</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="存储器管理">存储器管理</h1>
@@ -244,6 +248,177 @@
         alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404131643907.png"
         title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404131643907.png" /></p>
 </li>
+</ol>
+<p>例：</p>
+<p>某虚拟存储器的用户编程空间共32个页面，每页为1KB，内存为16KB。假定某时刻一用户页表中已调入内存的页面对应的物理块号如下表</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172223288.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172223288.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404172223288.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404172223288.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172223288.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172223288.png" /></p>
+<p>则逻辑地址093C（H）所对应的物理地址为 ？</p>
+<p>解：</p>
+<p>逻辑地址：$32 \times 1KB = 32KB \rightarrow 2^{15} \rightarrow 15bit$</p>
+<p>每页大小:$1KB \rightarrow 2^{10} \rightarrow 10bit(页内地址)$</p>
+<p>15-10=5bit(页号)</p>
+<p>000(0) 1001(9) 0011(3) 1100(C)  (逻辑地址为15位，所以093C转换为2进制也为15位)</p>
+<p>内存：$16KB=2^{14}$ 物理地址：14bit</p>
+<p>低10bit，块内地址(页内地址)</p>
+<p>高 4bit，块号</p>
+<p>01/0001/0011/1100</p>
+<p>即物理地址为：113C(H)</p>
+<p>例：</p>
+<p>对于表所示的段表：请将逻辑地址(0,137),(1,4000),(2,3600),(5,230)转换成物理地址</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172237695.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172237695.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404172237695.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404172237695.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172237695.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172237695.png" /></p>
+<p>解：</p>
+<p>(0,137)</p>
+<p>137&lt;10K ,段号0存在</p>
+<p>转换为物理地址为：$50 \times 1024 + 137=51337$</p>
+<p>(1,4000)</p>
+<p>4000&gt;3K,产生中断，无法转换</p>
+<p>(2,3600)</p>
+<p>3600&lt;5K,段号2存在</p>
+<p>转换为物理地址为：$70 \times 1024 + 3600=75280$</p>
+<p>(5,230)</p>
+<p>段号不存在，无法转换</p>
+<p>例：</p>
+<p>已知分页系统，逻辑空间32个页面，每页大小2KB，内存空间1MB</p>
+<ol>
+<li>
+<p>画出逻辑地址格式</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172246479.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172246479.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404172246479.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404172246479.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172246479.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172246479.png" /></p>
+</li>
+<li>
+<p>如果不考虑访问权限，页表有多少项，每项至少需要多少位</p>
+<p>32个页面=32项</p>
+<p>内存(MB)：$\frac{1MB}{2KB}=\frac{1\times 2^{20}}{2^{11}}=2^9$个</p>
+<p>每项至少需要多9位</p>
+</li>
+<li>
+<p>如果内存减少一半，则页表会发生怎么变化？</p>
+<p>32个页表项不变</p>
+<p>内存：$1MB \rightarrow 512KB$</p>
+<p>$\frac{2^{19}}{2^{11}}=2^8$</p>
+<p>每项至少需要的位从9位变为8位</p>
+</li>
+</ol>
+<h2 id="地址变换机构逻辑rightarrow-物理">地址变换机构(逻辑$\rightarrow$ 物理)</h2>
+<ol>
+<li>
+<p>基本的地址变换(5个部分)</p>
+<ol>
+<li>页表寄存器：页表地址，页表长度</li>
+<li>越界中断机构：页表与页表长度
+<ol>
+<li>$\geq$，越界</li>
+<li>&lt;，访问页表</li>
+</ol>
+</li>
+<li>逻辑地址</li>
+<li>页表：页表起始+页号</li>
+<li>物理地址：块号与页内地址拼接而成</li>
+</ol>
+<p>访问内存两次</p>
+<ol>
+<li>访问页表</li>
+<li>物理地址</li>
+</ol>
+</li>
+<li>
+<p>有快表的地址转换</p>
+<p>增加了快表寄存器：将经常会访问的页面以及它的块号</p>
+<p>内存</p>
+<ol>
+<li>命中快表：1次</li>
+<li>未命中快表：2次</li>
+</ol>
+</li>
+</ol>
+<h2 id="分段式">分段式</h2>
+<p>段，逻辑地址，物理地址，段表，地址转换</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172304725.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172304725.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404172304725.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404172304725.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172304725.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404172304725.png" /></p>
+<p><strong>段表：段号，段长，基址组成</strong></p>
+<p>地址变换：$逻辑地址 \rightarrow 物理地址$</p>
+<ol>
+<li>
+<p>段表寄存器：段表始址，段表长度</p>
+</li>
+<li>
+<p>越界中断机构</p>
+<p>两次越界中断比较</p>
+<ol>
+<li>段号与段长关系
+<ol>
+<li>&gt;，中断</li>
+<li>&lt;，访问段表</li>
+</ol>
+</li>
+<li>段内地址连续与段长
+<ol>
+<li>&gt;，中断</li>
+<li>$\leq$，可以转换</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>逻辑地址</p>
+</li>
+<li>
+<p>段表</p>
+</li>
+<li>
+<p>物理地址(基址+段内地址)</p>
+</li>
+</ol>
+<p>两次访问内存</p>
+<ol>
+<li>访问段表</li>
+<li>物理地址</li>
+</ol>
+<h2 id="分页与分段区别">分页与分段区别</h2>
+<ol>
+<li>页是信息的物理单位，段是逻辑单位</li>
+<li>页长度是固定的，段长度不固定(由用户指定)</li>
+<li>一维与二维</li>
+</ol>
+<p>问：分页与分段实现共享，哪个更容易实现信息共享？</p>
+<p>答：分段</p>
+<h2 id="虚拟存储器">虚拟存储器</h2>
+<p>常见的存储器</p>
+<ol>
+<li>一次性全部装入</li>
+<li>常驻内存</li>
+</ol>
+<p><strong>内存的利用率低</strong></p>
+<p>虚拟存储器</p>
+<ol>
+<li>请求式分页</li>
+<li>请求式分段</li>
 </ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">

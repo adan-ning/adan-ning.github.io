@@ -3,7 +3,23 @@
         <title>数据结构 - Tag - 蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
         <description>数据结构 - Tag - 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 05 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 09 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="self" type="application/rss+xml" /><item>
+    <title>数据结构(第五章)</title>
+    <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%845/</link>
+    <pubDate>Tue, 09 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%845/</guid>
+    <description><![CDATA[数组和广义表 数组的定义 数组是我们很熟悉的一种数据结构，它可以看作线性表的推广。数组作为一种数据结构其特点是结构中的元素本身可以是具有某种结构]]></description>
+</item>
+<item>
+    <title>数据结构(第六章)</title>
+    <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%846/</link>
+    <pubDate>Tue, 09 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%846/</guid>
+    <description><![CDATA[树和二叉树 树 树：是n（n≥0）个结点的有限集。当n=0时，称为空树；在任意一棵非空树中满足如下条件： 有且仅有一个特定的称为根（root）的结]]></description>
+</item>
+<item>
     <title>数据结构(第四章)</title>
     <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%844/</link>
     <pubDate>Fri, 05 Apr 2024 00:00:00 &#43;0000</pubDate>

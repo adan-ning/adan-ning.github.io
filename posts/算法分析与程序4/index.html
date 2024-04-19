@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E7%A8%8B%E5%BA%8F4\/"
-        },"genre": "posts","keywords": "计算机算法设计与分析","wordcount":  1819 ,
+        },"genre": "posts","keywords": "计算机算法设计与分析","wordcount":  3540 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E7%A8%8B%E5%BA%8F4\/","datePublished": "2024-04-10T00:00:00+00:00","dateModified": "2024-04-10T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">算法与程序(第四章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机算法设计与分析</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-10">2024-04-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1819 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-10">2024-04-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3540 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -116,9 +116,17 @@
     <li><a href="#最优装载">最优装载</a></li>
     <li><a href="#哈夫曼编码">哈夫曼编码</a>
       <ul>
-        <li><a href="#heading"></a></li>
+        <li><a href="#哈夫曼编码httpsblogcsdnnetc5408carticledetails134264673-"><a href="https://blog.csdn.net/C5408C/article/details/134264673">哈夫曼编码</a></a></li>
       </ul>
     </li>
+    <li><a href="#单源最短路径">单源最短路径</a></li>
+    <li><a href="#最小生成树">最小生成树</a>
+      <ul>
+        <li><a href="#对比">对比</a></li>
+        <li><a href="#贪心选择性质">贪心选择性质</a></li>
+      </ul>
+    </li>
+    <li><a href="#多机调度问题">多机调度问题</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="贪心算法">贪心算法</h1>
@@ -236,7 +244,185 @@
 </li>
 </ol>
 <h2 id="哈夫曼编码">哈夫曼编码</h2>
-<h3 id="heading"></h3>
+<h3 id="哈夫曼编码httpsblogcsdnnetc5408carticledetails134264673-"><a href="https://blog.csdn.net/C5408C/article/details/134264673" target="_blank" rel="noopener noreffer ">哈夫曼编码</a></h3>
+<h2 id="单源最短路径">单源最短路径</h2>
+<p>给定带权有向图G =(V,E)，其中每条边的权是非负实数。V中的一个顶点，称为源。计算从源到所有其他各顶点的<strong>最短路径长度</strong>。</p>
+<p>这个问题通常称为<strong>单源最短路径问题</strong></p>
+<p><strong>路径长度</strong>是指路径上各边权之和。</p>
+<ol>
+<li>
+<p><strong>算法基本思想</strong></p>
+<p>Dijkstra算法是解单源最短路径问题的贪心算法。</p>
+<ol>
+<li>设置顶点集合S并不断地作<strong>贪心选择</strong>来扩充这个集合。一个顶点属于集合S当且仅当从源到该顶点的最短路径长度已知</li>
+<li>初始时，S中仅含有源</li>
+<li>从源只经过S中顶点到达u（S外）称为从源到u的特殊路径，用数组dist记录当前每个顶点的<strong>最短特殊路径长度。最短特殊路径长度</strong>最小的为最短路径已知。</li>
+<li>每次从V-S中取出最短路径长度已知的顶点u，将u添加到S中，同时对数组dist作必要的修改。直到S包含了所有V中顶点</li>
+</ol>
+</li>
+<li>
+<p>算法演示</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162005498.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162005498.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162005498.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162005498.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162005498.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162005498.png" /></p>
+</li>
+<li>
+<p>算法的正确性和计算复杂性</p>
+<ol>
+<li>贪心选择性质</li>
+<li>最优子结构性质</li>
+<li>计算复杂性</li>
+</ol>
+<p>外循环需要执行n-1次（即n-1个顶点加入s集合）</p>
+<p>内循环执行O(n)时间（更改最短特殊路径长度、找最短路径长度已知的顶点加入s）。</p>
+<p>所以算法需要$O(n^2)$时间。</p>
+</li>
+</ol>
+<h2 id="最小生成树">最小生成树</h2>
+<p>设G =(V,E)是无向连通带权图，即一个<strong>网络</strong></p>
+<p>E中每条边(v,w)的权为c[v][w]。</p>
+<p>如果G的子图G’是一棵包含G的所有顶点的树，则称G’为G的生成树</p>
+<p>生成树上各边权的总和称为该生成树的<strong>耗费</strong></p>
+<p>在G的所有生成树中，耗费最小的生成树称为G的<strong>最小生成树</strong>(Minimum Spanning Tree )，<strong>简称MST</strong></p>
+<ol>
+<li>
+<p><strong>最小生成树性质</strong></p>
+<p>用贪心算法设计策略可以设计出构造最小生成树的有效算法。<strong>Prim算法</strong>和<strong>Kruskal算法</strong>,这2个算法做贪心选择的方式不同，但它们都利用了<strong>最小生成树性质（贪心策略）</strong></p>
+<p>设G=(V,E)是连通带权图，U是V的真子集。如果$(u,v)\in E$，且$u\in U，v\in V-U$，且在所有这样的边中，(u,v)的权c[u][v]最小，那么一定存在G的一棵最小生成树，它以(u,v)为其中一条边。这性质有时也称为<strong>MST(最小生成树）性质</strong>。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162011047.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162011047.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162011047.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162011047.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162011047.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162011047.png" /></p>
+</li>
+<li>
+<p><strong>MST</strong>在现实世界中应用非常广泛</p>
+<ol>
+<li>交通</li>
+<li>电信</li>
+<li>网络通信</li>
+<li>集成电路布线</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162013893.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162013893.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162013893.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162013893.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162013893.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162013893.png" /></p>
+</li>
+<li>
+<p>最优子结构证明</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162015568.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162015568.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162015568.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162015568.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162015568.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162015568.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162015284.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162015284.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162015284.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162015284.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162015284.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162015284.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162016194.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162016194.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162016194.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162016194.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162016194.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162016194.png" /></p>
+</li>
+<li>
+<p><strong>Prim算法（选顶点加入集合S）</strong></p>
+<p>设G=(V,E)是连通带权图，V={1,2,…,n}。</p>
+<p>构造G的最小生成树的Prim算法的<strong>基本思想</strong>是：</p>
+<ol>
+<li>首先置S={1}，</li>
+<li>然后，只要S是V的真子集，就作如下的贪心选择：选取满 足条件$i\in S，j\in V-S$，且c[i][j]最小的边，将顶点j添加到S中</li>
+<li>这个过程一直进行到S=V时为止</li>
+</ol>
+<p>在这个过程中选取到的所有边恰好构成G的一棵<strong>最小生成树</strong></p>
+<p><a href="https://blog.csdn.net/sixpp/article/details/134966391" target="_blank" rel="noopener noreffer "><strong>Prim算法</strong></a></p>
+</li>
+<li>
+<p><strong>Kruskal算法(选择连接属于两个不同连通分支的最小边）</strong></p>
+<ol>
+<li>首先将G的n个顶点看成n个孤立的连通分支。</li>
+<li>所有的边按权从小到大排序</li>
+<li>顺序检查每条边，如果一条边的端点v和w分别是当前2个不同的连通 分支T1和T2，用边(v,w)将T1和T2连接成一个连通分支，否则放弃这条边。</li>
+<li>该过程一直到只剩一个连通分支时为止(或者说选择了n-1条边为止）</li>
+</ol>
+<p><strong>例如</strong>，对前面的连通带权图，按Kruskal算法顺序得到的最小生成树上的边如下图所示。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162023912.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162023912.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162023912.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162023912.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162023912.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162023912.png" /></p>
+</li>
+</ol>
+<h3 id="对比">对比</h3>
+<p>当图的边数为e时，Kruskal算法所需的<strong>计算时间</strong>是 ， Prim算法是O(n2）。 当 时，Kruskal算法比Prim算法差，但当 时，Kruskal算法却比Prim算法好得多。</p>
+<h3 id="贪心选择性质">贪心选择性质</h3>
+<p><strong>局部最优即全局最优</strong></p>
+<p><strong>证明</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162017197.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162017197.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162017197.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162017197.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162017197.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162017197.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162017696.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162017696.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162017696.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162017696.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162017696.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162017696.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162018693.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162018693.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162018693.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162018693.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162018693.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162018693.png" /></p>
+<h2 id="多机调度问题">多机调度问题</h2>
+<p><strong>多机调度问题</strong>要求给出一种作业调度方案，使所给的n个作业在尽可能短的时间内由m台机器加工处理完成。</p>
+<p><strong>约定，每个作业均可在任何一台机器上加工处理，但未完工前不允许中断处理。作业不能拆分成更小的子作业</strong></p>
+<p>这个问题是<strong>NP完全问题</strong>，到目前为止还没有有效的解法。对于这一类问题,用<strong>贪心策略</strong>有时可以设计出较好的近似算法</p>
+<p>采用<strong>最长处理时间作业优先</strong>的贪心选择策略可以设计出解多机调度问题的较好的近似算法</p>
+<p>当 时$n \leq m$，只要将机器i的[0, ti]时间区间分配给作业i即可，算法只需要**O(1)**时间</p>
+<p>当 时n&gt;m，首先将n个作业依其所需的处理时间从大到小排序。然后依此顺序将作业分配给占用时间少的处理机。算法所需的计算时间为 <strong>O(nlogn)</strong></p>
+<p><strong>例如</strong>，设7个独立作业{1,2,3,4,5,6,7}由3台机器M1，M2和M3加工处理。各作业所需的处理时间分别为{2,14,4,16,6,5,3}</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162029102.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162029102.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162029102.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404162029102.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162029102.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404162029102.png" /></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
