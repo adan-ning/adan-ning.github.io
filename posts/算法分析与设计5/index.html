@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>算法与程序(第五章) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="算法与程序(第五章)" />
+<meta property="og:description" content="回溯法 回溯法 当需要找出问题的解集或者要求满足某些约束条件的最优解时，常使用回溯法 回溯法的基本方法就是搜索，是一种组织得井井有条的，能避免不必" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/" /><meta property="og:image" content="https://adan-ning.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-04-18T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://adan-ning.github.io/logo.png" /><meta name="twitter:title" content="算法与程序(第五章)"/>
+<meta name="twitter:description" content="回溯法 回溯法 当需要找出问题的解集或者要求满足某些约束条件的最优解时，常使用回溯法 回溯法的基本方法就是搜索，是一种组织得井井有条的，能避免不必"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/" /><link rel="next" href="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "算法与程序(第五章)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/adan-ning.github.io\/posts\/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15\/"
+        },"genre": "posts","keywords": "计算机算法设计与分析","wordcount":  3457 ,
+        "url": "https:\/\/adan-ning.github.io\/posts\/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15\/","datePublished": "2024-04-18T00:00:00+00:00","dateModified": "2024-04-18T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">算法与程序(第五章)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机算法设计与分析</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-18">2024-04-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3457 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#回溯法-1">回溯法</a></li>
+    <li><a href="#回溯法的基本思想">回溯法的基本思想</a></li>
+    <li><a href="#递归回溯算法框架">递归回溯算法框架</a></li>
+    <li><a href="#子集树与排列树的回溯算法框架">子集树与排列树的回溯算法框架</a></li>
+    <li><a href="#装载问题">装载问题</a></li>
+    <li><a href="#批处理作业调度">批处理作业调度</a></li>
+    <li><a href="#关于排列树的时间复杂性的讨论">关于排列树的时间复杂性的讨论</a></li>
+    <li><a href="#符号三角形问题">符号三角形问题</a></li>
+    <li><a href="#n皇后问题">n皇后问题</a>
+      <ul>
+        <li><a href="#以n4皇后问题为例">以n=4皇后问题为例</a></li>
+        <li><a href="#n后问题n叉树算法">n后问题（n叉树）算法</a></li>
+        <li><a href="#以n4皇后问题为例-1">以n=4皇后问题为例</a></li>
+        <li><a href="#n后问题排列树算法">n后问题（排列树）算法</a></li>
+      </ul>
+    </li>
+    <li><a href="#0-1背包问题">0-1背包问题</a></li>
+    <li><a href="#最大团问题">最大团问题</a></li>
+    <li><a href="#图的m着色问题">图的m着色问题</a></li>
+    <li><a href="#圆排列问题">圆排列问题</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="回溯法">回溯法</h1>
+<h2 id="回溯法-1">回溯法</h2>
+<ol>
+<li>
+<p>当需要找出问题的<strong>解集</strong>或者要求满足某些约束条件的<strong>最优解</strong>时，常使用回溯法</p>
+</li>
+<li>
+<p>回溯法的基本方法就是<strong>搜索</strong>，是一种组织得<strong>井井有条</strong>的，<strong>能避免不必要搜索的穷举式</strong>搜索法</p>
+</li>
+<li>
+<p>这种方法适用于解一些<strong>组合数相当大</strong>的问题，如排列、子集。0-1背包问题、n皇后安排问题等可以使用回溯法</p>
+</li>
+<li>
+<p>回溯法在问题的<strong>解空间树</strong>中，<strong>按深度优先策略</strong>，从根结点出发搜索整个解空间树</p>
+</li>
+<li>
+<p>算法搜索至解空间树的任意一结点时，先判断该结点是否包含问题 的解</p>
+</li>
+<li>
+<p>如果不包含，跳过对该结点为根的子树的搜索，返回该结点的父结 点，继续对该结点兄弟结点的搜素（若有）。否则，进入该子树， 继续按深度优先策略搜索</p>
+</li>
+<li>
+<p>问题的解向量：回溯法希望一个问题的解能够表示成一个n元组 (x1,x2,…,xn)</p>
+</li>
+</ol>
+<p>0-1背包问题n元组？</p>
+<p>xi取0或1组成的n元组</p>
+<ol start="8">
+<li>
+<p>显约束：对分量xi的取值限定。</p>
+</li>
+<li>
+<p>隐约束：为满足问题的解而对不同分支施加的约束。</p>
+</li>
+<li>
+<p>解空间：对于问题的一个实例，解向量满足显式约束条件的所有n元组，构成 了该实例的一个解空间。组织成一棵树 $\Rightarrow$解空间树</p>
+</li>
+</ol>
+<p>注意：同一个问题可能有不同的解空间树表 示，有些表示方法更简单，解空间更小，搜 索方法更快。</p>
+<ol>
+<li>
+<p><strong>扩展结点</strong>一个正在产生儿子的结点称为扩展结点</p>
+</li>
+<li>
+<p><strong>活结点</strong>:一个自身已生成但其儿子还没有全部生成的结点称做活结点</p>
+</li>
+<li>
+<p><strong>死结点</strong>:一个所有儿子已经产生的结点称做死结点</p>
+</li>
+<li>
+<p><strong>深度优先的问题状态生成法（演示）</strong>：</p>
+</li>
+</ol>
+<p>如果对一个扩展结点R，一旦产生了它的一个儿子C，就把C当做新的 扩展结点，R成为活结点。在完成对子树C（以C为根的子树）的穷尽搜索 之后，将R重新变成扩展结点，继续生成R的下一个儿子（如果存在）。 R的全部孩子结点产生完毕，R成为死结点。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251708526.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251708526.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251708526.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251708526.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251708526.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251708526.png" /></p>
+<ol start="5">
+<li>
+<p><strong>宽度优先的问题状态生成法</strong>：在一个扩展结点变成死结点之前，它 一直是扩展结点（第六章内容）</p>
+</li>
+<li>
+<p>回溯法为了避免生成那些不可能产生最佳解的问题状态，要不断地 利用剪枝函数来处死那些实际上不可能产生所需解或最优解的儿子 结点，以减少问题的计算量。</p>
+</li>
+<li>
+<p><strong>具有剪枝函数的深度优先生成树法称为回溯法</strong></p>
+</li>
+</ol>
+<h2 id="回溯法的基本思想">回溯法的基本思想</h2>
+<ol>
+<li>针对所给问题，定义问题的解空间(所有可能的解集合）</li>
+<li>确定易于搜索的解空间结构（树）；</li>
+<li>以深度优先方式搜索解空间，并在搜索过程中用剪枝函 数避免无效搜索。</li>
+</ol>
+<p><strong>常用剪枝函数：</strong></p>
+<p>用约束函数在扩展结点处剪去不满足约束的子树；</p>
+<p>用限界函数剪去得不到最优解的子树</p>
+<p>回溯法解题的一个显著特征是：<strong>在搜索过程中动态产生问题的 解空间树，即边搜索边扩展分支</strong>。</p>
+<p><strong>(不同于数据结构中树的深度遍历方法，先创建树， 再深度遍历）</strong></p>
+<p>在任何时刻，算法只保存从根结点到当前扩展结点的路径。</p>
+<p>若解空间树中从根结点到叶结点的最长路径的长度为h(n)，则回 溯法所需的计算空间通常为O(h(n))。</p>
+<p>显式地存储整个解空间则需要$O(2^{h(n)})$或O(h(n)!)的内存空间</p>
+<h2 id="递归回溯算法框架">递归回溯算法框架</h2>
+<p>回溯法对解空间作深度优先搜索，一般用递归算法实现回溯法。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">backtrack</span> <span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="o">&gt;</span><span class="n">n</span><span class="p">)</span> <span class="nf">output</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">t</span><span class="p">);</span><span class="n">i</span><span class="o">&lt;=</span><span class="nf">g</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">t</span><span class="p">);</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">=</span><span class="nf">h</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="nf">constraint</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="nf">bound</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> 
+</span></span><span class="line"><span class="cl">				<span class="nf">backtrack</span><span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>当前扩展结点依次生成其各孩子结点，并记住路 径信息，如果孩子结点满足约束条件和限界条件， 则继续搜索孩子结点为根的子树（递归调用）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251716765.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251716765.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251716765.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251716765.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251716765.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251716765.png" /></p>
+<h2 id="子集树与排列树的回溯算法框架">子集树与排列树的回溯算法框架</h2>
+<p>遍历子集树需$O(2^n)$计算时间</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">backtrack</span> <span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="o">&gt;</span><span class="n">n</span><span class="p">)</span> <span class="nf">output</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> <span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="p">(</span><span class="nf">legal</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251718396.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251718396.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251718396.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251718396.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251718396.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251718396.png" /></p>
+<p>遍历排列树需要O(n!)计算时间</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">backtrack</span> <span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="o">&gt;</span><span class="n">n</span><span class="p">)</span> <span class="nf">output</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">t</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">swap</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">legal</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">swap</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251718791.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251718791.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251718791.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251718791.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251718791.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251718791.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251719876.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251719876.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251719876.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251719876.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251719876.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251719876.png" /></p>
+<h2 id="装载问题">装载问题</h2>
+<p>共n个集装箱要装上2艘载重量分别为c1和c2的轮船，其中集装箱i的重量为wi， 且 $\stackrel{n}{\sum\limits_{i=1}} w_i \leq c_i+c_2$ 。装载问题要求确定是否有一个合理的装载方案可将这些集装 箱装上这2艘轮船。如果有，找出一种装载方案</p>
+<p>最优装载方案：</p>
+<ol>
+<li>首先将第一艘轮船尽可能装满；</li>
+<li>将剩余的集装箱装上第二艘轮船</li>
+</ol>
+<p>将第一艘轮船尽可能装满等价于选取全体集装箱 的一个子集，使该子集中集装箱重量之和最大。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251726947.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251726947.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251726947.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251726947.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251726947.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251726947.png" /></p>
+<p><strong>以3个集装箱装船为例</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251729179.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251729179.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251729179.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251729179.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251729179.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251729179.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251729163.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251729163.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251729163.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251729163.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251729163.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251729163.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251737203.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251737203.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251737203.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251737203.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251737203.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251737203.png" /></p>
+<p>用回溯法解装载问题的时间复杂性是O(2n)。在某些情况下该算法优于动态规划算法。</p>
+<p>回溯法算法如何计算其复杂性呢？</p>
+<ol>
+<li>计算出解空间树中除叶子层之外的结点总数f(n)</li>
+<li>每个非叶子结点搜索其下一层所有分支的时间复杂性（分、合）g(n)，</li>
+<li>复杂性为O（f（n）*g(n)）</li>
+</ol>
+<p>以最优装载问题为例, $f（n）=2^n-1， g（n）=O（1）$，其时间 复杂性为$O（2 ^n$）</p>
+<p>也可用递归方程描述：T（n）=2T（n-1）+O（1），n&gt;0, T(1)=1;</p>
+<p><strong>本章讨论时间复杂性只有理论意义，没有实际意义，因为计算的是在没有任何剪 枝的情况下的时间复杂性， 实际上效率要好很多。</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251741530.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251741530.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251741530.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251741530.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251741530.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251741530.png" /></p>
+<h2 id="批处理作业调度">批处理作业调度</h2>
+<p>n个作业集合{1,2,…,n}。每个作业先由机器1处理，再由机器2处理。作业i需 要机器j的处理时间为$M_{ij}$。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251743098.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251743098.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251743098.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251743098.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251743098.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251743098.png" /></p>
+<p>对于一个确定的作业调度，设Fij是作业i在机器j上完成的具体时间。</p>
+<p>所有作业在机器2上完成的<strong>具体时间</strong>(时刻）之和f称为该作业调度的完成时间和。</p>
+<p><strong>要求</strong>：对于给定的n个作业，制定最佳作业调度方案(一个排列),使其完成时间和 达到最小。(<strong>追求的是平均等待时间最小化</strong>)</p>
+<p>3个作业的6种可能的调度方案是1,2,3；1,3,2；2,1,3；2,3,1； 3,1,2；3,2,1；它们所相应的完成时间和分别是19，18，20，21， 19，19。易见，最佳调度方案是1,3,2，其完成时间和为18。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251745220.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251745220.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251745220.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251745220.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251745220.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251745220.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251746913.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251746913.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251746913.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251746913.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251746913.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251746913.png" /></p>
+<h2 id="关于排列树的时间复杂性的讨论">关于排列树的时间复杂性的讨论</h2>
+<p>一颗n层的解空间树；时间复杂性的递归定义是</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251748632.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251748632.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251748632.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251748632.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251748632.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251748632.png" /></p>
+<h2 id="符号三角形问题">符号三角形问题</h2>
+<p><a href="https://blog.csdn.net/weixin_44755413/article/details/105846267" target="_blank" rel="noopener noreffer ">回溯法之符号三角形问题</a></p>
+<h2 id="n皇后问题">n皇后问题</h2>
+<p>在n×n格的棋盘上放置彼此不受攻击的n个皇后。按照国际象棋的规则，皇后可 以攻击与之处在同一行或同一列或同一斜线上的棋子。n后问题等价于在n×n格 的棋盘上放置n个皇后，任何2个皇后不放在同一行或同一列或同一斜线上。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251751042.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251751042.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251751042.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251751042.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251751042.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251751042.png" /></p>
+<h3 id="以n4皇后问题为例">以n=4皇后问题为例</h3>
+<p>第一种：解空间是4叉树</p>
+<p>每个皇后在一行上有四个可选位置（显约束：任两皇后不同行）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251751559.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251751559.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251751559.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404251751559.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251751559.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404251751559.png" /></p>
+<h3 id="n后问题n叉树算法">n后问题（n叉树）算法</h3>
+<ol>
+<li>解向量：($x_1 , x_2 , … , x_n$ )</li>
+<li>显约束：$x_i$=1,2, … ,n 。 任两皇后不同行</li>
+<li>隐约束：(1)不同列：$x_i\neq x_j$ (2)不处于同一正\ 反对角线：$|i-j| \neq |x_i -x_j |$</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nl">Queen</span><span class="p">:</span><span class="n">Place</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">((</span><span class="n">abs</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="p">)</span><span class="o">==</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span> <span class="o">||</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span> 
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Queen</span><span class="o">::</span><span class="n">Backtrack</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="o">&gt;</span><span class="n">n</span><span class="p">)</span> <span class="n">sum</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">Place</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="n">Backtrack</span><span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="以n4皇后问题为例-1">以n=4皇后问题为例</h3>
+<p>第二种:解空间是排列树</p>
+<p><strong>显约束</strong>： 任两个皇后不 同行、不同列</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252129622.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252129622.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404252129622.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404252129622.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252129622.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252129622.png" /></p>
+<h3 id="n后问题排列树算法">n后问题（排列树）算法</h3>
+<p>解向量：($x_1 , x_2 , … , x_n$ )</p>
+<p>显约束：任两皇后不同行、不同列。x1x2….xn是1,2,….n排列</p>
+<p>隐约束：不处于同一正\ 反对角线：$|i-j| \neq |x_i -x_j |$</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nl">Queen</span><span class="p">:</span><span class="n">Place</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">j</span><span class="p">)</span><span class="o">==</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span> 
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Queen</span><span class="o">::</span><span class="n">Backtrack</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="o">&gt;</span><span class="n">n</span><span class="p">)</span> <span class="n">sum</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">t</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">swap</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">],</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">Place</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> 
+</span></span><span class="line"><span class="cl">			<span class="n">Backtrack</span><span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">swap</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">],</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="0-1背包问题">0-1背包问题</h2>
+<p>解空间：子集树</p>
+<p>可行性约束函数:$\stackrel{n}{\sum\limits_{i=1}} w_ix_i \leq c_i$</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Backtrack</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span><span class="c1">//到达叶节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">bestp</span><span class="o">=</span><span class="n">cp</span><span class="err">；</span> <span class="k">return</span><span class="err">；</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="err">（</span><span class="n">cw</span><span class="o">+</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">c</span><span class="p">){</span><span class="err">\\进入左子树</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cw</span><span class="o">+=</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cp</span><span class="o">+=</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Backtrack</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cw</span><span class="o">-=</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cp</span><span class="o">-=</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">];}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">Bound</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">&gt;</span><span class="n">bestp</span><span class="p">)</span><span class="err">\\进入右子树</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Backtrack</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>限界函数：Bound（i）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252136170.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252136170.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404252136170.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404252136170.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252136170.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252136170.png" /></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Typew</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Typep</span><span class="o">&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="n">Typep</span> <span class="n">Knap</span><span class="o">&lt;</span><span class="n">Typew</span><span class="p">,</span> <span class="n">Typep</span><span class="o">&gt;::</span><span class="n">Bound</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="c1">// 计算上界
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Typew</span> <span class="n">cleft</span> <span class="o">=</span> <span class="n">c</span> <span class="o">-</span> <span class="n">cw</span><span class="p">;</span> <span class="c1">// 剩余容量, cw当前在背包中物品重量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Typep</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cp</span><span class="p">;</span> <span class="c1">//cp当前在背包中物品价值
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 以物品单位重量价值递减序装入物品
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">cleft</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cleft</span> <span class="o">-=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">b</span> <span class="o">+=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">i</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 装满背包
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">)</span> <span class="n">b</span> <span class="o">+=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">cleft</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="最大团问题">最大团问题</h2>
+<p>给定无向图G=(V，E)。如果UV，且对任意u，vU，有(u，v)E， 则称U是G的完全子图。</p>
+<p>完全子图U是G的团当且仅当U不包含在G的更大的完全子图中。</p>
+<p>G的最大团是指G中所含顶点数最多的团。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252138838.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252138838.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404252138838.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404252138838.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252138838.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252138838.png" /></p>
+<p>解空间：子集树</p>
+<p>可行性约束函数：顶点i到已选入的顶点集中每一个顶点都有边相连。</p>
+<p>上界函数:有足够多的可选择顶点使得算法有可能在右子树中找到更大的团</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span><span class="c1">// 到达叶结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="n">bestx</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">bestn</span> <span class="o">=</span> <span class="n">cn</span><span class="p">;</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 检查顶点 i 与当前团的连接
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">boolean</span> <span class="n">ok</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="p">{</span><span class="c1">// i与j不相连
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">ok</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">ok</span><span class="p">)</span> <span class="p">{</span><span class="c1">// 进入左子树
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">cn</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">backtrack</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cn</span><span class="o">--</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">cn</span> <span class="o">+</span> <span class="n">n</span> <span class="o">-</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">bestn</span><span class="p">)</span> <span class="p">{</span><span class="c1">// 进入右子树
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">backtrack</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> <span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252140661.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252140661.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404252140661.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404252140661.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252140661.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252140661.png" /></p>
+<p><strong>复杂度分析</strong> 最大团问题的回溯算法backtrack所需的计算 时间显然为$O(n2^n )$。</p>
+<h2 id="图的m着色问题">图的m着色问题</h2>
+<p>给定无向连通图G和m种不同的颜色。用这些颜色为图G的各顶点 着色，每个顶点着一种颜色。是否有一种着色法使G中每条边的2 个顶点着不同颜色。这个问题是图的m可着色判定问题。若一个 图最少需要m种颜色才能使图中每条边连接的2个顶点着不同颜色， 则称这个数m为该图的色数。求一个图的色数m的问题称为图的m 可着色优化问题。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252142177.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252142177.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404252142177.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404252142177.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252142177.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252142177.png" /></p>
+<p>解向量：($x_1 , x_2 , … , x_n$ )表示顶点i所着颜色$x_i$</p>
+<p>可行性约束函数：顶点i与已着色的相邻顶点颜色不重复。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">backtrack</span><span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="o">&gt;</span><span class="n">n</span><span class="p">)</span> <span class="n">sum</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">m</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">ok</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="n">backtrack</span><span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">boolean</span> <span class="nf">ok</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="c1">// 检查颜色可用性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">k</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">==</span><span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252143438.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252143438.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404252143438.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404252143438.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252143438.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404252143438.png" /></p>
+<h2 id="圆排列问题">圆排列问题</h2>
+<p><a href="https://blog.csdn.net/weixin_43939564/article/details/106724719" target="_blank" rel="noopener noreffer ">圆排列问题</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-04-18</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/" data-title="算法与程序(第五章)" data-hashtags="计算机算法设计与分析"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/" data-hashtag="计算机算法设计与分析"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/" data-title="算法与程序(第五章)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/" data-title="算法与程序(第五章)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/" data-title="算法与程序(第五章)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">计算机算法设计与分析</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/" class="prev" rel="prev" title="计算机组成(第四章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>计算机组成(第四章)</a>
+            <a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/" class="next" rel="next" title="操作系统(第五章)">操作系统(第五章)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

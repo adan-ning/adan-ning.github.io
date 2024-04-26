@@ -3,7 +3,39 @@
         <title>All Posts - 蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/posts/</link>
         <description>All Posts | 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 10 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 18 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>c&#43;&#43;(six)</title>
+    <link>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16/</link>
+    <pubDate>Thu, 18 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16/</guid>
+    <description><![CDATA[数组 指针与字符串 数组 数组的概念 数组是具有一定顺序关系的若干相同类型变量的集合体(数组可以由除void型以外的任何类型构成），组成数组的变量称]]></description>
+</item>
+<item>
+    <title>操作系统(第五章)</title>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/</link>
+    <pubDate>Thu, 18 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/</guid>
+    <description><![CDATA[虚拟存储器 常见的存储器 一次性全部装入 常驻内存 内存的利用率低 改进 时间局部性(循环执行) 空间局部性(顺序执行) 虚拟存储器 请求式分页 请求式分段 什么]]></description>
+</item>
+<item>
+    <title>算法与程序(第五章)</title>
+    <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/</link>
+    <pubDate>Thu, 18 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/</guid>
+    <description><![CDATA[回溯法 回溯法 当需要找出问题的解集或者要求满足某些约束条件的最优解时，常使用回溯法 回溯法的基本方法就是搜索，是一种组织得井井有条的，能避免不必]]></description>
+</item>
+<item>
+    <title>计算机组成(第四章)</title>
+    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/</link>
+    <pubDate>Mon, 15 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/</guid>
+    <description><![CDATA[指令系统 概 述 指令：是指示计算机某种操作的命令。 微指令，机器指令，宏指令 指令系统：一台计算机中所有机器指令的集合，它是表征一台计算机性能的重要]]></description>
+</item>
+<item>
     <title>操作系统(第四章)</title>
     <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</link>
     <pubDate>Wed, 10 Apr 2024 00:00:00 &#43;0000</pubDate>
@@ -50,38 +82,6 @@
     <author>蓝Q曦</author>
     <guid>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%844/</guid>
     <description><![CDATA[串 串的定义及基本运算 串的定义 串(String)是零个或多个字符组成的有限序列。一般记作：S=“a1a2a3…an”，其中： S：串名； “a1a]]></description>
-</item>
-<item>
-    <title>编译引论(第四章)</title>
-    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%864/</link>
-    <pubDate>Wed, 03 Apr 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%864/</guid>
-    <description><![CDATA[语法分析——自顶向下分析 按照语法分析树的建立方法，可将语法分析方法分成自顶向下和自底向上两大类。 自顶向下分析方法：语法分析从顶部（树根、语言]]></description>
-</item>
-<item>
-    <title>c&#43;&#43;(five)</title>
-    <link>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A15/</link>
-    <pubDate>Sun, 31 Mar 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A15/</guid>
-    <description><![CDATA[C++程序的结构 作用域与可见性 作用域 作用域讨论的是标识符的有效范围； 可见性 可见性是标识符是否可以引用的问题 作用域 作用域是一个标识符在程序正文]]></description>
-</item>
-<item>
-    <title>数据结构(第三章)</title>
-    <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/</link>
-    <pubDate>Sun, 31 Mar 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%843/</guid>
-    <description><![CDATA[栈和队列 栈 栈的定义及基本运算 栈(Stack)的定义 栈(Stack)是限制在表的一端进行插入和删除运算的线性表，通常称插入、删除的这一端为栈顶]]></description>
-</item>
-<item>
-    <title>计算机组成(第三章)</title>
-    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%863/</link>
-    <pubDate>Sun, 31 Mar 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%863/</guid>
-    <description><![CDATA[存储系统 存储器概述 存储器的两大功能： 存储（写入Write） 取出（读出Read） 三项基本要求： 大容量 高速度 低成本 概念 基本存储单元：存储一位（b]]></description>
 </item>
 </channel>
 </rss>

@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%863\/"
-        },"genre": "posts","keywords": "计算机组成原理","wordcount":  9136 ,
+        },"genre": "posts","keywords": "计算机组成原理","wordcount":  10362 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%863\/","datePublished": "2024-03-31T00:00:00+00:00","dateModified": "2024-03-31T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">计算机组成(第三章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机组成原理</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-31">2024-03-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;9136 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;19 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-03-31">2024-03-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;10362 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;21 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -156,6 +156,21 @@
         <li><a href="#主存与cache的地址映射">主存与Cache的地址映射</a></li>
         <li><a href="#替换策略">替换策略</a></li>
         <li><a href="#写入策略">写入策略</a></li>
+      </ul>
+    </li>
+    <li><a href="#虚拟存储器">虚拟存储器</a>
+      <ul>
+        <li><a href="#虚拟存储器的基本概念">虚拟存储器的基本概念</a></li>
+        <li><a href="#虚拟存储器的管理">虚拟存储器的管理</a></li>
+        <li><a href="#页式虚拟存储器">页式虚拟存储器</a></li>
+        <li><a href="#段式虚拟存储器">段式虚拟存储器</a></li>
+        <li><a href="#段页式虚拟存储器">段页式虚拟存储器</a></li>
+        <li><a href="#替换算法">替换算法</a></li>
+      </ul>
+    </li>
+    <li><a href="#存储保护">存储保护</a>
+      <ul>
+        <li></li>
       </ul>
     </li>
   </ul>
@@ -1276,6 +1291,192 @@
 </ol>
 </li>
 </ol>
+<h2 id="虚拟存储器">虚拟存储器</h2>
+<ol>
+<li>虚拟存储器：
+<ol>
+<li>在主存-外存层次间</li>
+<li>借助于磁盘辅助存储器实现</li>
+<li>由系统软件和辅助硬件管理</li>
+<li>以透明方式提供给用户</li>
+<li>一个比实际主存空间大得多的程序地址空间</li>
+</ol>
+</li>
+<li><strong>作用</strong>：扩大主存容量，提高<strong>辅存</strong>访问速度，有效管理存储系统</li>
+</ol>
+<p><strong>虚拟</strong>：利用其他部件实现的本来不存在的事物或属性</p>
+<p><strong>透明</strong>：本来存在的事物或属性，从某种角度看似乎不存在</p>
+<h3 id="虚拟存储器的基本概念">虚拟存储器的基本概念</h3>
+<ol>
+<li>物理地址（实地址）：（对应主存物理空间）由CPU地址引脚送出，用于访问主存的地址</li>
+<li>虚拟地址（虚地址）：（对应主存逻辑空间）由编译程序生成的，是程序的逻辑地址</li>
+<li>CPU理解虚拟地址，并将其转换成物理地址</li>
+<li>Cache与虚存的异同（P101）</li>
+</ol>
+<p>主存-外存层次的基本信息传送单位</p>
+<ol>
+<li><strong>段</strong>：按程序逻辑划分为可变长的块，称为段</li>
+<li><strong>页</strong>：机械地划分为大小相同的块，称为页面</li>
+<li><strong>段页</strong>：程序按模块分段，段内分页</li>
+</ol>
+<h3 id="虚拟存储器的管理">虚拟存储器的管理</h3>
+<ol>
+<li>
+<p><strong>段式管理：把主存按段分配的存储管理方式</strong></p>
+<p><strong>优点</strong>：段的界线分明，段易于编译、管理、修改和保护，便于多道程序共享</p>
+<p><strong>缺点</strong>：段的长度各不相同，主存空间分配麻烦</p>
+</li>
+<li>
+<p><strong>页式管理：以定长页面进行存储管理的方式</strong></p>
+<p><strong>优点</strong>：页的起点和终点地址固定,方便造页表,新页调入主存也很容易掌握，比段式空间浪费小</p>
+<p><strong>缺点</strong>：处理、保护和共享都不及段式来得方便</p>
+</li>
+<li>
+<p><strong>段页式管理</strong>：分段和分页相结合的存储管理方式</p>
+<p><strong>优点</strong>：综合段式和页式管理方式的特点</p>
+<p><strong>缺点</strong>：需要多次查表过程</p>
+</li>
+</ol>
+<h3 id="页式虚拟存储器">页式虚拟存储器</h3>
+<p><strong>逻辑页：页式虚拟存储系统中，虚拟空间分成页</strong></p>
+<p><strong>物理页：主存空间也分成同样大小的页</strong></p>
+<p><strong>虚存地址分为两个字段：高字段为逻辑页号，低字段为页内行地址。</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232001087.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232001087.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232001087.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232001087.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232001087.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232001087.png" /></p>
+<p><strong>实存地址也分两个字段：高字段为物理页号，低字段为页内行地址.</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232001332.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232001332.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232001332.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232001332.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232001332.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232001332.png" /></p>
+<h4 id="页式管理的地址变换用页表">页式管理的地址变换：用页表</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232002086.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232002086.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232002086.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232002086.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232002086.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232002086.png" /></p>
+<h4 id="快表与慢表">快表与慢表</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232003104.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232003104.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232003104.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232003104.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232003104.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232003104.png" /></p>
+<h3 id="段式虚拟存储器">段式虚拟存储器</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232004251.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232004251.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232004251.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232004251.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232004251.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232004251.png" /></p>
+<h4 id="段式管理的地址变换用段表">段式管理的地址变换：用段表</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232004243.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232004243.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232004243.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232004243.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232004243.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232004243.png" /></p>
+<h3 id="段页式虚拟存储器">段页式虚拟存储器</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232006116.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232006116.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232006116.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232006116.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232006116.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232006116.png" /></p>
+<h3 id="替换算法">替换算法</h3>
+<ol>
+<li>虚拟存储器的页面替换策略和cache的行替换策略有很多相似之处，但有三点<strong>显著不同</strong>：
+<ol>
+<li>缺页至少要涉及一次磁盘存取，使系统蒙受的损失要比cache未命中大得多</li>
+<li>页面替换由操作系统软件实现</li>
+<li>页面替换的选择余地很大，属于一个进程的页面都可替换</li>
+</ol>
+</li>
+<li>虚拟存储器的替换策略
+<ol>
+<li>多采用近期最少使用(LRU)算法</li>
+<li>还有最不经常使用(LFU)算法</li>
+<li>先进先出(FIFO)算法</li>
+</ol>
+</li>
+</ol>
+<h4 id="奔腾处理器的存储器地址转换">奔腾处理器的存储器地址转换</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232008456.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232008456.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232008456.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232008456.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232008456.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232008456.png" /></p>
+<h2 id="存储保护">存储保护</h2>
+<p>多个程序同时存在于存储器中，需要保护</p>
+<ol>
+<li>**存储区域保护： **
+<ol>
+<li>界限保护</li>
+<li>页表和段表保护</li>
+<li>键式保护</li>
+<li>环状保护</li>
+</ol>
+</li>
+<li><strong>访问方式保护：</strong>
+<ol>
+<li>设置访问权限：读R、写W、执行E的组合</li>
+<li>特权保护</li>
+</ol>
+</li>
+</ol>
+<h4 id="奔腾处理器的段描述符">奔腾处理器的段描述符</h4>
+<ol>
+<li>段界限(segment limit)：用于存储空间保护</li>
+<li>基地址(base address)：用于形成物理地址</li>
+<li>访问权字节(access rights byte)：段访问权限：该段当前是否驻留主存、该段所具有特权层和段类型，用于特权保护</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232010555.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232010555.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232010555.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232010555.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232010555.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232010555.png" /></p>
+<h4 id="奔腾处理器的页目录项和页表项">奔腾处理器的页目录项和页表项</h4>
+<ol>
+<li><strong>P</strong>存在位：该页表或页面是否在物理存储器中</li>
+<li><strong>A</strong>访问位：页面进行读或写操作时置位</li>
+<li><strong>D</strong>写操作位（dirty脏位）：页面进行写操作时被置位</li>
+<li><strong>U/S</strong>用户/管理员位：页面仅能由管理员层的程序使用，还是用户层和管理员层的程序均能使用</li>
+<li><strong>R/W</strong>读/写位：指明页面是只读的，还是可读可写</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232011551.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232011551.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232011551.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232011551.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232011551.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232011551.png" /></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

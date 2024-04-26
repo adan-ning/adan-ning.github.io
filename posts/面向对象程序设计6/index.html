@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>c&#43;&#43;(six) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="c&#43;&#43;(six)" />
+<meta property="og:description" content="数组 指针与字符串 数组 数组的概念 数组是具有一定顺序关系的若干相同类型变量的集合体(数组可以由除void型以外的任何类型构成），组成数组的变量称" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16/" /><meta property="og:image" content="https://adan-ning.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-04-18T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://adan-ning.github.io/logo.png" /><meta name="twitter:title" content="c&#43;&#43;(six)"/>
+<meta name="twitter:description" content="数组 指针与字符串 数组 数组的概念 数组是具有一定顺序关系的若干相同类型变量的集合体(数组可以由除void型以外的任何类型构成），组成数组的变量称"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "c++(six)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/adan-ning.github.io\/posts\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16\/"
+        },"genre": "posts","keywords": "面向对象程序设计","wordcount":  7588 ,
+        "url": "https:\/\/adan-ning.github.io\/posts\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16\/","datePublished": "2024-04-18T00:00:00+00:00","dateModified": "2024-04-18T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">c++(six)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>面向对象程序设计</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-18">2024-04-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;7588 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;16 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#数组">数组</a>
+      <ul>
+        <li><a href="#数组的说明与使用">数组的说明与使用</a></li>
+        <li><a href="#数组的存储和初始化">数组的存储和初始化</a></li>
+        <li><a href="#数组作为函数参数">数组作为函数参数</a></li>
+        <li><a href="#插入排序法-insert-sort-">插入排序法( insert sort )</a></li>
+        <li><a href="#对象数组">对象数组</a></li>
+        <li><a href="#数组元素所属类的构造函数">数组元素所属类的构造函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#指针关于内存地址">指针（关于内存地址）</a>
+      <ul>
+        <li><a href="#内存空间的访问方式">内存空间的访问方式</a></li>
+        <li><a href="#指针变量的概念">指针变量的概念</a></li>
+        <li><a href="#指针变量的应用">指针变量的应用</a></li>
+        <li><a href="#指针变量的定义与应用">指针变量的定义与应用</a></li>
+        <li><a href="#指针变量的赋值">指针变量的赋值</a></li>
+        <li><a href="#指针与常量const指针-指向常量的指针">指针与常量(const指针) —指向常量的指针</a></li>
+        <li><a href="#指针变量的运算">指针变量的运算</a></li>
+        <li><a href="#用指针处理数组元素">用指针处理数组元素</a></li>
+        <li><a href="#指针数组">指针数组</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="数组--指针与字符串">数组  指针与字符串</h1>
+<h2 id="数组">数组</h2>
+<ol>
+<li>
+<p>数组的概念</p>
+<p><strong>数组</strong>是具有一定<strong>顺序关系</strong>的若<strong>干相同类型变量的集合体(数组可以由除void型以外的任何类型构成）</strong>，组成数组的变量称为该数组的<strong>元素</strong>。</p>
+</li>
+<li>
+<p>数组属于<strong>构造类型</strong></p>
+</li>
+</ol>
+<p><strong>注意:</strong></p>
+<p>声明一个数组,应该包括以下几个方面</p>
+<ol>
+<li>确定数组的名称；</li>
+<li>确定数组元素的类型；</li>
+<li>确定数组的结构（包括数组维数，每一位的大小等）。</li>
+</ol>
+<h3 id="数组的说明与使用">数组的说明与使用</h3>
+<ol>
+<li>
+<p>一维数组的声明与引用</p>
+<ol>
+<li>
+<p>一维数组的声明</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">类型说明符</span>  <span class="err">数组名</span><span class="p">[</span> <span class="err">常量表达式</span> <span class="p">]</span><span class="err">；</span>
+</span></span></code></pre></div><p><strong>数组名的构成方法与一般变量名相同。</strong></p>
+<p>例如：   int  a[10];</p>
+<p>表示 a 为整型数组,有10个元素：a[0]&hellip;a[9]</p>
+<p>注意：<strong>常量表达式其值必须是正整数。</strong></p>
+</li>
+</ol>
+</li>
+<li>
+<p>引用</p>
+<p>必须<strong>先声明</strong>，后使用。</p>
+<p>只能逐个引用数组元素，而不能一次引用整个数组（除传地址）</p>
+<p>例如：a[0]=a[5]+a[7]-a[2*3]</p>
+</li>
+</ol>
+<p>例： 一维数组的声明与引用</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="n">main</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">A</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">B</span><span class="p">[</span><span class="mi">10</span><span class="o">-</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	   <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;A[&#34;</span><span class="o">&lt;&lt;</span><span class="n">i</span>
+</span></span><span class="line"><span class="cl">           <span class="o">&lt;&lt;</span><span class="s">&#34;]=&#34;</span><span class="o">&lt;&lt;</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	   <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34; B[&#34;</span><span class="o">&lt;&lt;</span><span class="n">i</span>
+</span></span><span class="line"><span class="cl">             <span class="o">&lt;&lt;</span><span class="s">&#34;]=&#34;</span>
+</span></span><span class="line"><span class="cl">             <span class="o">&lt;&lt;</span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>注意:</strong></p>
+<ol>
+<li>如果数组越界,运行时有时会得到提示,但有时却得不到任何提示,不可预期的结果会悄悄发生</li>
+<li>数组元素的下标表达式可以是任意合法的算术表达式，其结果必须是整数</li>
+</ol>
+<h3 id="数组的存储和初始化">数组的存储和初始化</h3>
+<ol>
+<li>
+<p>一维数组的存储顺序</p>
+<p><strong>数组元素</strong>在内存中<strong>连续</strong>顺次存放，它们的<strong>地址是连续的</strong>。</p>
+<p>例如：具有10个元素的数组 a，在内存中的存放次序如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202046744.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202046744.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202046744.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202046744.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202046744.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202046744.png" /></p>
+<p><strong>a:数组名字是数组首元素的内存地址。数组名是一个常量，不能被赋值。</strong></p>
+</li>
+<li>
+<p>一维数组的初始化</p>
+<p>可以在编译阶段使数组得到初值：</p>
+<ol>
+<li>
+<p>在声明数组时对数组元素赋以初值。</p>
+<p><strong>例如： int a[10]={0,1,2,3,4,5,6,7,8,9};</strong></p>
+</li>
+<li>
+<p>可以只给一部分元素赋初值</p>
+<p><strong>例如： int a[10]={0,1,2,3,4};</strong></p>
+</li>
+<li>
+<p>在对全部数组元素赋初值时，可以不指定数组长度</p>
+<p><strong>例如： int a[ ]={1,2,3,4,5}</strong></p>
+</li>
+<li>
+<p><strong>数组也可以声明为常量.</strong></p>
+<p><strong>const float a[5]={1.0,2.0};</strong></p>
+</li>
+<li>
+<p>下面的代码对数组进行初始化是错误的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">array1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span><span class="p">{</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">};</span>    
+</span></span><span class="line"><span class="cl"><span class="c1">//error：初始化值个数多于数组元素个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">array2</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">}</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//error：初始化值不能省略中间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">array3</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{,</span> <span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//error：初始化值不能省略前面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>     
+</span></span><span class="line"><span class="cl">    <span class="c1">//……
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>　<span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<p>例 ：用数组来处理求Fibonacci数列问题</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">main</span><span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 	<span class="k">static</span> <span class="kt">int</span> <span class="n">f</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span><span class="cm">/*初始化第0、1个数*/</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">20</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">     	<span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>  <span class="cm">/*求第2~19个数*/</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">20</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>   <span class="cm">/*输出，每行5个数*/</span>
+</span></span><span class="line"><span class="cl">　	<span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">5</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  			<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"> 	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//输出结果：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//1   1   2   3   5
+</span></span></span><span class="line"><span class="cl"><span class="c1">//8   13   21   34   55
+</span></span></span><span class="line"><span class="cl"><span class="c1">//89   144   233   377   610
+</span></span></span><span class="line"><span class="cl"><span class="c1">//987   1597   2584   4181   6765
+</span></span></span></code></pre></div></li>
+<li>
+<p>多维数组的声明及引用</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">数据类型</span>  <span class="err">标识符</span><span class="p">[</span><span class="err">常量表达式</span><span class="mi">1</span><span class="p">][</span><span class="err">常量表达式</span><span class="mi">2</span><span class="p">]</span> <span class="err">…</span><span class="p">;</span>
+</span></span></code></pre></div><p>例: int a[5][3];</p>
+<p>表示a为整型二维数组，其中第一维有5个下标(0~4)，第二维有3个下标(0~2)，数组的元素个数为15，可以用于存放5行3列的整型数据表格。</p>
+</li>
+<li>
+<p>二维数组的声明及引用</p>
+<ol>
+<li>
+<p>二维数组的声明</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">类型说明符</span> <span class="err">数组名</span><span class="p">[</span><span class="err">常量表达式</span><span class="p">][</span><span class="err">常量表达式</span><span class="p">];</span>
+</span></span></code></pre></div><p>例如：float a[3][4];</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202057156.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202057156.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202057156.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202057156.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202057156.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202057156.png" /></p>
+</li>
+<li>
+<p>引用</p>
+<p>例如：b[1][2]=a[2][3]/2</p>
+<p>注意：下标不要越界</p>
+</li>
+<li>
+<p>存储顺序</p>
+<p>在内存中按行存放，即行优先存储。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202059394.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202059394.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202059394.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202059394.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202059394.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202059394.png" /></p>
+</li>
+</ol>
+</li>
+<li>
+<p>多二维数组的声明</p>
+<p>int  a [ 2 ] [ 3 ][4];声明一个三维数组</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202100594.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202100594.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202100594.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202100594.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202100594.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202100594.png" /></p>
+</li>
+<li>
+<p>二维数组的初始化</p>
+<ol>
+<li>
+<p>将所有数据写在一个{}内，按顺序赋值(如果是基本数据类型的数组，初始化过程就是给数组元素赋值，对于对象数组，每一个元素都是一个类的实例，将调用类的构造函数）</p>
+<p>例如:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">};</span>
+</span></span></code></pre></div></li>
+<li>
+<p>可以对部分元素赋初值</p>
+<p>例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="p">{{</span><span class="mi">1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">}};</span>
+</span></span></code></pre></div></li>
+<li>
+<p>如果给出全部元素的初值，第一维的下标个数可以不用显示说明</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//或
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">static</span> <span class="kt">int</span> <span class="n">a</span><span class="p">[</span>  <span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+</span></span></code></pre></div></li>
+</ol>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp"># include&lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">static</span> <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="p">{{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">},{</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">},{</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">}};</span>
+</span></span><span class="line"><span class="cl">	<span class="k">static</span> <span class="kt">int</span> <span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="k">static</span> <span class="kt">int</span> <span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{{</span><span class="mi">1</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">},{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">}};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="kt">int</span> <span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  		<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34;  &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  		<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34;  &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  		<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34;  &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  		<span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&#34;  &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       		<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>运行结果</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202106670.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202106670.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202106670.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202106670.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202106670.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202106670.png" /></p>
+</li>
+</ol>
+<h3 id="数组作为函数参数">数组作为函数参数</h3>
+<ol>
+<li>
+<p>数组元素作实参，与单个变量一样。</p>
+</li>
+<li>
+<p>无论何时，将数组名作为参数传给函数，实际上只是把数组的<strong>地址</strong>传给函数。</p>
+</li>
+<li>
+<p>数组名作参数，形、实参数都应是数组名，类型要一样，传送的是数组首地址。**因此实参数组的元素个数不应少于形参数组的元素个数。**对形参数组的改变会直接影响到实参数组。</p>
+</li>
+<li>
+<p>数组元素作为函数参数</p>
+<ol>
+<li>
+<p>数组元素作为实参，和变量作为实参一样，是<strong>单向的值传递方式</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span>  <span class="nf">isalp</span> <span class="p">(</span><span class="kt">char</span>  <span class="n">c</span> <span class="p">)</span>             
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">  <span class="k">if</span>  <span class="p">(</span><span class="n">c</span><span class="o">&gt;=</span><span class="sc">&#39;a&#39;</span><span class="o">&amp;&amp;</span><span class="n">c</span><span class="o">&lt;=</span><span class="sc">&#39;z&#39;</span><span class="o">||</span><span class="n">c</span><span class="o">&gt;=</span><span class="sc">&#39;A&#39;</span><span class="o">&amp;&amp;</span><span class="n">c</span><span class="o">&lt;=</span><span class="sc">&#39;Z&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">       <span class="k">return</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span>  <span class="k">return</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="err">‘</span><span class="n">c</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">h</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="mi">0</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">n</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="mi">5</span><span class="err">’</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">	     <span class="k">if</span>  <span class="p">(</span> <span class="n">isalp</span> <span class="p">(</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span>    <span class="n">num</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	 <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;num=“ &lt;&lt; num;	</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>	
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202109411.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202109411.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202109411.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202109411.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202109411.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202109411.png" /></p>
+</li>
+</ol>
+</li>
+<li>
+<p>数组名作为函数参数</p>
+<ol>
+<li>应该在主调函数和被调函数中分别定义数组，不能只在一方定义。</li>
+<li>实参数组和形参数组类型一致。</li>
+<li>形参数组的第一维大小不起任何作用，即使指定，也会被忽略，只是将实参数组的首地址传递给形参数组。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">float</span>  <span class="nf">average</span> <span class="p">(</span> <span class="kt">float</span>  <span class="n">array</span> <span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="kt">int</span>  <span class="n">i</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span>  <span class="n">aver</span><span class="p">,</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">array</span> <span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>   
+</span></span><span class="line"><span class="cl">           <span class="n">sum</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">array</span> <span class="p">[</span> <span class="n">i</span> <span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aver</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">/</span><span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span>   <span class="n">aver</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span> <span class="p">(</span>  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="kt">float</span>  <span class="n">score</span> <span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">aver</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span>  <span class="n">i</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>   
+</span></span><span class="line"><span class="cl">           <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">score</span> <span class="p">[</span> <span class="n">i</span> <span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aver</span> <span class="o">=</span>  <span class="n">average</span> <span class="p">(</span> <span class="n">score</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="err">“</span><span class="n">average</span> <span class="n">score</span><span class="err">”</span> <span class="o">&lt;&lt;</span> <span class="n">aver</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>数组名作为函数参数</p>
+<ol>
+<li>
+<p>形参数组可以不指定大小，后面跟一个空的方括号。有时为了在被调函数中处理数组元素的需要，可以另设一个参数，传递需要处理的数组元素的个数。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">float</span>  <span class="nf">average</span> <span class="p">(</span> <span class="kt">float</span>  <span class="n">array</span> <span class="p">[</span> <span class="p">],</span> <span class="kt">int</span> <span class="n">n</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="kt">int</span>  <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span>  <span class="n">aver</span><span class="p">,</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">array</span> <span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span>  <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>   
+</span></span><span class="line"><span class="cl">           <span class="n">sum</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">array</span> <span class="p">[</span> <span class="n">i</span> <span class="p">];</span>
+</span></span><span class="line"><span class="cl">   <span class="n">aver</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">/</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span>   <span class="n">aver</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span> <span class="p">(</span>  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>  <span class="kt">float</span>  <span class="n">score_1</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mf">98.5</span><span class="p">,</span><span class="mi">97</span><span class="p">,</span><span class="mf">91.5</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">55</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span>  <span class="n">score_2</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="mf">67.5</span><span class="p">,</span><span class="mf">89.5</span><span class="p">,</span><span class="mi">99</span><span class="p">,</span><span class="mf">69.5</span><span class="p">,</span><span class="mi">77</span><span class="p">,</span><span class="mf">76.5</span><span class="p">,</span><span class="mi">54</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mf">95.5</span><span class="p">,</span><span class="mi">78</span><span class="p">};</span>    
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">average</span> <span class="p">(</span> <span class="n">score_1</span><span class="p">,</span>  <span class="mi">5</span><span class="p">)</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">average</span> <span class="p">(</span> <span class="n">score_2</span><span class="p">,</span>  <span class="mi">10</span><span class="p">)</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>数组名作为函数参数</p>
+<ol>
+<li>数组名作为实参，不是把数组的值传递给形参，而是把实参数组的起始地址传递给形参数组，两个数组共占同一段内存单元。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">sort</span> <span class="p">(</span> <span class="kt">int</span>  <span class="n">b</span><span class="p">[</span> <span class="p">]</span> <span class="p">,</span> <span class="kt">int</span>  <span class="n">n</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span> <span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span>   <span class="n">a</span> <span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sort</span> <span class="p">(</span> <span class="n">a</span><span class="p">,</span>  <span class="mi">10</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202117178.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202117178.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202117178.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202117178.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202117178.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202117178.png" /></p>
+<p>假设 a 的起始地址为1000，则 b 数组的起始地址也是 1000，显然 a 和 b <strong>同占一段内存单元</strong>。 形参数组中各元素的值的变化会使实参数组元素的值同时发生变化。</p>
+<p>在程序设计中有意识地利用这一点改变实参数组元素的值 （如 排序）。</p>
+</li>
+<li>
+<p>数组名作为函数参数</p>
+<ol>
+<li>数组名作为实参,不是把数组的值传递给形参,而是把实参数组的起始地址传递给形参数组,两个数组共占同一段内存单元。</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202120940.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202120940.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202120940.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202120940.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202120940.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202120940.png" /></p>
+</li>
+<li>
+<p>主函数中初始化一个矩阵并将每个元素都输出，然后调用子函数，分别计算每一行的元素之和，将和直接存放在每行的第一个元素中，返回主函数之后输出各行元素的和</p>
+<p>例: 使用数组名作为函数参数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">RowSum</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[</span> <span class="p">][</span><span class="mi">4</span><span class="p">],</span> <span class="kt">int</span> <span class="n">nrow</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>	
+</span></span><span class="line"><span class="cl"> <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nrow</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		     <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>	<span class="kt">int</span> <span class="n">Table</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span><span class="p">{{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">},{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">},{</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">}};</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Table</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;   &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RowSum</span><span class="p">(</span><span class="n">Table</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>   <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">Sum</span> <span class="n">of</span>
+</span></span><span class="line"><span class="cl">       <span class="n">row</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">is</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">Table</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//或：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;iostream.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">RowSum</span><span class="p">(</span><span class="kt">int</span> <span class="n">A</span><span class="p">[</span> <span class="p">][</span><span class="mi">4</span><span class="p">],</span> <span class="kt">int</span> <span class="n">nrow</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>	<span class="kt">int</span> <span class="n">sum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nrow</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">sum</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Sum of row &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="o">&lt;&lt;</span> <span class="s">&#34; is &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>	<span class="kt">int</span> <span class="n">Table</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span>   
+</span></span><span class="line"><span class="cl">        <span class="p">{{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">},{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">},{</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">}};</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Table</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;   &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="n">RowSum</span><span class="p">(</span><span class="n">Table</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//运行结果：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//1   2   3   4
+</span></span></span><span class="line"><span class="cl"><span class="c1">//2   3   4   5
+</span></span></span><span class="line"><span class="cl"><span class="c1">//3   4   5   6
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Sum of row 0 is 10
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Sum of row 1 is 14
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Sum of row 2 is 18
+</span></span></span></code></pre></div></li>
+</ol>
+<h3 id="插入排序法-insert-sort-">插入排序法( insert sort )</h3>
+<p>插入排序法是一个简单，但相对比较高效的排序算法。</p>
+<ol>
+<li>
+<p>设置思想</p>
+<p>插入排序通过把数组中的元素插入到适当的位置来进行排序。</p>
+</li>
+<li>
+<p>步骤</p>
+<ol>
+<li>将数组中的头两个元素按排序顺序排列</li>
+<li>把下一个元素(第3个)插入到其对应于已排序元素的排序位置。</li>
+<li>对于数组中的每个元素重复(2)。即把第四个元素插入到适当位置，然后是第5个元素，等。</li>
+</ol>
+</li>
+</ol>
+<p>例：待排序数据元素序列的排序码序列是(18,12,10,12,30,16)，写出简单插入排序每一趟执行后的序列状态。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202126792.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202126792.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202126792.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202126792.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202126792.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202126792.png" /></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp"># include &lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="nf">isort</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span> <span class="n">a</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">array</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">18</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">16</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">size</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>    <span class="c1">//原始顺序输出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>　 <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="p">,</span><span class="err">”</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">array</span><span class="p">)</span><span class="o">/</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>  <span class="c1">//元素个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>　<span class="n">isort</span><span class="p">(</span> <span class="n">array</span><span class="p">,</span><span class="n">len</span><span class="p">);</span>      <span class="c1">//调用排序函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">isort</span><span class="p">(</span> <span class="kt">int</span> <span class="n">a</span><span class="p">[</span> <span class="p">]</span> <span class="p">,</span><span class="kt">int</span> <span class="n">size</span><span class="p">)</span>    <span class="c1">//插入排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">inserter</span><span class="p">,</span><span class="n">index</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">1</span> <span class="p">;</span><span class="n">i</span> <span class="o">&lt;</span><span class="n">size</span> <span class="p">;</span> <span class="n">i</span> <span class="o">++</span> <span class="p">)</span>  <span class="c1">//共执行size-1轮
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">inserter</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">     <span class="n">index</span> <span class="o">=</span> <span class="n">i</span> <span class="err">–</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">while</span><span class="p">(</span><span class="n">index</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">inserter</span><span class="o">&lt;</span><span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">])</span> 　<span class="c1">//寻找插入点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>　	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>   <span class="c1">//后挪一个位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>　      <span class="n">index</span> <span class="o">-</span> <span class="o">-</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">　　 <span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">inserter</span> <span class="p">;</span>       <span class="c1">//插入
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>   <span class="c1">//比较一轮后就输出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;&lt;</span><span class="err">“</span><span class="p">,</span><span class="err">”</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">i</span> <span class="p">)</span>       <span class="c1">//已排序与未排序的分界线
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>　　　		<span class="n">cout</span> <span class="o">&lt;&lt;</span><span class="err">‘</span><span class="o">|</span><span class="err">’</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//运行结果
+</span></span></span><span class="line"><span class="cl"><span class="c1">//18,12,10,12,30,16,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//12,18,|10,12,30,16,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//10,12,18,|12,30,16,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//10,12,12,18,|30,16,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//10,12,12,18,30,|16,
+</span></span></span><span class="line"><span class="cl"><span class="c1">//10,12,12,16,18,30,|
+</span></span></span></code></pre></div><h3 id="对象数组">对象数组</h3>
+<ol>
+<li>
+<p>声明：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">类名</span>    <span class="err">数组名</span><span class="p">[</span><span class="err">元素个数</span><span class="p">]</span><span class="err">；</span>
+</span></span></code></pre></div></li>
+<li>
+<p>访问方法：</p>
+<p>通过下标访问</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">数组名</span><span class="p">[</span><span class="err">下标</span><span class="p">].</span><span class="err">成员名</span>
+</span></span></code></pre></div></li>
+<li>
+<p>对象数组初始化</p>
+<ol>
+<li>
+<p>数组中每一个元素对象被创建时，系统都会调用类构造函数初始化该对象。</p>
+</li>
+<li>
+<p>通过初始化列表赋值。</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Point</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="p">{</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="p">};</span>
+</span></span></code></pre></div></li>
+<li>
+<p>如果没有为数组元素指定显式初始值，数组元素便使用缺省值初始化（调用缺省构造函数）</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="数组元素所属类的构造函数">数组元素所属类的构造函数</h3>
+<ol>
+<li>不声明构造函数，则采用缺省构造函数</li>
+<li>各元素对象的初值要求为相同的值时，可以声明具有缺省形参值的构造函数</li>
+<li>各元素对象的初值要求为不同的值时，需要声明带形参(无缺省值)的构造函数</li>
+<li>当数组中每一个对象被删除时，系统都要调用一次析构函数。</li>
+</ol>
+<p>例：对象数组应用举例</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//Location.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#if !defined(_LOCATION_H)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define _LOCATION_H
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Location</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">       <span class="n">Location</span><span class="err">（</span> <span class="err">）</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">       <span class="n">Location</span><span class="p">(</span><span class="kt">int</span> <span class="n">xx</span><span class="p">,</span><span class="kt">int</span> <span class="n">yy</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">       <span class="o">~</span><span class="n">Location</span><span class="err">（</span> <span class="err">）</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 　   <span class="kt">void</span> <span class="nf">Move</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span> <span class="n">GetX</span><span class="err">（</span> <span class="err">）</span> <span class="p">{</span><span class="k">return</span> <span class="n">X</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span> <span class="n">GetY</span><span class="err">（</span> <span class="err">）</span> <span class="p">{</span><span class="k">return</span> <span class="n">Y</span><span class="p">;}</span> 
+</span></span><span class="line"><span class="cl">	<span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span>  <span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">//Location.cpp
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include&lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;Location.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">Location</span><span class="o">::</span><span class="n">Location</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   <span class="n">X</span><span class="o">=</span><span class="n">Y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Default Constructor   called.&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Location</span><span class="o">::</span><span class="n">Location</span><span class="p">(</span><span class="kt">int</span> <span class="n">xx</span><span class="p">,</span><span class="kt">int</span> <span class="n">yy</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   <span class="n">X</span><span class="o">=</span><span class="n">xx</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="n">Y</span><span class="o">=</span><span class="n">yy</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="n">cout</span><span class="o">&lt;&lt;</span> <span class="s">&#34;Constructor called.&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Locatuon</span><span class="o">::~</span><span class="n">Location</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Destructor called.&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Location</span><span class="o">::</span><span class="n">Move</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">X</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Y</span><span class="o">=</span><span class="n">y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;Location.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="n">main</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Entering main...&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="n">Location</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>        <span class="c1">//定义一个对象数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>       <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">           <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">Move</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">20</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">       <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Exiting main...&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//Location A[2]＝{Location(1,2),Location(3,4)};  //就调有参构造函数 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//运行结果：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Entering main...
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Default Constructor called.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Default Constructor called.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Exiting main...
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Destructor called.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Destructor called.
+</span></span></span></code></pre></div><h2 id="指针关于内存地址">指针（关于内存地址）</h2>
+<h3 id="内存空间的访问方式">内存空间的访问方式</h3>
+<ol>
+<li>地址编码
+<ol>
+<li>存储单元的地址</li>
+<li>基本内存单元</li>
+</ol>
+</li>
+<li>从内存单元存取数据的方法
+<ol>
+<li>通过变量名访问</li>
+<li>通过地址访问</li>
+</ol>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202136069.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202136069.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202136069.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202136069.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202136069.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202136069.png" /></p>
+<h3 id="指针变量的概念">指针变量的概念</h3>
+<ol>
+<li>
+<p>指针和指针变量　的概念</p>
+<ol>
+<li>
+<p><strong>指针：</strong></p>
+<p>在C和C++中，将地址形象化地称为“指针”。一个变量的地址称为该变量的 “ 指针 ”</p>
+</li>
+<li>
+<p><strong>指针变量：</strong></p>
+<p>专门用来存放地址的变量叫做 “ 指针变量 ”</p>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202139574.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202139574.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202139574.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202139574.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202139574.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202139574.png" /></p>
+</li>
+</ol>
+<h3 id="指针变量的应用">指针变量的应用</h3>
+<ol>
+<li>指针变量应用的步骤：
+<ol>
+<li><strong>声明指针变量</strong></li>
+<li>给指针变量赋值</li>
+<li>引用指针变量</li>
+</ol>
+</li>
+</ol>
+<h3 id="指针变量的定义与应用">指针变量的定义与应用</h3>
+<ol>
+<li>
+<p>指针变量的声明</p>
+<ol>
+<li>
+<p>定义指针变量的一般形式为：　</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">数据类型</span>   <span class="o">*</span> <span class="err">指针变量名</span>
+</span></span></code></pre></div><p>例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span>  <span class="o">*</span><span class="n">pointer_1</span> <span class="p">;</span>    <span class="kt">float</span>   <span class="o">*</span><span class="n">pointer_2</span> <span class="p">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>指针变量前面的 “ * ”，表示该变量的类型为<strong>指针型变量</strong>。</p>
+</li>
+<li>
+<p>“数据类型”可以是任意类型，用来指定该指针变量所指向的变量的类型，称之为<strong>指针的类型。</strong></p>
+</li>
+</ol>
+<p>例如： 指针变量 pointer_1 用来存放指向 int 型变量的指针  pointer_2存放指向 float 型变量的指针 。</p>
+</li>
+<li>
+<p>指针变量的赋值</p>
+<ol>
+<li>
+<p>声明一个指针变量，分为全局和局部，**全局未赋值时其中的地址值是0。局部未赋值时其中的地址值是一个随机的数。**因此声明指针变量之后最好先赋值后使用。</p>
+<ol>
+<li><strong>声明时同时初始化：</strong></li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">数据类型</span>   <span class="o">*</span><span class="err">指针变量名</span> <span class="o">=</span> <span class="err">地址；</span>
+</span></span></code></pre></div><ol start="2">
+<li>
+<p><strong>使用赋值语句赋值：</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">数据类型</span>     <span class="o">*</span><span class="err">指针变量；</span>
+</span></span><span class="line"><span class="cl"><span class="err">指针变量</span> <span class="o">=</span> <span class="err">地址；</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="指针变量的赋值">指针变量的赋值</h3>
+<ol>
+<li>
+<p>“&amp;”是<strong>取地址运算符</strong>，用来获取一个变量的地址。将获取的变量的地址赋值给指针变量。</p>
+</li>
+<li>
+<p>不能把<strong>普通非 0 整数</strong>赋值给指针变量。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="mi">100</span><span class="p">;</span>       
+</span></span><span class="line"><span class="cl"><span class="kt">int</span>  <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">pointer_1</span><span class="o">=&amp;</span><span class="n">i</span><span class="p">;</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202145816.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202145816.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202145816.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202145816.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202145816.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202145816.png" /></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span>    <span class="n">i</span> <span class="p">,</span> <span class="o">*</span> <span class="n">pointer_1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">pointer_1</span> <span class="o">=</span> <span class="o">&amp;</span> <span class="n">i</span> <span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">//将变量 i 的地址存放到指针变量pointer_1 中，因此pointer_1 就“指向”了变量 i 
+</span></span></span></code></pre></div></li>
+<li>
+<p>指针变量的赋值</p>
+<ol>
+<li>使用变量地址赋值时，该变量必须在赋值之前已声明过，且<strong>变量类型应与指针类型一致</strong></li>
+<li>可以用一个已赋值的指针变量去赋值给另一 个指针变量</li>
+<li>数组名代表数组的起始地址，可以将数组名表示的地址赋值给指针变量</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//正确
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span>    <span class="n">i</span> <span class="p">,</span> <span class="o">*</span> <span class="n">p1</span><span class="p">,</span> <span class="o">*</span><span class="n">p2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span> <span class="n">i</span><span class="p">;</span>   
+</span></span><span class="line"><span class="cl"><span class="n">p2</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">array</span> <span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="p">,</span> <span class="o">*</span> <span class="n">p1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span> <span class="o">=</span> <span class="n">array</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//错误，类型不一致
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">float</span>   <span class="n">f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span>   <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span> <span class="n">f</span><span class="p">;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>			<span class="c1">//定义int型数i
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>	<span class="c1">//取i的地址赋给ptr
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>			<span class="c1">//int型数赋初值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;i = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span><span class="c1">//输出int型数的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//输出int型指针所指地址的内容
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;*ptr = &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ol start="4">
+<li>
+<p>一般情况下，一种类型的指针变量只能存放相同类型的变量的地址</p>
+</li>
+<li>
+<p>特殊的<strong>void <strong>类型的指针，可以存放任何类型的变量的地址。经过</strong>类型强制转换</strong>，void 类型的指针可以访问任何类型的数据</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span>   <span class="o">*</span><span class="n">p1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span>    <span class="n">i</span><span class="p">,</span>   <span class="o">*</span><span class="n">p2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p2</span> <span class="o">=</span> <span class="p">(</span> <span class="kt">int</span> <span class="o">*</span> <span class="p">)</span> <span class="n">p1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//可以访问任何类型的数据
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//!	void voidObject;	//错，不能声明void类型的变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">void</span> <span class="o">*</span><span class="n">pv</span><span class="p">;</span>	<span class="c1">//对，可以声明void类型的指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">pv</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>	<span class="c1">//void类型指针指向整型变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//void类型指针赋值给int类型指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="o">*</span><span class="n">pint</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span> <span class="o">*&gt;</span><span class="p">(</span><span class="n">pv</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;*pint = &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">pint</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></div></li>
+<li>
+<p>指针忘了赋值比整型变量忘了赋值危险得多</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">count</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">iPtr</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">*</span><span class="n">iPtr</span> <span class="o">=</span> <span class="mi">58</span><span class="p">;</span> <span class="c1">//指针没有赋值这样非常危险
+</span></span></span></code></pre></div><p><strong>iPtr</strong>当前指向什么地方？该代码能通过编译，但没有赋初值的指针iPtr是一个<strong>随机地址</strong></p>
+<p>“*iPtr = 58;”是把58赋到内存中的随机位置，因此很可能已经破坏了另一变量，甚至修改了栈中的函数返回地址，计算机将死机或进入死循环。</p>
+</li>
+<li>
+<p>指针变量的引用</p>
+<p>注意：“ * ”出现在声明语句中和执行语句中含义不同。</p>
+<ol>
+<li>
+<p>“ * ”是<strong>指针运算符</strong>，表示指针所指向的变量。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span>  <span class="n">i</span> <span class="p">,</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>     
+</span></span></code></pre></div><p>p 是指针变量，* p 就是 p 所指向的变量 i , 即 *p 等价于 变量 i 。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>       <span class="cm">/* 通过变量名直接访问 */</span>
+</span></span><span class="line"><span class="cl"><span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>    <span class="cm">/* *p是 p 所指向的变量，即变量 i ，这是通过指针的间接访问*/</span> 
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202155806.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202155806.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202155806.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404202155806.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202155806.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404202155806.png" /></p>
+</li>
+<li>
+<p>“ * ”出现在声明语句中，表示声明的变量是指针变量。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//例如：      
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span>  <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>“ * ”出现在执行语句中，表示访问指针所指向的变量。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="c1">//例如：  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">printf</span> <span class="p">(</span> <span class="err">“</span><span class="o">%</span><span class="n">d</span> <span class="err">\</span><span class="n">n</span><span class="err">”</span><span class="p">,</span>  <span class="o">*</span><span class="n">p</span> <span class="p">);</span>
+</span></span></code></pre></div></li>
+</ol>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i</span>　<span class="o">=</span> <span class="mi">26</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">P</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>     <span class="c1">//初始化为整型地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">*</span><span class="n">P</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>         <span class="c1">//error
+</span></span></span></code></pre></div><p>**不能将“int <em>P = &amp;i  ; ”与“<em>P = &amp;i  ; ”混淆</em></em></p>
+<p>前者是定义语句，*是指针定义符，C++为P指针分配一个指针空间，并用i 的地址值初始化，后者是执行语句，左右两边类型不匹配。</p>
+<p>*操作符在指针上的两种用途要区分开：定义或声明时，建立一个指针；执行时，间接引用一指针。</p>
+<p>也要注意：</p>
+<p>”&amp;”出现在声明语句中和执行语句中其含义是不同的；</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i</span> <span class="p">,</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">&amp;</span><span class="n">rf</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>  <span class="c1">//表示声明的是引用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>    <span class="c1">//取地址
+</span></span></span></code></pre></div></li>
+</ol>
+<p>例: 指针的声明、赋值与使用</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">void</span> <span class="n">main</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>	<span class="kt">int</span> <span class="o">*</span><span class="n">i_pointer</span><span class="p">;</span>	<span class="c1">//声明int型指针i_pointer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>	                 <span class="c1">//声明int型数i
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">i_pointer</span><span class="o">=&amp;</span><span class="n">i</span><span class="p">;</span>  <span class="c1">//取i的地址赋给i_pointer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">i</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span>	                <span class="c1">//int型数赋初值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">Output</span> <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//输出int型数的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Output int pointer i=&#34;</span><span class="o">&lt;&lt;*</span><span class="n">i_pointer</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="c1">//输出int型指针所指地址的内容}
+</span></span></span></code></pre></div><ol start="8">
+<li>
+<p>指针变量的地址</p>
+<p>指针也是变量，是变量就具有内存地址。所以指针也有地址。</p>
+<p>例：下面的程序输出iCount变量值，以及iPtr和iCount的地址值：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">  <span class="cp"># include &lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>  <span class="p">{</span> <span class="kt">int</span> <span class="n">iCount</span> <span class="o">=</span> <span class="mi">18</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="o">*</span> <span class="n">iPtr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">iCount</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">*</span> <span class="n">iPtr</span> <span class="o">=</span> <span class="mi">58</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">iCount</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">iPrt</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">iCount</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="p">;</span>   <span class="c1">//与iPtr值相同
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">iPtr</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="p">;</span>   <span class="c1">//与 iCount值相同
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">iPtr</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="p">;</span>   <span class="c1">//指针本身的地址
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//   运行结果：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//58
+</span></span></span><span class="line"><span class="cl"><span class="c1">//0x0067fe00
+</span></span></span><span class="line"><span class="cl"><span class="c1">//0x0067fe00
+</span></span></span><span class="line"><span class="cl"><span class="c1">//58
+</span></span></span><span class="line"><span class="cl"><span class="c1">//0x0067fdfc
+</span></span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404211258089.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404211258089.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404211258089.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404211258089.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404211258089.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404211258089.png" /></p>
+</li>
+<li>
+<p>指针与整型数的区别</p>
+<ol>
+<li>
+<p>指针在使用中必须类型匹配</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">iCount</span> <span class="o">=</span> <span class="mi">26</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span> <span class="n">iPtr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">iCount</span> <span class="p">;</span>   <span class="c1">//定义语句：*在此处作定义指针变量用，而非间接引用。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">*</span> <span class="n">iPtr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">iCount</span> <span class="p">;</span> 　<span class="c1">//error:不能将整型地址转换成整型数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">*</span> <span class="n">iPtr</span> <span class="o">=</span> <span class="mi">50</span> <span class="p">;</span> <span class="c1">//执行语句：*在此处作间接引用
+</span></span></span></code></pre></div></li>
+<li>
+<p>指针值不是整型数</p>
+<p>赋值语句**“* iPtr = &amp;iCount *<em>; ”在BC中会引起类型转换的错误。 (cannot convert int</em> to int)</p>
+</li>
+<li>
+<p>强制转换是合法</p>
+<p>例：允许语句“int * iPtr = (int  *) iCount ;”</p>
+<p>但要注意其赋值的意义。该语句表示将变量iCount的值作为一个地址赋给变量 iPtr ，即iCount变量。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">iCount</span><span class="o">=</span><span class="mi">50000000000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">iCount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">iCount</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">p</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;*</span><span class="n">p</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="c1">//ERROR
+</span></span></span></code></pre></div></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="指针与常量const指针-指向常量的指针">指针与常量(const指针) —指向常量的指针</h3>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span> <span class="n">pi</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">pi</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">*</span> <span class="n">pi</span> <span class="o">=</span> <span class="mi">58</span> <span class="p">;</span>
+</span></span></code></pre></div><p>可以看到，一个指针涉及到两个变量，指针<strong>本身pi</strong> 和指向的<em><em>变量a <em><em>。修改这两个变量的对应操作为“pi = &amp;a ;”和“</em> pi = 58 ;”。如果</em></em>不想通过指针间接改变a的值，可以声明指向常量的指针</em>*。</p>
+<ol>
+<li>
+<p><strong>不能通过指针</strong>来改变所指对象的值,<strong>但指针本身可以改变</strong>,可以指向另外的对象</p>
+</li>
+<li>
+<p>在指针定义语句的类型前加<strong>const</strong>，表示指向的对象是常量</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span>  <span class="n">n1</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="k">const</span>  <span class="n">n2</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span>  <span class="kt">int</span>  <span class="o">*</span><span class="n">pn</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="n">pn</span><span class="o">=&amp;</span><span class="n">n2</span><span class="p">;</span>    <span class="c1">//正确
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">*</span><span class="n">pn</span><span class="o">=</span><span class="mi">6</span><span class="p">;</span>       <span class="c1">//错误　
+</span></span></span></code></pre></div></li>
+<li>
+<p>若声明指针常量,则指针本身的值不能被改变</p>
+</li>
+<li>
+<p>在指针定义语句的指针名前加<strong>const</strong>，表示指针本身是常量</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span>   <span class="n">n1</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="k">const</span>   <span class="n">n2</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span>   <span class="o">*</span><span class="k">const</span>  <span class="n">pn</span><span class="o">=</span> <span class="o">&amp;</span><span class="n">n1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="n">pn</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">n2</span><span class="p">;</span>     <span class="c1">//错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">*</span><span class="n">pn</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>        <span class="c1">//正确
+</span></span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404211305543.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404211305543.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404211305543.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404211305543.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404211305543.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404211305543.png" /></p>
+</li>
+<li>
+<p>void类型指针</p>
+<p>一般情况下,指针的值只能赋给相同类型的指针。但是有一种特殊的void类型指针,可以存储任何类型的对象地址</p>
+<p>例： void类型指针的使用</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">vobject</span> <span class="p">;</span>  <span class="c1">//error,不能声明void类型的变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="o">*</span> <span class="n">pv</span> <span class="p">;</span>       <span class="c1">// ok ,可以声明void类型的指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="o">*</span> <span class="n">pint</span> <span class="p">;</span> <span class="kt">int</span> <span class="n">i</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span> <span class="p">)</span>   <span class="c1">// void类型的函数没有返回值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span> <span class="n">pv</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span> <span class="p">;</span>         <span class="c1">//void类型指针指向整型变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="n">pint</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">pv</span> <span class="p">;</span>  <span class="c1">// 类型强制转换
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> 　　　　　 <span class="c1">//void类型指针赋值给整型指针
+</span></span></span></code></pre></div></li>
+<li>
+<p>可以定义一个指向常量的指针常量，它必须在定义时进行初始化。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="mi">7</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">ai</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span> <span class="k">const</span> <span class="n">cpc</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ci</span> <span class="p">;</span>  <span class="c1">//指向常量的指针常量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span> <span class="k">const</span> <span class="n">cpi</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ai</span> <span class="p">;</span>   <span class="c1">//ok
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">cpi</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">ci</span> <span class="p">;</span>       <span class="c1">// error:指针值不能修改
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">*</span><span class="n">cpi</span> <span class="o">=</span> <span class="mi">39</span> <span class="p">;</span>  	<span class="c1">// error:不能修改所指向的对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ai</span> <span class="o">=</span> <span class="mi">39</span> <span class="p">;</span>      <span class="c1">//ok
+</span></span></span></code></pre></div></li>
+</ol>
+<h3 id="指针变量的运算">指针变量的运算</h3>
+<ol>
+<li>
+<p>指针与整数的加减运算</p>
+<ol>
+<li>指针<strong>p 加上或减去 n</strong>，其<strong>意义</strong>是指针当前指向位置的后方或前方第 n 个数据的地址。</li>
+<li>这种运算的结果值取决于指针指向的数据类型。</li>
+</ol>
+</li>
+<li>
+<p>指针加一，减一运算</p>
+<ol>
+<li>
+<p>指向下一个或前一个数据的地址。</p>
+<p>例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="o">*</span><span class="n">px</span><span class="o">++</span>  
+</span></span><span class="line"><span class="cl">    <span class="c1">//&lt;==&gt;  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">y</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">px</span><span class="o">++</span><span class="p">)</span> 
+</span></span></code></pre></div><p>( * 和 ++ 优先级相同,自右向左运算)</p>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212222155.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212222155.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404212222155.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404212222155.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212222155.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212222155.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212222572.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212222572.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404212222572.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404212222572.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212222572.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212222572.png" /></p>
+<p><strong>注意</strong>：一般来说，指针的算术运算是和数组的使用相联系的，因为只有在使用数组时，我们才会得到连续分布的可操作内存空间。对于一个独立变量的地址，如果进行算术运算，然后对其结果所指向的地址进行操作有可能会意外破坏该地址中的数据或代码。因此，对指针进行算术运算时， 一定要确保运算结果所指向的地址是程序中分配使用的地址。</p>
+</li>
+<li>
+<p>指针变量的关系运算</p>
+<ol>
+<li>
+<p>关系运算</p>
+<ol>
+<li>
+<p>指向相同类型数据的指针之间可以进行各种关系运算。</p>
+</li>
+<li>
+<p>指向不同数据类型的指针，以及指针与一般整数变量之间的关系运算是无意义的。</p>
+</li>
+<li>
+<p>指针可以和零之间进行等于或不等于的关系运算</p>
+<p>例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">p</span> <span class="o">==</span> <span class="mi">0</span> 
+</span></span><span class="line"><span class="cl">   <span class="c1">// 或 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">p</span><span class="o">!</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>赋值运算</p>
+<ol>
+<li>
+<p>向指针变量赋的值必须是<strong>地址常量</strong>或<strong>地址变量</strong>，<strong>不能是普通整数（除0)</strong>。但可以赋值为 <strong>整数0</strong>，表示 <strong>空指针(NULL)</strong></p>
+<p>例:　</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="p">;</span>        <span class="c1">//声明一个int型指针p
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">p</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span>         <span class="c1">//将p设置为空指针，不指向任何地址
+</span></span></span></code></pre></div></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="用指针处理数组元素">用指针处理数组元素</h3>
+<ol>
+<li>
+<p>声明与赋值</p>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span>  <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>    
+</span></span><span class="line"><span class="cl"><span class="c1">//或
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">p</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>通过指针引用数组元素经过上述声明及赋值后：</p>
+<ol>
+<li>*p 就是a[0]，<em>(p+1) 就是a[1]，&hellip; ，</em>**(p+i)**就是 <strong>a[i]</strong>。</li>
+<li>a[ i ], *(p+i), *(a+i), p[ i ] 都是等效的。</li>
+<li>不能写 <strong>a++</strong>,因为 a 是数组首地址是常量</li>
+</ol>
+<p>例:  设有一个int型数组a，有10个元素。用三种方法输出各元素：</p>
+<ol>
+<li>
+<p>使用数组名和下标</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">main</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">   <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>使用数组名和指针运算</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">main</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">   <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="n">cout</span><span class="o">&lt;&lt;*</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>使用指针变量</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">main</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="p">,</span><span class="n">i</span><span class="err">；</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">   <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span><span class="p">(</span> <span class="n">p</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">10</span><span class="p">);</span> <span class="n">p</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span><span class="o">&lt;&lt;*</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ol>
+<h3 id="指针数组">指针数组</h3>
+<ol>
+<li>
+<p>数组的元素是指针变量</p>
+</li>
+<li>
+<p>声明一维指针数组的语法形式</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="err">类型名</span><span class="n">T</span>　<span class="o">*</span><span class="err">数组名</span><span class="p">[</span><span class="err">下标表达式</span><span class="p">];</span>
+</span></span></code></pre></div><p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span>   <span class="o">*</span><span class="n">p_i</span><span class="p">[</span> <span class="mi">2</span> <span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//由 p_i[0], p_i[1] 两个指针组成
+</span></span></span></code></pre></div><p>例：利用指针数组输出单位矩阵</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">main</span><span class="err">（</span> <span class="err">）</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>	<span class="kt">int</span> <span class="n">line1</span><span class="p">[</span> <span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>   <span class="c1">//声明数组,矩阵的第一行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">line2</span><span class="p">[</span> <span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span> <span class="c1">//声明数组，矩阵的第二行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kt">int</span> <span class="n">line3</span><span class="p">[</span> <span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>  <span class="c1">//声明数组，矩阵的第三行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">   <span class="kt">int</span>  <span class="o">*</span><span class="n">p_line</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>	      <span class="c1">//声明整型指针数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">p_line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">line1</span><span class="p">;</span>	   <span class="c1">//初始化指针数组元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">p_line</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">line2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">p_line</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">line3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">//int line1[ ]={1,0,0}; 
+</span></span></span><span class="line"><span class="cl"><span class="c1">//int line2[ ]={0,1,0}	;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//int line3[ ]={0,0,1};
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//输出单位矩阵
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Matrix test:&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>	 <span class="c1">//对指针数组元素循环
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">	    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="c1">//对矩阵每一行循环
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	    <span class="p">{</span>   
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p_line</span><span class="p">[</span> <span class="n">i</span> <span class="p">][</span> <span class="n">j</span> <span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>   
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="p">(</span> <span class="o">*</span><span class="n">p_line</span><span class="p">[</span> <span class="n">i</span> <span class="p">]</span> <span class="o">+</span> <span class="n">j</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;&#34;</span><span class="p">;</span> <span class="c1">//   (p_line[i]+j)表示指向第i行第j 个元素 *(p_line[i]+j)表示(p_line[i]+j)指针所指的变p_line[i][j],与上一句的运行效果一致
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//输出结果为：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Matrix test:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//1,0,0
+</span></span></span><span class="line"><span class="cl"><span class="c1">//0,1,0
+</span></span></span><span class="line"><span class="cl"><span class="c1">//0,0,1
+</span></span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212239162.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212239162.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404212239162.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404212239162.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212239162.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212239162.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212240284.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212240284.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404212240284.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404212240284.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212240284.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212240284.png" /></p>
+</li>
+</ol>
+<h4 id="一维数组">一维数组</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">;</span>  
+</span></span></code></pre></div><p>因为：   a == &amp;a[0]</p>
+<p>所以：   p = a;   p = &amp;a[0];效果都一样</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>	
+</span></span><span class="line"><span class="cl"><span class="p">{</span>　<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">p_line</span><span class="p">[</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="p">]</span><span class="o">:</span>   <span class="err">”</span><span class="o">&lt;&lt;</span> <span class="n">p_line</span><span class="p">[</span> <span class="n">i</span> <span class="p">]</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">         <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>	
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="err">“</span>   <span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">p_line</span><span class="p">[</span> <span class="n">i</span> <span class="p">]</span> <span class="o">+</span> <span class="n">j</span>  <span class="o">&lt;&lt;</span> <span class="s">&#34;    &#34;</span><span class="p">;</span>   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212243179.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212243179.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404212243179.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404212243179.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212243179.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404212243179.png" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-04-18</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16/" data-title="c&#43;&#43;(six)" data-hashtags="面向对象程序设计"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16/" data-hashtag="面向对象程序设计"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16/" data-title="c&#43;&#43;(six)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16/" data-title="c&#43;&#43;(six)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16/" data-title="c&#43;&#43;(six)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">面向对象程序设计</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/" class="prev" rel="prev" title="操作系统(第五章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>操作系统(第五章)</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

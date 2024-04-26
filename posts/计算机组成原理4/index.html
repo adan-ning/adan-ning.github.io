@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>计算机组成(第四章) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="计算机组成(第四章)" />
+<meta property="og:description" content="指令系统 概 述 指令：是指示计算机某种操作的命令。 微指令，机器指令，宏指令 指令系统：一台计算机中所有机器指令的集合，它是表征一台计算机性能的重要" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/" /><meta property="og:image" content="https://adan-ning.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-04-15T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://adan-ning.github.io/logo.png" /><meta name="twitter:title" content="计算机组成(第四章)"/>
+<meta name="twitter:description" content="指令系统 概 述 指令：是指示计算机某种操作的命令。 微指令，机器指令，宏指令 指令系统：一台计算机中所有机器指令的集合，它是表征一台计算机性能的重要"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/" /><link rel="next" href="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "计算机组成(第四章)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/adan-ning.github.io\/posts\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864\/"
+        },"genre": "posts","keywords": "计算机组成原理","wordcount":  5007 ,
+        "url": "https:\/\/adan-ning.github.io\/posts\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864\/","datePublished": "2024-04-15T00:00:00+00:00","dateModified": "2024-04-15T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">计算机组成(第四章)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机组成原理</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-15">2024-04-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5007 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#概-述">概 述</a>
+      <ul>
+        <li><a href="#计算机语言与硬件结构的关系">计算机语言与硬件结构的关系</a></li>
+        <li><a href="#堆栈寻址方式">堆栈寻址方式</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="指令系统">指令系统</h1>
+<h2 id="概-述">概 述</h2>
+<ol>
+<li>
+<p>指令：<strong>是指示计算机某种操作的命令</strong>。</p>
+<p>微指令，机器指令，宏指令</p>
+</li>
+<li>
+<p>指令系统：<strong>一台计算机中所有机器指令的集合，它是表征一台计算机性能的重要因素</strong>。</p>
+<p>它是机器硬件设计的依据，也是软件设计的基础</p>
+<p>它决定了一台计算机硬件的主要性能和基本功能。是硬件和软件间的界面。</p>
+</li>
+<li>
+<p><strong>系列计算机</strong>：有共同的指令集，相同的基本体系结构。</p>
+</li>
+<li>
+<p><strong>一个完善的指令系统应满足</strong></p>
+<ol>
+<li>
+<p><strong>完备性</strong>：指令丰富，功能齐全，使用方便。</p>
+</li>
+<li>
+<p><strong>有效性</strong>：程序占空间小，执行速度快</p>
+</li>
+<li>
+<p><strong>规整性</strong>：对称性，匀齐性，指令格式和数据格式的一致性</p>
+<p>对称性：指在指令系统中所有的寄存器和存储器单元都可同等对待，所有的指令都可使用各种寻址方式；</p>
+<p>匀齐性：是指一种操作性质的指令可以支持各种数据类型；</p>
+<p>指令格式和数据格式的一致性：是指指令长度和数据长度有一定的关系，以方便处理和存取</p>
+</li>
+<li>
+<p><strong>兼容性</strong>：“向上兼容”&mdash;-系列机中低档机上运行的软件可以在高档机上运行。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="计算机语言与硬件结构的关系">计算机语言与硬件结构的关系</h3>
+<ol>
+<li>高级语言的语句和用法与具体机器的指令系统无关</li>
+<li>低级语言分机器语言和汇编语言，他们和具体机器的指令系统密切相关</li>
+<li>汇编语言与硬件的关系密切，编写的程序紧凑、占内存小、速度快，特别适合与编写经常与硬件打交道的系统软件；而高级语言不涉及机器的硬件结构，通用性强、编写程序容易，特别适合与编写与硬件没有直接关系的应用软件</li>
+</ol>
+<h4 id="概-述-1">概 述</h4>
+<ol>
+<li>
+<p>机器指令的要素</p>
+<ol>
+<li>操作码</li>
+<li>源操作数</li>
+<li>目的操作数</li>
+<li>下一条指令的引用</li>
+</ol>
+<p><strong>指令字</strong>（简称指令）即表示一条指令的机器字。</p>
+<p><strong>指令格式</strong>则是指令字用二进制代码表示的结构形式，由<strong>操作码</strong>字段和<strong>地址码</strong>字段组成</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232042031.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232042031.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232042031.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232042031.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232042031.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232042031.png" /></p>
+</li>
+</ol>
+<h5 id="操作码">操作码</h5>
+<p>设计计算机时，对指令系统的每一条指令都要规定一个操作码</p>
+<p><strong>指令操作码表示该指令进行什么性质的操作</strong>,表征指令的操作特性与功能</p>
+<p>组成操作码字段的位数一般取决于计算机指令系统的规模。</p>
+<p>例如，一个指令系统只有8条指令，则有3位操作码就够；如果有32条指令，那么就需要5位操作码</p>
+<h5 id="地址码">地址码</h5>
+<p>地址码字段通常指定参与操作的操作数的地址</p>
+<p>根据一条指令中有几个操作数地址，可将该指令称为几操作数指令或几地址指令。目前，二地址指令和一地址指令用的最多</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232045304.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232045304.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232045304.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232045304.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232045304.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232045304.png" /></p>
+<ol>
+<li>
+<p>零地址指令的指令字中只有操作码，而没有地址码。</p>
+</li>
+<li>
+<p>一地址指令常称为单操作数指令</p>
+<pre tabindex="0"><code>OP (A) -&gt; A        　(AC) OP (A) -&gt; AC
+</code></pre></li>
+<li>
+<p>二地址指令常称为双操作数指令。　　　　 　</p>
+<pre tabindex="0"><code>(A1)  OP  (A2)　-&gt;　A1
+</code></pre></li>
+<li>
+<p>三地址指令字中有三个操作数地址。</p>
+<pre tabindex="0"><code>(A1)  OP  (A2)　-&gt;　A3　
+</code></pre></li>
+<li>
+<p>OP表示操作性质;（AC）表示累加寄存器AC中的数；（A）表示内存中地址为A的存储单元中的数或运算器中地址为A的通用寄存器中的数；→表示把操作（运算）结果传送到指定的地方</p>
+</li>
+<li>
+<p>二地址指令格式中，从操作数的物理位置来说，又可归结为三种类型</p>
+</li>
+<li>
+<p><strong>存储器-存储器（SS）型指令</strong>：操作时都是涉及内存单元，参与操作的数都放在内存里，从内存某单元中取操作数，操作结果存放至内存另一单元中，因此机器执行这种指令需要多次访问内存</p>
+</li>
+<li>
+<p><strong>寄存器-寄存器（RR）型指令</strong>：需要多个通用寄存器或个别专用寄存器，从寄存器中取操作数，把操作结果放到另一寄存器。机器执行寄存器-寄存器型指令的速度很快，因为执行这类指令，不需要访问内存</p>
+</li>
+<li>
+<p><strong>寄存器-存储器（RS）型指令</strong>：执行此类指令时，既要访问内存单元，又要访问寄存器</p>
+</li>
+</ol>
+<h5 id="指令字长度">指令字长度</h5>
+<p>一个指令字中包含二进制代码的位数，称为指令字长度。而机器字长是指计算机能直接处理的二进制数据的位数，与主存单元的位数一致，它决定了计算机的运算精度</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232052781.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232052781.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232052781.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232052781.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232052781.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232052781.png" /></p>
+<p><strong>它们之间关系如上：其中L为指令字长度，N为机器字长度</strong></p>
+<ol>
+<li><strong>使用多字长指令，目的在于提供足够的地址位来解决访问内存任何单元的寻址问题</strong>。其主要缺点是必须两次或多次访问内存以取出一整条指令，降低了CPU的运算速度，又占用了更多的存储空间</li>
+<li>**等长指令字结构:**各种指令字长度是相等的。这种指令字结构简单，且指令字长度是不变的。</li>
+<li><strong>变长指令字结构</strong>:各种指令字长度随指令功能而异。结构灵活，能充分利用指令长度，但指令的控制较复杂</li>
+</ol>
+<h5 id="指令助记符">指令助记符　　　　　　　　　　  　</h5>
+<ol>
+<li>由于硬件只能识别1和0，所以采用二进制操作码是必要的，但是书写程序却非常麻烦</li>
+<li>为了便于书写和阅读程序，每条指令通常用3个或4个英文缩写字母来表示。这种缩写码叫做<strong>指令助记符</strong>。</li>
+<li>在不同的计算机中，指令助记符的规定是不一样的。因此，指令助记符还必须转换成与它们相对应的二进制码</li>
+</ol>
+<h5 id="指令格式举例">指令格式举例　　　　　　　</h5>
+<p>**八位微型计算机的指令格式 **</p>
+<p><strong>8位微型机</strong>字长只有8位，指令结构是一种可变字长形式，包含单字长、双字长、三字长指令等多种</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232056504.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232056504.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232056504.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232056504.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232056504.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232056504.png" /></p>
+<p>内存按字节编址，所以单字长指令每执行一条指令后，指令地址加1</p>
+<p>双字长指令或三字长指令每执行一条指令时，指令地址要加2或加3，可见多字长的指令格式不利于提高机器速度</p>
+<h5 id="指令和指令系统指令的使用">指令和指令系统——指令的使用</h5>
+<ol>
+<li>
+<p><strong>一般的操作数类型大小选择主要有：字节、半字（16位）、单字（32位）、和双字（64位）</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232058923.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232058923.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232058923.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232058923.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232058923.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232058923.png" /></p>
+<p>例：指令格式如下所示，其中机器字长16位，OP为操作码，试分析指令格式的特点。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232058027.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232058027.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232058027.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232058027.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232058027.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232058027.png" /></p>
+<p>例： 指令格式如下所示，机器字长16位，OP为操作码字段，试分析指令格式特点。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232059475.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232059475.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232059475.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232059475.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232059475.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232059475.png" /></p>
+</li>
+</ol>
+<h5 id="指令和数据的寻址方式">指令和数据的寻址方式</h5>
+<ol>
+<li>
+<p><strong>指令</strong>的寻址方式</p>
+<p>计算机中有两种信息。即指令和数据（或称操作数），它们都存放在存储器相应的地址中。运行程序时，计算机逐条执行指令，并对数据进行处理。如何从存储器中找到所需要的指令或数据呢？很明显，只要找到它们在存储器的有效地址即可。</p>
+<p>所谓<strong>寻址方式</strong>，就是寻找指令或操作数的有效地址的方式</p>
+<ol>
+<li><strong>顺序寻址方式</strong>：按照指令在内存的存放位置顺序地取出指令，然后执行的过程，为顺序寻址方式。</li>
+<li><strong>跳跃寻址方式</strong>：程序转移执行的顺序。</li>
+</ol>
+</li>
+</ol>
+<h5 id="顺序寻址">顺序寻址</h5>
+<p>为了达到顺序寻址的目的，CPU中必须有一个程序计数器（PC）对指令的顺序号进行计数。PC中开始时存放程序的首地址，然后每执行一条指令，PC加 1，以指出下条指令的地址，直到程序结束。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232101114.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232101114.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232101114.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232101114.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232101114.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232101114.png" /></p>
+<h5 id="跳跃寻址">跳跃寻址</h5>
+<p>当程序中出现分支或循环时，就会改变程序的执行顺序。此时，对指令寻址就要采取跳跃寻址方式。所谓跳跃，就是指下条指令的地址不是通过程序计数器PC加1获得的，而是<strong>由指令本身给出</strong>。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232102905.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232102905.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232102905.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232102905.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232102905.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232102905.png" /></p>
+<h5 id="隐含寻址">隐含寻址</h5>
+<p>这种类型的指令，不是明显地给出操作数的地址，而是指令中隐含着操作数的地址。</p>
+<p>在指令中不明显的给出而是隐含着操作数的地址。例如，单地址的指令格式，没有在地址字段中指明第二操作数地址，而是规定累加寄存器AC作为第二操作数地址，AC对单地址指令格式来说是隐含地址</p>
+<h5 id="立即寻址">立即寻址</h5>
+<p>指令的地址字段指出的不是操作数的地址，而是<strong>操作数本身</strong>，这种寻址方式称为立即寻址。立即寻址方式的特点是指令执行时间很短，因为它不需要访问内存取数，从而节省了访问内存的时间</p>
+<p>例如：单地址的移位指令格式为</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232106561.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232106561.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232106561.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232106561.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232106561.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232106561.png" /></p>
+<p>这里，D不表示地址，而是表示某寄存器中存放的操作数需要移位的次数，因此D可看做移位指令的操作数。F为标志位，当F=1时，进行右移；当F=0时，进行左移。</p>
+<h5 id="直接寻址">直接寻址</h5>
+<p>直接寻址是一种基本的寻址方法，其特点是：在指令格式的地址字段中<strong>直接指出操作数在内存的地址D</strong>。由于操作数的地址直接给出而不需要经过某种变换或运算，所以称这种寻址方式为直接寻址方式。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232107609.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232107609.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232107609.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232107609.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232107609.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232107609.png" /></p>
+<h5 id="间接寻址">间接寻址</h5>
+<p>间接寻址是相对于直接寻址而言的，在间接寻址的情况下，指令地址字段中的形式<strong>地址D</strong>不是操作数的真正地址，而是<strong>操作数地址的指示器</strong>，或者说D单元的内容才是操作数的有效地址。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232108531.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232108531.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232108531.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232108531.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232108531.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232108531.png" /></p>
+<h5 id="寄存器寻址和寄存器间接寻址方式">寄存器寻址和寄存器间接寻址方式</h5>
+<p>当操作数不放在内存中，而是放在中央处理器的通用寄存器中时，可采用寄存器寻址方式。显然，此时指令中给出的操作数地址不是内存的地址单元号，而是通用寄存器的编号，操作数在CPU的内部寄存器中。如：(AX，BX，CX，DX)</p>
+<p>寄存器间接寻址方式与寄存器寻址方式的区别在于：指令格式中的寄存器内容不是操作数，而是操作数的地址，该地址指明的操作数在内存中。</p>
+<h5 id="相对寻址">相对寻址</h5>
+<p>把<strong>程序计数器PC的内容</strong>加上指令格式中的<strong>形式地址D</strong>而形成操作数有效地址。程序计数器的内容就是当前指令的地址。</p>
+<p>因此，所谓“相对”寻址，就是相对于当前指令地址而言。采用相对寻址方式的好处是程序员勿需用指令的绝对地址编程，因而所编程序可以放在内存任何地方。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232109541.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232109541.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232109541.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232109541.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232109541.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232109541.png" /></p>
+<h5 id="变址和基址寻址方式">变址和基址寻址方式</h5>
+<p>变址寻址方式与基址寻址方式有点类似，它们都是把某个变址寄存器或基址寄存器的内容，加上指令格式中的形式地址而形成操作数的有效地址。</p>
+<p>但使用变址寻址方式的目的不在于扩大寻址空间，而在于实现程序块的规律变化。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232109411.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232109411.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232109411.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232109411.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232109411.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232109411.png" /></p>
+<h5 id="复合寻址方式">复合寻址方式</h5>
+<p>复合寻址方式是把间接寻址方式同相对寻址方式或变址相结合而形成的寻址方式。它分为先间接方式与后间接方式两种</p>
+<ol>
+<li>
+<p><strong>变址间接式</strong></p>
+<p>这种寻址方式是先把变址寄存器的内容A和形式地址D相加得A+D，然后间接寻址，求得操作数的有效地址。操作数的有效地址为E=（A+D）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232110641.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232110641.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232110641.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232110641.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232110641.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232110641.png" /></p>
+</li>
+<li>
+<p><strong>间接变址式</strong></p>
+<ol>
+<li>这种寻址方式是先将形式地址取间接变换（D）=N然后把N和变址寄存器的内容A相加，即得操作数的有效地址。</li>
+<li>操作数的有效地址表达式为E=A+（D）=A+N</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232111196.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232111196.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232111196.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232111196.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232111196.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232111196.png" /></p>
+</li>
+</ol>
+<h5 id="块寻址">块寻址</h5>
+<p>通常在指令中指出数据块的起始地址和数据块的长度，常用在输入输出指令中</p>
+<p>多用于I/O指令。对顺序连续的成块数据字进行寻址</p>
+<p>目的：压缩程序的长度，加块执行速度</p>
+<p>用于</p>
+<ol>
+<li>两个部件间的数据交换</li>
+<li>程序，数据块的浮动。</li>
+</ol>
+<p>若块的长度可变，格式如下</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232112845.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232112845.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232112845.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232112845.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232112845.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232112845.png" /></p>
+<h5 id="段寻址">段寻址</h5>
+<p>以8086的段寻址为例。这种寻址方式的实质是基址寻址。Intel 8086/8088微机中，ALU16位运算，但其寻址范围可到1M，即地址有20位。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232112159.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232112159.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232112159.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232112159.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232112159.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232112159.png" /></p>
+<h4 id="操作数寻址方式设计的要求">操作数寻址方式设计的要求</h4>
+<ol>
+<li>
+<p>指令内包含的地址尽可能短；</p>
+<p>短地址指令占存储空间小，且能减少存储时间。</p>
+</li>
+<li>
+<p>能访问尽可能大的存储空间</p>
+</li>
+<li>
+<p>地址能隐含在寄存器里；</p>
+<p>寄存器字长与机器字长相同,一般对应整个存储空间。这样在发生大跨步跳跃时,用短指令也行</p>
+</li>
+<li>
+<p>希望在不改变指令的情况下改变地址的实际值；能够处理数组,表格或数据串。</p>
+</li>
+<li>
+<p>寻址方式尽可能简单</p>
+</li>
+</ol>
+<p>例：一种二地址RS型指令的结构如下所示</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232114807.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232114807.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232114807.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232114807.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232114807.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232114807.png" /></p>
+<h5 id="分析指令格式及寻址方式特点">分析指令格式及寻址方式特点</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232115174.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232115174.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232115174.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232115174.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232115174.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232115174.png" /></p>
+<p>指令格式及寻址方式的特点如下：</p>
+<ol>
+<li>单字长二地址指令；RR型</li>
+<li>操作码可指定16条指令</li>
+<li>源和目的均有8种寻址方式；</li>
+<li>源地址寄存器和目的地址寄存器均有8个</li>
+</ol>
+<h3 id="堆栈寻址方式">堆栈寻址方式</h3>
+<p>堆栈&mdash;&mdash;能存取数据的暂时存储单元.</p>
+<ol>
+<li>
+<p>串联堆栈</p>
+<p>一组专门的寄存器，一个R保存一个数据。</p>
+<p>数据的传送在栈顶和累加器之间进行。</p>
+<p>特点:速度高，后进先出。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232124035.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232124035.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232124035.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232124035.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232124035.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232124035.png" /></p>
+</li>
+<li>
+<p>存储器堆栈</p>
+<p>用一部分主存空间作堆栈.</p>
+<p>优点</p>
+<ol>
+<li>长度可随意;</li>
+<li>堆栈的数目可随意指定;</li>
+<li>寻址简单&mdash;&mdash;&ndash;用访内指令.</li>
+</ol>
+<p><strong>硬件支持:</strong></p>
+<p>SP&mdash;堆栈指示器(栈指针),CPU中一个专门寄存器。</p>
+<p>SP的内容是栈顶的单元地址。改变SP的内容即可移动栈顶的位置</p>
+<p>注意:主存中某一部分作为堆栈区后，该部分不能作其它用途</p>
+<ol>
+<li>
+<p>进栈&mdash;&mdash;&ndash;累加器中的数送堆栈保存</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232126908.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232126908.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232126908.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232126908.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232126908.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232126908.png" /></p>
+</li>
+<li>
+<p>出栈&mdash;&mdash;-将堆栈中的数取出送累加器</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232127585.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232127585.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232127585.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232127585.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232127585.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232127585.png" /></p>
+</li>
+</ol>
+</li>
+</ol>
+<h5 id="8086-堆栈指令">8086 堆栈指令</h5>
+<p>设sp的初值      MOV sp, im</p>
+<p>采用下推式    （PUSH  DOWN）</p>
+<p>堆栈的最大容量为sp的初值与ss间的距离。</p>
+<p>例：PUSH  AX</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232128672.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232128672.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232128672.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232128672.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232128672.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232128672.png" /></p>
+<p><strong>注意：</strong></p>
+<p><strong>存储器堆栈中，进栈时先存入数据，后修改堆栈指示器；出栈时，先修改堆栈指示器，然后取出数据。</strong></p>
+<h4 id="典型指令">典型指令</h4>
+<ol>
+<li>
+<p>一台计算机最基本的、必不可少的指令是不多的，因为很多指令都可以用这些最基本的指令组合来实现</p>
+</li>
+<li>
+<p>既可以<strong>直接用硬件</strong>实现，也可以用<strong>其他指令编成子程序</strong>来实现，但两者在执行时间上差别很大，因此在指令系统中，有相当一部分指令是为了提高程序的执行速度和便于程序员编写程序而设置的</p>
+</li>
+<li>
+<p>另外，指令系统的有效性还表现在用它所编制的程序占用的存储器空间小。</p>
+</li>
+<li>
+<p>分类（8088/8086）</p>
+<ol>
+<li>
+<p><strong>数据传送类</strong></p>
+<p><strong>取数</strong>     MOV  AX，TEMP</p>
+<p><strong>存数</strong>     MOV  TEMP，AX</p>
+<p><strong>传送</strong>     MOV  AX，CX</p>
+</li>
+<li>
+<p><strong>算术运算类</strong></p>
+<p><strong>定点＋，－，×，÷，ADD，ADC（带进位加法），INC（自加1）</strong>，SUB，DEC（操作数减1），MUL（乘），DIV（除）等</p>
+<p><strong>浮点＋，－，×，÷ ，求反，求补 NEG，比较 CMP</strong></p>
+</li>
+<li>
+<p><strong>逻辑运算类</strong></p>
+<p>NOT，AND，OR，XOR，TEST（不保存结果的AND）</p>
+</li>
+<li>
+<p><strong>程序控制类</strong></p>
+<p><strong>无条件转移   JMP</strong></p>
+<p><strong>条件转移      C，Z，S，P，O</strong></p>
+<p><strong>转子程序      JSR</strong></p>
+<p><strong>子程序返回  RET</strong></p>
+<p><strong>中断返回      IRET</strong></p>
+</li>
+<li>
+<p><strong>输入/输出类</strong></p>
+<pre tabindex="0"><code>IN  AX，n               OUT  n, AX
+</code></pre></li>
+<li>
+<p><strong>其他类</strong></p>
+<p>标志操作</p>
+<pre tabindex="0"><code>CLC（clear  carry flag)
+STC (set carry flag)                                
+CLI (clear interrupt elable flag)
+HLT，WAIT，ESC，LOCK
+</code></pre></li>
+</ol>
+</li>
+</ol>
+<h4 id="指令和指令系统指令的使用-1">指令和指令系统——指令的使用</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232133384.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232133384.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232133384.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232133384.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232133384.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232133384.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232133133.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232133133.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232133133.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202404232133133.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232133133.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202404232133133.png" /></p>
+<h4 id="cisc和risc">CISC和RISC</h4>
+<ol>
+<li><strong>CISC：复杂指令系统</strong></li>
+<li><strong>RISC：精简指令系统</strong></li>
+<li><strong>CISC的问题</strong>
+<ol>
+<li>庞大的指令集</li>
+<li>纷繁复杂的寻址模式</li>
+<li>硬件实现复杂（硬件资源的利用率低）</li>
+</ol>
+</li>
+</ol>
+<h5 id="精简指令集结构">精简指令集结构</h5>
+<ol>
+<li><strong>RISC的理由</strong>
+<ol>
+<li>减小代码空间</li>
+</ol>
+</li>
+<li><strong>精简指令集结构的特征</strong>
+<ol>
+<li>每周期一条指令</li>
+<li>寄存器-寄存器操作（除Load/Store类型结构</li>
+<li>简单的寻址方式</li>
+<li>简单的指令格式</li>
+</ol>
+</li>
+<li><strong>RISC指令系统的最大特点是：</strong>
+<ol>
+<li>选取使用频率最高的一些简单指令，指令条数少；</li>
+<li>指令长度固定，指令格式种类少；</li>
+<li><strong>只有取数／存数指令访问存储器，其余指令的操作都在寄存器之间进行。</strong></li>
+</ol>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-04-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/" data-title="计算机组成(第四章)" data-hashtags="计算机组成原理"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/" data-hashtag="计算机组成原理"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/" data-title="计算机组成(第四章)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/" data-title="计算机组成(第四章)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/" data-title="计算机组成(第四章)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/" class="prev" rel="prev" title="操作系统(第四章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>操作系统(第四章)</a>
+            <a href="/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/" class="next" rel="next" title="算法与程序(第五章)">算法与程序(第五章)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
