@@ -1,88 +1,88 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>蓝Q曦的博客网站</title>
-        <link>https:adan-ning.github.io/</link>
+        <link>https://adan-ning.github.io/</link>
         <description>这是我的全新 Hugo 网站</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 30 Apr 2024 00:00:00 &#43;0000</lastBuildDate>
-            <atom:link href="https:adan-ning.github.io/index.xml" rel="self" type="application/rss+xml" />
+            <atom:link href="https://adan-ning.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>算法与程序(第六章)</title>
-    <link>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A16/</link>
+    <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A16/</link>
     <pubDate>Tue, 30 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A16/</guid>
+    <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A16/</guid>
     <description><![CDATA[分支限界法 分支限界法的基本思想 分支限界法与回溯法的不同 求解目标 回溯法求解目标是找出解空间树中满足约束条件所有解 分支限界法的求解目标则是找出满]]></description>
 </item>
 <item>
     <title>操作系统(第六章)</title>
-    <link>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/</link>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/</link>
     <pubDate>Thu, 25 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/</guid>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/</guid>
     <description><![CDATA[设备管理 I/O系统组成 I/O设备：打印机和磁盘 I/O设备控制器 I/O通道 四级结构 $存储器 \rightarrow I/O通道 \rightarrow I/O控制器 \rightarrow I/O设备$ 总线 I/O控]]></description>
 </item>
 <item>
     <title>计算机组成(第五章)</title>
-    <link>https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/</link>
+    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/</link>
     <pubDate>Thu, 25 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/</guid>
+    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/</guid>
     <description><![CDATA[中央处理器 CPU的功能和组成 当代主流计算机所遵循的仍然是冯.诺依曼的“存储程序、程序控制”思想 程序告诉计算机：应该逐步执行什么操作；在什么地]]></description>
 </item>
 <item>
-    <title>c&#43;&#43;(six)</title>
-    <link>https:adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/</link>
+    <title>c&#43;&#43;(six_2)</title>
+    <link>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/</link>
     <pubDate>Sat, 20 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/</guid>
-    <description><![CDATA[]]></description>
+    <guid>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/</guid>
+    <description><![CDATA[数组 指针与字符串 动态内存分配 动态申请内存操作符 new new 类型名T（初值列表） 功能： 在程序执行期间，申请用于存放T类型对象的内存空间，并依初值列表赋]]></description>
 </item>
 <item>
-    <title>c&#43;&#43;(six)</title>
-    <link>https:adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8A/</link>
+    <title>c&#43;&#43;(six_1)</title>
+    <link>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8A/</link>
     <pubDate>Thu, 18 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8A/</guid>
+    <guid>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8A/</guid>
     <description><![CDATA[数组 指针与字符串 数组 数组的概念 数组是具有一定顺序关系的若干相同类型变量的集合体(数组可以由除void型以外的任何类型构成），组成数组的变量称]]></description>
 </item>
 <item>
     <title>操作系统(第五章)</title>
-    <link>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/</link>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/</link>
     <pubDate>Thu, 18 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/</guid>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/</guid>
     <description><![CDATA[虚拟存储器 常见的存储器 一次性全部装入 常驻内存 内存的利用率低 改进 时间局部性(循环执行) 空间局部性(顺序执行) 虚拟存储器 请求式分页 请求式分段 什么]]></description>
 </item>
 <item>
     <title>算法与程序(第五章)</title>
-    <link>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/</link>
+    <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/</link>
     <pubDate>Thu, 18 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/</guid>
+    <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/</guid>
     <description><![CDATA[回溯法 回溯法 当需要找出问题的解集或者要求满足某些约束条件的最优解时，常使用回溯法 回溯法的基本方法就是搜索，是一种组织得井井有条的，能避免不必]]></description>
 </item>
 <item>
     <title>编译引论(第六章)</title>
-    <link>https:adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866/</link>
+    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866/</link>
     <pubDate>Thu, 18 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866/</guid>
+    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866/</guid>
     <description><![CDATA[语义分析及中间代码生成 中间代码 中间代码生成在编译程序中的位置 中间代码 **即中间语言，独立于机器的，复杂性介于源语言和机器语言之间的一种表示形]]></description>
 </item>
 <item>
     <title>计算机组成(第四章)</title>
-    <link>https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/</link>
+    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/</link>
     <pubDate>Mon, 15 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/</guid>
+    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/</guid>
     <description><![CDATA[指令系统 概 述 指令：是指示计算机某种操作的命令。 微指令，机器指令，宏指令 指令系统：一台计算机中所有机器指令的集合，它是表征一台计算机性能的重要]]></description>
 </item>
 <item>
     <title>操作系统(第四章)</title>
-    <link>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</link>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</link>
     <pubDate>Wed, 10 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</guid>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</guid>
     <description><![CDATA[存储器管理 存储器 内存 主存 连续分配 单一 分区 离散分配 分页式 分段式 段页式 虚拟(主+辅) 请求式分页 请求式分段 请求式段页 外存(第五章) 程序的运行与存储]]></description>
 </item>
 </channel>

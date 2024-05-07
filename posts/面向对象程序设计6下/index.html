@@ -4,32 +4,32 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>c&#43;&#43;(six) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="c&#43;&#43;(six)" />
-<meta property="og:description" content="" />
+        <title>c&#43;&#43;(six_2) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="c&#43;&#43;(six_2)" />
+<meta property="og:description" content="数组 指针与字符串 动态内存分配 动态申请内存操作符 new new 类型名T（初值列表） 功能： 在程序执行期间，申请用于存放T类型对象的内存空间，并依初值列表赋" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https:adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" /><meta property="og:image" content="https:adan-ning.github.io" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" /><meta property="og:image" content="https://adan-ning.github.io/logo.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-04-20T00:00:00+00:00" />
 <meta property="article:modified_time" content="2024-04-20T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https:adan-ning.github.io" /><meta name="twitter:title" content="c&#43;&#43;(six)"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:image" content="https://adan-ning.github.io/logo.png" /><meta name="twitter:title" content="c&#43;&#43;(six_2)"/>
+<meta name="twitter:description" content="数组 指针与字符串 动态内存分配 动态申请内存操作符 new new 类型名T（初值列表） 功能： 在程序执行期间，申请用于存放T类型对象的内存空间，并依初值列表赋"/>
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https:adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" /><link rel="prev" href="https:adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8A/" /><link rel="next" href="https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8A/" /><link rel="next" href="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "c++(six)",
+        "headline": "c++(six_2)",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:adan-ning.github.io\/posts\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B\/"
-        },"genre": "posts","keywords": "面向对象程序设计","wordcount":  0 ,
-        "url": "https:adan-ning.github.io\/posts\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B\/","datePublished": "2024-04-20T00:00:00+00:00","dateModified": "2024-04-20T00:00:00+00:00","publisher": {
+            "@id": "https:\/\/adan-ning.github.io\/posts\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B\/"
+        },"genre": "posts","keywords": "面向对象程序设计","wordcount":  4346 ,
+        "url": "https:\/\/adan-ning.github.io\/posts\/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B\/","datePublished": "2024-04-20T00:00:00+00:00","dateModified": "2024-04-20T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -101,17 +101,708 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">c++(six)</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">c++(six_2)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>面向对象程序设计</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-20">2024-04-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;0 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;0 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-20">2024-04-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4346 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"></div><div class="post-footer" id="post-footer">
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#动态内存分配">动态内存分配</a>
+      <ul>
+        <li><a href="#动态申请内存操作符-new">动态申请内存操作符 new</a></li>
+        <li><a href="#动态内存分配-1">动态内存分配</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用vector创建数组对象">使用vector创建数组对象</a></li>
+    <li><a href="#深复制与浅复制">深复制与浅复制</a>
+      <ul>
+        <li><a href="#无错误的浅拷贝">无错误的浅拷贝</a></li>
+        <li><a href="#有错误的浅拷贝">有错误的浅拷贝</a></li>
+        <li><a href="#深拷贝">深拷贝</a></li>
+        <li><a href="#浅拷贝和深拷贝">浅拷贝和深拷贝</a></li>
+      </ul>
+    </li>
+    <li><a href="#字符串">字符串</a>
+      <ul>
+        <li><a href="#用字符数组存储和处理字符串">用字符数组存储和处理字符串</a></li>
+        <li><a href="#string类">string类</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="数组--指针与字符串">数组  指针与字符串</h1>
+<h2 id="动态内存分配">动态内存分配</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071754763.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071754763.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405071754763.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405071754763.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071754763.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071754763.png" /></p>
+<h3 id="动态申请内存操作符-new">动态申请内存操作符 new</h3>
+<ol>
+<li>
+<p>new  类型名T（初值列表）</p>
+<ol>
+<li>
+<p><strong>功能：</strong></p>
+<p>在程序执行期间，申请用于存放T类型对象的内存空间，并依初值列表赋以初值</p>
+</li>
+<li>
+<p><strong>结果值：</strong></p>
+<p><strong>成功：T类型的指针，指向新分配的内存。失败：0（NULL）</strong></p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">int</span>     <span class="o">*</span><span class="n">point</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">point</span>  <span class="o">=</span>  <span class="k">new</span>  <span class="kt">int</span> <span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Point</span>     <span class="o">*</span><span class="n">ptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ptr</span>  <span class="o">=</span>  <span class="k">new</span>  <span class="n">Point</span><span class="p">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>**注意：**堆对象的生命周期是整个程序生命期</p>
+</li>
+<li>
+<p>如果建立的对象是某一个类的实例对象，就是要根据实际情况调用该类的构造函数</p>
+</li>
+<li>
+<p>释放内存操作符delete</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">delete</span>   <span class="err">指针名</span>
+</span></span></code></pre></div><p>**功能：**释放指针 P 所指向的内存。P必须是new操作的返回值</p>
+</li>
+</ol>
+<p><strong>例：动态存储分配举例</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span>   <span class="nc">Point</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">   <span class="n">Point</span> <span class="p">(</span> <span class="p">)</span> <span class="p">{</span> <span class="n">X</span> <span class="o">=</span><span class="n">Y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">              <span class="n">cout</span> <span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">Default</span> <span class="n">constructor</span> <span class="n">call</span><span class="p">.</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">endl</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl">             <span class="p">}</span> 
+</span></span><span class="line"><span class="cl">   <span class="n">Point</span> <span class="p">(</span><span class="kt">int</span> <span class="n">xx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">yy</span><span class="p">)</span>　<span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="n">X</span> <span class="o">=</span> <span class="n">xx</span><span class="p">;</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">yy</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">       <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">constructor</span> <span class="n">call</span><span class="p">.</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">endl</span> <span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">~</span><span class="n">point</span> <span class="p">(</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">Destructor</span> <span class="n">call</span><span class="p">.</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">endl</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="nf">GetX</span><span class="p">(</span> <span class="p">)</span>  <span class="p">{</span> <span class="k">return</span>  <span class="n">X</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="nf">GetY</span><span class="p">(</span> <span class="p">)</span>  <span class="p">{</span> <span class="k">return</span>  <span class="n">Y</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span>   <span class="nf">Move</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span>  <span class="kt">int</span>  <span class="n">y</span><span class="p">)</span>　<span class="p">{</span>   <span class="n">X</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>   <span class="n">Y</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span>  <span class="n">X</span><span class="p">,</span>  <span class="n">Y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span>   <span class="nf">main</span> <span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">Step</span> <span class="nl">One</span><span class="p">:</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Point</span>   <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="k">new</span>   <span class="n">Point</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span>    <span class="n">p1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">Step</span> <span class="nl">One</span><span class="p">:</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span>  <span class="n">Point</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">delete</span>   <span class="n">p1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>     
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//程序运行结果如下：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Step One:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Default constructor call.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Destructor call.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Step One:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//constructor call.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Destructor call.
+</span></span></span></code></pre></div><h3 id="动态内存分配-1">动态内存分配</h3>
+<ol>
+<li>
+<p>用new创建一维数组</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">new</span>  <span class="err">类型名</span><span class="n">T</span> <span class="p">[</span> <span class="err">下标表达式</span> <span class="p">]</span> <span class="p">;</span>
+</span></span></code></pre></div><ol>
+<li>下标表达式表示数组元素的个数</li>
+<li>动态为数组分配内存时不能指定数组元素的初值</li>
+</ol>
+</li>
+<li>
+<p>结果值</p>
+<ol>
+<li><strong>成功</strong>：返回指向新分配内存首地址的 T 类型的指针</li>
+<li><strong>失败</strong>：返回空指针 0 (NULL)</li>
+</ol>
+</li>
+</ol>
+<p><strong>例: 动态存储分配举例</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span>   <span class="nc">Point</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">   <span class="n">Point</span> <span class="p">(</span> <span class="p">)</span> <span class="p">{</span> <span class="n">X</span> <span class="o">=</span><span class="n">Y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>　
+</span></span><span class="line"><span class="cl">              <span class="n">cout</span> <span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">Default</span> <span class="n">constructor</span> <span class="n">call</span><span class="p">.</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">endl</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl">             <span class="p">}</span> 
+</span></span><span class="line"><span class="cl">   <span class="n">Point</span> <span class="p">(</span><span class="kt">int</span> <span class="n">xx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">yy</span><span class="p">)</span>　<span class="p">{</span> 
+</span></span><span class="line"><span class="cl">       <span class="n">X</span> <span class="o">=</span> <span class="n">xx</span><span class="p">;</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">yy</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">       <span class="n">out</span> <span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">constructor</span> <span class="n">call</span><span class="p">.</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">endl</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">~</span><span class="n">point</span> <span class="p">(</span> <span class="p">)</span> <span class="p">{</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="err">“</span><span class="n">Destructor</span> <span class="n">call</span><span class="p">.</span><span class="err">”</span><span class="o">&lt;&lt;</span><span class="n">endl</span> <span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="nf">GetX</span><span class="p">(</span> <span class="p">)</span>  <span class="p">{</span> <span class="k">return</span>  <span class="n">X</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="nf">GetY</span><span class="p">(</span> <span class="p">)</span>  <span class="p">{</span> <span class="k">return</span>  <span class="n">Y</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span>   <span class="nf">Move</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span>  <span class="kt">int</span>  <span class="n">y</span><span class="p">){</span>   <span class="n">X</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>   <span class="n">Y</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">       <span class="kt">int</span>     <span class="n">X</span><span class="p">,</span>  <span class="n">Y</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span>   <span class="nf">main</span> <span class="p">(</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="n">Point</span>   <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="k">new</span>   <span class="n">Point</span> <span class="p">[</span><span class="mi">2</span><span class="p">];</span>   <span class="n">a</span> <span class="c1">//创建对象数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="n">ptr</span><span class="p">[</span> <span class="mi">0</span> <span class="p">].</span><span class="n">Move</span> <span class="p">(</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="p">;</span>        
+</span></span><span class="line"><span class="cl">     <span class="n">ptr</span><span class="p">[</span> <span class="mi">1</span> <span class="p">].</span><span class="n">Move</span> <span class="p">(</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 	<span class="c1">//或者这种形式也可以
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> 	<span class="c1">//ptr -&gt; Move ( 5, 10) ;        
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">//( ptr + 1)  -&gt; Move ( 15, 20);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>     <span class="k">delete</span> <span class="p">[</span> <span class="p">]</span>   <span class="n">ptr</span><span class="p">;</span>        <span class="c1">//删除整个对象数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//运行结果如下：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Default constructor call.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Default constructor call.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Destructor call.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Destructor call.
+</span></span></span></code></pre></div><p><strong>注意：  如果是用 new 建立的数组， 用 delete 删除时必须在指针名前面加 “ [ ]”</strong></p>
+<ol start="3">
+<li>
+<p>指向多维数组的指针和指针变量</p>
+<p><a href="https://blog.csdn.net/qq_57342311/article/details/129404664" target="_blank" rel="noopener noreffer ">通过指针引用多维数组_多维数组指针</a></p>
+</li>
+</ol>
+<h2 id="使用vector创建数组对象">使用vector创建数组对象</h2>
+<ol>
+<li>vector定义动态数组的格式:</li>
+<li>vector  &lt;元素类型&gt; 数组名(数组长度[，元素初值]);</li>
+<li>注意
+<ol>
+<li>用vector 创建的数组对象都会被初始化，如果是基本数据类型，则要会被0初始化，如果是类类型，则要调用类的默认构造函数，这时就要保证类中一定要有默认构造函数，当然用户也可以自己为它赋值，但赋的初值都是一样的。</li>
+<li>数组名不是首地址</li>
+<li>访问方式与普通数组的方式一样</li>
+</ol>
+</li>
+</ol>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//计算数组arr中元素的平均值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="nf">average</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">arr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">sum</span> <span class="o">+=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">sum</span> <span class="o">/</span> <span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">unsigned</span> <span class="n">n</span><span class="p">;</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;n = &#34;</span><span class="p">;</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">arr</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>	<span class="c1">//创建数组对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Please input &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; real numbers:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Average = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">average</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>	<span class="k">return</span> <span class="mi">0</span><span class="p">;}</span> 
+</span></span></code></pre></div><h2 id="深复制与浅复制">深复制与浅复制</h2>
+<h3 id="无错误的浅拷贝">无错误的浅拷贝</h3>
+<ol>
+<li>
+<p>先看一个简单的例子，该例子是浅拷贝的典型代表，而且没有问题。</p>
+</li>
+<li>
+<p>接下来看Example  1</p>
+<p><strong>Cperson.h</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#ifndef _CPERSON_H
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define _CPERSON_H
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">class</span> <span class="nc">Cperson</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Cperson</span><span class="p">(</span><span class="kt">int</span> <span class="n">age</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">Print</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span></code></pre></div><p><strong>Cperson.cpp</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&#34;Cperson.h&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">Cperson</span><span class="o">::</span><span class="n">Cperson</span><span class="p">(</span><span class="kt">int</span> <span class="n">age</span><span class="p">)</span><span class="o">:</span><span class="n">m_age</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Cperson</span><span class="o">::</span><span class="n">Print</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;My age is &#34;</span><span class="o">&lt;&lt;</span><span class="n">m_age</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>Main.cpp</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&#34;Cperson.h&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Cperson</span> <span class="n">Tom</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Tom</span><span class="p">.</span><span class="n">Print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">Cperson</span> <span class="n">Jim</span><span class="p">(</span><span class="n">Tom</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Jim</span><span class="p">.</span><span class="n">Print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>结果</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071818965.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071818965.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405071818965.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405071818965.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071818965.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071818965.png" /></p>
+</li>
+<li>
+<p><strong>结果分析</strong></p>
+<ol>
+<li>对于语句Cperson Jim(Tom)，我们并没有定义相应的拷贝构造函数，编译器将会自动生成一个默认的拷贝构造函数</li>
+<li>默认拷贝构造函数所做的工作是，将一个对象的全部数据成员赋值给另一个对象的数据成员</li>
+<li>C++只把对象数据成员简单赋值这种情况称为“浅拷贝”</li>
+<li>听起来，编译器似乎很好，会提供一个我们没有定义的拷贝构造函数</li>
+</ol>
+</li>
+</ol>
+<h3 id="有错误的浅拷贝">有错误的浅拷贝</h3>
+<ol>
+<li>
+<p>在接下来的Example 2中，我们将看到浅拷贝带来的错误</p>
+<p><strong>Cperson.h</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#ifndef _CPERSON_H
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define _CPERSON_H
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Cperson</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Cperson</span><span class="p">(</span><span class="kt">int</span> <span class="n">age</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="o">~</span><span class="n">Cperson</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">Print</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">m_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span></code></pre></div><p><strong>Cperson.cpp</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&#34;Cperson.h&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;string.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Cperson</span><span class="o">::</span><span class="n">Cperson</span><span class="p">(</span><span class="kt">int</span> <span class="n">age</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">m_name</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">m_name</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_name</span><span class="p">,</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">m_age</span> <span class="o">=</span> <span class="n">age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">m_name</span><span class="o">&lt;&lt;</span><span class="s">&#34;的构造函数&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Cperson</span><span class="o">::~</span><span class="n">Cperson</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;析构姓名:&#34;</span><span class="o">&lt;&lt;</span><span class="n">m_name</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">m_name</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">delete</span> <span class="n">m_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Cperson</span><span class="o">::</span><span class="n">Print</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;My age is &#34;</span><span class="o">&lt;&lt;</span><span class="n">m_age</span><span class="o">&lt;&lt;</span><span class="s">&#34;,My name is &#34;</span><span class="o">&lt;&lt;</span><span class="n">m_name</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>Main.cpp</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&#34;Cperson.h&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Cperson</span> <span class="n">Tom</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="s">&#34;Tom&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Tom</span><span class="p">.</span><span class="n">Print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">Cperson</span> <span class="n">Jim</span><span class="p">(</span><span class="n">Tom</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Jim</span><span class="p">.</span><span class="n">Print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>结果</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071822538.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071822538.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405071822538.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405071822538.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071822538.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071822538.png" /></p>
+</li>
+<li>
+<p><strong>结果分析</strong></p>
+<ol>
+<li>可以看到，程序出现了错误</li>
+<li>在执行语句Cperson Tom(10,“Tom”)时，用new动态开辟了一段内存，用来存放”Tom”</li>
+<li>在执行Cperson Jim(Tom)时，只是将Tom的成员（Tom.m_age，Tom.m_name）赋值给Jim相应的成员</li>
+<li>此时，Tom.m_name和Jim.m_name指向同一内存空间，然而，系统并没给Jim.m_name开辟相应的内存空间</li>
+<li>执行完Jim.Print()后，开始执行析构函数，析构函数的执行顺序和对象构造函数的执行顺序相反，所以先执行Jim的析构函数，执行完Jim的析构函数后，Jim.m_name所指的内存空间已经释放</li>
+<li>接着执行Tom的析构函数，此时就会出现问题，即在释放Tom.m_name所指的内存空间时会出现问题，因为这段内存空间在Jim的析构函数中已经释放过了</li>
+<li>出现这种原因的根本在于“浅拷贝”，所以需要定义自己的构造函数。</li>
+</ol>
+</li>
+</ol>
+<h3 id="深拷贝">深拷贝</h3>
+<ol>
+<li>
+<p>接下来看Example 3，在该例子中执行深拷贝</p>
+<p><strong>Cperson.h</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#ifndef _CPERSON_H
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define _CPERSON_H
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Cperson</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Cperson</span><span class="p">(</span><span class="kt">int</span> <span class="n">age</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Cperson</span><span class="p">(</span><span class="n">Cperson</span> <span class="o">&amp;</span> <span class="n">per</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="o">~</span><span class="n">Cperson</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">void</span> <span class="nf">Print</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">m_age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="o">*</span><span class="n">m_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span></code></pre></div><p><strong>Cperson.cpp</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&#34;Cperson.h&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;string.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">Cperson</span><span class="o">::</span><span class="n">Cperson</span><span class="p">(</span><span class="kt">int</span> <span class="n">age</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">m_name</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">m_name</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_name</span><span class="p">,</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">m_age</span> <span class="o">=</span> <span class="n">age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">m_name</span><span class="o">&lt;&lt;</span><span class="s">&#34;的构造函数&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Cperson</span><span class="o">::</span><span class="n">Cperson</span><span class="p">(</span><span class="n">Cperson</span> <span class="o">&amp;</span> <span class="n">per</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">m_name</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">per</span><span class="p">.</span><span class="n">m_name</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">m_name</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">strcpy</span><span class="p">(</span><span class="n">m_name</span><span class="p">,</span><span class="n">per</span><span class="p">.</span><span class="n">m_name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">m_age</span> <span class="o">=</span> <span class="n">per</span><span class="p">.</span><span class="n">m_age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">m_name</span><span class="o">&lt;&lt;</span><span class="s">&#34;的拷贝构造函数&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">Cperson</span><span class="o">::~</span><span class="n">Cperson</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;析构姓名:&#34;</span><span class="o">&lt;&lt;</span><span class="n">m_name</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">m_name</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">delete</span> <span class="n">m_name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Cperson</span><span class="o">::</span><span class="n">Print</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;My age is &#34;</span><span class="o">&lt;&lt;</span><span class="n">m_age</span><span class="o">&lt;&lt;</span><span class="s">&#34;,My name is &#34;</span><span class="o">&lt;&lt;</span><span class="n">m_name</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>Main.cpp</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include&#34;Cperson.h&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include&lt;iostream.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Cperson</span> <span class="n">Tom</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="s">&#34;Tom&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Tom</span><span class="p">.</span><span class="n">Print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">Cperson</span> <span class="n">Jim</span><span class="p">(</span><span class="n">Tom</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Jim</span><span class="p">.</span><span class="n">Print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>结果：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071826794.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071826794.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405071826794.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405071826794.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071826794.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071826794.png" /></p>
+</li>
+<li>
+<p><strong>结果分析</strong></p>
+<ol>
+<li>可以看到，自己定义了拷贝构造函数后，就没有问题了</li>
+</ol>
+</li>
+</ol>
+<h3 id="浅拷贝和深拷贝">浅拷贝和深拷贝</h3>
+<ol>
+<li>深拷贝和浅拷贝可以简单理解为：如果一个类拥有资源，当这个类的对象发生复制过程的时候，资源重新分配，这个过程就是深拷贝，反之，没有重新分配资源，就是浅拷贝</li>
+<li>在实际中应该避免浅拷贝</li>
+</ol>
+<p>例: 对象的浅拷贝</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cassert&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Point</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">   <span class="c1">//类的声明同例6-16
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="c1">//……
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ArrayOfPoints</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">//类的声明同例6-18
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="c1">//……
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">count</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Please enter the count of points: &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">count</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ArrayOfPoints</span> <span class="n">pointsArray1</span><span class="p">(</span><span class="n">count</span><span class="p">);</span> <span class="c1">//创建对象数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">pointsArray1</span><span class="p">.</span><span class="n">element</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">move</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">pointsArray1</span><span class="p">.</span><span class="n">element</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">move</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ArrayOfPoints</span> <span class="n">pointsArray2</span><span class="p">(</span><span class="n">pointsArray1</span><span class="p">);</span> <span class="c1">//创建副本
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Copy of pointsArray1:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Point_0 of array2: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">pointsArray2</span><span class="p">.</span><span class="n">element</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">getX</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span><span class="o">&lt;&lt;</span> <span class="n">pointsArray2</span><span class="p">.</span><span class="n">element</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">getY</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Point_1 of array2: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">pointsArray2</span><span class="p">.</span><span class="n">element</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">getX</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span><span class="o">&lt;&lt;</span> <span class="n">pointsArray2</span><span class="p">.</span><span class="n">element</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">getY</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">pointsArray1</span><span class="p">.</span><span class="n">element</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">move</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">pointsArray1</span><span class="p">.</span><span class="n">element</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">move</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;After the moving of pointsArray1:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Point_0 of array2: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">pointsArray2</span><span class="p">.</span><span class="n">element</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">getX</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span><span class="o">&lt;&lt;</span> <span class="n">pointsArray2</span><span class="p">.</span><span class="n">element</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">getY</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Point_1 of array2: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">pointsArray2</span><span class="p">.</span><span class="n">element</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">getX</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span><span class="o">&lt;&lt;</span> <span class="n">pointsArray2</span><span class="p">.</span><span class="n">element</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">getY</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//运行结果如下：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Please enter the number of points:2
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Default Constructor called.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Default Constructor called.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Copy of pointsArray1:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Point_0 of array2: 5, 10
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Point_1 of array2: 15, 20
+</span></span></span><span class="line"><span class="cl"><span class="c1">//After the moving of pointsArray1:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Point_0 of array2: 25, 30
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Point_1</span> <span class="n">of</span> <span class="nl">array2</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">40</span>
+</span></span><span class="line"><span class="cl"><span class="n">Deleting</span><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="n">Destructor</span> <span class="n">called</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">Destructor</span> <span class="n">called</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">Deleting</span><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//接下来程序出现异常，也就是运行错误
+</span></span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071829214.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071829214.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405071829214.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405071829214.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071829214.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071829214.png" /></p>
+<p>例: 对象的深拷贝</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;cassert&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Point</span> <span class="p">{</span> <span class="c1">//类的声明同例6-16 ……
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ArrayOfPoints</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">   <span class="n">ArrayOfPoints</span><span class="p">(</span><span class="k">const</span> <span class="n">ArrayOfPoints</span><span class="o">&amp;</span> <span class="n">pointsArray</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//其他成员同例6-18        
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">ArrayOfPoints</span><span class="o">::</span><span class="n">ArrayOfPoints</span><span class="p">(</span><span class="k">const</span> <span class="n">ArrayOfPoints</span><span class="o">&amp;</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">size</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">points</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="p">[</span><span class="n">size</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//同例6-20
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//程序的运行结果如下：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Please enter the number of points:2
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Default Constructor called.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Default Constructor called.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Default Constructor called.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Default Constructor called.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Copy of pointsArray1:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Point_0 of array2: 5, 10
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Point_1 of array2: 15, 20
+</span></span></span><span class="line"><span class="cl"><span class="c1">//After the moving of pointsArray1:
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Point_0 of array2: 5, 10
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Point_1 of array2: 15, 20
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Deleting...
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Destructor called.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Destructor called.
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Deleting...
+</span></span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071832489.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071832489.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405071832489.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405071832489.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071832489.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405071832489.png" /></p>
+<h2 id="字符串">字符串</h2>
+<h3 id="用字符数组存储和处理字符串">用字符数组存储和处理字符串</h3>
+<ol>
+<li>字符串常量（例：&ldquo;program&rdquo;）
+<ol>
+<li>各字符连续、顺序存放，每个字符占一个字节，以‘\0’结尾，相当于一个隐含创建的字符常量数组</li>
+<li>“program”出现在表达式中，表示这一char数组的首地址</li>
+<li>首地址可以赋给char常量指针：</li>
+<li>const char *STRING1 = &ldquo;program&rdquo;;</li>
+</ol>
+</li>
+<li>字符串变量
+<ol>
+<li>可以显式创建字符数组来表示字符串变量，例如，以下三条语句具有等价的作用</li>
+<li>char str[8] = { &lsquo;p&rsquo;, &lsquo;r&rsquo;, &lsquo;o&rsquo;, &lsquo;g&rsquo;, &lsquo;r&rsquo;, &lsquo;a&rsquo;, &rsquo;m&rsquo;, &lsquo;\0&rsquo; };</li>
+<li>char str[8] = &ldquo;program&rdquo;;</li>
+<li>char str[] = &ldquo;program&rdquo;;</li>
+</ol>
+</li>
+</ol>
+<h4 id="用字符数组表示字符串的缺点">用字符数组表示字符串的缺点</h4>
+<ol>
+<li>用字符数组表示字符串的缺点
+<ol>
+<li>执行连接、拷贝、比较等操作，都需要显式调用库函数，很麻烦</li>
+<li>当字符串长度很不确定时，需要用new动态创建字符数组，最后要用delete释放，很繁琐</li>
+<li>字符串实际长度大于为它分配的空间时，会产生数组下标越界的错误</li>
+</ol>
+</li>
+<li>解决方法
+<ol>
+<li>使用字符串类string表示字符串</li>
+<li>string实际上是对字符数组操作的封装</li>
+<li>类string在string头文件中</li>
+</ol>
+</li>
+</ol>
+<h3 id="string类">string类</h3>
+<ol>
+<li>
+<p>常用构造函数</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">string</span><span class="p">();</span> <span class="c1">//缺省构造函数，建立一个长度为0的串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">string</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">);</span>  	<span class="c1">//用指针s所指向的字符串常量初始化string类的对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">string</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>  <span class="c1">//拷贝构造函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">string</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="err">，</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span><span class="p">);</span> <span class="c1">//用指针s所指向的字符串前n个字符去初始化string类的对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">);</span><span class="c1">//将参数c中的 字符重复n次去初始化string类的对象。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">string</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="err">，</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">pos</span><span class="err">，</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span><span class="p">);</span><span class="c1">//将rhs字符串从pos位置开始取n个字符去初始化string类的对象
+</span></span></span></code></pre></div></li>
+<li>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">string</span> <span class="n">s1</span><span class="p">;</span> <span class="c1">//建立一个空字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">string</span> <span class="n">s2</span> <span class="o">=</span> <span class="err">“</span><span class="n">abc</span><span class="err">”</span><span class="p">;</span>  <span class="c1">//用常量建立一个初值为”abc”的字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">string</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">s2</span><span class="p">;</span><span class="c1">//执行拷贝构造函数，用s2的值作为s3的初值
+</span></span></span></code></pre></div></li>
+<li>
+<p>常用操作符</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">+</span> <span class="n">t</span>	<span class="c1">//将串s和t连接成一个新串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">s</span> <span class="o">=</span> <span class="n">t</span>	<span class="c1">//用t更新s
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">s</span> <span class="o">==</span> <span class="n">t</span>	<span class="c1">//判断s与t是否相等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">s</span> <span class="o">!=</span> <span class="n">t</span>	<span class="c1">//判断s与t是否不等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">s</span> <span class="o">&lt;</span> <span class="n">t</span>	<span class="c1">//判断s是否小于t（按字典顺序比较）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">s</span> <span class="o">&lt;=</span> <span class="n">t</span>	<span class="c1">//判断s是否小于或等于t （按字典顺序比较）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">s</span> <span class="o">&gt;</span> <span class="n">t</span>	<span class="c1">//判断s是否大于t （按字典顺序比较）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">s</span> <span class="o">&gt;=</span> <span class="n">t</span>	<span class="c1">//判断s是否大于或等于t （按字典顺序比较）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>	<span class="c1">//访问串中下标为i的字符
+</span></span></span></code></pre></div></li>
+<li>
+<p>例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">string</span> <span class="n">s1</span> <span class="o">=</span> <span class="s">&#34;abc&#34;</span><span class="p">,</span> <span class="n">s2</span> <span class="o">=</span> <span class="s">&#34;def&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">string</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span><span class="p">;</span>	<span class="c1">//结果是&#34;abcdef&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">bool</span> <span class="n">s4</span> <span class="o">=</span> <span class="p">(</span><span class="n">s1</span> <span class="o">&lt;</span> <span class="n">s2</span><span class="p">);</span>	<span class="c1">//结果是true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="n">s5</span> <span class="o">=</span> <span class="n">s2</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>	<span class="c1">//结果是&#39;e&#39;
+</span></span></span></code></pre></div></li>
+</ol>
+<p>例: string类应用举例</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//根据value的值输出true或false，title为提示文字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">test</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">title</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">value</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">title</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; returns &#34;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">value</span> <span class="o">?</span> <span class="s">&#34;true&#34;</span> <span class="o">:</span> <span class="s">&#34;false&#34;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">string</span> <span class="n">s1</span> <span class="o">=</span> <span class="s">&#34;DEF&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;s1 is &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">s1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">string</span> <span class="n">s2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Please enter s2: &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">s2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;length of s2: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">s2</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//比较运算符的测试
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">test</span><span class="p">(</span><span class="s">&#34;s1 &lt;= </span><span class="se">\&#34;</span><span class="s">ABC</span><span class="se">\&#34;</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">s1</span> <span class="o">&lt;=</span> <span class="s">&#34;ABC&#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">	<span class="n">test</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\&#34;</span><span class="s">DEF</span><span class="se">\&#34;</span><span class="s"> &lt;= s1&#34;</span><span class="p">,</span> <span class="s">&#34;DEF&#34;</span> <span class="o">&lt;=</span> <span class="n">s1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//连接运算符的测试
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">s2</span> <span class="o">+=</span> <span class="n">s1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;s2 = s2 + s1: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">s2</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;length of s2: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">s2</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="用getline输入整行字符串">用getline输入整行字符串</h4>
+<ol>
+<li>
+<p>输入整行字符串</p>
+<ol>
+<li>
+<p>用cin的&raquo;操作符输入字符串，会以空格作为分隔符，空格后的内容会在下一回输入时被读取</p>
+</li>
+<li>
+<p>用string头文件中的getline可以输入整行字符串，例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">getline</span><span class="p">(</span><span class="n">cin</span><span class="p">,</span> <span class="n">s2</span><span class="p">);</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>以其它字符作为分隔符输入字符串</p>
+<ol>
+<li>
+<p>输入字符串时，可以使用其它分隔符作为字符串结束的标志（例如逗号、分号）</p>
+</li>
+<li>
+<p>把分隔符作为getline的第3个参数即可，例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">getline</span><span class="p">(</span><span class="n">cin</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ol>
+<p>例: 用getline输入字符串</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">include</span> <span class="o">&lt;</span><span class="n">iostream</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">string</span> <span class="n">city</span><span class="p">,</span> <span class="n">state</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">getline</span><span class="p">(</span><span class="n">cin</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">getline</span><span class="p">(</span><span class="n">cin</span><span class="p">,</span> <span class="n">state</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;City:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">city</span> <span class="o">&lt;&lt;</span> <span class="err">“</span>  <span class="nl">State</span><span class="p">:</span><span class="s">&#34; &lt;&lt; state &lt;&lt; endl;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//运行结果：
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Beijing,China
+</span></span></span><span class="line"><span class="cl"><span class="c1">//City: Beijing   State: China
+</span></span></span><span class="line"><span class="cl"><span class="c1">//San Francisco,the United States
+</span></span></span><span class="line"><span class="cl"><span class="c1">//City: San Francisco   State: the United 
+</span></span></span></code></pre></div><h4 id="字符串常用成员函数">字符串常用成员函数</h4>
+<p><a href="https://blog.csdn.net/sid_Tang/article/details/131606481" target="_blank" rel="noopener noreffer "><strong>字符串常用成员函数</strong></a></p>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -120,7 +811,7 @@
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https:adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" data-title="c&#43;&#43;(six)" data-hashtags="面向对象程序设计"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https:adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" data-hashtag="面向对象程序设计"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https:adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" data-title="c&#43;&#43;(six)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https:adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" data-title="c&#43;&#43;(six)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https:adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" data-title="c&#43;&#43;(six)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" data-title="c&#43;&#43;(six_2)" data-hashtags="面向对象程序设计"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" data-hashtag="面向对象程序设计"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" data-title="c&#43;&#43;(six_2)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" data-title="c&#43;&#43;(six_2)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" data-title="c&#43;&#43;(six_2)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -132,7 +823,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8A/" class="prev" rel="prev" title="c&#43;&#43;(six)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>c++(six)</a>
+    <div class="post-nav"><a href="/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8A/" class="prev" rel="prev" title="c&#43;&#43;(six_1)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>c++(six_1)</a>
             <a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" class="next" rel="next" title="计算机组成(第五章)">计算机组成(第五章)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>

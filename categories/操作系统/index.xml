@@ -1,54 +1,54 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>操作系统 - Category - 蓝Q曦的博客网站</title>
-        <link>https:adan-ning.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+        <link>https://adan-ning.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
         <description>操作系统 - Category - 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 25 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https:adan-ning.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 25 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
     <title>操作系统(第六章)</title>
-    <link>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/</link>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/</link>
     <pubDate>Thu, 25 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/</guid>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/</guid>
     <description><![CDATA[设备管理 I/O系统组成 I/O设备：打印机和磁盘 I/O设备控制器 I/O通道 四级结构 $存储器 \rightarrow I/O通道 \rightarrow I/O控制器 \rightarrow I/O设备$ 总线 I/O控]]></description>
 </item>
 <item>
     <title>操作系统(第五章)</title>
-    <link>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/</link>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/</link>
     <pubDate>Thu, 18 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/</guid>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/</guid>
     <description><![CDATA[虚拟存储器 常见的存储器 一次性全部装入 常驻内存 内存的利用率低 改进 时间局部性(循环执行) 空间局部性(顺序执行) 虚拟存储器 请求式分页 请求式分段 什么]]></description>
 </item>
 <item>
     <title>操作系统(第四章)</title>
-    <link>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</link>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</link>
     <pubDate>Wed, 10 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</guid>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</guid>
     <description><![CDATA[存储器管理 存储器 内存 主存 连续分配 单一 分区 离散分配 分页式 分段式 段页式 虚拟(主+辅) 请求式分页 请求式分段 请求式段页 外存(第五章) 程序的运行与存储]]></description>
 </item>
 <item>
     <title>操作系统(第三章)</title>
-    <link>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3/</link>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3/</link>
     <pubDate>Tue, 26 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3/</guid>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F3/</guid>
     <description><![CDATA[处理机调度与死锁 调度算法和银行家算法 处理机调度的层次和调度算法的目标 处理机调度的层次 高级调度(又称：作业，长程，接纳调度) 高级调度又称长程调]]></description>
 </item>
 <item>
     <title>操作系统(第二章)</title>
-    <link>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/</link>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/</link>
     <pubDate>Tue, 05 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/</guid>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F2/</guid>
     <description><![CDATA[进程管理(引入) 前趋图(也称为：有向无循环图) 条件：有向，无循环 O(圆圈)：节点，代表指令，程序，进程… →：有向边，代表前趋/后继关系 程序的]]></description>
 </item>
 <item>
     <title>操作系统(第一章)</title>
-    <link>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
     <pubDate>Mon, 04 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
     <description><![CDATA[os的定义 管理资源 硬件 进程，存储器，外部设备 软件 文件 分配资源 以作业/进程为单位进行调度(cpu算法) 程序 进程 执行的程序(内存) 作业 暂时不执行]]></description>
 </item>
 </channel>
