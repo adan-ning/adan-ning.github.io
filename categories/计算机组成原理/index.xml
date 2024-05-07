@@ -1,38 +1,46 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>计算机组成原理 - Category - 蓝Q曦的博客网站</title>
-        <link>https://adan-ning.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</link>
+        <link>https:adan-ning.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</link>
         <description>计算机组成原理 - Category - 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 15 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 25 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https:adan-ning.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+    <title>计算机组成(第五章)</title>
+    <link>https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/</link>
+    <pubDate>Thu, 25 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/</guid>
+    <description><![CDATA[中央处理器 CPU的功能和组成 当代主流计算机所遵循的仍然是冯.诺依曼的“存储程序、程序控制”思想 程序告诉计算机：应该逐步执行什么操作；在什么地]]></description>
+</item>
+<item>
     <title>计算机组成(第四章)</title>
-    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/</link>
+    <link>https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/</link>
     <pubDate>Mon, 15 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/</guid>
+    <guid>https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/</guid>
     <description><![CDATA[指令系统 概 述 指令：是指示计算机某种操作的命令。 微指令，机器指令，宏指令 指令系统：一台计算机中所有机器指令的集合，它是表征一台计算机性能的重要]]></description>
 </item>
 <item>
     <title>计算机组成(第三章)</title>
-    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%863/</link>
+    <link>https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%863/</link>
     <pubDate>Sun, 31 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%863/</guid>
+    <guid>https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%863/</guid>
     <description><![CDATA[存储系统 存储器概述 存储器的两大功能： 存储（写入Write） 取出（读出Read） 三项基本要求： 大容量 高速度 低成本 概念 基本存储单元：存储一位（b]]></description>
 </item>
 <item>
     <title>计算机组成(第二章)</title>
-    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862/</link>
+    <link>https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862/</link>
     <pubDate>Sat, 16 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862/</guid>
+    <guid>https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%862/</guid>
     <description><![CDATA[数据与文字的表示方法 数据格式 分类 符号数据：非数字符号的表示(ASCII,汉字，图形等) 数值数据：数字数据的表示方式(定点，浮点) 计算机数字和]]></description>
 </item>
 <item>
     <title>计算机组成(第一章)</title>
-    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</link>
+    <link>https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</link>
     <pubDate>Sat, 09 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</guid>
+    <guid>https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</guid>
     <description><![CDATA[计算机组成部分 运算器，控制器，存储器，输入/输出设备 概念 计算机是一种以电子器件为基础的，不需人的直接干预，能够对各种数字化信息，进行算术和逻]]></description>
 </item>
 </channel>

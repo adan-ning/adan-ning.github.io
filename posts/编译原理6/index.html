@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>编译引论(第六章) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="编译引论(第六章)" />
+<meta property="og:description" content="语义分析及中间代码生成 中间代码 中间代码生成在编译程序中的位置 中间代码 **即中间语言，独立于机器的，复杂性介于源语言和机器语言之间的一种表示形" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https:adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866/" /><meta property="og:image" content="https:adan-ning.github.io" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-04-18T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https:adan-ning.github.io" /><meta name="twitter:title" content="编译引论(第六章)"/>
+<meta name="twitter:description" content="语义分析及中间代码生成 中间代码 中间代码生成在编译程序中的位置 中间代码 **即中间语言，独立于机器的，复杂性介于源语言和机器语言之间的一种表示形"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https:adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866/" /><link rel="prev" href="https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/" /><link rel="next" href="https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "编译引论(第六章)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:adan-ning.github.io\/posts\/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866\/"
+        },"genre": "posts","keywords": "编译原理","wordcount":  2366 ,
+        "url": "https:adan-ning.github.io\/posts\/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866\/","datePublished": "2024-04-18T00:00:00+00:00","dateModified": "2024-04-18T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">编译引论(第六章)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编译原理</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-18">2024-04-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2366 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#中间代码">中间代码</a>
+      <ul>
+        <li><a href="#中间语言后缀式">中间语言－后缀式</a></li>
+        <li><a href="#三地址代码">三地址代码</a></li>
+      </ul>
+    </li>
+    <li><a href="#语法制导翻译">语法制导翻译</a>
+      <ul>
+        <li><a href="#静态语义审查">静态语义审查</a></li>
+        <li><a href="#什么是语法制导翻译">什么是语法制导翻译</a></li>
+        <li><a href="#语法制导翻译的基本思想">语法制导翻译的基本思想</a></li>
+        <li><a href="#两个概念">两个概念</a></li>
+        <li><a href="#语法制导定义">语法制导定义</a></li>
+        <li><a href="#语法制导翻译方案">语法制导翻译方案</a></li>
+        <li><a href="#sdd与sdt">SDD与SDT</a></li>
+        <li><a href="#语法制导定义sdd">语法制导定义SDD</a></li>
+        <li><a href="#综合属性synthesized-attribute">综合属性(synthesized attribute)</a></li>
+        <li><a href="#继承属性inherited-attribute">继承属性(inherited attribute)</a></li>
+        <li><a href="#属性文法attribute-grammar">属性文法(Attribute Grammar)</a></li>
+        <li><a href="#语法制导翻译方案sdt">语法制导翻译方案SDT</a></li>
+        <li><a href="#将s-sdd转换为sdt">将S-SDD转换为SDT</a></li>
+      </ul>
+    </li>
+    <li><a href="#算术表达式四元式属性翻译文法设计">算术表达式四元式属性翻译文法设计</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="语义分析及中间代码生成">语义分析及中间代码生成</h1>
+<h2 id="中间代码">中间代码</h2>
+<ol>
+<li>
+<p><strong>中间代码生成在编译程序中的位置</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031336814.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031336814.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031336814.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031336814.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031336814.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031336814.png" /></p>
+</li>
+<li>
+<p><strong>中间代码</strong></p>
+<p>**即中间语言，独立于机器的，复杂性介于源语言和机器语言之间的一种表示形式。**中间代码是高级程序语言中，各种语法成分的语义结构表示；它介于源语言和目标语言之间。</p>
+</li>
+<li>
+<p><strong>采用中间语言的好处</strong></p>
+<ol>
+<li><strong>便于进行与机器无关的代码优化工作</strong></li>
+<li><strong>使编译程序改变目标机更容易；</strong></li>
+<li>**使编译程序的结构在逻辑上更为简单明确。**以中间语言为界面，编译前端和后端的接口更清晰。</li>
+</ol>
+</li>
+</ol>
+<h3 id="中间语言后缀式">中间语言－后缀式</h3>
+<ol>
+<li>
+<p>后缀式</p>
+<ol>
+<li><strong>后缀表示法也叫逆波兰表示法，它是最简单一种中间代码表示法，主要用于表示算数表达式。</strong></li>
+<li><strong>即将运算对象写在前面，把运算符写在后面的表示法。</strong></li>
+<li><strong>定义9.1 后缀式的递归定义如下：</strong>
+<ol>
+<li>如果E是一个变量或常量，则E的后缀式就是E本身；</li>
+<li>如果E是形如E1 op E2的表达式，其中op是任意的二元运算符 ，那么， E的后缀式为E1’ E2’ op，其中E1’和 E2’分别是E1和E2的后缀式；</li>
+<li>如果E是(E1)形式的表达式，那么，E1的后缀式就是E的后缀式。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>后缀式的例子</p>
+<p>(a+b) *(a+c) 的后缀式为 ab+ac+*</p>
+<p>-a+b+c/d* (a+c) 的后缀式为 a-b+cd/ac+*+</p>
+</li>
+<li>
+<p>后缀式的特点</p>
+<ol>
+<li>
+<p>后缀式形式的表达式计算顺序唯一，无需使用括号来明确计算顺序；</p>
+</li>
+<li>
+<p>只要知道每个算符的目数，计算参与运算数的个数，对后缀式从左到右进行扫描，就能对它进行唯一的分解。例如</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031340017.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031340017.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031340017.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031340017.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031340017.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031340017.png" /></p>
+</li>
+<li>
+<p>表达式和与它对应的逆波兰表达式中的运算对象顺序是完全一致的，即表达式中的所有运算对象，均按原序排在其逆波兰表达式中</p>
+<p>-a+b+c/d* (a+c) 的后缀式为 a-b+cd/ac+*+</p>
+</li>
+<li>
+<p>后缀式特别适合利用栈的结构进行计算</p>
+<ol>
+<li>自左向右扫描表达式的后缀表示，每遇到一个对象就把它压入栈内</li>
+<li>每遇到一个算符，就从栈顶取出相应个数的运算对象进行计算，再将结果压入栈顶</li>
+<li>最后，栈顶元素就是表达式的运算结果</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="三地址代码">三地址代码</h3>
+<ol>
+<li>
+<p>三地址代码的一般形式的语句构成的序列</p>
+<p>x:=y op z</p>
+<p>x,y,z: 名字,常数,编译时产生的临时变量；</p>
+<p>op: 运算符号(如定点运算符,浮点运算符,逻辑运算符等)</p>
+<p><strong>称为三地址代码的原因</strong>:每条语句通常包含三个地址,两个用来表示操作数,一个用来存放结果。如表达式x+y*z的三地址代码为：</p>
+<p>$T_1$:=y*z</p>
+<p>$T_2$:=x+$T_1$</p>
+<p><strong>具体实现:三地址代码是中间代码的一种抽象形式。在编译过程中，三地址代码语言的具体实现通常有四元式和三元式</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031343961.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031343961.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031343961.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031343961.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031343961.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031343961.png" /></p>
+</li>
+</ol>
+<h2 id="语法制导翻译">语法制导翻译</h2>
+<p>对语法分析后的<strong>语法单位</strong>要进行<strong>语义分析</strong>，包括 两个阶段：</p>
+<ol>
+<li>静态语义审查；</li>
+<li>如果静态语义正确，生成中间代码</li>
+</ol>
+<h3 id="静态语义审查">静态语义审查</h3>
+<ol>
+<li>
+<p>作用：验证语法结构合法的程序是否真正有意义</p>
+</li>
+<li>
+<p>包含的内容</p>
+<p>类型检查</p>
+<ol>
+<li>条件表达式的类型是不是布尔型</li>
+<li>验证指针地址访问只作用于指针</li>
+<li>函数必须有正确的参数个数和参数类型</li>
+<li>&hellip;</li>
+</ol>
+</li>
+</ol>
+<h3 id="什么是语法制导翻译">什么是语法制导翻译</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031346838.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031346838.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031346838.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031346838.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031346838.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031346838.png" /></p>
+<p><strong>语法制导翻译</strong>(syntax_directed translations)  是在<strong>语法分析</strong>过程中，<strong>随着分析(推导或归约)的逐步进 展</strong>，每识别出一个语法结构，根据文法的每个规则所对 应的语义子程序进行翻译的方法；<strong>核心技术</strong>是构造<strong>属性翻译文法</strong> &mdash;-在原文法产生式中插入<strong>语义动作符号</strong>，借以指明<strong>属性文法中属性求值时机和顺序</strong>。</p>
+<p>通俗地说，所谓语法制导翻译技术，是指</p>
+<p><strong>语法分析技术 +属性翻译文法构造技术</strong></p>
+<h3 id="语法制导翻译的基本思想">语法制导翻译的基本思想</h3>
+<ol>
+<li>如何表示语义信息
+<ol>
+<li>为CFG的<strong>文法符号</strong>设置<strong>语义属性</strong>，用来表示语法成分对应的<strong>语义信息</strong></li>
+</ol>
+</li>
+<li>如何计算语义属性
+<ol>
+<li>文法符号的语义属性值是用来与文法符号所在产生式(<strong>语法规则</strong>)相关联的<strong>语义规则</strong>来计算</li>
+<li>对于给定的输入串x，构建x的语法分析树，并利用与产生式(<strong>语法规则</strong>)相关联的语义规则来计算分析树中各结点对应的语义属性值</li>
+</ol>
+</li>
+</ol>
+<h3 id="两个概念">两个概念</h3>
+<ol>
+<li>将<strong>语义规则</strong>同<strong>语法规则</strong>(产生式)联系起来要涉及两个概念
+<ol>
+<li>语义制导定义</li>
+<li>语法制导翻译方案</li>
+</ol>
+</li>
+</ol>
+<h3 id="语法制导定义">语法制导定义</h3>
+<ol>
+<li>
+<p>SDD是对CFG的推广</p>
+<ol>
+<li>将每个<strong>文法符号</strong>和一个<strong>语义属性</strong>集合相关联</li>
+<li>将每个<strong>产生式</strong>和一组<strong>语义规则</strong>相关联，这些规则用于计算该产生式中各文法符号的属性值</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031357727.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031357727.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031357727.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031357727.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031357727.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031357727.png" /></p>
+</li>
+<li>
+<p>如果X是一个文法符号，a是X的一个属性，则用X，a表示属性a在某个标号为X的分析树结点上的值</p>
+</li>
+</ol>
+<h3 id="语法制导翻译方案">语法制导翻译方案</h3>
+<ol>
+<li>
+<p>SDT是在产生式右部嵌入了程序片段的CFG，这些程序片段称为<strong>语义动作</strong>。按照惯例，语义动作放在花括号内</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031359972.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031359972.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031359972.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031359972.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031359972.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031359972.png" /></p>
+<p>一个语义动作在产生式中的位置决定了这个动作的执行时间</p>
+</li>
+</ol>
+<h3 id="sdd与sdt">SDD与SDT</h3>
+<ol>
+<li>SDD
+<ol>
+<li>是关于语言翻译的高层次规格说明</li>
+<li>隐蔽了许多具体实现细节，使用户不必显式地说明翻译发生的顺序</li>
+</ol>
+</li>
+<li>SDT
+<ol>
+<li>可以看作是对SDD的一种补充，是SDD的具体实施方案</li>
+<li>显式地指明了语义规则的计算顺序，以便说明某些实现细节</li>
+</ol>
+</li>
+</ol>
+<h3 id="语法制导定义sdd">语法制导定义SDD</h3>
+<ol>
+<li>语法制导定义SDD是对CFG的推广
+<ol>
+<li>将每个文法符号和一个语义属性集合相关联</li>
+<li>将每个产生式和一组语义规则相关联，用来计算该产生式中各文法符号的属性值</li>
+</ol>
+</li>
+<li>文法符号的属性
+<ol>
+<li>综合属性(synthesized attribute)</li>
+<li>继承属性(inherited attribute)</li>
+</ol>
+</li>
+</ol>
+<h3 id="综合属性synthesized-attribute">综合属性(synthesized attribute)</h3>
+<ol>
+<li>
+<p>在分析树结点N上的非终结符A的综合属性只能通过N的子结点或N本身的属性值来定义</p>
+<ol>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031406259.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031406259.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031406259.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031406259.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031406259.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031406259.png" /></li>
+</ol>
+</li>
+<li>
+<p>终结符可以具有综合属性。终结符的综合属性值是由词法分析器提供的词法值，因此在SDD中没有计算终结符属性值的语义规则</p>
+</li>
+<li>
+<p><strong>带有综合属性的SDD</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031409241.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031409241.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031409241.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031409241.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031409241.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031409241.png" /></p>
+</li>
+</ol>
+<h3 id="继承属性inherited-attribute">继承属性(inherited attribute)</h3>
+<ol>
+<li>
+<p>在分析树结点N上的非终结符A的继承属性只能通过N的父结点、N的兄弟结点或N本身的属性值来定义</p>
+<ol>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031407467.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031407467.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031407467.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031407467.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031407467.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031407467.png" /></li>
+</ol>
+</li>
+<li>
+<p>终结符没有继承属性。终结符从词法分析器处获得的属性值被归为综合属性值</p>
+</li>
+<li>
+<p><strong>带有继承属性的SDD</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031409416.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031409416.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031409416.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031409416.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031409416.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031409416.png" /></p>
+</li>
+</ol>
+<h3 id="属性文法attribute-grammar">属性文法(Attribute Grammar)</h3>
+<ol>
+<li>一个没有副作用的SDD有时也称为属性文法
+<ol>
+<li>属性文法的规则仅仅通过其它属性值和常量来定义一个属性值</li>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031411354.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031411354.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031411354.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031411354.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031411354.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031411354.png" /></li>
+</ol>
+</li>
+</ol>
+<h3 id="语法制导翻译方案sdt">语法制导翻译方案SDT</h3>
+<ol>
+<li>语法制导翻译方案(SDT)是在产生式右部中嵌入了程序片段(称为语义动作)的CFG
+<ol>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031412121.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031412121.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031412121.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031412121.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031412121.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031412121.png" /></li>
+</ol>
+</li>
+<li>SDT可以看作是SDD的具体实施方案</li>
+<li>本节主要关注如何使用SDT来实现两类重要的SDD,因为在这两种情况下，SDT可在语法分析过程中实现&gt;基本文法可以使用LR分析技术，且SDD是S属性的</li>
+<li>基本文法可以使用LL分析技术，且SDD是L属性的</li>
+</ol>
+<h3 id="将s-sdd转换为sdt">将S-SDD转换为SDT</h3>
+<ol>
+<li>将一个S-SDD转换为SDT的方法:将每个语义动作都放在产生式的最后
+<ol>
+<li><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031414560.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031414560.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031414560.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031414560.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031414560.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031414560.png" /></li>
+</ol>
+</li>
+</ol>
+<h2 id="算术表达式四元式属性翻译文法设计">算术表达式四元式属性翻译文法设计</h2>
+<ol>
+<li>
+<p>算术表达式四元式属性翻译文法设计</p>
+<ol>
+<li>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031415080.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031415080.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031415080.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031415080.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031415080.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031415080.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031415284.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031415284.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031415284.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031415284.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031415284.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031415284.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031416887.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031416887.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031416887.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031416887.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031416887.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031416887.png" /></p>
+</li>
+</ol>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-04-18</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https:adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866/" data-title="编译引论(第六章)" data-hashtags="编译原理"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https:adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866/" data-hashtag="编译原理"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https:adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866/" data-title="编译引论(第六章)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https:adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866/" data-title="编译引论(第六章)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https:adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866/" data-title="编译引论(第六章)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/" class="prev" rel="prev" title="计算机组成(第四章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>计算机组成(第四章)</a>
+            <a href="/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/" class="next" rel="next" title="算法与程序(第五章)">算法与程序(第五章)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

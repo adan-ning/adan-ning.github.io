@@ -1,46 +1,54 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>计算机算法设计与分析 - Tag - 蓝Q曦的博客网站</title>
-        <link>https://adan-ning.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/</link>
+        <link>https:adan-ning.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/</link>
         <description>计算机算法设计与分析 - Tag - 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 18 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 30 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https:adan-ning.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" rel="self" type="application/rss+xml" /><item>
+    <title>算法与程序(第六章)</title>
+    <link>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A16/</link>
+    <pubDate>Tue, 30 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A16/</guid>
+    <description><![CDATA[分支限界法 分支限界法的基本思想 分支限界法与回溯法的不同 求解目标 回溯法求解目标是找出解空间树中满足约束条件所有解 分支限界法的求解目标则是找出满]]></description>
+</item>
+<item>
     <title>算法与程序(第五章)</title>
-    <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/</link>
+    <link>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/</link>
     <pubDate>Thu, 18 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/</guid>
+    <guid>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/</guid>
     <description><![CDATA[回溯法 回溯法 当需要找出问题的解集或者要求满足某些约束条件的最优解时，常使用回溯法 回溯法的基本方法就是搜索，是一种组织得井井有条的，能避免不必]]></description>
 </item>
 <item>
     <title>算法与程序(第四章)</title>
-    <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E7%A8%8B%E5%BA%8F4/</link>
+    <link>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E7%A8%8B%E5%BA%8F4/</link>
     <pubDate>Wed, 10 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E7%A8%8B%E5%BA%8F4/</guid>
+    <guid>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E7%A8%8B%E5%BA%8F4/</guid>
     <description><![CDATA[贪心算法 贪心算法的基本要素 贪心算法通过一系列选择来得到问题的解，所做的每个选择都是当前状态下局部最好选 择，即贪心选择。这种启发式的策略并不总]]></description>
 </item>
 <item>
     <title>算法与程序(第三章)</title>
-    <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A13/</link>
+    <link>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A13/</link>
     <pubDate>Mon, 25 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A13/</guid>
+    <guid>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A13/</guid>
     <description><![CDATA[动态规划 算法总体思想 如果能够保存已解决的子问题答案，而在需要时再找出以求得的答案，就可以避免大量重复计算，从而得到多项式时间算法 矩阵连乘问题]]></description>
 </item>
 <item>
     <title>算法与程序(第二章)</title>
-    <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A12/</link>
+    <link>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A12/</link>
     <pubDate>Tue, 12 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A12/</guid>
+    <guid>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A12/</guid>
     <description><![CDATA[分治法 思想 分+治+合 过程 分治法产生的子问题是原问题的较小模式 反复应用分治手段，可以使子问题规模不断减小 最终使子问题缩小到很容易直接求出其解 将]]></description>
 </item>
 <item>
     <title>算法与程序(第一章)</title>
-    <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%8A%98%E4%B8%8E%E8%AE%BE%E8%AE%A1/</link>
+    <link>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%8A%98%E4%B8%8E%E8%AE%BE%E8%AE%A1/</link>
     <pubDate>Tue, 05 Mar 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%8A%98%E4%B8%8E%E8%AE%BE%E8%AE%A1/</guid>
+    <guid>https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%8A%98%E4%B8%8E%E8%AE%BE%E8%AE%A1/</guid>
     <description><![CDATA[算法与程序 算法 是满足下述性质的指令序列: 输入:有零个或多个外部量作为算法的输入 输出:算法产生至少一个量作为输出 确定性:组成算法的每条指令是清]]></description>
 </item>
 </channel>

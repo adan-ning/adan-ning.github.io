@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>操作系统(第六章) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="操作系统(第六章)" />
+<meta property="og:description" content="设备管理 I/O系统组成 I/O设备：打印机和磁盘 I/O设备控制器 I/O通道 四级结构 $存储器 \rightarrow I/O通道 \rightarrow I/O控制器 \rightarrow I/O设备$ 总线 I/O控" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/" /><meta property="og:image" content="https:adan-ning.github.io" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-04-25T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https:adan-ning.github.io" /><meta name="twitter:title" content="操作系统(第六章)"/>
+<meta name="twitter:description" content="设备管理 I/O系统组成 I/O设备：打印机和磁盘 I/O设备控制器 I/O通道 四级结构 $存储器 \rightarrow I/O通道 \rightarrow I/O控制器 \rightarrow I/O设备$ 总线 I/O控"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/" /><link rel="prev" href="https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" /><link rel="next" href="https:adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A16/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "操作系统(第六章)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6\/"
+        },"genre": "posts","keywords": "操作系统","wordcount":  1655 ,
+        "url": "https:adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6\/","datePublished": "2024-04-25T00:00:00+00:00","dateModified": "2024-04-25T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">操作系统(第六章)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-25">2024-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1655 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#io系统组成">I/O系统组成</a></li>
+    <li><a href="#io控制方式4种">I/O控制方式(4种)</a>
+      <ul>
+        <li><a href="#cpu与外部设备之间信息交换方式">cpu与外部设备之间信息交换方式</a></li>
+      </ul>
+    </li>
+    <li><a href="#缓冲区">缓冲区</a>
+      <ul>
+        <li><a href="#缓冲的引入">缓冲的引入</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="设备管理">设备管理</h1>
+<h2 id="io系统组成">I/O系统组成</h2>
+<ol>
+<li>I/O设备：打印机和磁盘</li>
+<li>I/O设备控制器</li>
+<li>I/O通道</li>
+</ol>
+<p><strong>四级结构</strong></p>
+<p>$存储器 \rightarrow I/O通道 \rightarrow I/O控制器 \rightarrow I/O设备$</p>
+<ol start="4">
+<li>总线</li>
+</ol>
+<h2 id="io控制方式4种">I/O控制方式(4种)</h2>
+<h3 id="cpu与外部设备之间信息交换方式">cpu与外部设备之间信息交换方式</h3>
+<ol>
+<li>cpu与外部设备的关系</li>
+<li>传输信息的方式</li>
+</ol>
+<h4 id="程序io方式">程序I/O方式</h4>
+<ol>
+<li>定义：cpu通过执行测试指令判断I/O设备状态busy
+<ol>
+<li>0</li>
+<li>1</li>
+</ol>
+</li>
+<li>cpu与I/O串行工作</li>
+<li>每次只能传输一个字符</li>
+</ol>
+<h4 id="中断控制">中断控制</h4>
+<ol>
+<li>
+<p>定义：因为内部某些原因，cpu停止当前程序的执行而转去执行中断服务程序(I/O操作)，当中断程序执行完以后，又返回到中断的程序继续执行</p>
+</li>
+<li>
+<p>分类</p>
+<ol>
+<li>硬中断</li>
+<li>软中断</li>
+</ol>
+</li>
+<li>
+<p>中断的过程</p>
+<ol>
+<li>保存中断现场(入栈)
+<ol>
+<li>PSW(状态寄存器)</li>
+<li>PC(程序寄存器)</li>
+</ol>
+</li>
+<li>转入中断服务程序执行($中断向量 \rightarrow 入口地址$)</li>
+<li>返回中断(出栈)：$PC+1 \rightarrow PC$</li>
+</ol>
+<p>数据寄存器：存放一个字符</p>
+<p>cpu与I/O设备在启动中断操作的时候只串行，而其他都是并行</p>
+<p>$中断频率高 \rightarrow cpu的干预多$</p>
+</li>
+<li>
+<p>中断方式适用于打印机(字符设备)</p>
+</li>
+</ol>
+<h4 id="dma控制方式">DMA控制方式</h4>
+<ol>
+<li>
+<p>定义：在DMA控制器的控制下，完成cpu与I/O设备的信息交换</p>
+</li>
+<li>
+<p>DMA控制器的组成</p>
+<p>寄存器，控制逻辑与I/O设备的接口</p>
+<p>四个寄存器：DR(数据寄存器)，MAR(内存地址寄存器)，DC(数据计数器)，CR(命令/状态寄存器)</p>
+</li>
+<li>
+<p>传输用<strong>系统总线</strong></p>
+</li>
+<li>
+<p>cpu与I/O设备<strong>并行工作</strong>(周期的挪用)</p>
+<ol>
+<li>cpu执行简单指令(访问cpu寄存器)(几乎可以做到并行)</li>
+<li>cpu执行复杂指令(访问内存)(不可以并行)</li>
+</ol>
+</li>
+</ol>
+<p>中断驱动与DMA控制方式的区别</p>
+<ol>
+<li>产生中断的频率不同</li>
+<li>数据传输方式不同</li>
+</ol>
+<h4 id="io通道控制了解">I/O通道控制(了解)</h4>
+<p><a href="https://blog.csdn.net/sinat_31608641/article/details/119549053" target="_blank" rel="noopener noreffer ">I/O通道控制</a></p>
+<h2 id="缓冲区">缓冲区</h2>
+<h3 id="缓冲的引入">缓冲的引入</h3>
+<ol>
+<li>缓和CPU与I/O设备间速度不匹配的矛盾</li>
+<li>减少对CPU的中断频率,放宽对CPU中断响应时间的限制</li>
+<li>提高CPU和I/O设备之间的并行性</li>
+</ol>
+<h4 id="实现方法">实现方法</h4>
+<ol>
+<li>
+<p>内存(连续一片存储空间，作为缓冲区)</p>
+</li>
+<li>
+<p>寄存器</p>
+<p>例：在分页系统中：快表(联想寄存器)</p>
+</li>
+</ol>
+<h4 id="两种缓冲区数据块处理时间的计算">两种缓冲区(数据块处理时间的计算)</h4>
+<ol>
+<li>
+<p>单缓冲：设置一个与数据块大小相等的缓冲区</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031454133.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031454133.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031454133.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031454133.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031454133.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031454133.png" /></p>
+<p>处理过程</p>
+<ol>
+<li>T：从I/O设备输入到单缓冲的时间</li>
+<li>M：从单缓冲取出数据传送到内存工作区的时间</li>
+<li>C：cpu执行时间</li>
+</ol>
+<p>其中，T,M为串行工作，T,C并行工作</p>
+<p><strong>一个数据块处理：T+M+C</strong></p>
+<p><strong>多个数据块处理：MAX(T,C)+M</strong></p>
+<p>例：假设把磁盘上一个数据块中的信息输入一单缓冲区的时间T为100us,将缓冲区的数据传送到用户区的时间M为50us，CPU对这一块数据进行计算的时间C为50us。请问系统对一块数据的处理时间为多少</p>
+<p>解：</p>
+<p>单个为：100+50+50=200us</p>
+<p>例：设系统缓冲区和用户工作区均采用单缓冲区，从外设读入1个数据块到系统缓冲区的时间为100，从系统缓冲区读入1个数据块到用户工作区的时间为5，对用户工作区中的1个数据块进行分析的时间为90，问：进程从外设读入并分析2个数据块的最短时间是多少？</p>
+<p>解：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031501391.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031501391.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031501391.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031501391.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031501391.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031501391.png" /></p>
+<p>$T_1+M_1+T_2+M_2+C_2$=100+5+100+5+90=300us</p>
+<p>例：已知有包括10个数据块的文件用单缓冲进行数据处理，其中从磁盘输入到缓冲区的时间是15us；再从缓冲区传送到内存时间为5us，最后对数据块执行时间为1us</p>
+<p>解：</p>
+<p>$T_1+M_1+C_{10}+(10-1) \times 20$=15+5+1+9 X 20=201us</p>
+</li>
+<li>
+<p>双缓冲</p>
+<ol>
+<li>缓冲区1</li>
+<li>缓冲区2</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031511914.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031511914.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031511914.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405031511914.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031511914.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405031511914.png" /></p>
+<p>处理过程</p>
+<ol>
+<li>T：从I/O设备输入到单缓冲的时间</li>
+<li>M：从单缓冲取出数据传送到内存工作区的时间</li>
+<li>C：cpu执行时间</li>
+</ol>
+<p>其中，T,M为并行工作，T,C并行工作</p>
+<p><strong>一个数据块处理：T+M+C</strong></p>
+<p><strong>多个数据块处理：MAX(T,M+C)</strong></p>
+<p>例：假设把磁盘上一个数据块中的信息输入一<strong>双缓冲区</strong>的时间T为100us,将缓冲区的数据传送到用户区的时间M为50us，CPU对这一块数据进行计算的时间C为50us。请问系统对一块数据的处理时间为多少？</p>
+<p>单个为：100+50+50=200us</p>
+<p>例：设系统缓冲区和用户工作区均采用双缓冲区，从外设读入1个数据块到系统缓冲区的时间为100，从系统缓冲区读入1个数据块到用户工作区的时间为5，对用户工作区中的1个数据块进行分析的时间为90，问：进程从外设读入并分析2个数据块的最短时间是多少？</p>
+<p>解：</p>
+<p>$T_1+T_2+M_2+C_2$=100+100+5+90=295us</p>
+<p>例：已知有包括10个数据块的文件用双缓冲进行数据处理，其中从磁盘输入到缓冲区的时间是15us；再从缓冲区传送到内存时间为5us，最后对数据块执行时间为1us</p>
+<p>解：</p>
+<p>$T_1+T \times 9 +M_{10}+C_{10}$=150+6=156us</p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-04-25</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/" data-title="操作系统(第六章)" data-hashtags="操作系统"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/" data-hashtag="操作系统"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/" data-title="操作系统(第六章)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/" data-title="操作系统(第六章)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/" data-title="操作系统(第六章)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" class="prev" rel="prev" title="计算机组成(第五章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>计算机组成(第五章)</a>
+            <a href="/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A16/" class="next" rel="next" title="算法与程序(第六章)">算法与程序(第六章)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>计算机组成(第五章) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="计算机组成(第五章)" />
+<meta property="og:description" content="中央处理器 CPU的功能和组成 当代主流计算机所遵循的仍然是冯.诺依曼的“存储程序、程序控制”思想 程序告诉计算机：应该逐步执行什么操作；在什么地" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" /><meta property="og:image" content="https:adan-ning.github.io" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-04-25T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https:adan-ning.github.io" /><meta name="twitter:title" content="计算机组成(第五章)"/>
+<meta name="twitter:description" content="中央处理器 CPU的功能和组成 当代主流计算机所遵循的仍然是冯.诺依曼的“存储程序、程序控制”思想 程序告诉计算机：应该逐步执行什么操作；在什么地"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" /><link rel="prev" href="https:adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" /><link rel="next" href="https:adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "计算机组成(第五章)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:adan-ning.github.io\/posts\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865\/"
+        },"genre": "posts","keywords": "计算机组成原理","wordcount":  11126 ,
+        "url": "https:adan-ning.github.io\/posts\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865\/","datePublished": "2024-04-25T00:00:00+00:00","dateModified": "2024-04-25T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">计算机组成(第五章)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机组成原理</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-25">2024-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;11126 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;23 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#cpu的功能和组成">CPU的功能和组成</a>
+      <ul>
+        <li><a href="#cpu的功能">CPU的功能</a></li>
+        <li><a href="#cpu的基本组成">CPU的基本组成</a></li>
+        <li><a href="#cpu中的主要寄存器">CPU中的主要寄存器</a></li>
+        <li><a href="#操作控制器与时序产生器">操作控制器与时序产生器</a></li>
+      </ul>
+    </li>
+    <li><a href="#指令周期">指令周期</a>
+      <ul>
+        <li><a href="#指令周期的基本概念">指令周期的基本概念</a></li>
+        <li><a href="#cla指令的指令周期">CLA指令的指令周期</a></li>
+        <li><a href="#add指令的指令周期">ADD指令的指令周期</a></li>
+        <li><a href="#sta指令的指令周期">STA指令的指令周期</a></li>
+        <li><a href="#nop指令和jmp指令的指令周期">NOP指令和JMP指令的指令周期</a></li>
+      </ul>
+    </li>
+    <li><a href="#时序产生器和控制方式">时序产生器和控制方式</a>
+      <ul>
+        <li><a href="#时序信号的作用和体制">时序信号的作用和体制</a></li>
+        <li><a href="#cpu的控制方式">CPU的控制方式</a></li>
+      </ul>
+    </li>
+    <li><a href="#微程序控制器">微程序控制器</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#微程序设计技术">微程序设计技术</a></li>
+    <li><a href="#硬布线控制器">硬布线控制器</a></li>
+    <li><a href="#传统cpu">传统CPU</a></li>
+    <li><a href="#流水cpu">流水CPU</a>
+      <ul>
+        <li><a href="#并行处理技术">并行处理技术</a></li>
+        <li><a href="#流水cpu的结构">流水CPU的结构</a></li>
+        <li><a href="#流水线中的主要问题">流水线中的主要问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#risc-cpu">RISC CPU</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#cpu性能评价">CPU性能评价</a>
+      <ul>
+        <li><a href="#cpu性能公式">CPU性能公式</a></li>
+        <li><a href="#性能评价标准">性能评价标准</a></li>
+      </ul>
+    </li>
+    <li><a href="#本章小结">本章小结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="中央处理器">中央处理器</h1>
+<h2 id="cpu的功能和组成">CPU的功能和组成</h2>
+<p>当代主流计算机所遵循的仍然是<strong>冯.诺依曼</strong>的“<strong>存储程序、程序控制</strong>”思想</p>
+<p>程序告诉计算机：<strong>应该逐步执行什么操作；在什么地方找到用来操作的数据，结果存到何处</strong>等</p>
+<p>中央处理器是控制计算机自动完成取出指令和执行指令任务的部件。它是计算机的核心部件，通常简称为CPU（Central Processing Unit）</p>
+<h3 id="cpu的功能">CPU的功能</h3>
+<ol>
+<li>
+<p>**指令控制 **</p>
+<p>保证机器按程序规定的顺序取出执行</p>
+</li>
+<li>
+<p><strong>操作控制</strong></p>
+<p>CPU产生每条指令所对应的操作信号，并把各种操作信号送往相应的部件，从而控制这些部件按指令的要求进行动作</p>
+</li>
+<li>
+<p>**时间控制 **</p>
+<p>对各种操作的实施时间进行定时</p>
+</li>
+<li>
+<p><strong>数据加工</strong></p>
+<p>对数据进行算术运算和逻辑运算处理</p>
+</li>
+</ol>
+<h3 id="cpu的基本组成">CPU的基本组成</h3>
+<ol>
+<li><strong>控制器</strong>完成对整个计算机系统操作的协调与指挥
+<ol>
+<li>控制机器从内存中<strong>取出一条指令</strong>，并指出下一条指令在内存中的位置</li>
+<li>对指令进行<strong>译码</strong>，并<strong>产生相应的操作控制信号</strong>，送往相应的部件，启动规定的动作</li>
+<li>指挥并控制CPU、内存与输入/输出（I/O）设备之间数据<strong>流动的方向</strong></li>
+</ol>
+</li>
+<li><strong>运算器</strong>是数据加工处理部件，所进行的全部操作由控制器发出的控制信号指挥
+<ol>
+<li>执行所有的算术运算</li>
+<li>执行所有的逻辑运算，并进行逻辑测试</li>
+</ol>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021314814.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021314814.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021314814.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021314814.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021314814.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021314814.png" /></p>
+<h3 id="cpu中的主要寄存器">CPU中的主要寄存器</h3>
+<ol>
+<li>
+<p><strong>数据缓冲寄存器(DR)</strong></p>
+<p>暂时存放由内存读出或写入的指令或数据字</p>
+</li>
+<li>
+<p><strong>指令寄存器（IR）</strong></p>
+<p>保存当前正在执行的一条指令</p>
+</li>
+<li>
+<p><strong>程序计数器（PC）</strong></p>
+<p>确定下一条指令的地址</p>
+</li>
+<li>
+<p><strong>地址寄存器（AR）</strong></p>
+<p>保存当前CPU所访问的内存单元的地址</p>
+</li>
+<li>
+<p><strong>通用寄存器组</strong></p>
+<p>为ALU提供工作区</p>
+</li>
+<li>
+<p><strong>状态条件寄存器（PSW）</strong></p>
+<p>保存由算术和逻辑指令的结果建立的各种条件码</p>
+</li>
+</ol>
+<h3 id="操作控制器与时序产生器">操作控制器与时序产生器</h3>
+<ol>
+<li><strong>操作控制器</strong>在各寄存器之间建立数据通路（传送信息的通路）</li>
+<li><strong>操作控制器的功能</strong>: 就是根据指令操作码和时序信号，产生各种操作控制信号，以便正确地建立数据通路，从而完成取指令和执行指令的控制
+<ol>
+<li><strong>硬布线控制器</strong></li>
+<li><strong>微程序控制器</strong></li>
+</ol>
+</li>
+<li><strong>时序产生器</strong>产生并发出计算机所需要的时序控制信号</li>
+</ol>
+<h2 id="指令周期">指令周期</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021319692.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021319692.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021319692.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021319692.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021319692.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021319692.png" /></p>
+<h3 id="指令周期的基本概念">指令周期的基本概念</h3>
+<ol>
+<li>
+<p>**指令周期 **:   CPU从内存取出一条指令并执行完这条指令的时间总和</p>
+<p><strong>取指时间＋执行指令时间</strong></p>
+</li>
+<li>
+<p><strong>CPU周期</strong> : 又称机器周期（总线周期），CPU访问内存所花的时间较长，因此用CPU从内存读取一条指令字的所需的<strong>最短时间</strong>来定义</p>
+</li>
+<li>
+<p><strong>T周期</strong> :  通常称为节拍脉冲。一个CPU周期包含若干个T周期</p>
+</li>
+</ol>
+<p><strong>相互关系：</strong></p>
+<p>1个指令周期 = 若干个CPU周期</p>
+<p>1个CPU周期 = 若干T周期</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021321101.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021321101.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021321101.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021321101.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021321101.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021321101.png" /></p>
+<h4 id="指令运行的基本过程">指令运行的基本过程</h4>
+<ol>
+<li>
+<p>取指令阶段</p>
+<p>取指令阶段完成的任务是将现行指令从主存中取出来并送至指令寄存器中去。具体的操作如下：</p>
+<ol>
+<li>将程序计数器（PC）中的内容送至存储器地址寄存器（MAR），并送地址总线（AB）。</li>
+<li>由控制单元（CU）经控制总线（CB）向存储器发读命令</li>
+<li>从主存中取出的指令通过数据总线（DB）送到存储器数据寄存器（MDR）。</li>
+<li>将MDR的内容送至指令寄存器（IR）中。</li>
+<li>将PC的内容递增，为取下一条指令做好准备</li>
+</ol>
+<p>以上这些操作对任何一条指令来说都是必须要执行的操作，所以称为<strong>公共操作</strong>。完成取指阶段任务的时间称为取指周期</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021323389.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021323389.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021323389.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021323389.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021323389.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021323389.png" /></p>
+</li>
+<li>
+<p>分析取数阶段</p>
+<p>取出指令后，指令译码器ID可识别和区分出不同的指令类型。此时计算机进入分析取数阶段，以获取操作数。由于各条指令功能不同，寻址方式也不同，所以分析取数阶段的操作是各不相同的</p>
+<p>完成分析阶段任务的时间又可以细分为间址周期、取数周期等</p>
+</li>
+<li>
+<p>执行阶段</p>
+<p>执行阶段完成指令规定的各种操作，形成稳定的运算结果，并将其存储起来。完成执行阶段任务的时间称为执行周期</p>
+<p>计算机的基本工作过程就是<strong>取指令、取数、执行指令，然后再取下一条指令</strong>……如此周而复始，直至遇到停机指令或外来的干预为止</p>
+</li>
+</ol>
+<h4 id="指令的微操作序列">指令的微操作序列</h4>
+<p>控制器在实现一条指令的功能时，总要把每条指令分解成为一系列时间上先后有序的最基本、最简单的微操作，即微操作序列。微操作序列是与CPU的内部数据通路密切相关的，不同的数据通路就有不同的微操作序列</p>
+<p>假设规定各部件用大写字母表示，字母加下标in表示该部件的接收控制信号，实际上就是该部件的输入开门信号；字母加下标out表示该部件的发送控制信号，实际上就是该部件的输出开门信号。例如：$MAR_{IN}、PC_{OUT}$等就是这类微操作信号</p>
+<p>加法指令ADD (R0),R1</p>
+<p>这条指令完成的功能是把R0的内容作为地址送到主存以取得一个操作数，再与R1中的内容相加，最后将结果送回主存中。即实现：</p>
+<p>$((R0))+(R1)→(R0)$</p>
+<ol>
+<li>
+<p>取指周期</p>
+<p>取指周期完成的微操作序列是公共的操作，与具体指令无关</p>
+<ol>
+<li>$PC_{OUT}和MAR_{IN}$有效，完成PC经CPU内部总线送至MAR的操作，记作PC→MAR</li>
+<li>通过控制总线向主存发读命令，记作Read；</li>
+<li>存储器通过数据总线将MAR所指单元的内容（指令）送至MDR，记作M→MDR；</li>
+<li>$MDR_{OUT}$和$IR_{IN}$有效，将MDR的内容送至指令寄存器IR，记作MDR→IR。至此，指令被从主存中取出，其操作码字段开始控制CU</li>
+<li>使PC内容加1，记作PC+1→PC</li>
+</ol>
+</li>
+<li>
+<p>取数周期</p>
+<p>取数周期要完成取操作数的任务，被加数在主存中，加数已放在寄存器$R_1$中</p>
+<ol>
+<li>$R0_{OUT}$和$MAR_{IN}$有效，完成将被加数地址送至MAR的操作，记作$R_0$→MAR；</li>
+<li>向主存发读命令，记作Read</li>
+<li>存储器通过数据总线将MAR所指单元的内容（数据）送至MDR，同时$MDR_{OUT}$和$Y_{IN}$有效，记作M→MDR→Y</li>
+</ol>
+</li>
+<li>
+<p>执行周期</p>
+<p>执行周期完成加法运算的任务，并将结果写回主存</p>
+<ol>
+<li>$R1_{OUT}$和$ALU_{IN}$有效，同时CU向ALU发“ADD”控制信号，使R1的内容和Y的内容相加，结果送寄存器Z，记作R1+Y→Z</li>
+<li>$Z_{OUT}$和$MDR_{IN}$有效，将运算结果送寄存器MDR，记作Z→MDR</li>
+<li>向主存发写命令，记作Write</li>
+</ol>
+</li>
+</ol>
+<h5 id="5条典型指令构成的简单程序">5条典型指令构成的简单程序</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338112.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338112.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338112.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338112.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338112.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338112.png" /></p>
+<h3 id="cla指令的指令周期">CLA指令的指令周期</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338819.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338819.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338819.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338819.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338819.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338819.png" /></p>
+<h4 id="取出cla指令">取出CLA指令</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338623.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338623.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338623.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338623.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338623.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021338623.png" /></p>
+<h4 id="执行cla指令">执行CLA指令</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021339973.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021339973.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021339973.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021339973.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021339973.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021339973.png" /></p>
+<h3 id="add指令的指令周期">ADD指令的指令周期</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021339128.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021339128.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021339128.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021339128.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021339128.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021339128.png" /></p>
+<h4 id="取出并执行add指令">取出并执行ADD指令</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021340669.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021340669.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021340669.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021340669.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021340669.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021340669.png" /></p>
+<h3 id="sta指令的指令周期">STA指令的指令周期</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021341144.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021341144.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021341144.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021341144.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021341144.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021341144.png" /></p>
+<h4 id="取出并执行sta指令">取出并执行STA指令</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342883.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342883.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342883.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342883.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342883.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342883.png" /></p>
+<h3 id="nop指令和jmp指令的指令周期">NOP指令和JMP指令的指令周期</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342719.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342719.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342719.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342719.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342719.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342719.png" /></p>
+<h4 id="取出并执行jmp指令">取出并执行JMP指令</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342543.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342543.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342543.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342543.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342543.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021342543.png" /></p>
+<h2 id="时序产生器和控制方式">时序产生器和控制方式</h2>
+<p>用二进制码表示的指令和数据都放在内存里，那么CPU是怎样识别出它们是数据还是指令呢?</p>
+<p><strong>从时间上来说</strong>: 取指令事件发生在指令周期的第一个CPU周期中，即发生在“取指令”阶段，而取数据事件发生在指令周期的后面几个CPU周期中，即发生在“执行指令”阶段</p>
+<p><strong>从空间上来说</strong>: 如果取出的代码是指令，那么一定经DR送往指令寄存器IR，如果取出的代码是数据，那么一定送往运算器。</p>
+<p><strong>时间控制对计算机来说是非常重要的！</strong></p>
+<h3 id="时序信号的作用和体制">时序信号的作用和体制</h3>
+<p>计算机的协调动作需要时间标志，而且需要采用多级时序体制。而时间标志则用<strong>时序信号</strong>来体现</p>
+<p><strong>硬布线控制器</strong>中，时序信号往往采用<strong>主状态周期-节拍电位-节拍脉冲</strong>三级体制</p>
+<p><strong>微程序控制器</strong>中，时序信号则一般采用<strong>节拍电位-节拍脉冲</strong>二级体制</p>
+<h4 id="时序产生器">时序产生器</h4>
+<p><strong>一、 概念</strong></p>
+<ol>
+<li>
+<p>时序部件：计算机的机内时钟。它用其产生的周期状态，节拍电位及时标脉冲去对指令周期进行时间划分，刻度和标定</p>
+</li>
+<li>
+<p>指令周期：在计算机中从指令的读取到指令的执行完成，执行一条指令所需要的时间，称为指令周期</p>
+<p>指令周期通常由若干个CPU周期来表示，CPU周期也称为机器周期</p>
+<p>由于CPU内部的操作速度较快，而CPU访问一次内存所花的时间较长，通常用<strong>存储周期为基础</strong>来规定CPU周期</p>
+</li>
+</ol>
+<p><strong>二、3级时序信号</strong></p>
+<ol>
+<li>周期
+<ol>
+<li>在一个控制阶段内均持续起作用的信号；</li>
+<li>通常用<strong>周期状态寄存器</strong>来标志和指明某某周期控制</li>
+<li>指令周期可分为取指周期、分析周期、执行周期</li>
+</ol>
+</li>
+<li>节拍
+<ol>
+<li>把一个机器周期分成若干个<strong>相等</strong>的时间段，每一个时间段对应一个电位信号，称节拍电位</li>
+<li>一般都以<strong>能保证ALU进行一次运算操作</strong>作为<strong>一拍</strong>电位的时间宽度</li>
+</ol>
+</li>
+<li>时标工作脉冲
+<ol>
+<li>及时改变标志状态</li>
+<li>时标脉冲的<strong>宽度</strong>一般为节拍电位宽度的1/N，只要能保证所有的触发器都能可靠地，稳定地翻转即可</li>
+</ol>
+</li>
+</ol>
+<p><strong>三、3级时序信号的关系</strong></p>
+<ol>
+<li>
+<p>一台计算机机内的控制信号一般均由若干个周期状态，若干个节拍电位及若干个时标脉冲这样3级控制时序信号定时完成。</p>
+</li>
+<li>
+<p>3级控制时序信号的宽度均成正整数倍同步关系</p>
+<p>周期状态之间，节拍电位之间，时标脉冲之间既不容许有重叠交叉，又不容许有空白间隙，应该是能一个接一个地准确连接，一个降落另一个升起而准确切换的同步信号</p>
+</li>
+</ol>
+<h4 id="主状态周期-节拍电位-节拍脉冲">主状态周期-节拍电位-节拍脉冲</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021350746.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021350746.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021350746.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021350746.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021350746.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021350746.png" /></p>
+<h5 id="时序产生器-1">时序产生器</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021350890.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021350890.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021350890.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021350890.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021350890.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021350890.png" /></p>
+<h4 id="节拍电位-节拍脉冲">节拍电位-节拍脉冲</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021352457.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021352457.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021352457.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021352457.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021352457.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021352457.png" /></p>
+<p>数据准备好后，以电位的方式送触发器</p>
+<p>控制信号来到后，用一个脉冲信号把数据装入触发器</p>
+<h3 id="cpu的控制方式">CPU的控制方式</h3>
+<ol>
+<li>控制器的控制方式：形成控制不同微操作序列的时序控制信号的方法</li>
+<li>控制方式的分类
+<ol>
+<li>同步控制方式</li>
+<li>异步控制方式</li>
+<li>同异步联合控制方式</li>
+</ol>
+</li>
+</ol>
+<h4 id="同步控制方式">同步控制方式</h4>
+<p><strong>一、同步控制方式</strong></p>
+<ol>
+<li>含义：又称为固定时序控制方式或无应答控制方式。任何指令的执行或指令中每个微操作的执行都受事先安排好的时序信号的控制</li>
+<li>每个周期状态中产生统一数目的节拍电位及时标工作脉冲</li>
+<li>以最复杂指令的实现需要为基准</li>
+<li>优点：设计简单，操作控制容易实现</li>
+<li>缺点：效率低</li>
+</ol>
+<h5 id="完全同步控制方式">完全同步控制方式</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021355405.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021355405.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021355405.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021355405.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021355405.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021355405.png" /></p>
+<h5 id="异步控制方式">异步控制方式</h5>
+<p><strong>二、异步控制方式</strong></p>
+<ol>
+<li>含义：可变时序控制方式或应答控制方式。执行一条指令需要多少节拍，不作统一的规定，而是根据每条指令的具体情况而定，需要多少，控制器就产生多少时标信号</li>
+<li>特点：每一条指令执行完毕后都必须向控制时序部件发回一个回答信号，控制器收到回答信号后，才开始下一条指令的执行</li>
+<li>优点：指令的运行效率高</li>
+<li>缺点：控制线路比较复杂</li>
+<li><strong>异步工作方式一般采用两条定时控制线来实现</strong>。我们把这两条线称为“请求”线和“回答”线。当系统中两个部件A和B进行数据交换时，若A发出“请求”信号，则必须有B的“回答”信号进行应答，这次操作才是有效的，否则无效</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021356633.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021356633.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021356633.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021356633.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021356633.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021356633.png" /></p>
+<p>一般采用两条定时控制线：“请求”线和“回答”线</p>
+<h5 id="联合控制方式">联合控制方式</h5>
+<p><strong>三、同步，异步联合控制方式</strong></p>
+<ol>
+<li>含义：同步控制和异步控制相结合的方式即联合控制方式，区别对待不同指令</li>
+<li>一般的设计思想是，在功能部件<strong>内部</strong>采用同步式，而在功能部件<strong>之间</strong>采用异步式，并且在硬件实现允许的情况下，尽可能多地采用异步控制</li>
+</ol>
+<h2 id="微程序控制器">微程序控制器</h2>
+<ol>
+<li>
+<p>微程序控制器同硬布线控制器相比较，具有<strong>规整性、灵活性、可维护性</strong>等一系列优点</p>
+</li>
+<li>
+<p>它利用<strong>软件方法</strong>（微程序设计技术）来设计硬件</p>
+</li>
+<li>
+<p>微程序控制的<strong>基本思想</strong>就是把操作控制信号编成所谓的“微指令”，存放到一个只读存储器里（控制存储器CM）</p>
+<p>当机器运行时，一条又一条地读出这些微指令，从而产生全机所需要的各种操作控制信号，是相应部件执行所规定的操作</p>
+</li>
+</ol>
+<h4 id="微命令--指令系统">微命令 → 指令系统</h4>
+<ol>
+<li>
+<p>处理器内部可以分为：<strong>控制部件</strong>和<strong>执行部件</strong></p>
+</li>
+<li>
+<p><strong>微命令</strong>：控制部件向执行部件发出的控制命令</p>
+</li>
+<li>
+<p><strong>微操作</strong>：执行部件接受微命令后所进行的操作</p>
+<p>（微操作在执行部件中是<strong>最基本</strong>的操作）</p>
+</li>
+<li>
+<p><strong>微指令</strong>：实现一定操作功能的一组微命令</p>
+</li>
+<li>
+<p><strong>微程序</strong>：实现一条机器指令功能的微指令序列</p>
+</li>
+</ol>
+<p>指令系统＝所有指令，指令＝微程序</p>
+<p>微程序＝若干微指令，微指令＝一组微命令</p>
+<p>微命令→微操作</p>
+<h4 id="机器指令与微指令">机器指令与微指令</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021404431.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021404431.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021404431.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021404431.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021404431.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021404431.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021404019.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021404019.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021404019.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021404019.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021404019.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021404019.png" /></p>
+<h2 id="微程序设计技术">微程序设计技术</h2>
+<p><strong>微指令结构的确定</strong>是微程序设计的关键。</p>
+<p>微指令结构的设计的目标是：</p>
+<ol>
+<li>有利于缩短微指令字的长度</li>
+<li>有利于减少控制存储器的容量</li>
+<li>有利于提高微程序的执行速度</li>
+<li>有利于对微指令的修改</li>
+<li>有利于提高微程序设计的灵活性</li>
+</ol>
+<p><strong>一、微指令编码</strong></p>
+<p>微命令编码就是对微指令中的操作控制字段采用的表示方法。通常有以下三种方法</p>
+<ol>
+<li>
+<p><strong>直接表示法</strong></p>
+<p>其特点是操作控制字段中的 每一位代表一个微命令。这种方法的优点是简单直观，其输出直接用于控制。缺点是微指令字较长，因而使控制存储器容量较大</p>
+</li>
+<li>
+<p><strong>编码表示法</strong></p>
+<p>编码表示法是把一组相斥性的微命令信号组成一个小组(即一个字段) ，然后通过小组(字段）译码器对每一个微命令信号进行译码 ，译码输出作为操作控制信号</p>
+</li>
+<li>
+<p><strong>混合表示法</strong></p>
+<p>这种方法是把直接表示法与字段编码法混合使用，以便能综合考虑指令字长、灵活性、执行微程序速度等方面的要求</p>
+<p>另外 在微指令中还可附设一个常数字段</p>
+</li>
+</ol>
+<p><strong>二、微地址的形成方法</strong></p>
+<p>微指令执行的顺序控制问题，实际上是如何确定下一条微指令的地址问题。通常，产生后继微地址有两种方法：</p>
+<ol>
+<li>
+<p><strong>计数器方式</strong></p>
+<p>这种方法同用程序器计数来产生机器指令地址的方法相类似。</p>
+<p>在顺序执行微指令时，后继微地址由现行微地址加上一个增量来产生；在非顺序执行微指令时，必须通过转移方式，使现行微指令执行后，转去执行指定后继微地址的下一条微指令</p>
+<p>在这种方法中，微地址寄存器通常改为计数器。为此，顺序执行的微指令序列就必须安排在控制存储器的连续单元中</p>
+<p>计数器方式的基本特点是：微指令的顺序控制字段较短，微地址产生机构简单。但是多路并行转移功能较弱，速度较慢，灵活性较差</p>
+</li>
+<li>
+<p>多路转移方式</p>
+<p>一条微指令具有<strong>多个转移分支的能力</strong>称为多路转移</p>
+<p>在多路转移方式中，当微程序不产生分支时，后继微地直接由微指令的顺序控制字段给出；当微程序出现分支时，有若干“后选”微地址可供选择：即按顺序控制字段的“判别测试”标志和“状态条件”信息来选择其中一个微地址。“状态条件”有n位标志，可实现微程序2N路转移，涉及微地址寄存器的n位</p>
+<p>多路转移方式的<strong>特点</strong>是：能以较短的顺序控制字段配合，实现多路并行转移，灵活性好，速度较快，但转移地址逻辑需要用组合逻辑方法设计</p>
+</li>
+</ol>
+<p>**三、微指令格式 **</p>
+<p>微指令的编译方法是决定微指令格式的主要因素</p>
+<p>微指令的格式大体分成两类：<strong>水平型微指令和垂直型微指令</strong></p>
+<ol>
+<li>
+<p>水平型微指令</p>
+<p><strong>一次能定义并执行多个并行操作微命令的微指令</strong>，叫做水平型微指令。 其一般格式如下</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021412624.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021412624.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021412624.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021412624.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021412624.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021412624.png" /></p>
+<p>按照控制字段的编码方法不同，水平型微指令又分为三种：全水平型(不译法)微指令，字段译码法水平型微指令，以及直接和译码相混合的水平型微指令</p>
+</li>
+<li>
+<p>垂直型微指令</p>
+<p>微指令中设置微操作码字段，采用<strong>微操作码编译法</strong>，由微操作码规定微指令的功能 ，称为垂直型微指令</p>
+<p>其结构类似于机器指令的结构。它有操作码，在一条微指令中只有1—2个微操作命令，每条微指令的功能简单，因此，实现一条机器指令的微程序要比水平型微指令编写的微程序长得多。它是采用较长的微程序结构去换取较短的微指令结构</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021413847.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021413847.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021413847.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021413847.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021413847.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021413847.png" /></p>
+</li>
+</ol>
+<p>**四、 动态微程序设计 **</p>
+<p>微程序设计技术有<strong>静态微程序设计和动态微程序设计</strong>之分</p>
+<ol>
+<li>
+<p>静态微程序设计</p>
+<p>对应于一台计算机的机器指令<strong>只有一组微程序</strong>，而且这一组微程序设计好之后，一般无须改变而且也不好改变，这种微程序设计技术称为静态微程序设计</p>
+</li>
+<li>
+<p>动态微程序设计</p>
+<p>当采用EPROM作为控制存储器时，还可以通过<strong>改变微指令和微程序来改变机器的指令系统</strong>，这种微程序设计技术称为动态微程序设计。采用动态微程序设计时，微指令和微程序可以根据需要加以改变，因而可在一台机器上实现不同类型的指令系统。这种技术又称为仿真其他机器指令系统，以便扩大机器的功能</p>
+</li>
+</ol>
+<h2 id="硬布线控制器">硬布线控制器</h2>
+<ol>
+<li>硬布线控制器把控制部件看作为产生专门固定时序控制信号的逻辑电路（以<strong>使用最少元件和取得最高操作速度</strong>为设计目标）</li>
+<li><strong>硬布线</strong>控制的优点：速度<strong>较快</strong>；</li>
+<li>缺点：不容易修改添加新功能</li>
+<li><strong>微程序</strong>控制的优点：具有<strong>规整性、灵活性、可维护性</strong>等；</li>
+<li>缺点：采用存储程序原理，需要执行多条微指令，速度较慢</li>
+</ol>
+<p>硬布线控制器设计思想：</p>
+<ol>
+<li>采用适宜指令格式，合理分配指令操作码；</li>
+<li>确定机器周期、节拍与主频；</li>
+<li>确定机器周期数及一周期内的操作</li>
+<li>进行指令综合； 综合所有指令的每一个操作命令，写出逻辑表达式，并进行化简</li>
+<li>明确组合逻辑电路。 将简化后的逻辑表达式用组合逻辑电路来实现。操作命令的控制信号先用逻辑表达式列出，进行化简，考虑各种条件的约束，合理选用逻辑门电路、触发器等器件，采用组合逻辑电路的设计方法产生控制信号</li>
+</ol>
+<p>总之，控制信号的设计与实现，技巧性较强，一些专门的开发系统或工具供逻辑设计使用，但是，对全局的考虑主要依靠设计人员的智慧和经验实现</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021419509.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021419509.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021419509.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021419509.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021419509.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021419509.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021420198.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021420198.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021420198.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021420198.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021420198.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021420198.png" /></p>
+<h2 id="传统cpu">传统CPU</h2>
+<ol>
+<li>M6800CPU
+<ol>
+<li>是一个比较典型的单总线结构的微处理器</li>
+<li>M6800CPU是一种8位微处理器，采用单一的5V电源。时钟脉冲采用两相(φ1，φ2)，主频为1MHz，由外面加入CPU</li>
+<li>M6800的CPU主要包括8位的ALU，16位的程序计数器、16位的堆栈指示器和16位的变址寄存器，两个8位的累加器和一个8位的状态条件码寄存器，一个8位的指令寄存器以及指令译码与控制部件(即操作控制器)。此外还有一个8位的数据缓冲寄存器和一个16位的地址缓冲寄存器</li>
+<li>ALU部件执行算术运算和逻辑操作，它们包括逻辑“与”、逻辑“或”、逻辑“异或”、求补、比较、加法、减法、十进制调整等</li>
+<li>在M6800中，主存地址和外设地址是统一编址的，因此，在65536个地址中有一部分是为外围设备使用的</li>
+</ol>
+</li>
+<li>Intel 8088CPU
+<ol>
+<li>Intel 8088是一种通用的准16位微处理器，其内部结构为16位，与外部交换的数据为8位。它可以处理16位数据(具有16位运算指令，包括乘除法指令)，也可处理8位数据。它有20条地址线，直接寻址能力达到1M字节</li>
+<li>CPU 从功能上来说分成总线接口单元BIU和执行单元EU两大部分</li>
+<li>BIU负责与存储器和外围设备接口，即8088 CPU与存储器和外围设备之间的信息传送，都是由BIU进行的</li>
+<li>EU 部分负责指令的执行。取指部分与执行指令部分是独立并行工作的，在一条指令的执行过程中，可取出下一条(或多条)指令，在指令流队列寄存器中排队。在一条指令执行完以后就可以立即执行下一条指令，减少了CPU为取指令而等待的时间，提高了系统的运行速度</li>
+</ol>
+</li>
+<li>IBM 370CPU
+<ol>
+<li>32位CPU</li>
+<li>ALU部件按功能不同分为如下三个子部件：(1)定点运算，包括整数计算和有效地址的计算；(2)浮点运算；(3)可变长运算，包括十进制算术运算和字符串操作</li>
+<li>为了存放地址和数据，使用了两组独立的可编址寄存器，16个通用寄存器用来存放操作数和运算结果，且可用作变址寄存器。4个浮点寄存器用于浮点运算。数据寄存器DR、地址寄存器AR、指令寄存器IR是标准化的</li>
+</ol>
+</li>
+<li>Intel 80486CPU
+<ol>
+<li>32位CPU</li>
+<li>通过采用流水技术，以及微程序控制和硬布线逻辑控制相结合的方式，进一步缩短可变长指令的译码时间，达到基本指令可以在一个时钟周期内完成</li>
+<li>486芯片内部包含一个8KB的数据和指令混合性cache，为频繁访问的指令和数据提供快速的内部存储，从而使系统总线有更多的时间用于其他控制</li>
+<li>486芯片内部包含了增强性80387协处理器，称为浮点运算部件(FPU)。由于FPU功能扩充，且放在CPU内部，使引线缩短，故速度比80387提高了3—5倍</li>
+<li>486 CPU的内部数据总线宽度为64位，这也是它缩短指令周期的一个原因。而外部数据总线的宽度也可以自动转换</li>
+<li>地址信号线扩充到32位，可以处理4GB(232字节)的物理存储空间。如果利用虚拟存储器，其存储空间达64TB($2^{46}$字节)</li>
+</ol>
+</li>
+</ol>
+<h2 id="流水cpu">流水CPU</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021424354.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021424354.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021424354.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021424354.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021424354.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021424354.png" /></p>
+<h3 id="并行处理技术">并行处理技术</h3>
+<ol>
+<li>
+<p>并行性（Parallelism）</p>
+<p>在同一时刻或是同一时间间隔内完成两种或两种以上性质相同或不相同的工作</p>
+<ol>
+<li>同时性（Simultaneity）：同一时刻发生的并行性</li>
+<li>并发性（Concurrency）：同一个时间间隔内发生的并行性</li>
+</ol>
+</li>
+<li>
+<p>并行性的等级</p>
+<ol>
+<li>指令内部并行：微操作之间</li>
+<li>指令级并行（ILP：Instruction Level Parallel）</li>
+<li>线程级并行（TLP：Thread Level Parallel ）</li>
+<li>程序级并行</li>
+<li>系统级并行：分布式系统、多机系统、机群系统</li>
+</ol>
+</li>
+</ol>
+<h5 id="提高并行性的技术途径">提高并行性的技术途径</h5>
+<ol>
+<li>
+<p>时间重叠（Time-interleaving）＝时间并行</p>
+<p>多个过程在时间上相互错开，轮流重叠地使用同一套硬件设备的各个部分</p>
+</li>
+<li>
+<p>资源重复（Resource-replication）＝空间并行</p>
+<p>数量取胜原则，通过重复设置资源（尤其是硬件资源），提高性能</p>
+</li>
+<li>
+<p>资源共享（Resource-sharing）</p>
+<p>使多个任务按一定时间顺序轮流使用同一套硬件设备</p>
+<ol>
+<li>单机系统中并行性的发展
+<ol>
+<li>指令流水线，部件冗余，分时系统</li>
+</ol>
+</li>
+<li>多机系统中并行性的发展
+<ol>
+<li>多机系统</li>
+<li>耦合度：松散耦合、紧密耦合</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="流水cpu的结构">流水CPU的结构</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021427055.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021427055.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021427055.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021427055.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021427055.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021427055.png" /></p>
+<h4 id="流水线的时空图">流水线的时空图</h4>
+<ol>
+<li><strong>流水线技术</strong>：把一个重复的过程分解为若干个子过程，每个子程序可以与其他子过程同时进行</li>
+<li>描述流水线的工作，最常用的方法是时间-空间图（<strong>时空图</strong>）
+<ol>
+<li>横坐标：表示时间，即各个任务在流水线中所经过的时间</li>
+<li>纵坐标：表示空间，即流水线的各个子过程，也称为<strong>级、段、流水线深度(Stage)</strong></li>
+</ol>
+</li>
+</ol>
+<h4 id="非流水计算机的时空图">非流水计算机的时空图</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021429303.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021429303.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021429303.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021429303.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021429303.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021429303.png" /></p>
+<h4 id="流水计算机的时空图">流水计算机的时空图</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021429110.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021429110.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021429110.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021429110.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021429110.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021429110.png" /></p>
+<h4 id="流水线的特点">流水线的特点</h4>
+<ol>
+<li>流水线实际上是把一个功能部件分解成多个独立的子功能部件（一个任务也就分成了几个子任务，每个子任务由一个子功能部件完成），并依靠多个子功能部件并行工作来缩短所有任务的执行时间</li>
+<li>流水线有助于提高整个程序（所有任务）的吞吐率，但<strong>并没有减少</strong>每个指令（任务）的执行时间</li>
+<li>流水线各个功能段所需时间应尽量<strong>相等</strong>。否则，时间长的功能段将成为流水线的“瓶颈”，会造成流水线的“阻塞”（Stall）</li>
+<li>流水线开始需要“**通过时间”(Fill)**和最后需要“<strong>排空时间”(Drain)</strong>。流水线只有处理连续不断的任务才能发挥其效率</li>
+</ol>
+<h3 id="流水线中的主要问题">流水线中的主要问题</h3>
+<ol>
+<li>流水线中存在一些**相关(冲突、冒险Hazard，相关、依赖Dependence，竞争Competition)**的情况，它使得下一条指令无法在设计的时钟周期内执行。这些相关将降低流水线性能</li>
+<li>主要有三种类型的相关（冲突）
+<ol>
+<li><strong>结构相关（资源冲突）</strong>：当指令重叠执行过程中，硬件资源满足不了指令重叠执行的要求</li>
+<li><strong>数据相关（数据冲突）</strong> ：在同时执行的多条指令中，一条指令依赖前一条指令的执行结果(数据)却无法得到</li>
+<li><strong>控制相关（控制冲突）</strong>：流水线遇到分支指令或其他改变PC值的指令</li>
+</ol>
+</li>
+</ol>
+<p>**1. 资源相关 **</p>
+<p><strong>资源相关</strong>是指多条指令进入流水线后，在同一机器时钟周期内争用同一个功能部件所发生的冲突</p>
+<p>例：假定一条指令流水线由五段组成，且仅有IF过程和MEM过程需要访问存储器</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021432437.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021432437.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021432437.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021432437.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021432437.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021432437.png" /></p>
+<p><strong>2. 数据相关</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021432503.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021432503.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021432503.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021432503.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021432503.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021432503.png" /></p>
+<p><strong>3. 控制相关</strong></p>
+<ol>
+<li>
+<p>**控制相关冲突由转移指令（分支指令）**引起</p>
+</li>
+<li>
+<p>执行转移指令时，依据转移条件的产生结果</p>
+<p>可能为顺序取下条指令</p>
+<p>也可能转移到新的目标地址取指令</p>
+<p>地址不定，流水线需要暂停、<strong>发生断流</strong></p>
+</li>
+<li>
+<p><strong>转移指令</strong>主要有：</p>
+<p>无条件转移指令：跳转、过程调用和返回条件分支指令</p>
+</li>
+</ol>
+<p>例: 流水线中有三类数据相关冲突：写后读(RAW)相关；读后写(WAR)相关；写后写(WAW)相关</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021434035.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021434035.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021434035.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021434035.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021434035.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021434035.png" /></p>
+<h4 id="指令动态调度策略">指令动态调度策略</h4>
+<ol>
+<li>
+<p>简单指令流水线技术的一个主要局限</p>
+<p>指令<strong>顺序发射(in-order issue)＝按序发射</strong></p>
+<p>指令<strong>顺序执行(in-order execution)</strong></p>
+<p>如果一条指令在流水线中，与之相关的指令及其后面的指令都不能进行处理</p>
+</li>
+<li>
+<p>改进指令流水线，只要指令操作数就绪就执行</p>
+<p>指令<strong>乱序执行(out-of-order execution)</strong></p>
+<p>指令<strong>乱序结束(out-of-order completion)</strong></p>
+</li>
+</ol>
+<h4 id="多指令流出技术">多指令流出技术</h4>
+<ol>
+<li>进一步改进指令流水线，实现一个时钟周期发射（流出issue）多条指令</li>
+<li><strong>超标量(Superscalar)处理器</strong>：每个时钟周期发射多条指令（1-8)</li>
+<li><strong>超长指令字(VLIW: Very Long Instruction Word)</strong>：通过编译器调度无关的多条指令（4-16）形成一条长指令，每个时钟周期发射一条长指令</li>
+<li><strong>超级流水线(Super pipelining)</strong>：将每个功能部件进一步流水化，使得一个功能部件在一个时钟周期中可以处理多条指令（可以简单地理解为很长的流水线）</li>
+</ol>
+<h4 id="多发射流水线">多发射流水线</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021436545.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021436545.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021436545.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021436545.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021436545.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021436545.png" /></p>
+<h4 id="80486的整数指令流水线">80486的整数指令流水线</h4>
+<ol>
+<li>
+<p>5级指令流水线，每级1个时钟周期</p>
+<ol>
+<li>
+<p>$PF \rightarrow$指令预取（prefetch）</p>
+</li>
+<li>
+<p>$D1 \rightarrow$指令译码1（decode stage 1）</p>
+<p>对所有操作码和寻址方式信息进行译码</p>
+</li>
+<li>
+<p>$D2 \rightarrow$指令译码2（decode stage 2）</p>
+<p>将操作码扩展为ALU的控制信号，存储器地址计算</p>
+</li>
+<li>
+<p>$EX \rightarrow$指令执行（execute）</p>
+<p>完成ALU操作和Cache存取</p>
+</li>
+<li>
+<p>$WB \rightarrow$回写（write back）</p>
+<p>更新在EX步骤得到的寄存器数据和状态标志</p>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="pentium的超标量流水线">Pentium的超标量流水线</h4>
+<ol>
+<li>类似80486的5级流水线，后3级可以在两个流水线同时进行</li>
+<li>指令预取PF和指令译码D1步骤可以并行取出、译码2条简单指令，然后分别发向U和V流水线</li>
+<li>在满足指令配对的条件下，Pentium可以每个时钟周期执行完2条指令</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021440766.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021440766.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021440766.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021440766.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021440766.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021440766.png" /></p>
+<h2 id="risc-cpu">RISC CPU</h2>
+<p><strong>RISC的三个要素</strong></p>
+<ol>
+<li>一个有限的简单的指令集</li>
+<li>CPU配备大量的通用寄存器</li>
+<li>强调对指令流水线的优化</li>
+</ol>
+<p>**RISC机器的特点 **</p>
+<ol>
+<li><strong>等长</strong>指令，典型长度是4个字节(32位）；</li>
+<li>寻址方式<strong>少</strong>且简单，一般为2～3种；</li>
+<li>只有取数指令和存数指令访问存储器；</li>
+<li>指令数目一般<strong>少</strong>于100种，指令格式一般<strong>少</strong>于4种</li>
+<li>指令功能简单，控制器多采用<strong>硬布线</strong>方式</li>
+<li>指令的执行时间为一个处理时钟周期</li>
+<li>整数寄存器的个数<strong>不少于32个</strong></li>
+<li>强调通用寄存器资源的优化使用</li>
+<li>支持指令流水并强调指令流水的优化使用</li>
+<li>RISC技术的编译程序复杂</li>
+</ol>
+<h4 id="risc与cisc的主要特征对比">RISC与CISC的主要特征对比</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021450850.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021450850.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021450850.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021450850.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021450850.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021450850.png" /></p>
+<h2 id="cpu性能评价">CPU性能评价</h2>
+<ol>
+<li>
+<p>CPU性能与3个要素有关</p>
+<ol>
+<li>时钟频率f</li>
+<li>每条指令需要的时钟周期数CPI</li>
+<li>指令条数$I_N$</li>
+</ol>
+<p>时钟周期长度t＝1/f</p>
+<p>CPU时钟周期数Nc＝CPI×$I_N$</p>
+</li>
+</ol>
+<h3 id="cpu性能公式">CPU性能公式</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021451990.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021451990.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021451990.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021451990.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021451990.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021451990.png" /></p>
+<h4 id="补充例题">补充例题</h4>
+<p>假设在一般程序中浮点开平方操作FPSQR所占的比例为2%，它的CPI为100；其他浮点操作FP所占的比例为23%，它的CPI＝4.0；其余75%指令的CPI＝1.33，计算该处理机的CPI。如果FPSQR操作的CPI也为4.0，重新计算CPI。</p>
+<p><strong>解答</strong></p>
+<p>CPI1＝100×2%＋4×23%＋1.33×75%＝3.92</p>
+<p>CPI2＝4×25%＋1.33×75%＝2.00</p>
+<h3 id="性能评价标准">性能评价标准</h3>
+<ol>
+<li>
+<p>最初</p>
+<p>执行单项操作的时间，例如：加法操作时间</p>
+</li>
+<li>
+<p>改进为</p>
+<p>平均指令执行时间＝$\sum 每条指令数 \times 该指令的混合比例$</p>
+</li>
+<li>
+<p>进一步成为容易理解的</p>
+<p>每秒百万条指令（Million Instructions Per Second）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021454802.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021454802.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021454802.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405021454802.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021454802.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405021454802.png" /></p>
+</li>
+<li>
+<p>同时出现</p>
+<p>MFLOPS（每秒百万浮点操作）</p>
+</li>
+<li>
+<p>最终形成</p>
+<p>测试程序（Benchmarks）</p>
+</li>
+</ol>
+<h4 id="cpu时间与cpu性能">CPU时间与CPU性能</h4>
+<ol>
+<li>衡量性能最可靠的标准：真实程序的执行时间</li>
+<li>真实程序的执行时间=CPU时间＋I/O操作等时间</li>
+<li>CPU时间=用户CPU时间＋系统CPU时间</li>
+<li>CPU性能对应用户CPU时间</li>
+<li>CPU时间还可细分为<strong>用户CPU时间及系统CPU时间</strong>，前者表示用户程序所花费的CPU时间，后者表示用户程序运行期间操作系统花费的CPU时间。</li>
+</ol>
+<h2 id="本章小结">本章小结</h2>
+<ol>
+<li>CPU是计算机的中央处理部件，具有<strong>指令控制、操作控制、时间控制、数据加工等基本功能</strong></li>
+<li>早期的CPU由运算器和控制器两大部分组成。随着高密度集成电路技术的发展，当今的CPU芯片变成运算器、cache和控制器三大部分，其中还包括浮点运算器、存储管理部件等。CPU中至少要有如下<strong>六类寄存器：指令寄存器、程序计数器、地址寄存器、缓冲寄存器、通用寄存器、状态条件寄存器</strong></li>
+<li>CPU从存储器取出一条指令并执行这条指令的时间和称为<strong>指令周期</strong>。由于各种指令的操作功能不同，<strong>各种指令的指令周期是不尽相同</strong>的。划分指令周期，是设计操作控制器的重要依据</li>
+<li>时序信号产生器提供CPU周期(也称机器周期)所需的时序信号。操作控制器利用这些时序信号进行定时，有条不紊地取出一条指令并执行这条指令。时序部件是计算机的机内时钟，它用其产生的周期状态、节拍电位及时标脉冲去对指令周期进行时间划分，刻度和标定</li>
+<li>微程序设计技术是利用软件方法设计操作控制器的一门技术，具有<strong>规整性、灵活性、可维护性等一系列优点</strong>，因而在计算机设计中得到了广泛应用，并取代了早期采用的硬布线控制器设计技术。但是随着VLSI技术的发展和对机器速度的要求，硬布线逻辑设计思想又得到了重视</li>
+<li>硬布线控制器的基本思想是：某一微操作控制信号是指令操作码译码输出、时序信号和状态条件信号的逻辑函数，即用布尔代数写出逻辑表达式，<strong>然后用门电路，触发器等器件实现</strong></li>
+<li>不论微型机还是巨型机，并行处理技术已成为计算机技术发展的主流。并行处理技术可贯穿于信息加工的各个步骤和阶段。概括起来，主要有三种形式：<strong>(1)时间并行，(2)空间并行，(3)时间并行+空间并行</strong></li>
+<li>流水CPU是以<strong>时间并行性</strong>为原理构造的处理器，是一种非常经济而实用的并行技术。目前的高性能微处理器几乎无一例外地使用了流水技术。流水中的<strong>主要问题是资源相关、数据相关和控制相关</strong>，为此需要采取相应的技术对策，才能保证流水线畅通而不断流</li>
+<li><strong>RISC CPU</strong>是继承CISC的成功技术，并在克服CISC机器缺点的基础上发展起来的。RISC机器的三个基本要素是：(1)一个有限的简单指令集，(2)CPU配备大量的通用寄存器，(3)强调的指令流水线的优化。注意，<strong>RISC机器一定是流水CPU，但流水CPU不一定是RISC机器</strong>。如奔腾CPU是流水CPU，但奔腾机是CISC机器。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-04-25</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" data-title="计算机组成(第五章)" data-hashtags="计算机组成原理"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" data-hashtag="计算机组成原理"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" data-title="计算机组成(第五章)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" data-title="计算机组成(第五章)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https:adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" data-title="计算机组成(第五章)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8B/" class="prev" rel="prev" title="c&#43;&#43;(six)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>c++(six)</a>
+            <a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/" class="next" rel="next" title="操作系统(第六章)">操作系统(第六章)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
