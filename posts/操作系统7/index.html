@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>操作系统(第七章) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="操作系统(第七章)" />
+<meta property="og:description" content="文件管理 文件构成 数据项$\rightarrow$记录$\rightarrow$文件 数据项 基本数据项 用于描述一个对象的属性的字符集,是数据组织" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7/" /><meta property="og:image" content="https://adan-ning.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-04-25T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://adan-ning.github.io/logo.png" /><meta name="twitter:title" content="操作系统(第七章)"/>
+<meta name="twitter:description" content="文件管理 文件构成 数据项$\rightarrow$记录$\rightarrow$文件 数据项 基本数据项 用于描述一个对象的属性的字符集,是数据组织"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/" /><link rel="next" href="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A16/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "操作系统(第七章)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7\/"
+        },"genre": "posts","keywords": "操作系统","wordcount":  5425 ,
+        "url": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7\/","datePublished": "2024-04-25T00:00:00+00:00","dateModified": "2024-04-25T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">操作系统(第七章)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-25">2024-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5425 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#文件构成">文件构成</a></li>
+    <li><a href="#文件的分类">文件的分类</a></li>
+    <li><a href="#文件的模型">文件的模型</a></li>
+    <li><a href="#文件操作">文件操作</a>
+      <ul>
+        <li><a href="#逻辑结构记录为单位">逻辑结构(记录为单位)</a></li>
+      </ul>
+    </li>
+    <li><a href="#目录管理">目录管理</a>
+      <ul>
+        <li><a href="#文件控制块和索引结点">文件控制块和索引结点</a></li>
+        <li><a href="#目录结构">目录结构</a></li>
+        <li><a href="#目录查询技术">目录查询技术</a></li>
+        <li><a href="#位示图法">位示图法</a></li>
+      </ul>
+    </li>
+    <li><a href="#例题">例题</a>
+      <ul>
+        <li><a href="#选择题">选择题</a></li>
+        <li><a href="#计算题">计算题</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="文件管理">文件管理</h1>
+<h2 id="文件构成">文件构成</h2>
+<p>数据项$\rightarrow$记录$\rightarrow$文件</p>
+<ol>
+<li>
+<p>数据项</p>
+<ol>
+<li>基本数据项
+<ol>
+<li>用于描述一个对象的属性的字符集,是数据组织中可以命名的最小逻辑数据单位,即原子数据,又称为<strong>数据元素或字段</strong></li>
+<li>如描述一个学生:学号、姓名、年龄、班级</li>
+</ol>
+</li>
+<li>组合数据项
+<ol>
+<li>由若干个基本数据项组成,简称<strong>组项</strong></li>
+<li>如工资包括基本工资、工龄工资、奖金等</li>
+</ol>
+</li>
+</ol>
+<p>基本数据项除数据名外,还应有<strong>数据类型</strong></p>
+</li>
+<li>
+<p>记录</p>
+<ol>
+<li><strong>记录</strong>是一组相关数据项的集合,用于描述一个对象在某方面的属性</li>
+<li>一个记录应包含哪些数据项,取决于需要描述对象的哪个方面</li>
+<li>一个对象,由于他所处的环境不同可把他作为<strong>不同的对象</strong></li>
+<li>能惟一标识一个记录的数据项称为<strong>关键字(key)</strong></li>
+</ol>
+</li>
+<li>
+<p>文件</p>
+<ol>
+<li>
+<p>文件是指由创建者所定义的、具有文件名的一组相关元素的集合</p>
+</li>
+<li>
+<p>可分为<strong>有结构文件和无结构文件</strong></p>
+<ol>
+<li>有结构文件由若干个相关记录组成,如上例中学生文件</li>
+<li>无结构文件则被看成是一个字符流,如C语言源程序</li>
+</ol>
+</li>
+<li>
+<p>文件在文件系统中是一个<strong>最大的数据单位</strong>,它描述了一个对象集</p>
+<p>例如,可以将一个班的学生记录作为一个文件</p>
+</li>
+<li>
+<p>一个文件必须要有一个文件名,它通常是由一串ASCII码或(和)汉字构成</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="文件的分类">文件的分类</h2>
+<ol>
+<li>按用途分类
+<ol>
+<li>系统文件</li>
+<li>有关操作系统及其它系统程序的信息所组成的文件。这类文件对用户不直接开放,只能通过<strong>系统调用</strong>为用户服务</li>
+<li>用户文件</li>
+<li>由用户委托操作系统保存的文件,如源程序文件,目标程序文件,以及由原始数据、计算结果等组成的文件</li>
+<li>库文件</li>
+<li>由标准子程序及常用的应用程序组成的文件。 这类文件允许用户调用,但不允许用户修改</li>
+</ol>
+</li>
+<li>按<strong>文件中数据的形式</strong>分类
+<ol>
+<li>源文件</li>
+<li>目标文件</li>
+<li>可执行文件</li>
+</ol>
+</li>
+<li>按<strong>存取控制属性</strong>分类
+<ol>
+<li>只执行文件</li>
+<li>只读文件</li>
+<li>允许文件主及核准的用户读,但不允许写的文件</li>
+<li>读写文件允许文件主及核准的用户读、写,但禁止未核准的用户读、写的文件</li>
+</ol>
+</li>
+</ol>
+<h2 id="文件的模型">文件的模型</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405081710822.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405081710822.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405081710822.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405081710822.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405081710822.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405081710822.png" /></p>
+<h2 id="文件操作">文件操作</h2>
+<p>文件结构</p>
+<ol>
+<li>逻辑(用户组成)</li>
+<li>物理(磁盘分配)</li>
+</ol>
+<h3 id="逻辑结构记录为单位">逻辑结构(记录为单位)</h3>
+<ol>
+<li>有结构文件</li>
+<li>无结构文件</li>
+</ol>
+<h4 id="有结构文件">有结构文件</h4>
+<ol>
+<li>顺序文件</li>
+<li>索引文件</li>
+<li>索引顺序文件</li>
+</ol>
+<h4 id="连续分配">连续分配</h4>
+<p>要求：一组相邻的盘块</p>
+<p>优点：操作简单，实现随机存取</p>
+<p>缺点：对磁盘存储容量相对比较高，产生碎片(空间浪费)</p>
+<h4 id="链接分配">链接分配</h4>
+<ol>
+<li>
+<p>隐式链接</p>
+<p>要求：下一个盘块的盘块号存储在上一个盘块中(相当于一个单链表)</p>
+<p>缺点：只能顺序访问，不能实现随机访问</p>
+</li>
+<li>
+<p>显示链接</p>
+<p>FCB：文件的第一个盘块号</p>
+<p>FAT：顺序表，盘块号，内存(计算容量)</p>
+<ol>
+<li>表项：盘块的数量</li>
+<li>每个表项大小：存放盘块号</li>
+</ol>
+<p>FAT容量：</p>
+<ol>
+<li>表项：盘块数</li>
+<li>每个表项的字节数(8位)(二进制位数，最大盘块号)</li>
+</ol>
+<p>例：有一个长度为3200的流式文件要存储在磁盘上，磁盘的每块可以存放512B,则存放该文件至少需要多少块磁盘？</p>
+<p>3200$\div$ 512$\approx$7</p>
+<p>至少需要7块磁盘</p>
+<p>例：假设盘块的大小为1KB,硬盘的大小为500MB，采用显示链接分配方式时，其FAT需要占用多少存储空间？</p>
+<p>500MB/1KB=500K个</p>
+<p>500K个表项</p>
+<p>最大的盘块号500K$\rightarrow$ 19bit$\stackrel{(扩展到半个字节的整数(4))}\rightarrow$ 20bit=2.5B</p>
+<p>$\Rightarrow$ 500K$\times$ 2.5B=1250KB</p>
+<p>大约需要1250KB空间</p>
+</li>
+<li>
+<p>索引分配</p>
+<p>要求：盘块$\rightarrow$ 索引块$\rightarrow$ 索引表</p>
+<p>每个表项存储一个盘块号</p>
+<p>例：若每个盘块大小为1KB,每个盘块号占4B则表项为</p>
+<p>1KB$\div$ 4B=256个</p>
+<p>文件大小为：256$\times$ 1KB=256KB  (单极索引)</p>
+<p>文件大小为：256$\times$256 $\times$ 1KB  (两级索引)</p>
+<p>文件大小为：256$\times$256 $\times$256 $\times$ 1KB  (三极索引)</p>
+</li>
+<li>
+<p>混合索引分配(13个地址)</p>
+<p>假设每个盘块大小为4KB，每个盘块占4B$\Rightarrow$ 4KB/4B=1K个</p>
+<p>0~9：直接寻址：10个盘块：4KB$\times$10=40KB</p>
+<p>10：一次寻址：一级索引1K个盘块：4KB$\times$ 10=40KB</p>
+<p>11：二次寻址：二级索引：1M个盘块：4KB$\times$ 1MB=4GB</p>
+<p>12：三次寻址：三级索引：1G个盘块：4KB$\times$ 1GB=4TB</p>
+<p>$\Rightarrow$ 文件总长度：40KB+4MB+4GB+4TB</p>
+</li>
+</ol>
+<p>例：存放在某个磁盘上的文件系统，采用混合索引方式，其中FCB共有13个地址项，第0-9个地址项为直接地址，第10个地址项为一次间址，第11个地址项为二次间址，第12个地址项为三次间址。如果每个盘块的大小为510字节，若盘块号需要用3个字节来描述：</p>
+<ol>
+<li>
+<p>该文件系统允许文件的最大长度是多少？</p>
+<p>510/3=170</p>
+<p>(10+170+170*170+170*170*170)*510</p>
+</li>
+<li>
+<p>将文件的字节偏移量5000，15000，150000转化为物理块号和块内偏移量。</p>
+<p>5000/510=9&hellip;..410</p>
+<p>9:为物理块号，410:为偏移量</p>
+<p>15000/510=29&hellip;&hellip;210
+29:为物理块号，210:为偏移量</p>
+<p>150000/510=294&hellip;&hellip;60</p>
+<p>294:为物理块号，60:为偏移量</p>
+</li>
+<li>
+<p>假设某个文件的FCB已在内存，但其他信息均在外存为了访问该文件中某个位置的内容，最少需要几次访问磁盘，最多需要几次访问磁盘？</p>
+<p>由于FCB已在内存，为访问文件中某位置的内容，最少需1次访问磁盘（即可通过直接地址直接读文件块）；最多需4次访问磁盘（第1次为读3次间址，第2次为读2次间址，第3次为读1次间址，第4次为读文件盘块）</p>
+</li>
+</ol>
+<h2 id="目录管理">目录管理</h2>
+<p>目录管理的任务是为每个文件建立目录项,并对众多的目录加以组织,以实现方便的按名存取,实现文件的共享,提供快速的目录查询手段,提高文件的检索速度。</p>
+<h3 id="文件控制块和索引结点">文件控制块和索引结点</h3>
+<ol>
+<li>文件控制块(FCB)
+<ol>
+<li>是用于描述和控制文件的数据结构</li>
+<li>文件管理程序可借助FCB中的信息对文件施以各种操作</li>
+<li>文件控制块的有序集合称为<strong>文件目录</strong>,即一个文件控制块就是一个文件目录项</li>
+<li>通常,一个文件目录本身也被看作是一个文件,称为<strong>目录文件</strong></li>
+</ol>
+</li>
+<li>文件控制块中的信息
+<ol>
+<li><strong>基本信息类</strong>
+<ol>
+<li>文件名</li>
+<li>文件物理位置</li>
+<li>文件逻辑结构</li>
+<li>文件的物理结构</li>
+</ol>
+</li>
+<li><strong>文件控制信息类</strong>
+<ol>
+<li>文件拥有者权限</li>
+<li>核准用户权限</li>
+<li>一般用户权限</li>
+</ol>
+</li>
+<li><strong>使用信息类</strong>
+<ol>
+<li>文件建立日期</li>
+<li>文件修改日期</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142216224.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142216224.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405142216224.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405142216224.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142216224.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142216224.png" /></p>
+<ol start="3">
+<li>
+<p>索引结点</p>
+<ol>
+<li>
+<p>索引结点的引入</p>
+<ol>
+<li>文件目录通常放在磁盘上,当文件很多时,占用大量磁盘空间</li>
+<li>检索文件过程中,只需使用文件名,而不用其他信息</li>
+</ol>
+</li>
+<li>
+<p>将文件描述信息单独形成一个数据结构,称为<strong>索引结点</strong>,也称为<strong>i结点</strong></p>
+</li>
+<li>
+<p>在文件目录中的每个目录项,仅包含<strong>文件名</strong>和指向<strong>索引结点的指针</strong></p>
+</li>
+<li>
+<p>引入索引结点后,使文件的目录项更小,占用磁盘空间少,检索速度加快</p>
+</li>
+<li>
+<p><strong>磁盘索引结点</strong></p>
+<ol>
+<li>
+<p>文件主标识符</p>
+<p>拥有该文件的个人或小组的标识符</p>
+</li>
+<li>
+<p>文件类型</p>
+<p>正规文件、目录文件或特别文件</p>
+</li>
+<li>
+<p>文件存取权限
+各类用户对该文件的存取权限</p>
+</li>
+<li>
+<p>文件物理地址</p>
+<p>13个地址项,给出文件所在盘块编号</p>
+</li>
+<li>
+<p>文件长度</p>
+<p>以字节为单位的文件长度</p>
+</li>
+<li>
+<p>文件连接计数</p>
+<p>指向该文件的指针的个数</p>
+</li>
+<li>
+<p>文件存取时间</p>
+<p>指出最近被进程存取的时间、最近被修改的时间及索引结点最近被修改的时间</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>内存索引结点</strong>:<strong>文件打开时调入内存的</strong>,<strong>增加了</strong>:</p>
+<ol>
+<li>索引结点编号。用于标识内存索引结点</li>
+<li>状态。指示i结点是否上锁或被修改</li>
+<li>访问计数。每当有一进程要访问此i结点时,将该访问计数加1,访问完再减1。</li>
+<li>文件所属文件系统的逻辑设备号。</li>
+<li>链接指针。设置有分别指向空闲链表和散列队列的指针</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="目录结构">目录结构</h3>
+<ol>
+<li>
+<p>单级目录结构</p>
+<p>整个系统只建立一张目录表,每个文件占一个目录项</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142228306.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142228306.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405142228306.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405142228306.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142228306.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142228306.png" /></p>
+<ol>
+<li>单级目录<strong>优点</strong>
+<ol>
+<li>易于实现,管理简单</li>
+<li>能实现按名存取</li>
+</ol>
+</li>
+<li>单级目录<strong>缺点</strong>
+<ol>
+<li>查找速度慢(顺序查找,N/2)</li>
+<li>不允许重名(在多道程序设计下,很难保证)</li>
+<li>不便于实现文件共享(所有用户必须用同一个名字共享一个文件)</li>
+</ol>
+</li>
+<li>单级目录只实现了目录管理的第一项功能 ,即“<strong>按名存取</strong>”,只能适用于<strong>单用户</strong>环境</li>
+</ol>
+</li>
+<li>
+<p>两级目录</p>
+<p>为每个用户建立一个单独的用户文件目录<strong>UFD(<strong>User File Directory),由用户所有文件的</strong>FCB</strong>组成
+在系统中建立主文件目录<strong>MFD</strong>(Master File Directory),每个用户<strong>目录文件</strong>在主文件目录中占一个目录项</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142228501.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142228501.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405142228501.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405142228501.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142228501.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142228501.png" /></p>
+</li>
+<li>
+<p>多级目录结构</p>
+<ol>
+<li>
+<p>目录结构</p>
+<p>多级目录结构又称为<strong>树形目录结构</strong>
+主目录称为<strong>根目录</strong>,数据文件称为<strong>树叶</strong>,其他目录作为树的<strong>结点</strong></p>
+<p>为提高文件系统的灵活性,允许一个目录文件中的目录项既作为<strong>目录文件的FCB</strong>,又是<strong>数据文件的FCB</strong></p>
+</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142230378.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142230378.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405142230378.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405142230378.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142230378.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142230378.png" /></p>
+<ol start="2">
+<li><strong>路径名</strong>
+<ol>
+<li>在树形目录结构中,从根目录到任何数据文件,都只有一条惟一的通路。在该路径上从树的根(即主目录)开始,把全部目录文件名与数据文件名,依次地用“/”连接起来,即构成该数据文件的<strong>路径名(path name)</strong></li>
+<li>系统中的每一个文件都有惟一的路径名</li>
+<li>例如,在图6-18中用户B为访问文件J(15),应使用其路径名/B/F/J来访问。</li>
+</ol>
+</li>
+<li>当前目录
+<ol>
+<li>为每个进程设置一个“<strong>当前目录</strong>”,又称为“<strong>工作目录</strong>”。进程对各文件的访问都<strong>相对于</strong>“当前目录”而进行</li>
+<li>把从当前目录开始直到数据文件为止所构成的路径名,称为<strong>相对路径名(relative path name)</strong></li>
+<li>把从树根开始的路径名称为<strong>绝对路径名(absolute path name)</strong></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>增加和删除目录</strong></p>
+<p>删除目录的两种处理方法:</p>
+<ol>
+<li><strong>不删除非空目录</strong>
+<ol>
+<li>当目录(文件)不空时,不能将其删除,而为了删除一个非空目录,必须先删除目录中的所有文件,使之先成为空目录,后再予以删除。</li>
+<li>在MS-DOS中就是采用这种删除方式。</li>
+</ol>
+</li>
+<li><strong>可删除非空目录</strong>
+<ol>
+<li>当要删除一目录时,如果在该目录中还包含有文件,则目录中的所有文件和子目录也同时被删除</li>
+<li>在Windows中就是采用这种删除方式。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>特点</strong></p>
+<ol>
+<li>层次清楚</li>
+<li>解决了用户文件重名问题</li>
+<li>搜索速度快</li>
+</ol>
+</li>
+</ol>
+<h3 id="目录查询技术">目录查询技术</h3>
+<ol>
+<li>
+<p><strong>线性检索法(顺序检索法)</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142234122.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142234122.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405142234122.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405142234122.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142234122.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142234122.png" /></p>
+</li>
+<li>
+<p><strong>Hash方法</strong></p>
+<ol>
+<li>系统利用用户提供的文件名并将它变换为文件目录的索引值,再利用该索引值到目录中去查找,提高检索速度</li>
+</ol>
+<p>一种处理此“冲突”的<strong>有效规则</strong>是:</p>
+<ol>
+<li>在利用Hash法索引查找目录时,如果目录表中相应的目录项是空的,则表示系统中并无指定文件</li>
+<li>如果目录项中的文件名与指定文件名相匹配, 则表示该目录项正是所要寻找的文件所对应的目录项,故而可从中找到该文件所在的物理地址</li>
+<li>如果在目录表的相应目录项中的文件名与指定文件名并不匹配,则表示发生了“冲突”,此时须将其Hash值再加上一个常数(该常数应与目录的长度值互质),形成新的索引值,再返回到第一步重新开始查找</li>
+</ol>
+</li>
+</ol>
+<h3 id="位示图法">位示图法</h3>
+<ol>
+<li>
+<p>位示图</p>
+<ol>
+<li>用<strong>二进制的一位</strong>来表示磁盘中一个盘块的使用情况</li>
+<li>&ldquo;0&quot;表示盘块空闲,&ldquo;1&quot;表示盘块已分配</li>
+</ol>
+</li>
+<li>
+<p>盘块的分配</p>
+<p>找“0”(先行后列)</p>
+<ol>
+<li>i行号</li>
+<li>j列号</li>
+</ol>
+<p>生成：盘块号：b=n(i-1)+j(n是每行二进制的位数)</p>
+</li>
+<li>
+<p>盘块的回收</p>
+<p>已知盘块号b生成</p>
+<p>i=(b-1)DIV n+1</p>
+<p>j=(b-1)MOD n+1</p>
+<p>将“1”变成”0“</p>
+</li>
+</ol>
+<h2 id="例题">例题</h2>
+<h3 id="选择题">选择题</h3>
+<ol>
+<li>
+<p>在下列文件的外存分配方式中,不利于文件长度动态增长的文件物理结构是(A	)。</p>
+<p>A.连续分配   B.链接分配C.索引分配D.以上都不对</p>
+</li>
+<li>
+<p>文件系统中若文件的外存分配方式采用连续分配,则文件控制块FCB中有关文件的物理位置的信息应包括(	   B     )。</p>
+<p>(Ⅰ)起始块号	(Ⅱ)文件长度	(Ⅲ)索引表地址
+A.全部  B.(Ⅰ)和(Ⅱ)  C.(Ⅰ)和(Ⅲ)  D.(Ⅱ)和(Ⅲ)</p>
+</li>
+<li>
+<p>操作系统为保证未经文件拥有者授权,任何其他用户不能使用该文件所提供的解决方法是(      A)。</p>
+<p>A.文件保护    B.文件保密	C.文件转储	D.文件共享</p>
+</li>
+<li>
+<p>文件系统最基本的目标是((1) A	),它主要是通过(	(2) B	)功能实现的,文件系统所追求的最重要目标是(	(1) D)。</p>
+<pre><code>  (1)A.按名存取		B.文件共享	
+       C.文件保护		D.提高对文件的存取速度
+ (2)	A.存储空间管理	B.目录管理
+C.文件读写管理	D.文件安全管理
+</code></pre>
+</li>
+<li>
+<p>按逻辑结构可把文件分为(	E        )和(    F    )两类。</p>
+<p>A.读、写文件	   B.只读文件		C.索引文件   D.链式文件              E.记录式文件	           F.流式文件</p>
+</li>
+<li>
+<p>下面关于顺序文件和链接文件的论述中正确的是(	    C      )。</p>
+<pre><code>A.顺序文件只能于建立在顺序存储设备上,而不能于建立在磁盘上。
+B.在显式链接文件中是在每个盘块中设置一链接指针,用于将文件的所有盘块链接起来。
+C.顺序文件采用连续分配方式,而链接文件和索引文件则都可采用离散分配方式。
+D.在MS-DOS中采用的是隐式链接文件结构
+</code></pre>
+</li>
+<li>
+<p>下面关于索引文件的论述中正确的是(	 B  )。</p>
+<pre><code>A.在索引文件中,索引表的每个表项中必须含有相应记录的关键字和存放该记录的物理地址。
+B.对顺序文件进行检索时,首先从FCB中读出文件的第一个盘块号,而对索引文件进行检索时,应先从FCB中读出文件索引表始址。
+C.对于一个具有三级索引表的文件,存取一个记录必须要访问三次磁盘。
+D.在文件较大时,进行顺序存取比随机存取快
+</code></pre>
+</li>
+<li>
+<p>在存取文件时,如果利用给定的记录值对链表或索引表进行检索,以找到指定记录的物理地址,则上述文件分别称为   (	B	)或(	C	),如果根据给定的记录键值直接获得指定记录的物理地址,则把这种文件称为(	D	)。</p>
+<p>A.顺序文件   B.链接文件	  C.索引文件	 D.直接文件</p>
+</li>
+<li>
+<p>在文件管理中,位示图主要是用于(    B 	)。</p>
+<pre><code>A.磁盘的驱动调动		B.磁盘空间的分配和回收
+C.文件目录的查找		D.页面置换
+</code></pre>
+</li>
+<li>
+<p>在随机存取方式中，用户以___D__为单位对文件进行存取和检索。</p>
+<p>A.字符串	 B.字节	   C.数据项 	D.逻辑记录</p>
+</li>
+<li>
+<p>文件物理结构一般有    a,d,e      。</p>
+<p>a. 连续结构  b. 流式结构   c. 记录式结构
+d. 链接结构  e. 索引结构</p>
+</li>
+<li>
+<p>两级目录结构由       c   和     d   组成。</p>
+<p>a. 根目录         b. 子目录     c. 主文件目录
+d. 用户文件目录   e. 当前目录</p>
+</li>
+</ol>
+<h3 id="计算题">计算题</h3>
+<ol>
+<li>
+<p>文件分配表FAT是管理磁盘空间的一种数据结构，用在以链接方式存储文件的系统中记录磁盘分配和跟踪空白磁盘块。其结构如图所示</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142250857.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142250857.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405142250857.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405142250857.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142250857.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142250857.png" /></p>
+<ol>
+<li>
+<p>对于540M硬盘，其FAT要占多少存储空间</p>
+<p>磁盘共有盘块540M/1k=540k个，需要20位二进制表示，</p>
+<p>即FAT的每个表项应占2.5字节，</p>
+<p>2.5B*540k=1350KB</p>
+</li>
+<li>
+<p>对于1.2G硬盘，其FAT要占多少空间</p>
+<p>1.2G/1k=1.2M个盘块，需要21位二进制数表示，</p>
+<p>即每个FAT表项占3字节</p>
+<p>3B*1.2M=3.6MB</p>
+</li>
+</ol>
+</li>
+<li>
+<p>有一计算机系统利用途中所示的位示图来管理空闲盘块，盘块的大小为1KB，现要为某文件分配两个盘块，试具体说明盘块的分配过程。（假设可以离散开）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142251752.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142251752.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405142251752.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405142251752.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142251752.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405142251752.png" /></p>
+<ol>
+<li>
+<p><strong>顺序检索位示图，</strong></p>
+<p><strong>从中找到第一个值为0的二进制位，行号$i_1$=3，列号$j_1$=3；</strong></p>
+<p><strong>第二个值为0的二进制位，行号$i_2$=4，列号$j_2$=7。</strong></p>
+</li>
+<li>
+<p><strong>空闲盘号为</strong>：</p>
+<p>$b_1$ = n(i1 - 1) + j1 = 16 × 2 + 3 = 35；</p>
+<p>$b_2$ = n(i2 - 1) + j2 = 16 × 3 + 7 = 55</p>
+</li>
+<li>
+<p><strong>修改位示图</strong></p>
+<p>令map[$i_1, j_1$] = map[3, 3] = 1;</p>
+<p>map[$i_2, j_2$] = map[4, 7] = 1。</p>
+</li>
+</ol>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-04-25</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7/" data-title="操作系统(第七章)" data-hashtags="操作系统"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7/" data-hashtag="操作系统"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7/" data-title="操作系统(第七章)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7/" data-title="操作系统(第七章)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7/" data-title="操作系统(第七章)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/" class="prev" rel="prev" title="操作系统(第六章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>操作系统(第六章)</a>
+            <a href="/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A16/" class="next" rel="next" title="算法与程序(第六章)">算法与程序(第六章)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

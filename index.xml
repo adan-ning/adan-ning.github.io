@@ -3,15 +3,55 @@
         <title>蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/</link>
         <description>这是我的全新 Hugo 网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 30 Apr 2024 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 14 May 2024 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://adan-ning.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>算法与程序(第七章)</title>
+    <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A17/</link>
+    <pubDate>Tue, 14 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A17/</guid>
+    <description><![CDATA[概率算法 随机数 随机数在概率算法设计中十分重要。 计算机上无法产生真正的随机数。是一定程度上随机的, 是伪随机数线性同余法是产生伪随机数的最常用方]]></description>
+</item>
+<item>
+    <title>计算机组成(第七章)</title>
+    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%867/</link>
+    <pubDate>Thu, 09 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%867/</guid>
+    <description><![CDATA[外围设备 外围设备概述 除了CPU和主存，其他部件都是“外设” 外设的功能 提供不同计算机之间的联系 提供计算机与用户的联系 外设的基本组成 存储介质: 具]]></description>
+</item>
+<item>
+    <title>数据结构(第七章)</title>
+    <link>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%847/</link>
+    <pubDate>Sun, 05 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%847/</guid>
+    <description><![CDATA[图 基本概念和术语 图是顶点集和边集组成的二元组G=&lt;V,E&gt;,E中每条边是V中一对顶点**(u,v)**间的联系,如果是无序对，那]]></description>
+</item>
+<item>
+    <title>计算机组成(第六章)</title>
+    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%866/</link>
+    <pubDate>Thu, 02 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%866/</guid>
+    <description><![CDATA[总线系统 总线的概念和结构形态 总线的基本概念 总线：构成计算机系统的互连机构，是多个系统功能部件之间进行数据传送的公共通路 总线支持不同部件之间的]]></description>
+</item>
+<item>
     <title>算法与程序(第六章)</title>
     <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A16/</link>
     <pubDate>Tue, 30 Apr 2024 00:00:00 &#43;0000</pubDate>
     <author>蓝Q曦</author>
     <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A16/</guid>
     <description><![CDATA[分支限界法 分支限界法的基本思想 分支限界法与回溯法的不同 求解目标 回溯法求解目标是找出解空间树中满足约束条件所有解 分支限界法的求解目标则是找出满]]></description>
+</item>
+<item>
+    <title>操作系统(第七章)</title>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7/</link>
+    <pubDate>Thu, 25 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7/</guid>
+    <description><![CDATA[文件管理 文件构成 数据项$\rightarrow$记录$\rightarrow$文件 数据项 基本数据项 用于描述一个对象的属性的字符集,是数据组织]]></description>
 </item>
 <item>
     <title>操作系统(第六章)</title>
@@ -44,46 +84,6 @@
     <author>蓝Q曦</author>
     <guid>https://adan-ning.github.io/posts/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A16%E4%B8%8A/</guid>
     <description><![CDATA[数组 指针与字符串 数组 数组的概念 数组是具有一定顺序关系的若干相同类型变量的集合体(数组可以由除void型以外的任何类型构成），组成数组的变量称]]></description>
-</item>
-<item>
-    <title>操作系统(第五章)</title>
-    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/</link>
-    <pubDate>Thu, 18 Apr 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F5/</guid>
-    <description><![CDATA[虚拟存储器 常见的存储器 一次性全部装入 常驻内存 内存的利用率低 改进 时间局部性(循环执行) 空间局部性(顺序执行) 虚拟存储器 请求式分页 请求式分段 什么]]></description>
-</item>
-<item>
-    <title>算法与程序(第五章)</title>
-    <link>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/</link>
-    <pubDate>Thu, 18 Apr 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A15/</guid>
-    <description><![CDATA[回溯法 回溯法 当需要找出问题的解集或者要求满足某些约束条件的最优解时，常使用回溯法 回溯法的基本方法就是搜索，是一种组织得井井有条的，能避免不必]]></description>
-</item>
-<item>
-    <title>编译引论(第六章)</title>
-    <link>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866/</link>
-    <pubDate>Thu, 18 Apr 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866/</guid>
-    <description><![CDATA[语义分析及中间代码生成 中间代码 中间代码生成在编译程序中的位置 中间代码 **即中间语言，独立于机器的，复杂性介于源语言和机器语言之间的一种表示形]]></description>
-</item>
-<item>
-    <title>计算机组成(第四章)</title>
-    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/</link>
-    <pubDate>Mon, 15 Apr 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%864/</guid>
-    <description><![CDATA[指令系统 概 述 指令：是指示计算机某种操作的命令。 微指令，机器指令，宏指令 指令系统：一台计算机中所有机器指令的集合，它是表征一台计算机性能的重要]]></description>
-</item>
-<item>
-    <title>操作系统(第四章)</title>
-    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</link>
-    <pubDate>Wed, 10 Apr 2024 00:00:00 &#43;0000</pubDate>
-    <author>蓝Q曦</author>
-    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F4/</guid>
-    <description><![CDATA[存储器管理 存储器 内存 主存 连续分配 单一 分区 离散分配 分页式 分段式 段页式 虚拟(主+辅) 请求式分页 请求式分段 请求式段页 外存(第五章) 程序的运行与存储]]></description>
 </item>
 </channel>
 </rss>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>算法与程序(第七章) - 蓝Q曦的博客网站</title><meta name="Description" content="这是我的全新 Hugo 网站"><meta property="og:title" content="算法与程序(第七章)" />
+<meta property="og:description" content="概率算法 随机数 随机数在概率算法设计中十分重要。 计算机上无法产生真正的随机数。是一定程度上随机的, 是伪随机数线性同余法是产生伪随机数的最常用方" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A17/" /><meta property="og:image" content="https://adan-ning.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-05-14T00:00:00+00:00" /><meta property="og:site_name" content="我的网站" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://adan-ning.github.io/logo.png" /><meta name="twitter:title" content="算法与程序(第七章)"/>
+<meta name="twitter:description" content="概率算法 随机数 随机数在概率算法设计中十分重要。 计算机上无法产生真正的随机数。是一定程度上随机的, 是伪随机数线性同余法是产生伪随机数的最常用方"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A17/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%867/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "算法与程序(第七章)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/adan-ning.github.io\/posts\/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A17\/"
+        },"genre": "posts","keywords": "计算机算法设计与分析","wordcount":  945 ,
+        "url": "https:\/\/adan-ning.github.io\/posts\/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A17\/","datePublished": "2024-05-14T00:00:00+00:00","dateModified": "2024-05-14T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "蓝Q曦"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="蓝Q曦的博客网站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="蓝Q曦的博客网站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">算法与程序(第七章)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>计算机算法设计与分析</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-14">2024-05-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;945 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#随机数">随机数</a></li>
+    <li><a href="#数值随机化算法">数值随机化算法</a>
+      <ul>
+        <li><a href="#用随机投点法计算π值">用随机投点法计算π值</a></li>
+        <li><a href="#计算定积分">计算定积分</a></li>
+        <li><a href="#解非线性方程组">解非线性方程组</a></li>
+      </ul>
+    </li>
+    <li><a href="#舍伍德sherwood算法">舍伍德(Sherwood)算法</a></li>
+    <li><a href="#拉斯维加斯-las-vegas-算法">拉斯维加斯( Las Vegas )算法</a></li>
+    <li><a href="#蒙特卡罗monte-carlo算法">蒙特卡罗(Monte Carlo)算法</a></li>
+    <li><a href="#小结">小结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="概率算法">概率算法</h1>
+<h2 id="随机数">随机数</h2>
+<p>随机数在概率算法设计中十分重要。</p>
+<p>计算机上无法产生真正的随机数。是一定程度上随机的, 是<strong>伪随机数线性同余法</strong>是产生伪随机数的最常用方法。</p>
+<p>随机序列$a_0 ,a_1 ,…,a_n$满足：</p>
+<p>$a_0=d$</p>
+<p>$a_n=(ba_{n-1}+c)mod m$  n=1,2,..</p>
+<p>其中$b \geq 0，c \geq 0，d\leq m$。d称为该随机序列的种子。</p>
+<p>一般取<strong>m为机器大数</strong>，要求 <strong>gcd(m,b)=1</strong>，因此可取b为一素数</p>
+<h2 id="数值随机化算法">数值随机化算法</h2>
+<h3 id="用随机投点法计算π值">用随机投点法计算π值</h3>
+<p>设计一个半径r为1的圆外接正方 形，在该正方形内产生n随机点， 统计落在圆内的随机点的个数k，</p>
+<p>则有 ： $ \frac{r^2}{4r^2} ≈ \frac {k}{n}$，</p>
+<p>从而有：$𝜋 ≈ \frac{4k}{n}$</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201943377.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201943377.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405201943377.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405201943377.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201943377.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201943377.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201944699.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201944699.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405201944699.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405201944699.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201944699.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201944699.png" /></p>
+<p>用随机投点法计算𝜋值算法</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">Darts</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="k">static</span> <span class="n">RandomNumber</span> <span class="n">dart</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span> <span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">double</span> <span class="n">x</span><span class="o">=</span><span class="n">dart</span><span class="p">.</span><span class="n">fRandom</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">double</span> <span class="n">y</span><span class="o">=</span><span class="n">dart</span><span class="p">.</span><span class="n">fRandom</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">((</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">)</span> <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">4</span><span class="o">*</span><span class="n">k</span><span class="o">/</span><span class="kt">double</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="计算定积分">计算定积分</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201946274.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201946274.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405201946274.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405201946274.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201946274.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201946274.png" /></p>
+<h3 id="解非线性方程组">解非线性方程组</h3>
+<p>求解下面的非线性方程组</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201946659.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201946659.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405201946659.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405201946659.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201946659.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201946659.png" /></p>
+<p>其中，x1 ,x2 ,…,xn是实变量，fi是未知量x1 ,x2 ,…,xn的非线性实函数。要求 确定上述方程组在指定求根范围内的一组解 $x^<em>_1,x^</em>_2,&hellip;,x^*_n$</p>
+<ol>
+<li>首先将多目标优化转为单目标优化：$F(X)=f1^2 (X) +f2^2 (X) …+fn^2 (X)=0$</li>
+<li>此问题只能找近似解，可设定误差$\varepsilon$</li>
+<li>在指定求根区域D内，随机搜素到一个点X, 当$F(X)&lt; \varepsilon$时，即为所求 的近似解。否则继续搜索</li>
+</ol>
+<h4 id="以二维为例说明该算法">以二维为例说明该算法</h4>
+<p>随机产生方向向量r，依可变步长a*r得到增量∆X，根据增量值∆X ，从 当前点移动到下一个点， 每到达一个新位置， 检查是否找到近似解</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201951411.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201951411.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405201951411.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405201951411.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201951411.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405201951411.png" /></p>
+<p>该类题目建议使用粒子群算法，或者模拟退火算法， 这两种方法求解 该类问题是更有效的，也是数值随机化方法</p>
+<h2 id="舍伍德sherwood算法">舍伍德(Sherwood)算法</h2>
+<p><a href="https://www.cnblogs.com/2010Freeze/archive/2011/09/25/2181016.html" target="_blank" rel="noopener noreffer ">概率算法-sherwood算法 </a></p>
+<h2 id="拉斯维加斯-las-vegas-算法">拉斯维加斯( Las Vegas )算法</h2>
+<p><a href="https://www.cnblogs.com/2010Freeze/archive/2011/10/05/2192736.html" target="_blank" rel="noopener noreffer ">概率算法-Las Vegas </a></p>
+<h2 id="蒙特卡罗monte-carlo算法">蒙特卡罗(Monte Carlo)算法</h2>
+<p><a href="https://blog.csdn.net/m0_71905144/article/details/132640296" target="_blank" rel="noopener noreffer ">蒙特卡洛算法_monte carlo)算法</a></p>
+<h2 id="小结">小结</h2>
+<ol>
+<li><strong>本章介绍利用随机数的随机性来解决问题。</strong></li>
+<li><strong>这些算法大多是非确定性算法</strong>。在某一时刻，下一步动作有多种选择。</li>
+<li><strong>这些算法没有具体框架，分类是基于其算法的思想。</strong>
+<ol>
+<li><strong>舍伍德算法</strong>：将算法加入概率算法，使算法不再有：对某些实例，算法的复杂 性必然很高的规律。</li>
+<li><strong>拉斯维加斯算法</strong>：引入随机化策略，运行一次算法可能找不到答案， 但运行多 次一定能找到答案</li>
+<li><strong>蒙特卡洛算法</strong>：引入随机化策略，运行一次算法总能给出答案， 但未必正确， 可以肯定的是其正确性超过50%, 若运行多次，答案不变， 则该答案正确的可能 性非常高。 <strong>（蒙特卡洛算法可进行故障检测)</strong></li>
+</ol>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-05-14</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A17/" data-title="算法与程序(第七章)" data-hashtags="计算机算法设计与分析"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A17/" data-hashtag="计算机算法设计与分析"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A17/" data-title="算法与程序(第七章)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A17/" data-title="算法与程序(第七章)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A17/" data-title="算法与程序(第七章)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">计算机算法设计与分析</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%867/" class="prev" rel="prev" title="计算机组成(第七章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>计算机组成(第七章)</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">蓝Q曦</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"id-1":"蓝Q曦的博客网站","id-2":"蓝Q曦的博客网站"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PELT26WIQD","algoliaIndex":"adan-ning.github.io","algoliaSearchKey":"f50812c72d6125140673e7245bea68cd","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":50,"type":"algolia"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

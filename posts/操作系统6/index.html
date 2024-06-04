@@ -17,7 +17,7 @@
 <meta name="application-name" content="我的网站">
 <meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" /><link rel="next" href="https://adan-ning.github.io/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A16/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/" /><link rel="prev" href="https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" /><link rel="next" href="https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6\/"
-        },"genre": "posts","keywords": "操作系统","wordcount":  1655 ,
+        },"genre": "posts","keywords": "操作系统","wordcount":  2431 ,
         "url": "https:\/\/adan-ning.github.io\/posts\/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6\/","datePublished": "2024-04-25T00:00:00+00:00","dateModified": "2024-04-25T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -103,8 +103,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">操作系统(第六章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>蓝Q曦</a></span>&nbsp;<span class="post-category">included in <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>操作系统</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-25">2024-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1655 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-25">2024-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2431 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="true">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -123,6 +123,9 @@
         <li><a href="#缓冲的引入">缓冲的引入</a></li>
       </ul>
     </li>
+    <li><a href="#spooling技术">SPOOLing技术</a></li>
+    <li><a href="#磁盘存储器">磁盘存储器</a></li>
+    <li><a href="#磁盘调度算法">磁盘调度算法</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="设备管理">设备管理</h1>
@@ -303,6 +306,120 @@
 <p>$T_1+T \times 9 +M_{10}+C_{10}$=150+6=156us</p>
 </li>
 </ol>
+<h2 id="spooling技术">SPOOLing技术</h2>
+<ol>
+<li>
+<p>引入的原因</p>
+<ol>
+<li>脱机：外围机，磁盘</li>
+<li>联机：CPU，内存</li>
+</ol>
+</li>
+<li>
+<p>假脱机：$脱机 \rightarrow 联机$</p>
+<p>定义：在主机的直接控制下，实现脱机输入，输出功能,此时的外围操作与CPU对数据的处理同时进行。</p>
+</li>
+<li>
+<p>组成</p>
+<ol>
+<li>
+<p>磁盘：输入井和输出井(大量磁盘空间)</p>
+<p>一个暂时存放输入和输出的数据</p>
+</li>
+<li>
+<p>内存，输入buffer和输出buffer(少量内存)</p>
+</li>
+<li>
+<p>两道程序(进程)：输入/输出进程(多到程序设计技术)</p>
+</li>
+</ol>
+</li>
+<li>
+<p>操作</p>
+<ol>
+<li>输入：I/O设备$\rightarrow$ 输出buffer$\rightarrow$输出井</li>
+<li>输出：输入井$\rightarrow$输出buffer$\rightarrow$I/O设备</li>
+</ol>
+</li>
+<li>
+<p>应用</p>
+<p>打印机：独占设备$\rightarrow$共享设备</p>
+</li>
+<li>
+<p>特点</p>
+<ol>
+<li>
+<p>提高I/O速度：</p>
+<p>对低速设备操作——&gt;变为对输入/出#操作。</p>
+</li>
+<li>
+<p>将独占设备改造为共享设备</p>
+<p>分配设备的实质时分配输入/出#</p>
+</li>
+<li>
+<p>实现了虚拟设备功能</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="磁盘存储器">磁盘存储器</h2>
+<p>硬件特性</p>
+<p>空间分配(第六章：文件管理)</p>
+<ol>
+<li>
+<p>存储</p>
+<p>盘片(柱面)$\rightarrow$扇区$\rightarrow$数据块</p>
+</li>
+<li>
+<p>以磁头设置划分</p>
+<ol>
+<li>固定头</li>
+<li>移动头</li>
+</ol>
+</li>
+<li>
+<p>移动头磁盘访问时间</p>
+<ol>
+<li>寻道时间($T_s$)</li>
+<li>寻找扇区的时间($T_r$)</li>
+<li>传输时间($T_t$)</li>
+</ol>
+<p>$T_r$，$T_t$磁盘的机械特性</p>
+</li>
+</ol>
+<h2 id="磁盘调度算法">磁盘调度算法</h2>
+<ol>
+<li>
+<p>先来先服务FCFS</p>
+<p>访问要求：从已知磁头所在的磁道开始按照进程访问的顺序依次读取</p>
+</li>
+<li>
+<p>最短寻道时间优先SSTF</p>
+<p>访问要求：离当前的磁头距离最近的磁道先进行访问</p>
+</li>
+<li>
+<p>扫描(SCAN)算法</p>
+<p>规定访问方向：从里到外(磁盘号增加)或从外到里(磁盘号减少)</p>
+<p>访问要求：</p>
+<ol>
+<li>访问方向(来访问)</li>
+<li>再探究反方向访问剩下的磁道</li>
+</ol>
+</li>
+<li>
+<p>循环扫描(CSCAN)算法</p>
+<p>访问要求：只有一个方向</p>
+</li>
+</ol>
+<p>例：磁盘请求服务队列中要访问的磁道分别为38、6、37、100、14、124、65、67，磁头上次访问了20磁道，当前处于30磁道上，试采用FCFS、SSTF和SCAN调度算法，分别计算磁头移动的磁道数</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/adan-ning/images/202405081700410.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/adan-ning/images/202405081700410.png, https://cdn.jsdelivr.net/gh/adan-ning/images/202405081700410.png 1.5x, https://cdn.jsdelivr.net/gh/adan-ning/images/202405081700410.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/adan-ning/images/202405081700410.png"
+        title="https://cdn.jsdelivr.net/gh/adan-ning/images/202405081700410.png" /></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -325,7 +442,7 @@
     </div>
 
     <div class="post-nav"><a href="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/" class="prev" rel="prev" title="计算机组成(第五章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>计算机组成(第五章)</a>
-            <a href="/posts/%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A16/" class="next" rel="next" title="算法与程序(第六章)">算法与程序(第六章)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7/" class="next" rel="next" title="操作系统(第七章)">操作系统(第七章)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">

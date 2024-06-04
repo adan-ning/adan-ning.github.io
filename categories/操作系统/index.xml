@@ -4,6 +4,14 @@
         <link>https://adan-ning.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
         <description>操作系统 - Category - 蓝Q曦的博客网站</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 25 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
+    <title>操作系统(第七章)</title>
+    <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7/</link>
+    <pubDate>Thu, 25 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F7/</guid>
+    <description><![CDATA[文件管理 文件构成 数据项$\rightarrow$记录$\rightarrow$文件 数据项 基本数据项 用于描述一个对象的属性的字符集,是数据组织]]></description>
+</item>
+<item>
     <title>操作系统(第六章)</title>
     <link>https://adan-ning.github.io/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F6/</link>
     <pubDate>Thu, 25 Apr 2024 00:00:00 &#43;0000</pubDate>

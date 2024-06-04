@@ -3,7 +3,23 @@
         <title>计算机组成原理 - Tag - 蓝Q曦的博客网站</title>
         <link>https://adan-ning.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</link>
         <description>计算机组成原理 - Tag - 蓝Q曦的博客网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 25 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 09 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://adan-ning.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+    <title>计算机组成(第七章)</title>
+    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%867/</link>
+    <pubDate>Thu, 09 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%867/</guid>
+    <description><![CDATA[外围设备 外围设备概述 除了CPU和主存，其他部件都是“外设” 外设的功能 提供不同计算机之间的联系 提供计算机与用户的联系 外设的基本组成 存储介质: 具]]></description>
+</item>
+<item>
+    <title>计算机组成(第六章)</title>
+    <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%866/</link>
+    <pubDate>Thu, 02 May 2024 00:00:00 &#43;0000</pubDate>
+    <author>蓝Q曦</author>
+    <guid>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%866/</guid>
+    <description><![CDATA[总线系统 总线的概念和结构形态 总线的基本概念 总线：构成计算机系统的互连机构，是多个系统功能部件之间进行数据传送的公共通路 总线支持不同部件之间的]]></description>
+</item>
+<item>
     <title>计算机组成(第五章)</title>
     <link>https://adan-ning.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%865/</link>
     <pubDate>Thu, 25 Apr 2024 00:00:00 &#43;0000</pubDate>
